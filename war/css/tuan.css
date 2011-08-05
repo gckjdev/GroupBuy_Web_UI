@@ -1,0 +1,21 @@
+.clearfix {
+	zoom: 1;
+}
+
+.center {
+	width: 960px;
+	margin: 0 auto;
+}
+
+.Dragon_Boat {
+	position: relative;
+	z-index: 20;
+}
+
+.sort-right {
+	position: absolute;
+	right: 630px;
+	top: 116px;
+	z-index: 100;
+}
+

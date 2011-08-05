@@ -1,0 +1,305 @@
+
+.tuan-con {
+	width: 290px;
+	height: 341px;
+	position: relative;
+}
+
+.tuan-con .con-bg {
+	background: url("img/con_b.png") 0 0 no-repeat;
+	width: 290px;
+	height: 341px;
+	position: absolute;
+	right: -3px;
+	bottom: -4px;
+	_bottom: -5px;
+	display: none;
+}
+
+.tuan-con .con-top {
+	height: 7px;
+	width: 290px;
+	background: url("img/m.png") 0 -70px no-repeat;
+	overflow: hidden;
+	position: relative;
+}
+
+.tuan-con .con-bottom {
+	height: 7px;
+	width: 290px;
+	background: url("img/m.png") 0 -80px no-repeat;
+	overflow: hidden;
+	position: relative;
+}
+
+.tuan-con .con-center {
+	height: 327px;
+	background-color: #f8f8f8;
+	border: 1px solid #d4d4d4;
+	border-top: 0;
+	border-bottom: 0;
+	position: relative;
+}
+
+.tuan-con-hover .con-top {
+	background-position: 0 -90px;
+}
+
+.tuan-con-hover .con-bottom {
+	background-position: 0 -100px;
+}
+
+.tuan-con-hover .con-center {
+	border-color: #f98f99;
+}
+
+.tuan-con .recomm-mark {
+	background: url("img/m.png") 0 -11px no-repeat;
+	width: 55px;
+	height: 53px;
+	position: absolute;
+	top: -9px;
+	left: 0;
+	z-index: 5;
+}
+
+.tuan-con em {
+	color: #f00;
+}
+
+.tuan-con .title-con {
+	font-size: 14px;
+	line-height: 24px;
+	padding: 5px 8px 5px 10px;
+	height: 40px;
+	overflow: hidden;
+}
+
+.tuan-con .title-con .merchant {
+	color: #D94116;
+	border-right: 1px solid #D4D4D4;
+	padding-right: 6px;
+	margin-right: 6px;
+}
+
+.tuan-con .title-con a:visited {
+	color: #800080;
+}
+
+.tuan-con .title-recomm {
+	text-indent: 27px;
+}
+
+.tuan-con .img-con {
+	padding: 13px 9px;
+	position: relative;
+	height: 166px;
+}
+
+.tuan-con .good-img-a {
+	padding: 1px;
+	border: 1px solid #DFDFDF;
+	display: block;
+	width: 266px;
+	height: 166px;
+}
+
+.tuan-con .good-img-a-hover {
+	border-color: #f28d9f
+}
+
+.tuan-con .good-img {
+	width: 266px;
+	height: 166px;
+}
+
+.tuan-con .good-img-mask {
+	width: 266px;
+	height: 166px;
+	background-color: #000;
+	position: absolute;
+	top: 15px;
+	left: 11px;
+	z-index: 2;
+	filter: Alpha(opacity =   60);
+	-moz-opacity: .6;
+	opacity: 0.6;
+}
+
+.good-img-flag {
+	background: url("img/m.png?v=20110803.png") 0 -262px no-repeat;
+	width: 88px;
+	height: 32px;
+	position: absolute;
+	top: 14px;
+	left: 10px;
+	z-index: 3;
+}
+
+.tuan-con .img-title {
+	position: absolute;
+	left: 11px;
+	top: 159px;
+	height: 22px;
+	line-height: 22px;
+	width: 266px;
+	text-align: center;
+	z-index: 3;
+	display: none;
+}
+
+.tuan-con .img-title a {
+	color: #fff;
+	padding-left: 24px;
+	background: url("img/m.png") -285px 1px no-repeat;
+	font: normal 12px arial;
+	height: 22px;
+	line-height: 22px;
+}
+
+.tuan-con .img-title a:hover {
+	text-decoration: none;
+}
+
+.tuan-con .img-title b {
+	font-weight: bold;
+}
+
+.tuan-con .img-title-mask {
+	position: absolute;
+	left: 11px;
+	top: 159px;
+	height: 22px;
+	width: 266px;
+	z-index: 1;
+	display: none;
+}
+
+.tuan-con .info-con {
+	height: 45px;
+	padding: 0 0 5px;
+}
+
+.tuan-con .info-con p {
+	height: 20px;
+	display: block;
+	position: absolute;
+}
+
+.tuan-con .info-con-left {
+	position: relative;
+}
+
+.tuan-con .info-con-left .info-con-range {
+	top: 0;
+	left: 10px;
+	width: 200px;
+	overflow: hidden;
+}
+
+.tuan-con .range .tip {
+	text-indent: -1000em;
+	background: url("img/m.png") -291px -146px no-repeat;
+	width: 26px;
+	overflow: hidden;
+	height: 28px;
+	position: absolute;
+}
+
+.tuan-con .info-con-left .oldprice {;
+	color: #777;
+	top: 24px;
+	left: 10px;
+}
+
+.tuan-con .info-con-left del {
+	font-weight: bold;
+	font-size: 12px;
+	margin-right: 10px;
+	color: #333;
+}
+
+.tuan-con .info-con-left .discount {
+	color: #fb0000;
+}
+
+.tuan-con .info-con-left .oldprice b {
+	font: bold 12px arial;
+}
+
+.tuan-con .info-con-right {
+	position: relative;
+}
+
+.tuan-con .info-con-right .cps-p {
+	top: 0;
+	right: 10px;
+}
+
+.tuan-con .info-con-right .cps-a {
+	color: #777;
+}
+
+.tuan-con .info-con-right span {
+	float: left;
+	cursor: pointer;
+}
+
+.tuan-con .info-con-right .cps {
+	width: 20px;
+	background: url("img/m.png") -240px 2px no-repeat;
+	height: 16px;
+	text-indent: -1000em;
+	overflow: hidden;
+	margin-right: 3px;
+}
+
+.tuan-con .info-con-right .buynum {
+	top: 24px;
+	right: 10px;
+}
+
+.tuan-con .info-con-right .buynum b {
+	font-weight: bold;
+	font-size: 12px;
+	color: #333;
+	margin-right: 10px;
+}
+
+.tuan-con .info-con .single {
+	top: 15px;
+}
+
+.tuan-con .price-con {
+	height: 35px;
+	background: url("img/b.png") 0 -100px repeat-x;
+	color: #777;
+	position: relative;
+	overflow: hidden;
+}
+
+.tuan-con .price-con-left {
+	padding-left: 30px;
+	background: url("img/m.png") -276px -170px no-repeat;
+	height: 33px;
+	line-height: 33px;
+	font: normal 30px Arial, Verdana;
+	color: #fc0001;
+	padding-top: 2px
+}
+
+.tuan-con .price-con-right {
+	padding: 6px 10px 8px;
+	height: 21px;
+}
+
+.tuan-con .price-con-right .gosite {
+	display: block;
+	width: 85px;
+	height: 29px;
+	background: url("img/m.png") 0 -150px no-repeat;
+}
+
+.tuan-con .price-con-right .gosite:hover {
+	background-position: -100px -150px;
+}

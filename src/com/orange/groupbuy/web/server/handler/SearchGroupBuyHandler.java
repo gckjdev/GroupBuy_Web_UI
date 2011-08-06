@@ -43,7 +43,6 @@ public class SearchGroupBuyHandler implements
 			result.setRebate(0.5);
 			result.setSiteName("美团网");
 			result.setSiteUrl("http://www.jumei.com");
-			result.setTitle("标题栏 ");
 			result.setValue(1d);
 			
 			result.setProductUrl("http://www.jumei.com/i/deal/fxzhijy0804.html");

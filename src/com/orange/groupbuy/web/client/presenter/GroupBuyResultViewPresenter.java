@@ -1,17 +1,20 @@
 package com.orange.groupbuy.web.client.presenter;
 
+import java.util.List;
+
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 
-import com.orange.groupbuy.web.client.SimpleCallback;
 import com.orange.groupbuy.web.client.dispatch.SearchGroupBuy;
 import com.orange.groupbuy.web.client.event.RefreshSearchResultEvent;
 import com.orange.groupbuy.web.client.event.RefreshSearchResultHandler;
+import com.orange.groupbuy.web.client.http.HttpClient;
+import com.orange.groupbuy.web.client.http.HttpClient.Callback;
 import com.orange.groupbuy.web.client.model.Category;
 import com.orange.groupbuy.web.client.model.Criteria;
 import com.orange.groupbuy.web.client.model.OrderType;
-import com.orange.groupbuy.web.client.model.SearchResultList;
+import com.orange.groupbuy.web.client.model.SearchResult;
 import com.orange.groupbuy.web.client.view.GroupBuyResultView;
 
 public class GroupBuyResultViewPresenter extends
@@ -47,20 +50,30 @@ public class GroupBuyResultViewPresenter extends
 							criteria.setOrderType(OrderType.valueOf(event
 									.getOrderType()));
 							criteria.setCity(event.getCity());
-							// TODO:
-							// criteria.setOnlyToday(onlyToday);
+							criteria.setOnlyToday(event.isOnlyToday());
 
-							action.setCriteria(criteria);
-							dispatch.execute(action,
-									new SimpleCallback<SearchResultList>() {
+							HttpClient.searchGroupBuyHandler(criteria,
+									new Callback() {
 
 										@Override
-										public void onSuccess(
-												SearchResultList result) {
-											getDisplay().updateModel(
-													result.getResults());
+										public void updateModel(
+												List<SearchResult> resultList) {
+											getDisplay()
+													.updateModel(resultList);
 										}
 									});
+							// TODO:
+							// action.setCriteria(criteria);
+							// dispatch.execute(action,
+							// new SimpleCallback<SearchResultList>() {
+							//
+							// @Override
+							// public void onSuccess(
+							// SearchResultList result) {
+							// getDisplay().updateModel(
+							// result.getResults());
+							// }
+							// });
 						}
 					}
 

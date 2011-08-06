@@ -58,13 +58,13 @@ public class SearchResult implements Result {
 		this.category = category;
 	}
 
-	public String getTitle() {
-		return title;
-	}
+	// public String getTitle() {
+	// return title;
+	// }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+	// public void setTitle(String title) {
+	// this.title = title;
+	// }
 
 	public String getDesctiption() {
 		return desctiption;

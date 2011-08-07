@@ -1,8 +1,11 @@
 package com.orange.groupbuy.web.client.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum OrderType {
-	PRICE(0, "最低价"), PRICE_RATE(1, "最划算"), POPULAR_SALE(2, "最热销"), LOCATION(3,
-			"最方便");
+	DATE(0, "最近"), PRICE(1, "最低价"), PRICE_RATE(2, "最划算"), POPULAR_SALE(3, "最热销"), LOCATION(
+			4, "最方便");
 
 	private int value;
 	private String displayName;
@@ -22,6 +25,12 @@ public enum OrderType {
 
 	public static OrderType[] getDisplayOrder() {
 		OrderType[] values = OrderType.values();
-		return values;
+		List<OrderType> result = new ArrayList<OrderType>();
+		for (OrderType v : values) {
+			result.add(v);
+		}
+		result.remove(LOCATION);
+		result.remove(DATE);
+		return result.toArray(new OrderType[result.size()]);
 	}
 }

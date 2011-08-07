@@ -62,6 +62,7 @@ public class GroupBuyResultViewPresenter extends
 													.updateModel(resultList);
 										}
 									});
+
 							// TODO:
 							// action.setCriteria(criteria);
 							// dispatch.execute(action,

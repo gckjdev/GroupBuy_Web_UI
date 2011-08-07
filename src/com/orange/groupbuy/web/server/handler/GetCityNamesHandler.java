@@ -13,6 +13,7 @@ import com.orange.groupbuy.web.client.model.Item;
 public class GetCityNamesHandler implements
 		ActionHandler<GetCityNames, CityNames> {
 
+	private static final String[] names = new String[] { "北京", "上海", "广州", "重庆" };
 
 	@Override
 	public CityNames execute(GetCityNames action, ExecutionContext context)
@@ -20,10 +21,9 @@ public class GetCityNamesHandler implements
 		ArrayList<Item> cityList = new ArrayList<Item>();
 
 		cityList.add(new Item("", "全国"));
-		cityList.add(new Item("bj", "北京"));
-		cityList.add(new Item("gz", "广州"));
-		cityList.add(new Item("sh", "上海"));
-		cityList.add(new Item("cq", "重庆"));
+		for (String name : names) {
+			cityList.add(new Item(name, name));
+		}
 		CityNames names = new CityNames();
 		names.setCityList(cityList);
 		return names;
@@ -37,8 +37,7 @@ public class GetCityNamesHandler implements
 	@Override
 	public void rollback(GetCityNames arg0, CityNames arg1,
 			ExecutionContext arg2) throws DispatchException {
-		// TODO Auto-generated method stub
-
+		// nothing to do
 	}
 
 }

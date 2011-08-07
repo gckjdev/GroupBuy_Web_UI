@@ -25,6 +25,17 @@
 		<servlet-name>dispatch</servlet-name>
 		<url-pattern>/groupbuy_web_ui/dispatch</url-pattern>
 	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>proxy</servlet-name>
+		<servlet-class>com.orange.groupbuy.web.server.SearchGroupBuyServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>proxy</servlet-name>
+		<url-pattern>/groupbuy_web_ui/proxy</url-pattern>
+	</servlet-mapping>
 	<!-- Default page to serve -->
 	<welcome-file-list>
 		<welcome-file>GroupBuy_Web_UI.html</welcome-file>

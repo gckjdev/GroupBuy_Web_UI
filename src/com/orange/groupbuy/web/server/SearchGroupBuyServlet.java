@@ -1,0 +1,74 @@
+package com.orange.groupbuy.web.server;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Enumeration;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class SearchGroupBuyServlet extends HttpServlet {
+
+	private static String SEARCH_GROUP_BUY_URL_TEMPLATE = "http://localhost:8000/api/i?";
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5582162516572852098L;
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		URL serverAddress = new URL(getRequestURL(req));
+		HttpURLConnection connection = null;
+		try {
+			connection = (HttpURLConnection) serverAddress.openConnection();
+
+			connection.setRequestMethod("GET");
+			connection.setDoOutput(true);
+			connection.setReadTimeout(10000);
+
+			connection.connect();
+
+			copyLarge(connection.getInputStream(), resp.getOutputStream());// 将数据返回给域A
+		} finally {
+			if (connection != null) {
+				connection.disconnect();
+				connection = null;
+			}
+		}
+	}
+
+	public static long copyLarge(InputStream input, OutputStream output)
+			throws IOException {
+		byte[] buffer = new byte[4096];
+		long count = 0;
+		int n = 0;
+		while (-1 != (n = input.read(buffer))) {
+			output.write(buffer, 0, n);
+			System.out.println(new String(buffer));
+			count += n;
+		}
+		return count;
+	}
+
+	private String getRequestURL(HttpServletRequest req) {
+		StringBuffer sb = new StringBuffer(SEARCH_GROUP_BUY_URL_TEMPLATE);
+		Enumeration e = req.getParameterNames();
+		while (e.hasMoreElements()) {
+			String name = String.valueOf(e.nextElement());
+
+			String[] values = req.getParameterValues(name);
+			for (String v : values) {
+				sb.append("&").append(name).append("=").append(v);
+			}
+		}
+
+		System.out.println(sb.toString());
+		return sb.toString();
+	}
+}

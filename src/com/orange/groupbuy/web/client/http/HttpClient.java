@@ -3,6 +3,7 @@ package com.orange.groupbuy.web.client.http;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -16,13 +17,14 @@ import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
-import com.orange.groupbuy.constant.ServiceConstant;
+import com.google.gwt.user.client.Window;
 import com.orange.groupbuy.web.client.model.Criteria;
 import com.orange.groupbuy.web.client.model.SearchResult;
+import com.orange.groupbuy.web.shared.ServiceConstant;
 
 public class HttpClient {
 
-	private static String SEARCH_GROUP_BUY_URL_TEMPLATE = "";
+	private static String SEARCH_GROUP_BUY_URL_TEMPLATE = "/groupbuy_web_ui/proxy?&m=fp&mc=10&so=0&app=GROUPBUYWEB";
 
 	public static interface Callback {
 		void updateModel(List<SearchResult> resultList);
@@ -35,45 +37,57 @@ public class HttpClient {
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				URL.encode(url));
 		try {
-			Request request = builder.sendRequest(null, new RequestCallback() {
-				@Override
-				public void onError(Request request, Throwable exception) {
-					// Couldn't connect to server (could be timeout, SOP
-					// violation, etc.)
-				}
+			builder.setCallback(new RequestCallback() {
 
 				@Override
 				public void onResponseReceived(Request request,
 						Response response) {
-					if (200 == response.getStatusCode()) {
-						// Process the response in response.getText()
-					} else {
+					if (response.getStatusCode() == 200) {
 						String responseText = response.getText();
-						if (responseText == null) {
+						if (responseText == null || responseText.length() == 0) {
 							return;
 						}
 						try {
 							// parse the response text into JSON
 							JSONValue jsonValue = JSONParser
-									.parseStrict(responseText);
-							JSONArray array = jsonValue.isArray();
+									.parseStrict(response.getText());
 
-							if (array == null) {
-								throw new JSONException();
+							JSONArray resultList = null;
+							JSONObject dataObject = jsonValue.isObject();
+							if (dataObject != null) {
+								JSONValue arrayValue = dataObject.get("dat");
+								if (arrayValue != null) {
+									resultList = arrayValue.isArray();
+								}
 							}
 
-							List<SearchResult> searchResultList = jsonToResultList(array);
+							List<SearchResult> searchResultList = new ArrayList<SearchResult>();
+							if (resultList != null) {
+								searchResultList = jsonToResultList(resultList);
+							}
+
 							callback.updateModel(searchResultList);
 
-						} catch (JSONException e) {
-							// TODO:
+						} catch (JSONException exception) {
+							GWT.log("Exception parseStrict", exception);
+							Window.alert("Error: " + exception.getMessage());
 						}
-
+					} else {
+						Window.alert("Error status code: "
+								+ response.getStatusCode());
 					}
 				}
+
+				@Override
+				public void onError(Request request, Throwable exception) {
+					Window.alert("Error: " + exception.getMessage());
+				}
 			});
-		} catch (RequestException e) {
+
+			builder.send();
+		} catch (RequestException exception) {
 			// Couldn't connect to server
+			Window.alert("Error: " + exception.getMessage());
 		}
 	}
 
@@ -93,15 +107,22 @@ public class HttpClient {
 		return result;
 	}
 
-	private static String getSearchUrl(Criteria criteria) {
-		String city = criteria.getCity();
-		int category = criteria.getCategory().getValue();
+	public static String getSearchUrl(Criteria criteria) {
+		int onlyToday = criteria.isOnlyToday() ? 1 : 0;
 		int orderValue = criteria.getOrderType().getValue();
-		boolean onlyToday = criteria.isOnlyToday();
+		String city = criteria.getCity();
+
 		// TODO: parse the data.
-		String url = String.format(SEARCH_GROUP_BUY_URL_TEMPLATE,
-				criteria.toString());
-		return url;
+		String url = SEARCH_GROUP_BUY_URL_TEMPLATE;
+		StringBuffer sb = new StringBuffer(url);
+		sb.append("&to=").append(onlyToday);
+		sb.append("&sb=").append(orderValue);
+		sb.append("&ci=").append(city);
+		List<Integer> category = criteria.getCategory().getValues();
+		for (Integer c : category) {
+			sb.append("&ctg=").append(c);
+		}
+		return sb.toString();
 	}
 
 	private static double getNumber(JSONObject object, String paraLoc) {
@@ -130,24 +151,15 @@ public class HttpClient {
 		return returnValue;
 	}
 
-	private static List<SearchResult> jsonToResultList(JSONArray array) {
+	private static List<SearchResult> jsonToResultList(JSONArray productList) {
 		List<SearchResult> searchResultList = new ArrayList<SearchResult>();
-		if (array.size() > 0) {
-			JSONObject jsonObj;
-			if ((jsonObj = array.get(0).isObject()) != null) {
-				JSONValue jsonProduct;
-				if ((jsonProduct = jsonObj.get(ServiceConstant.PARA_PRODUCT)) != null) {
-					JSONArray productList = jsonProduct.isArray();
-					for (int i = 0; i < productList.size(); i++) {
-						JSONObject object = array.get(i).isObject();
-						if (object != null) {
-							SearchResult result = jsonToSearchResult(object);
-							searchResultList.add(result);
-						}
-					}
-
+		if (productList != null) {
+			for (int i = 0; i < productList.size(); i++) {
+				JSONObject object = productList.get(i).isObject();
+				if (object != null) {
+					SearchResult result = jsonToSearchResult(object);
+					searchResultList.add(result);
 				}
-
 			}
 		}
 		return searchResultList;

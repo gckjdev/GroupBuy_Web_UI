@@ -42,4 +42,19 @@ public enum Category {
 		Category[] result = new Category[values.length];
 		return list.toArray(result);
 	}
+
+	public List<Integer> getValues() {
+		List<Integer> result = new ArrayList<Integer>();
+		if (this == C_CATEGORY_ALL) {
+			Category[] allList = getDisplayOrder();
+			for (Category c : allList) {
+				if (c != C_CATEGORY_ALL) {
+					result.add(c.getValue());
+				}
+			}
+		} else {
+			result.add(this.getValue());
+		}
+		return result;
+	}
 }

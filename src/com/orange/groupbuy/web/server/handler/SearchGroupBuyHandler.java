@@ -12,6 +12,11 @@ import com.orange.groupbuy.web.client.model.Criteria;
 import com.orange.groupbuy.web.client.model.SearchResult;
 import com.orange.groupbuy.web.client.model.SearchResultList;
 
+/**
+ * @author echnlee
+ * @see com.orange.groupbuy.web.client.http.HttpClient
+ */
+@Deprecated
 public class SearchGroupBuyHandler implements
 		ActionHandler<SearchGroupBuy, SearchResultList> {
 
@@ -44,9 +49,8 @@ public class SearchGroupBuyHandler implements
 			result.setSiteName("美团网");
 			result.setSiteUrl("http://www.jumei.com");
 			result.setValue(1d);
-			
+
 			result.setProductUrl("http://www.jumei.com/i/deal/fxzhijy0804.html");
-			// result.setImageClickUrl("http://www.jumei.com/i/deal/fxzhijy0804.html");
 			results.add(result);
 		}
 		return resultList;

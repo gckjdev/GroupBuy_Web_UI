@@ -13,7 +13,7 @@ import com.orange.groupbuy.web.client.model.SearchResult;
 
 public class GroupBuyWidget extends Widget {
 
-	private static final String TARGET_BLANK = "_blank";
+	// private static final String TARGET_BLANK = "_blank";
 
 	private static GroupBuyWidgetUiBinder uiBinder = GWT
 			.create(GroupBuyWidgetUiBinder.class);
@@ -55,20 +55,18 @@ public class GroupBuyWidget extends Widget {
 
 	public void updateModel(SearchResult result) {
 		if (result != null) {
-			siteNameLabel.setTarget(TARGET_BLANK);
 			siteNameLabel.setHref(result.getSiteUrl());
 			siteNameLabel.setInnerText(result.getSiteName());
-			siteNameLabel.setClassName("merchant");
 			//
 			link.setTitle(result.getDesctiption());
-			link.setTarget(TARGET_BLANK);
 			link.setHref(result.getProductUrl());
 			link.setInnerHTML(result.getDesctiption());
-			imageAnchor.setTarget(TARGET_BLANK);
+			//
 			imageAnchor.setHref(result.getProductUrl());
-			imageAnchor.setClassName("good-img-a");
-
+			imageAnchor.setTitle(result.getDesctiption());
 			image.setSrc(result.getImageUrl());
+			// image.setTitle(result.getDesctiption());
+
 			originalPriceLabel.setInnerText(formatMoney(result.getPrice()));
 			rebateLabel.setInnerText(formatRebate(result.getRebate()));
 			//

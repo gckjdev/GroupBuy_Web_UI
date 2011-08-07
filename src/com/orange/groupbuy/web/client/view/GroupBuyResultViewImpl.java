@@ -35,6 +35,7 @@ public class GroupBuyResultViewImpl extends Composite implements
 				compositePanel.add(resultRowPanel);
 			}
 			GroupBuyWidget resultComponent = new GroupBuyWidget();
+			resultComponent.setStyleName("GroupBuyWidget-layout");
 			resultRowPanel.setSpacing(10);
 			resultComponent.updateModel(result);
 			resultRowPanel.add(resultComponent);

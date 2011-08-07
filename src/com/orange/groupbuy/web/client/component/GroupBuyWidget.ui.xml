@@ -3,46 +3,48 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
 	xmlns:g='urn:import:com.google.gwt.user.client.ui' xmlns:d='urn:import:com.google.gwt.dom.client'>
 
-	<div class="tuan-con">
-		<div class="con-bg" style="display: none;"></div>
-		<div class="con-top"></div>
-		<div class="recomm-mark"></div>
-		<div class="con-center">
-			<p class="title-con title-recomm">
-				<a ui:field='siteNameLabel'></a>
-				<a ui:field='link'></a>
-			</p>
-			<div class="img-con">
-				<a ui:field='imageAnchor'>
-					<img ui:field='image' width="266" height="166" class="good-img">
-					</img>
-				</a>
+	<div class="tuan-area">
+		<div class="tuan-con">
+			<div class="con-bg" style="display: none;"></div>
+			<div class="con-top"></div>
+			<div class="recomm-mark"></div>
+			<div class="con-center">
+				<p class="title-con title-recomm">
+					<a ui:field='siteNameLabel' class="merchant" target="_blank"></a>
+					<a ui:field='link' target="_blank"></a>
+				</p>
+				<div class="img-con">
+					<a ui:field='imageAnchor' class="good-img-a" target="_blank">
+						<img ui:field='image' width="266" height="166" class="good-img">
+						</img>
+					</a>
+				</div>
+				<div class="info-con">
+					<div class="info-con-left">
+						<p class="oldprice single">
+							原价:
+							<del ui:field='originalPriceLabel'></del>
+							<span ui:field='rebateLabel' class="discount">
+							</span>
+						</p>
+					</div>
+					<div class="info-con-right">
+						<p class="buynum single">
+							<b ui:field='boughtNumLabel'></b>
+							人购买
+						</p>
+					</div>
+				</div>
+				<div class="price-con">
+					<div ui:field="valueLabel" class="price-con-left float-left">
+					</div>
+					<div class="price-con-right float-right">
+						<a ui:field='detailsButton' target="_blank" href="" class="gosite"></a>
+					</div>
+					<div class="clear"></div>
+				</div>
 			</div>
-			<div class="info-con">
-				<div class="info-con-left">
-					<p class="oldprice single">
-						原价:
-						<del ui:field='originalPriceLabel'></del>
-						<span ui:field='rebateLabel' class="discount">
-						</span>
-					</p>
-				</div>
-				<div class="info-con-right">
-					<p class="buynum single">
-						<b ui:field='boughtNumLabel'></b>
-						人购买
-					</p>
-				</div>
-			</div>
-			<div class="price-con">
-				<div ui:field="valueLabel" class="price-con-left float-left">
-				</div>
-				<div class="price-con-right float-right">
-					<a ui:field='detailsButton' target="_blank" href="" class="gosite"></a>
-				</div>
-				<div class="clear"></div>
-			</div>
+			<div class="con-bottom"></div>
 		</div>
-		<div class="con-bottom"></div>
 	</div>
 </ui:UiBinder>

@@ -14,8 +14,11 @@
 
 .sort-right {
 	position: absolute;
-	right: 630px;
-	top: 116px;
+	right: 700px;
+	top: 108px;
 	z-index: 100;
 }
 
+.GroupBuyWidget-layout {
+	padding: 20px 0 0 16px;
+}

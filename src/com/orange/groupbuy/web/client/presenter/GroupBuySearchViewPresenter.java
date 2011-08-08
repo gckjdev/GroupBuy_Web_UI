@@ -1,7 +1,7 @@
 package com.orange.groupbuy.web.client.presenter;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.presenter.client.EventBus;
@@ -9,6 +9,8 @@ import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.event.logical.shared.AttachEvent.Handler;
 import com.google.gwt.event.logical.shared.SelectionEvent;
@@ -17,6 +19,7 @@ import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.orange.groupbuy.web.client.SimpleCallback;
+import com.orange.groupbuy.web.client.component.PageListWidget;
 import com.orange.groupbuy.web.client.dispatch.GetCityNames;
 import com.orange.groupbuy.web.client.event.RefreshSearchResultEvent;
 import com.orange.groupbuy.web.client.model.Category;
@@ -44,16 +47,21 @@ public class GroupBuySearchViewPresenter extends
 
 		int categoryIndex = getDisplay().getCategoryTabPanel()
 				.getSelectedIndex();
-		String category = Category.getDisplayOrder()[categoryIndex].name();
+		Category category = Category.getDisplayOrder()[categoryIndex];
 		refreshSearchResultEvent.setCategory(category);
 
 		int orderTypeIndex = getDisplay().getOrderTypeTabPanelList()
-				.get(categoryIndex).getSelectedIndex();
-		String orderType = OrderType.getDisplayOrder()[orderTypeIndex].name();
+				.get(category.name()).getSelectedIndex();
+		OrderType orderType = OrderType.getDisplayOrder()[orderTypeIndex];
 		refreshSearchResultEvent.setOrderType(orderType);
 
 		boolean onlyToday = getDisplay().getOnlyTodayCheckBox().getValue();
 		refreshSearchResultEvent.setOnlyToday(onlyToday);
+
+		// page
+		PageListWidget pageList = getDisplay().getPageListWidgetList().get(
+				category.getIdentify(orderType));
+		refreshSearchResultEvent.setCurrentPage(pageList.getCurrentPage());
 		return refreshSearchResultEvent;
 	}
 
@@ -88,8 +96,8 @@ public class GroupBuySearchViewPresenter extends
 
 				}));
 
-		List<TabLayoutPanel> orderTypePanelList = getDisplay()
-				.getOrderTypeTabPanelList();
+		Collection<TabLayoutPanel> orderTypePanelList = getDisplay()
+				.getOrderTypeTabPanelList().values();
 		for (TabLayoutPanel orderTab : orderTypePanelList) {
 			registerHandler(orderTab
 					.addSelectionHandler(new SelectionHandler<Integer>() {
@@ -101,19 +109,46 @@ public class GroupBuySearchViewPresenter extends
 					}));
 		}
 
+		// previous page
+		Collection<PageListWidget> pageListWidgetList = getDisplay()
+				.getPageListWidgetList().values();
+		for (final PageListWidget page : pageListWidgetList) {
+			// previous
+			registerHandler(page.getPreviousPage().addClickHandler(
+					new ClickHandler() {
+
+						@Override
+						public void onClick(ClickEvent event) {
+							page.previousPage();
+							eventBus.fireEvent(createRefreshEvent());
+						}
+					}));
+			// next
+			registerHandler(page.getNextPage().addClickHandler(
+					new ClickHandler() {
+
+						@Override
+						public void onClick(ClickEvent event) {
+							page.nextPage();
+							eventBus.fireEvent(createRefreshEvent());
+						}
+					}));
+		}
+
 		// init load
 		getDisplay().getCategoryTabPanel().addAttachHandler(new Handler() {
 
 			@Override
 			public void onAttachOrDetach(AttachEvent event) {
 				RefreshSearchResultEvent refreshSearchResultEvent = new RefreshSearchResultEvent();
-				refreshSearchResultEvent.setCategory(Category.getDisplayOrder()[0]
-						.name());
+				refreshSearchResultEvent.setCategory(Category.getDisplayOrder()[0]);
 				refreshSearchResultEvent.setOrderType(OrderType
-						.getDisplayOrder()[0].name());
+						.getDisplayOrder()[0]);
 
 				// No city select
 				refreshSearchResultEvent.setCity("");
+				refreshSearchResultEvent.setCurrentPage(1);
+				refreshSearchResultEvent.setOnlyToday(false);
 				eventBus.fireEvent(refreshSearchResultEvent);
 			}
 		});

@@ -24,7 +24,7 @@ import com.orange.groupbuy.web.shared.ServiceConstant;
 
 public class HttpClient {
 
-	private static String SEARCH_GROUP_BUY_URL_TEMPLATE = "/groupbuy_web_ui/proxy?&m=fp&mc=10&so=0&app=GROUPBUYWEB";
+	private static String SEARCH_GROUP_BUY_URL_TEMPLATE = "/groupbuy_web_ui/proxy?&m=fp&app=GROUPBUYWEB";
 
 	public static interface Callback {
 		void updateModel(List<SearchResult> resultList);
@@ -111,13 +111,17 @@ public class HttpClient {
 		int onlyToday = criteria.isOnlyToday() ? 1 : 0;
 		int orderValue = criteria.getOrderType().getValue();
 		String city = criteria.getCity();
+		int maxCount = criteria.getPageSize();
+		int startRow = criteria.getStartRow();
 
-		// TODO: parse the data.
 		String url = SEARCH_GROUP_BUY_URL_TEMPLATE;
 		StringBuffer sb = new StringBuffer(url);
+		sb.append("&mc=").append(maxCount);
+		sb.append("&so=").append(startRow);
 		sb.append("&to=").append(onlyToday);
 		sb.append("&sb=").append(orderValue);
 		sb.append("&ci=").append(city);
+
 		List<Integer> category = criteria.getCategory().getValues();
 		for (Integer c : category) {
 			sb.append("&ctg=").append(c);

@@ -1,7 +1,7 @@
 package com.orange.groupbuy.web.client.view;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.presenter.client.EventBus;
@@ -17,6 +17,7 @@ import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.orange.groupbuy.web.client.component.GroupBuySearchHeader;
+import com.orange.groupbuy.web.client.component.PageListWidget;
 import com.orange.groupbuy.web.client.model.Category;
 import com.orange.groupbuy.web.client.model.OrderType;
 import com.orange.groupbuy.web.client.presenter.GroupBuyResultViewPresenter;
@@ -27,7 +28,8 @@ public class GruopBuySearchViewImpl extends Composite implements
 	private GroupBuySearchHeader header;
 	private CheckBox onlyTodayCheckBox;
 	private TabLayoutPanel categoryTabPanel;
-	private List<TabLayoutPanel> orderTypeTabPanelList;
+	private Map<String, TabLayoutPanel> orderTypeTabPanelList;
+	private Map<String, PageListWidget> pageListWidgetList;
 
 	public GruopBuySearchViewImpl(EventBus eventBus, DispatchAsync dispatch) {
 		// header
@@ -45,16 +47,18 @@ public class GruopBuySearchViewImpl extends Composite implements
 		// slowly show
 		categoryTabPanel.setAnimationDuration(50);
 		categoryTabPanel.setWidth("100%");
-		orderTypeTabPanelList = new ArrayList<TabLayoutPanel>();
+		orderTypeTabPanelList = new HashMap<String, TabLayoutPanel>();
+		pageListWidgetList = new HashMap<String, PageListWidget>();
 		for (Category c : Category.getDisplayOrder()) {
 			// build category panel
 			HorizontalPanel tabInnerPanel = new HorizontalPanel();
 			tabInnerPanel.setWidth("100%");
 			tabInnerPanel.setBorderWidth(0);
 			TabLayoutPanel orderTypeTabPanel = new TabLayoutPanel(30, Unit.PX);
-			orderTypeTabPanelList.add(orderTypeTabPanel);
+			orderTypeTabPanelList.put(c.name(), orderTypeTabPanel);
 			ResizeLayoutPanel resizePanel = new ResizeLayoutPanel();
-			resizePanel.setHeight("4096px");
+			resizePanel.setStyleName("orderTypeTabPanel-layout");
+			resizePanel.setHeight("3720px");
 			resizePanel.setWidth("100%");
 			resizePanel.setWidget(orderTypeTabPanel);
 			tabInnerPanel.add(resizePanel);
@@ -65,20 +69,31 @@ public class GruopBuySearchViewImpl extends Composite implements
 			for (OrderType orderType : OrderType.getDisplayOrder()) {
 				// build result
 				GroupBuyResultView resultView = new GroupBuyResultViewImpl();
+				Widget resultViewWidget = resultView.asWidget();
+				// resultViewWidget.setStyleName("GroupBuyResultView-layout");
+				// resultViewWidget.setHeight("2000px");
 				GroupBuyResultViewPresenter presenter = new GroupBuyResultViewPresenter(
 						resultView, eventBus, dispatch, c, orderType);
 				presenter.bind();
 				VerticalPanel searchResultPanel = new VerticalPanel();
-				searchResultPanel.add(resultView.asWidget());
+				// result
+				searchResultPanel.add(resultViewWidget);
+				//pager
+				PageListWidget pageList = new PageListWidget();
+				pageListWidgetList.put(orderType.getIdentify(c), pageList);
+				searchResultPanel.add(pageList);
+				pageList.setStyleName("pageList-layout");
 				orderTypeTabPanel.add(searchResultPanel,
 						orderType.getDisplayName());
 			}
 			categoryTabPanel.add(tabInnerPanel, c.getDisplayName());
+
 		}
 		ResizeLayoutPanel resizePanel = new ResizeLayoutPanel();
-		resizePanel.setHeight("4096px");
-		resizePanel.setWidth("100%");
+		// resizePanel.setHeight("3800px");
+		// resizePanel.setWidth("100%");
 		resizePanel.setWidget(categoryTabPanel);
+		resizePanel.setStyleName("categoryTabPanel-layout");
 		compositePanel.add(resizePanel);
 		initWidget(compositePanel);
 	}
@@ -103,12 +118,17 @@ public class GruopBuySearchViewImpl extends Composite implements
 	}
 
 	@Override
-	public List<TabLayoutPanel> getOrderTypeTabPanelList() {
+	public Map<String, TabLayoutPanel> getOrderTypeTabPanelList() {
 		return orderTypeTabPanelList;
 	}
 
 	@Override
 	public CheckBox getOnlyTodayCheckBox() {
 		return onlyTodayCheckBox;
+	}
+
+	@Override
+	public Map<String, PageListWidget> getPageListWidgetList() {
+		return pageListWidgetList;
 	}
 }

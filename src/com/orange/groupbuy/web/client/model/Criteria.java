@@ -10,6 +10,8 @@ public class Criteria implements Serializable {
 	private OrderType orderType;
 	private String city;
 	private boolean onlyToday;
+	private int pageSize;
+	private int startRow;
 	
 	public Category getCategory() {
 		return category;
@@ -41,5 +43,21 @@ public class Criteria implements Serializable {
 
 	public void setOnlyToday(boolean onlyToday) {
 		this.onlyToday = onlyToday;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public int getStartRow() {
+		return startRow;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public void setStartRow(int startRow) {
+		this.startRow = startRow;
 	}
 }

@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Enumeration;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,26 +21,24 @@ public class SearchGroupBuyServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 5582162516572852098L;
 
+	private Logger log = Logger
+			.getLogger(SearchGroupBuyServlet.class.getName());
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		URL serverAddress = new URL(getRequestURL(req));
-		HttpURLConnection connection = null;
+			throws ServletException {
 		try {
-			connection = (HttpURLConnection) serverAddress.openConnection();
-
+			URL serverAddress = new URL(getRequestURL(req));
+			HttpURLConnection connection = (HttpURLConnection) serverAddress
+					.openConnection();
 			connection.setRequestMethod("GET");
-			connection.setDoOutput(true);
-			connection.setReadTimeout(10000);
-
 			connection.connect();
 
-			copyLarge(connection.getInputStream(), resp.getOutputStream());// 将数据返回给域A
-		} finally {
-			if (connection != null) {
-				connection.disconnect();
-				connection = null;
-			}
+			InputStream inputStream = connection.getInputStream();
+			copyLarge(inputStream, resp.getOutputStream());
+			inputStream.close();
+		} catch (IOException e) {
+			log.severe(e.getMessage());
 		}
 	}
 

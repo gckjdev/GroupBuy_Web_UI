@@ -46,15 +46,14 @@ public enum Category {
 	public List<Integer> getValues() {
 		List<Integer> result = new ArrayList<Integer>();
 		if (this == C_CATEGORY_ALL) {
-			Category[] allList = getDisplayOrder();
-			for (Category c : allList) {
-				if (c != C_CATEGORY_ALL) {
-					result.add(c.getValue());
-				}
-			}
 		} else {
 			result.add(this.getValue());
 		}
 		return result;
+	}
+
+	public String getIdentify(OrderType order) {
+		String value = name() + "_" + order.name();
+		return value;
 	}
 }

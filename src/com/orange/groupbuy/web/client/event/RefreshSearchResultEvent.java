@@ -1,16 +1,20 @@
 package com.orange.groupbuy.web.client.event;
 
 import com.google.gwt.event.shared.GwtEvent;
+import com.orange.groupbuy.web.client.model.Category;
+import com.orange.groupbuy.web.client.model.OrderType;
 
 public class RefreshSearchResultEvent extends
 		GwtEvent<RefreshSearchResultHandler> {
 
 	private static Type<RefreshSearchResultHandler> TYPE;
 
+	private final int pageSize = 30;
 	private String city;
-	private String category;
-	private String orderType;
-	private boolean onlyToday;
+	private Category category;
+	private OrderType orderType;
+	private boolean onlyToday = false;
+	private int currentPage = 1;
 
 	public static Type<RefreshSearchResultHandler> getType() {
 		return TYPE != null ? TYPE
@@ -35,19 +39,19 @@ public class RefreshSearchResultEvent extends
 		this.city = city;
 	}
 
-	public String getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 
-	public String getOrderType() {
+	public OrderType getOrderType() {
 		return orderType;
 	}
 
-	public void setOrderType(String orderType) {
+	public void setOrderType(OrderType orderType) {
 		this.orderType = orderType;
 	}
 
@@ -59,4 +63,19 @@ public class RefreshSearchResultEvent extends
 		this.onlyToday = onlyToday;
 	}
 
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+
+	public int getStartRow() {
+		return (currentPage - 1) * pageSize;
+	}
 }

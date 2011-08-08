@@ -33,4 +33,9 @@ public enum OrderType {
 		result.remove(DATE);
 		return result.toArray(new OrderType[result.size()]);
 	}
+
+	public String getIdentify(Category category) {
+		String value = category.name() + "_" + name();
+		return value;
+	}
 }

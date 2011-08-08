@@ -86,9 +86,7 @@ public class GroupBuyWidget extends Widget {
 	}
 
 	private String formatRebate(Double result) {
-		// TODO:
-		return (result < 1 ? String.valueOf(result * 10) : String
-				.valueOf(result)) + "折";
+		return String.valueOf(result) + "折";
 	}
 
 	private String formatMoney(Double result) {

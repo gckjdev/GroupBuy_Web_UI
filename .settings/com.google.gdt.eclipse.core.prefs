@@ -1,4 +1,6 @@
-#Fri Aug 05 22:45:12 CEST 2011
+#Tue Aug 09 22:58:35 CEST 2011
 eclipse.preferences.version=1
-warSrcDir=war
+jarsExcludedFromWebInfLib=
+lastWarOutDir=C\:/work/tc/gckj/GroupBuy_Web_UI/src/webapp
+warSrcDir=src/main/webapp
 warSrcDirIsOutput=true

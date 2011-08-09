@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<name>local nexus</name>
+			<url>http://localhost:8081/nexus/content/groups/public</url>
+			<!-- <url>http://192.168.1.101:8091/nexus/content/groups/public</url> -->
+		</repository>
+		<repository>
+			<id>repo1 central</id>
+			<name>Maven Central Repo1</name>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>
+	</repositories>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.orange</groupId>
+	<artifactId>GroupBuy_Web_UI</artifactId>
+	<packaging>war</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<!-- Shared version number properties -->
+	<properties>
+		<org.springframework.version>3.0.5.RELEASE
+		</org.springframework.version>
+		<org.apache.mahout.version>0.4</org.apache.mahout.version>
+		<jettyVersion>7.3.0.v20110203</jettyVersion>
+	</properties>
+	<dependencies>
+		<!-- internal project -->
+		<dependency>
+			<groupId>com.orange</groupId>
+			<artifactId>Common_Java</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.orange</groupId>
+			<artifactId>Common_Java_GroupBuy</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<!-- 3rd party -->
+		<dependency>
+			<groupId>net.customware.gwt.dispatch</groupId>
+			<artifactId>gwt-dispatch</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.customware.gwt.presenter</groupId>
+			<artifactId>gwt-presenter</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt.inject</groupId>
+			<artifactId>gin</artifactId>
+			<version>1.5.0</version>
+		</dependency>
+		<!-- gwt -->
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-servlet</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<version>2.3.0-1</version>
+				<executions>
+					<execution>
+						<configuration>
+							<extraJvmArgs>-Xmx512M -Xss1024k</extraJvmArgs>
+						</configuration>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<runTarget>src/main/webapp/GroupBuy_Web_UI.html</runTarget>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+				<configuration>
+					<webappDirectory>target/GroupBuy_Web_UI</webappDirectory>
+					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

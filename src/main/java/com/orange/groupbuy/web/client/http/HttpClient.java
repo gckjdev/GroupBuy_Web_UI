@@ -24,7 +24,7 @@ import com.orange.groupbuy.web.shared.ServiceConstant;
 
 public class HttpClient {
 
-	private static String SEARCH_GROUP_BUY_URL_TEMPLATE = "/groupbuy_web_ui/proxy?&m=fp&app=GROUPBUYWEB";
+	private static String SEARCH_GROUP_BUY_URL_TEMPLATE = "search.proxy?&m=fp&app=GROUPBUYWEB";
 
 	public static interface Callback {
 		void updateModel(List<SearchResult> resultList);

@@ -34,7 +34,7 @@
 
 	<servlet-mapping>
 		<servlet-name>proxy</servlet-name>
-		<url-pattern>/groupbuy_web_ui/proxy</url-pattern>
+		<url-pattern>*.proxy</url-pattern>
 	</servlet-mapping>
 	<!-- Default page to serve -->
 	<welcome-file-list>

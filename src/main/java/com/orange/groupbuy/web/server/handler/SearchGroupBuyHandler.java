@@ -8,7 +8,6 @@ import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
 import com.orange.groupbuy.web.client.dispatch.SearchGroupBuy;
-import com.orange.groupbuy.web.client.model.Criteria;
 import com.orange.groupbuy.web.client.model.SearchResult;
 import com.orange.groupbuy.web.client.model.SearchResultList;
 
@@ -31,7 +30,7 @@ public class SearchGroupBuyHandler implements
 			resultCount = random.nextInt(30);
 		}
 		// TODO : mock action only
-		Criteria criteria = action.getCriteria();
+		action.getCriteria();
 
 		SearchResultList resultList = new SearchResultList();
 		ArrayList<SearchResult> results = new ArrayList<SearchResult>();

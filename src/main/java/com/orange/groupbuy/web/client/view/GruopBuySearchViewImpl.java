@@ -70,10 +70,11 @@ public class GruopBuySearchViewImpl extends Composite implements
 				// build result
 				GroupBuyResultView resultView = new GroupBuyResultViewImpl();
 				Widget resultViewWidget = resultView.asWidget();
+				resultViewWidget.setHeight("3600px");
 				// resultViewWidget.setStyleName("GroupBuyResultView-layout");
 				// resultViewWidget.setHeight("2000px");
 				GroupBuyResultViewPresenter presenter = new GroupBuyResultViewPresenter(
-						resultView, eventBus, dispatch, c, orderType);
+						resultView, eventBus, c, orderType);
 				presenter.bind();
 				VerticalPanel searchResultPanel = new VerticalPanel();
 				// result

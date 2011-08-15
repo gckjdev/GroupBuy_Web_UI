@@ -2,7 +2,6 @@ package com.orange.groupbuy.web.client.presenter;
 
 import java.util.List;
 
-import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 
@@ -19,15 +18,13 @@ import com.orange.groupbuy.web.client.view.GroupBuyResultView;
 public class GroupBuyResultViewPresenter extends
 		WidgetPresenter<GroupBuyResultView> {
 
-	private DispatchAsync dispatch;
 	private Category category;
 	private OrderType orderType;
 
 	public GroupBuyResultViewPresenter(GroupBuyResultView display,
-			EventBus eventBus, DispatchAsync dispatch, Category category,
+			EventBus eventBus, Category category,
 			OrderType orderType) {
 		super(display, eventBus);
-		this.dispatch = dispatch;
 		this.category = category;
 		this.orderType = orderType;
 	}

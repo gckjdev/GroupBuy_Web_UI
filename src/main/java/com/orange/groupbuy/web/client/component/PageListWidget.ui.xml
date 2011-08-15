@@ -2,15 +2,22 @@
 
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
 	xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+<ui:style>
+        .pageListWidget {
+            padding : 40px 0;
+            text-align : center;
+        }
+</ui:style>
+
 
 	<g:HorizontalPanel width="100%">
-		<g:cell horizontalAlignment='ALIGN_CENTER'>
+		<g:cell horizontalAlignment='ALIGN_CENTER' verticalAlignment='ALIGN_MIDDLE'>
 			<g:Button ui:field='previousPage' text='上一页' />
 		</g:cell>
-		<g:cell horizontalAlignment='ALIGN_CENTER'>
+		<g:cell horizontalAlignment='ALIGN_CENTER' verticalAlignment='ALIGN_MIDDLE'>
 			<g:Label ui:field='currentPage' text='1' width='50px'></g:Label>
 		</g:cell>
-		<g:cell horizontalAlignment='ALIGN_CENTER'>
+		<g:cell horizontalAlignment='ALIGN_CENTER' verticalAlignment='ALIGN_MIDDLE'>
 			<g:Button ui:field='nextPage' text='下一页' />
 		</g:cell>
 	</g:HorizontalPanel>

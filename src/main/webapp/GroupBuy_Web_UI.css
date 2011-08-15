@@ -48,8 +48,16 @@ h1 {
 }
 
 .pageList-layout {
-	align: center;
+	padding: 40px 300px;
+	text-align: center;
+	/* 	position: relative;
+	left: 80px; */
 }
-/* .GroupBuyResultView-layout{
-	height: 3000px;
-} */
+
+.categoryTabPanel-layout .gwt-TabLayoutPanel .gwt-TabLayoutPanelTab {
+	width: 100px;
+}
+
+.orderTypeTabPanel-layout .gwt-TabLayoutPanel .gwt-TabLayoutPanelTab {
+	width: 42px;
+}

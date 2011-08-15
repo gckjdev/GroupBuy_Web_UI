@@ -49,7 +49,7 @@ public class SearchGroupBuyServlet extends HttpServlet {
 		int n = 0;
 		while (-1 != (n = input.read(buffer))) {
 			output.write(buffer, 0, n);
-			System.out.println(new String(buffer));
+			// System.out.println(new String(buffer));
 			count += n;
 		}
 		return count;
@@ -57,6 +57,7 @@ public class SearchGroupBuyServlet extends HttpServlet {
 
 	private String getRequestURL(HttpServletRequest req) {
 		StringBuffer sb = new StringBuffer(SEARCH_GROUP_BUY_URL_TEMPLATE);
+		@SuppressWarnings("rawtypes")
 		Enumeration e = req.getParameterNames();
 		while (e.hasMoreElements()) {
 			String name = String.valueOf(e.nextElement());
@@ -67,7 +68,7 @@ public class SearchGroupBuyServlet extends HttpServlet {
 			}
 		}
 
-		System.out.println(sb.toString());
+		// System.out.println(sb.toString());
 		return sb.toString();
 	}
 }

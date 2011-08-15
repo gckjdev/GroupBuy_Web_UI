@@ -28,11 +28,17 @@ body {
 this
 
 
+
+
 ));
 font
 
 
+
+
 :
+
+
 
 
 12
@@ -40,14 +46,20 @@ px
 /1
 
 
+
+
 .5
 
+
  
+
 
 SimSun
 ,
 '
 ËÎÌו
+
+
 
 
 '
@@ -80,7 +92,7 @@ table {
 }
 
 th,td {
-	text-align: left;
+	/* text-align: left;  */
 	font-weight: normal;
 }
 
@@ -139,7 +151,7 @@ em {
 .mask6 {
 	opacity: .6;
 	-ms-filter: "alpha(opacity=60)";
-	filter: alpha(opacity =   60);
+	filter: alpha(opacity =     60);
 	background-color: #000;
 }
 

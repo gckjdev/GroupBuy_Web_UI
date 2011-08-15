@@ -15,7 +15,6 @@ public class SearchResult implements Result {
 	// private String imageClickUrl;
 
 	private String category;
-	private String title;
 	private String desctiption;
 
 	// sale status

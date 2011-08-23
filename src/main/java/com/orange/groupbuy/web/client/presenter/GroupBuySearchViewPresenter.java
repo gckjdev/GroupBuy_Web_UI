@@ -21,7 +21,10 @@ import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.orange.groupbuy.web.client.SimpleCallback;
 import com.orange.groupbuy.web.client.component.PageListWidget;
 import com.orange.groupbuy.web.client.dispatch.GetCityNames;
+import com.orange.groupbuy.web.client.event.KeywordSearchEvent;
+import com.orange.groupbuy.web.client.event.KeywordSearchHandler;
 import com.orange.groupbuy.web.client.event.RefreshSearchResultEvent;
+import com.orange.groupbuy.web.client.event.RefreshSearchResultHandler;
 import com.orange.groupbuy.web.client.model.Category;
 import com.orange.groupbuy.web.client.model.CityNames;
 import com.orange.groupbuy.web.client.model.Item;
@@ -37,32 +40,6 @@ public class GroupBuySearchViewPresenter extends
 			EventBus eventBus, DispatchAsync dispatch) {
 		super(display, eventBus);
 		this.dispatch = dispatch;
-	}
-
-	private RefreshSearchResultEvent createRefreshEvent() {
-		RefreshSearchResultEvent refreshSearchResultEvent = new RefreshSearchResultEvent();
-		int cityIndex = getDisplay().getCitySelects().getSelectedIndex();
-		String city = getDisplay().getCitySelects().getValue(cityIndex);
-		refreshSearchResultEvent.setCity(city);
-
-		int categoryIndex = getDisplay().getCategoryTabPanel()
-				.getSelectedIndex();
-		Category category = Category.getDisplayOrder()[categoryIndex];
-		refreshSearchResultEvent.setCategory(category);
-
-		int orderTypeIndex = getDisplay().getOrderTypeTabPanelList()
-				.get(category.name()).getSelectedIndex();
-		OrderType orderType = OrderType.getDisplayOrder()[orderTypeIndex];
-		refreshSearchResultEvent.setOrderType(orderType);
-
-		boolean onlyToday = getDisplay().getOnlyTodayCheckBox().getValue();
-		refreshSearchResultEvent.setOnlyToday(onlyToday);
-
-		// page
-		PageListWidget pageList = getDisplay().getPageListWidgetList().get(
-				category.getIdentify(orderType));
-		refreshSearchResultEvent.setCurrentPage(pageList.getCurrentPage());
-		return refreshSearchResultEvent;
 	}
 
 	@Override
@@ -177,6 +154,89 @@ public class GroupBuySearchViewPresenter extends
 								});
 					}
 				}));
+
+		// keyword search
+		registerHandler(getDisplay().getSearchButton().addClickHandler(
+				new ClickHandler() {
+
+					@Override
+					public void onClick(ClickEvent event) {
+						String value = getDisplay().getSearchTextBox()
+								.getText();
+						if (value == null || value.trim().isEmpty()) {
+							// TODO: validate check
+							return;
+						}
+						eventBus.fireEvent(createKeyworkSearchEvent());
+					}
+				}));
+
+		registerHandler(eventBus.addHandler(KeywordSearchEvent.getType(),
+				new KeywordSearchHandler() {
+
+					@Override
+					public void onRefresh(KeywordSearchEvent event) {
+						// hide and show
+						getDisplay().getKeywordResultPanel().setVisible(true);
+						getDisplay().getCategoryAllPanel().setVisible(false);
+					}
+
+				}));
+
+		registerHandler(eventBus.addHandler(RefreshSearchResultEvent.getType(),
+				new RefreshSearchResultHandler() {
+
+					@Override
+					public void onRefresh(RefreshSearchResultEvent event) {
+						// hide and show
+						getDisplay().getKeywordResultPanel().setVisible(false);
+						getDisplay().getCategoryAllPanel().setVisible(true);
+					}
+
+				}));
+	}
+
+	private RefreshSearchResultEvent createRefreshEvent() {
+		RefreshSearchResultEvent refreshSearchResultEvent = new RefreshSearchResultEvent();
+		int cityIndex = getDisplay().getCitySelects().getSelectedIndex();
+		String city = getDisplay().getCitySelects().getValue(cityIndex);
+		refreshSearchResultEvent.setCity(city);
+
+		int categoryIndex = getDisplay().getCategoryTabPanel()
+				.getSelectedIndex();
+		Category category = Category.getDisplayOrder()[categoryIndex];
+		refreshSearchResultEvent.setCategory(category);
+
+		int orderTypeIndex = getDisplay().getOrderTypeTabPanelList()
+				.get(category.name()).getSelectedIndex();
+		OrderType orderType = OrderType.getDisplayOrder()[orderTypeIndex];
+		refreshSearchResultEvent.setOrderType(orderType);
+
+		boolean onlyToday = getDisplay().getOnlyTodayCheckBox().getValue();
+		refreshSearchResultEvent.setOnlyToday(onlyToday);
+
+		// page
+		PageListWidget pageList = getDisplay().getPageListWidgetList().get(
+				category.getIdentify(orderType));
+		refreshSearchResultEvent.setCurrentPage(pageList.getCurrentPage());
+		return refreshSearchResultEvent;
+	}
+
+	private KeywordSearchEvent createKeyworkSearchEvent() {
+		KeywordSearchEvent event = new KeywordSearchEvent();
+		// city
+		int cityIndex = getDisplay().getCitySelects().getSelectedIndex();
+		String city = getDisplay().getCitySelects().getValue(cityIndex);
+		event.setCity(city);
+		// only today
+		boolean onlyToday = getDisplay().getOnlyTodayCheckBox().getValue();
+		event.setOnlyToday(onlyToday);
+		// current page
+		event.setCurrentPage(getDisplay().getKeywordPageList().getCurrentPage());
+		// keyword
+		String keyword = getDisplay().getSearchTextBox().getText();
+		event.setKeyword(keyword);
+		return event;
 	}
 
 	@Override

@@ -61,3 +61,7 @@ h1 {
 .orderTypeTabPanel-layout .gwt-TabLayoutPanel .gwt-TabLayoutPanelTab {
 	width: 42px;
 }
+
+.searchInputBox {
+	width: 300px;
+}

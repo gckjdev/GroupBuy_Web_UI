@@ -7,6 +7,7 @@ import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.presenter.client.EventBus;
 
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -14,12 +15,14 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.ResizeLayoutPanel;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.orange.groupbuy.web.client.component.GroupBuySearchHeader;
 import com.orange.groupbuy.web.client.component.PageListWidget;
 import com.orange.groupbuy.web.client.model.Category;
 import com.orange.groupbuy.web.client.model.OrderType;
+import com.orange.groupbuy.web.client.presenter.GroupBuyKeywordResultViewPresenter;
 import com.orange.groupbuy.web.client.presenter.GroupBuyResultViewPresenter;
 
 public class GruopBuySearchViewImpl extends Composite implements
@@ -30,6 +33,10 @@ public class GruopBuySearchViewImpl extends Composite implements
 	private TabLayoutPanel categoryTabPanel;
 	private Map<String, TabLayoutPanel> orderTypeTabPanelList;
 	private Map<String, PageListWidget> pageListWidgetList;
+	private GroupBuyResultView keywordSearchPanel;
+	private PageListWidget keywordPageList;
+	private HorizontalPanel categoryAllPanel;
+	private HorizontalPanel keywordResultPanel;
 
 	public GruopBuySearchViewImpl(EventBus eventBus, DispatchAsync dispatch) {
 		// header
@@ -52,8 +59,17 @@ public class GruopBuySearchViewImpl extends Composite implements
 		for (Category c : Category.getDisplayOrder()) {
 			// build category panel
 			HorizontalPanel tabInnerPanel = new HorizontalPanel();
+			HorizontalPanel categoryResultPanel = new HorizontalPanel();
+			tabInnerPanel.add(categoryResultPanel);
+			if (c == Category.C_CATEGORY_ALL) {
+				categoryAllPanel = categoryResultPanel;
+			}
+
 			tabInnerPanel.setWidth("100%");
 			tabInnerPanel.setBorderWidth(0);
+			categoryResultPanel.setWidth("100%");
+			categoryResultPanel.setBorderWidth(0);
+			//
 			TabLayoutPanel orderTypeTabPanel = new TabLayoutPanel(30, Unit.PX);
 			orderTypeTabPanelList.put(c.name(), orderTypeTabPanel);
 			ResizeLayoutPanel resizePanel = new ResizeLayoutPanel();
@@ -61,25 +77,22 @@ public class GruopBuySearchViewImpl extends Composite implements
 			resizePanel.setHeight("3720px");
 			resizePanel.setWidth("100%");
 			resizePanel.setWidget(orderTypeTabPanel);
-			tabInnerPanel.add(resizePanel);
-			tabInnerPanel
+			categoryResultPanel.add(resizePanel);
+			categoryResultPanel
 					.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 			orderTypeTabPanel.setWidth("100%");
-
 			for (OrderType orderType : OrderType.getDisplayOrder()) {
 				// build result
 				GroupBuyResultView resultView = new GroupBuyResultViewImpl();
 				Widget resultViewWidget = resultView.asWidget();
 				resultViewWidget.setHeight("3600px");
-				// resultViewWidget.setStyleName("GroupBuyResultView-layout");
-				// resultViewWidget.setHeight("2000px");
 				GroupBuyResultViewPresenter presenter = new GroupBuyResultViewPresenter(
 						resultView, eventBus, c, orderType);
 				presenter.bind();
 				VerticalPanel searchResultPanel = new VerticalPanel();
 				// result
 				searchResultPanel.add(resultViewWidget);
-				//pager
+				// pager
 				PageListWidget pageList = new PageListWidget();
 				pageListWidgetList.put(orderType.getIdentify(c), pageList);
 				searchResultPanel.add(pageList);
@@ -91,11 +104,29 @@ public class GruopBuySearchViewImpl extends Composite implements
 
 		}
 		ResizeLayoutPanel resizePanel = new ResizeLayoutPanel();
-		// resizePanel.setHeight("3800px");
-		// resizePanel.setWidth("100%");
 		resizePanel.setWidget(categoryTabPanel);
 		resizePanel.setStyleName("categoryTabPanel-layout");
 		compositePanel.add(resizePanel);
+
+		keywordResultPanel = new HorizontalPanel();
+
+		// init the search
+		TabLayoutPanel allTabLayout = orderTypeTabPanelList
+				.get(Category.C_CATEGORY_ALL.name());
+		allTabLayout.add(keywordResultPanel);
+
+		keywordSearchPanel = new GroupBuyResultViewImpl();
+		Widget resultViewWidget = keywordSearchPanel.asWidget();
+		resultViewWidget.setHeight("3600px");
+		GroupBuyKeywordResultViewPresenter presenter = new GroupBuyKeywordResultViewPresenter(
+				keywordSearchPanel, eventBus);
+		presenter.bind();
+		keywordResultPanel.add(resultViewWidget);
+		keywordPageList = new PageListWidget();
+		keywordPageList.setStyleName("pageList-layout");
+		keywordResultPanel.add(keywordPageList);
+		// TODO:
+		categoryAllPanel.setVisible(false);
 		initWidget(compositePanel);
 	}
 
@@ -111,6 +142,16 @@ public class GruopBuySearchViewImpl extends Composite implements
 	@Override
 	public ListBox getCitySelects() {
 		return header.getCitySeclect();
+	}
+
+	@Override
+	public TextBox getSearchTextBox() {
+		return header.getSearchTextBox();
+	}
+
+	@Override
+	public Button getSearchButton() {
+		return header.getSearchButton();
 	}
 
 	@Override
@@ -131,5 +172,25 @@ public class GruopBuySearchViewImpl extends Composite implements
 	@Override
 	public Map<String, PageListWidget> getPageListWidgetList() {
 		return pageListWidgetList;
+	}
+
+	@Override
+	public GroupBuyResultView getKeywordSearchPanel() {
+		return keywordSearchPanel;
+	}
+
+	@Override
+	public PageListWidget getKeywordPageList() {
+		return keywordPageList;
+	}
+
+	@Override
+	public HorizontalPanel getCategoryAllPanel() {
+		return categoryAllPanel;
+	}
+
+	@Override
+	public HorizontalPanel getKeywordResultPanel() {
+		return keywordResultPanel;
 	}
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 
+import com.orange.groupbuy.web.client.event.KeywordSearchEvent;
+import com.orange.groupbuy.web.client.event.KeywordSearchHandler;
 import com.orange.groupbuy.web.client.event.RefreshSearchResultEvent;
 import com.orange.groupbuy.web.client.event.RefreshSearchResultHandler;
 import com.orange.groupbuy.web.client.http.HttpClient;
@@ -78,6 +80,15 @@ public class GroupBuyResultViewPresenter extends
 						return category == event.getCategory()
 								&& orderType == event.getOrderType();
 					}
+				}));
+		// keyword search
+		registerHandler(eventBus.addHandler(KeywordSearchEvent.getType(),
+				new KeywordSearchHandler() {
+
+					@Override
+					public void onRefresh(KeywordSearchEvent event) {
+						}
+
 				}));
 	}
 

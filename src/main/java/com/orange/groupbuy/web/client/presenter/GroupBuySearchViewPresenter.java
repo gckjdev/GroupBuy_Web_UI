@@ -176,8 +176,11 @@ public class GroupBuySearchViewPresenter extends
 
 					@Override
 					public void onRefresh(KeywordSearchEvent event) {
+						// select the first one.
+						getDisplay().getCategoryTabPanel().selectTab(0);
 						// hide and show
 						getDisplay().getKeywordResultPanel().setVisible(true);
+
 						getDisplay().getCategoryAllPanel().setVisible(false);
 					}
 

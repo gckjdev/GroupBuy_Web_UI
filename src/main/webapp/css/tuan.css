@@ -13,9 +13,12 @@
 }
 
 .sort-right {
+	/*
 	position: absolute;
 	right: 700px;
 	top: 108px;
+	*/
+	float:right;
 	z-index: 100;
 }
 

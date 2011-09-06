@@ -3,8 +3,10 @@ package com.orange.groupbuy.web.server;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.Enumeration;
 import java.util.logging.Logger;
 
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class SearchGroupBuyServlet extends HttpServlet {
 
+	// TODO:make it configurable
 	private static String SEARCH_GROUP_BUY_URL_TEMPLATE = "http://localhost:8000/api/i?";
 	/**
 	 * 
@@ -37,7 +40,7 @@ public class SearchGroupBuyServlet extends HttpServlet {
 			InputStream inputStream = connection.getInputStream();
 			copyLarge(inputStream, resp.getOutputStream());
 			inputStream.close();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			log.severe(e.getMessage());
 		}
 	}
@@ -55,7 +58,8 @@ public class SearchGroupBuyServlet extends HttpServlet {
 		return count;
 	}
 
-	private String getRequestURL(HttpServletRequest req) {
+	private String getRequestURL(HttpServletRequest req)
+			throws UnsupportedEncodingException {
 		StringBuffer sb = new StringBuffer(SEARCH_GROUP_BUY_URL_TEMPLATE);
 		@SuppressWarnings("rawtypes")
 		Enumeration e = req.getParameterNames();
@@ -64,7 +68,8 @@ public class SearchGroupBuyServlet extends HttpServlet {
 
 			String[] values = req.getParameterValues(name);
 			for (String v : values) {
-				sb.append("&").append(name).append("=").append(v);
+				String value = URLEncoder.encode(v, "UTF-8");
+				sb.append("&").append(name).append("=").append(value);
 			}
 		}
 

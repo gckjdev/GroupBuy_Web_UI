@@ -1,5 +1,6 @@
 package com.orange.groupbuy.web.client.http;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +20,13 @@ import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.Window;
 import com.orange.groupbuy.web.client.model.Criteria;
+import com.orange.groupbuy.web.client.model.OrderType;
 import com.orange.groupbuy.web.client.model.SearchResult;
 import com.orange.groupbuy.web.shared.ServiceConstant;
 
 public class HttpClient {
 
-	private static String SEARCH_GROUP_BUY_URL_TEMPLATE = "search.proxy?&m=fp&app=GROUPBUYWEB";
+	private static String SEARCH_GROUP_BUY_URL_TEMPLATE = "search.proxy?&app=GROUPBUYWEB";
 
 	public static interface Callback {
 		void updateModel(List<SearchResult> resultList);
@@ -32,11 +34,10 @@ public class HttpClient {
 
 	public static void searchGroupBuyHandler(final Criteria criteria,
 			final Callback callback) {
-		String url = getSearchUrl(criteria);
-
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-				URL.encode(url));
 		try {
+			String url = getSearchUrl(criteria);
+			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+					URL.encode(url));
 			builder.setCallback(new RequestCallback() {
 
 				@Override
@@ -85,9 +86,12 @@ public class HttpClient {
 			});
 
 			builder.send();
-		} catch (RequestException exception) {
+		} catch (RequestException e) {
+			// TODO: better error handling
 			// Couldn't connect to server
-			Window.alert("Error: " + exception.getMessage());
+			Window.alert("Error: " + e.getMessage());
+		} catch (UnsupportedEncodingException e) {
+			Window.alert("Error: " + e.getMessage());
 		}
 	}
 
@@ -107,24 +111,38 @@ public class HttpClient {
 		return result;
 	}
 
-	public static String getSearchUrl(Criteria criteria) {
+	public static String getSearchUrl(Criteria criteria)
+			throws UnsupportedEncodingException {
 		int onlyToday = criteria.isOnlyToday() ? 1 : 0;
-		int orderValue = criteria.getOrderType().getValue();
+		int orderValue = OrderType.DATE.getValue();
+		if (criteria.getOrderType() != null) {
+			orderValue = criteria.getOrderType().getValue();
+		}
 		String city = criteria.getCity();
 		int maxCount = criteria.getPageSize();
 		int startRow = criteria.getStartRow();
+		String keyword = criteria.getKeyword();
 
 		String url = SEARCH_GROUP_BUY_URL_TEMPLATE;
 		StringBuffer sb = new StringBuffer(url);
+		sb.append("&m=").append(
+				URL.encodeQueryString(criteria.getOperationType()
+						.getMethodName()));
 		sb.append("&mc=").append(maxCount);
 		sb.append("&so=").append(startRow);
 		sb.append("&to=").append(onlyToday);
 		sb.append("&sb=").append(orderValue);
 		sb.append("&ci=").append(city);
 
+		if (keyword != null) {
+			sb.append("&kw=").append(keyword);
+		}
+
+		if(criteria.getCategory()!=null){
 		List<Integer> category = criteria.getCategory().getValues();
 		for (Integer c : category) {
 			sb.append("&ctg=").append(c);
+		}
 		}
 		return sb.toString();
 	}

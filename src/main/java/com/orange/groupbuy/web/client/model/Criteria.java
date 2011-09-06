@@ -6,12 +6,14 @@ public class Criteria implements Serializable {
 
 	private static final long serialVersionUID = -3527762787390547416L;
 
+	private OperationType operationType = OperationType.CATEGORY_SHOW;
 	private Category category;
 	private OrderType orderType;
 	private String city;
 	private boolean onlyToday;
 	private int pageSize;
 	private int startRow;
+	private String keyword;
 	
 	public Category getCategory() {
 		return category;
@@ -59,5 +61,21 @@ public class Criteria implements Serializable {
 
 	public void setStartRow(int startRow) {
 		this.startRow = startRow;
+	}
+
+	public OperationType getOperationType() {
+		return operationType;
+	}
+
+	public void setOperationType(OperationType operationType) {
+		this.operationType = operationType;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 }

@@ -10,6 +10,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.orange.groupbuy.web.client.component.PageListWidget;
 
 public interface GroupBuySearchView extends WidgetDisplay {
@@ -30,7 +31,7 @@ public interface GroupBuySearchView extends WidgetDisplay {
 
 	HorizontalPanel getCategoryAllPanel();
 
-	HorizontalPanel getKeywordResultPanel();
+	VerticalPanel getKeywordResultPanel();
 
 	TextBox getSearchTextBox();
 

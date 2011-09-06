@@ -48,7 +48,9 @@ h1 {
 }
 
 .pageList-layout {
-	padding: 40px 300px;
+	position:absolute;
+	bottom: 0px; 
+	padding: 0px 300px;
 	text-align: center;
 	/* 	position: relative;
 	left: 80px; */
@@ -64,4 +66,12 @@ h1 {
 
 .searchInputBox {
 	width: 300px;
+}
+
+.keywordResultPanel-layout{
+	
+}
+
+.resultRowPanel-layout{
+	height : 200px;
 }

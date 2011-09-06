@@ -67,11 +67,11 @@ public class GroupBuyWidget extends Widget {
 			image.setSrc(result.getImageUrl());
 			// image.setTitle(result.getDesctiption());
 
-			originalPriceLabel.setInnerText(formatMoney(result.getPrice()));
+			originalPriceLabel.setInnerText(formatMoney(result.getValue()));
 			rebateLabel.setInnerText(formatRebate(result.getRebate()));
 			//
 			boughtNumLabel.setInnerText(formatNumber(result.getBought()));
-			valueLabel.setInnerText(formatNumber(result.getValue()));
+			valueLabel.setInnerText(formatNumber(result.getPrice()));
 
 			detailsButton.setHref(result.getProductUrl());
 		}

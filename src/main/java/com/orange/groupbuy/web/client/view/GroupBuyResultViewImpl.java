@@ -32,6 +32,7 @@ public class GroupBuyResultViewImpl extends Composite implements
 			SearchResult result = searchResultList.get(i);
 			if (i % 3 == 0) {
 				resultRowPanel = new HorizontalPanel();
+				resultRowPanel.setStyleName("resultRowPanel-layout");
 				compositePanel.add(resultRowPanel);
 			}
 			GroupBuyWidget resultComponent = new GroupBuyWidget();

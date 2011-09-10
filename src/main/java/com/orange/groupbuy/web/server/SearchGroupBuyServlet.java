@@ -17,8 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 
 public class SearchGroupBuyServlet extends HttpServlet {
 
-	// TODO:make it configurable
-	private static String SEARCH_GROUP_BUY_URL_TEMPLATE = "http://localhost:8000/api/i?";
+	private static final String PROPERTY_API_SERVER = "groupbuy.api.server";
+	private static final String DEFAULT_API_SERVER = "http://localhost:8000";
+	private static String SEARCH_GROUP_BUY_WEB_CONTEXT = "/api/i?";
 	/**
 	 * 
 	 */
@@ -52,7 +53,6 @@ public class SearchGroupBuyServlet extends HttpServlet {
 		int n = 0;
 		while (-1 != (n = input.read(buffer))) {
 			output.write(buffer, 0, n);
-			// System.out.println(new String(buffer));
 			count += n;
 		}
 		return count;
@@ -60,7 +60,7 @@ public class SearchGroupBuyServlet extends HttpServlet {
 
 	private String getRequestURL(HttpServletRequest req)
 			throws UnsupportedEncodingException {
-		StringBuffer sb = new StringBuffer(SEARCH_GROUP_BUY_URL_TEMPLATE);
+		StringBuffer sb = new StringBuffer(getSearchGroupBuyUrl());
 		@SuppressWarnings("rawtypes")
 		Enumeration e = req.getParameterNames();
 		while (e.hasMoreElements()) {
@@ -75,5 +75,14 @@ public class SearchGroupBuyServlet extends HttpServlet {
 
 		// System.out.println(sb.toString());
 		return sb.toString();
+	}
+
+	private String getSearchGroupBuyUrl() {
+		String server = DEFAULT_API_SERVER;
+
+		if (System.getProperty(PROPERTY_API_SERVER) != null) {
+			server = System.getProperty(PROPERTY_API_SERVER);
+		}
+		return server + SEARCH_GROUP_BUY_WEB_CONTEXT;
 	}
 }

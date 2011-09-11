@@ -7,9 +7,12 @@ import net.customware.gwt.presenter.client.DefaultEventBus;
 import net.customware.gwt.presenter.client.EventBus;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.orange.groupbuy.web.client.presenter.GroupBuySearchViewPresenter;
-import com.orange.groupbuy.web.client.view.GruopBuySearchViewImpl;
+import com.orange.groupbuy.web.client.presenter.MainPresenter;
+import com.orange.groupbuy.web.client.presenter.v1.GroupBuySearchViewPresenter;
+import com.orange.groupbuy.web.client.view.MainViewImpl;
+import com.orange.groupbuy.web.client.view.v1.GruopBuySearchViewImpl;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -24,6 +27,27 @@ public class GroupBuy_Web_UI implements EntryPoint {
 	 */
 	@Override
 	public void onModuleLoad() {
+		// initView();
+		initView2();
+	}
+
+	private void initView2() {
+		// Build the default event bus
+		EventBus eventBus = new DefaultEventBus();
+
+		// Build the display and presenter
+		MainViewImpl display = new MainViewImpl(eventBus, dispatchAsync);
+		MainPresenter presenter = new MainPresenter(display,
+				eventBus, dispatchAsync);
+
+		// Bind the presenter to the display.
+		presenter.bind();
+		RootLayoutPanel.get().add(presenter.getDisplay().asWidget());
+	}
+
+	@SuppressWarnings("unused")
+	@Deprecated
+	private void initView() {
 		// Build the default event bus
 		EventBus eventBus = new DefaultEventBus();
 

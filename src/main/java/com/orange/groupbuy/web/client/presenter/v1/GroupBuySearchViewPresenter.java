@@ -1,4 +1,4 @@
-package com.orange.groupbuy.web.client.presenter;
+package com.orange.groupbuy.web.client.presenter.v1;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,7 +29,7 @@ import com.orange.groupbuy.web.client.model.Category;
 import com.orange.groupbuy.web.client.model.CityNames;
 import com.orange.groupbuy.web.client.model.Item;
 import com.orange.groupbuy.web.client.model.OrderType;
-import com.orange.groupbuy.web.client.view.GroupBuySearchView;
+import com.orange.groupbuy.web.client.view.v1.GroupBuySearchView;
 
 public class GroupBuySearchViewPresenter extends
 		WidgetPresenter<GroupBuySearchView> {

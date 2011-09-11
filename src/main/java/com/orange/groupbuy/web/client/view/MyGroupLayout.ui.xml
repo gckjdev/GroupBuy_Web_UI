@@ -1,0 +1,18 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:gc="urn:import:com.orange.groupbuy.web.client.component">
+	<ui:style>
+		
+	</ui:style>
+	<g:DockLayoutPanel>
+		<g:west size='128'>
+			<gc:GroupBuyNavigationPanel ui:field='myGroupNavigationPanel' />
+		</g:west>
+		<g:center>
+			<g:ScrollPanel>
+				<g:Label>Content Area 1</g:Label>
+			</g:ScrollPanel>
+		</g:center>
+	</g:DockLayoutPanel>
+</ui:UiBinder> 

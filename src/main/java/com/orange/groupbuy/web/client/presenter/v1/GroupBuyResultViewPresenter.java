@@ -1,4 +1,4 @@
-package com.orange.groupbuy.web.client.presenter;
+package com.orange.groupbuy.web.client.presenter.v1;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import com.orange.groupbuy.web.client.model.Category;
 import com.orange.groupbuy.web.client.model.Criteria;
 import com.orange.groupbuy.web.client.model.OrderType;
 import com.orange.groupbuy.web.client.model.SearchResult;
-import com.orange.groupbuy.web.client.view.GroupBuyResultView;
+import com.orange.groupbuy.web.client.view.v1.GroupBuyResultView;
 
 public class GroupBuyResultViewPresenter extends
 		WidgetPresenter<GroupBuyResultView> {

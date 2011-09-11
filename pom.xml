@@ -4,8 +4,8 @@
 		<repository>
 			<id>nexus</id>
 			<name>local nexus</name>
-			<url>http://localhost:8081/nexus/content/groups/public</url>
-			<!-- <url>http://192.168.1.101:8091/nexus/content/groups/public</url> -->
+			<!-- <url>http://localhost:8081/nexus/content/groups/public</url>  -->
+			<url>http://192.168.1.101:8091/nexus/content/groups/public</url>
 		</repository>
 		<repository>
 			<id>repo1 central</id>

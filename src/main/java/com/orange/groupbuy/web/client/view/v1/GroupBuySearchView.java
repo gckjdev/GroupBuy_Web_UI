@@ -1,4 +1,4 @@
-package com.orange.groupbuy.web.client.view;
+package com.orange.groupbuy.web.client.view.v1;
 
 import java.util.Map;
 

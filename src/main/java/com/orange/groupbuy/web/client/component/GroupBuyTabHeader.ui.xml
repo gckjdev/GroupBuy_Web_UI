@@ -1,0 +1,28 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:gc="urn:import:com.orange.groupbuy.web.client.component"
+	xmlns:gv="urn:import:com.orange.groupbuy.web.client.view">
+	<ui:style>
+		
+	</ui:style>
+	<g:TabLayoutPanel barUnit='EM' barHeight='3'>
+		<g:tab>
+			<g:header size='7'>
+				<b>我的团购</b>
+			</g:header>
+			<g:LayoutPanel ui:field='myGroupView' />
+		</g:tab>
+		<g:tab>
+			<g:customHeader size='7'>
+				<g:Label>排行榜</g:Label>
+			</g:customHeader>
+			<g:LayoutPanel ui:field='sortView' />
+		</g:tab>
+		<g:tab>
+			<g:customHeader size='7'>
+				<g:Label>今日优惠</g:Label>
+			</g:customHeader>
+			<g:LayoutPanel ui:field='todayView' />
+		</g:tab>
+	</g:TabLayoutPanel>
+</ui:UiBinder>

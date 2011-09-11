@@ -1,4 +1,4 @@
-package com.orange.groupbuy.web.client.view;
+package com.orange.groupbuy.web.client.view.v1;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,8 +22,8 @@ import com.orange.groupbuy.web.client.component.GroupBuySearchHeader;
 import com.orange.groupbuy.web.client.component.PageListWidget;
 import com.orange.groupbuy.web.client.model.Category;
 import com.orange.groupbuy.web.client.model.OrderType;
-import com.orange.groupbuy.web.client.presenter.GroupBuyKeywordResultViewPresenter;
-import com.orange.groupbuy.web.client.presenter.GroupBuyResultViewPresenter;
+import com.orange.groupbuy.web.client.presenter.v1.GroupBuyKeywordResultViewPresenter;
+import com.orange.groupbuy.web.client.presenter.v1.GroupBuyResultViewPresenter;
 
 public class GruopBuySearchViewImpl extends Composite implements
 		GroupBuySearchView {
@@ -100,7 +100,7 @@ public class GruopBuySearchViewImpl extends Composite implements
 				// build result
 				GroupBuyResultView resultView = new GroupBuyResultViewImpl();
 				Widget resultViewWidget = resultView.asWidget();
-				// resultViewWidget.setHeight("3600px");
+				resultViewWidget.setHeight("3600px");
 				GroupBuyResultViewPresenter presenter = new GroupBuyResultViewPresenter(
 						resultView, eventBus, c, orderType);
 				presenter.bind();

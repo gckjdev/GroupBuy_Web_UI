@@ -16,42 +16,32 @@ import com.orange.groupbuy.web.client.presenter.MyGroupPresenter;
 
 public class MainViewImpl extends Composite implements MainView {
 
-
-	@UiTemplate("MainLayout.ui.xml")
-	interface MainLayoutUiBinder extends UiBinder<Widget, MainViewImpl> {
-	}
-	private static MainLayoutUiBinder uiBinder = GWT
-			.create(MainLayoutUiBinder.class);
-
 	@UiField
 	GroupBuyHeaderPanel headerPanel;
 
 	@UiField
 	GroupBuyTabHeader tabHeader;
-	
+
 	public MainViewImpl(EventBus eventBus, DispatchAsync dispatchAsync) {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		MyGroupViewImpl myGroupView = new MyGroupViewImpl(eventBus,
 				dispatchAsync);
-		MyGroupPresenter presenter1 = new MyGroupPresenter(myGroupView,
-				eventBus);
-		presenter1.bind();
-		tabHeader.getMyGroupView()
-				.add(presenter1.getDisplay().asWidget());
-	}
-
-	public GroupBuyHeaderPanel getHeaderPanel() {
-		return headerPanel;
-	}
-
-	public GroupBuyTabHeader getTabHeader() {
-		return tabHeader;
+		MyGroupPresenter presenter = new MyGroupPresenter(myGroupView, eventBus);
+		presenter.bind();
+		tabHeader.getMyGroupView().add(presenter.getDisplay().asWidget());
 	}
 
 	@Override
 	public Widget asWidget() {
 		return this;
 	}
+
+	@UiTemplate("MainLayout.ui.xml")
+	interface MainLayoutUiBinder extends UiBinder<Widget, MainViewImpl> {
+	}
+
+	private static MainLayoutUiBinder uiBinder = GWT
+			.create(MainLayoutUiBinder.class);
 
 }

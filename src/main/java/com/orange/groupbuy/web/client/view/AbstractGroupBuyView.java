@@ -18,7 +18,8 @@ import com.orange.groupbuy.web.client.component.GroupBuyWidget;
 import com.orange.groupbuy.web.client.model.SearchResult;
 import com.orange.groupbuy.web.client.presenter.MyGroupPresenter.MyGroupView;
 
-public class MyGroupViewImpl extends Composite implements MyGroupView {
+public abstract class AbstractGroupBuyView extends Composite implements
+		MyGroupView {
 
 	@UiField
 	GroupBuyNavigationPanel myGroupNavigationPanel;
@@ -26,7 +27,7 @@ public class MyGroupViewImpl extends Composite implements MyGroupView {
 	@UiField
 	ScrollPanel searchResultPanel;
 
-	public MyGroupViewImpl(EventBus eventBus, DispatchAsync dispatchAsync) {
+	public AbstractGroupBuyView(EventBus eventBus, DispatchAsync dispatchAsync) {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
@@ -39,7 +40,7 @@ public class MyGroupViewImpl extends Composite implements MyGroupView {
 			.create(MyGroupLayoutUiBinder.class);
 
 	@UiTemplate("MyGroupLayout.ui.xml")
-	interface MyGroupLayoutUiBinder extends UiBinder<Widget, MyGroupViewImpl> {
+	interface MyGroupLayoutUiBinder extends UiBinder<Widget, AbstractGroupBuyView> {
 	}
 
 	@Override

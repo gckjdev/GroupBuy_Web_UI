@@ -14,6 +14,9 @@ import com.orange.groupbuy.web.client.component.GroupBuyHeaderPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyTabHeader;
 import com.orange.groupbuy.web.client.presenter.MainPresenter.MainView;
 import com.orange.groupbuy.web.client.presenter.MyGroupPresenter;
+import com.orange.groupbuy.web.client.presenter.MyGroupPresenter.MyGroupView;
+import com.orange.groupbuy.web.client.presenter.SortViewPresenter;
+import com.orange.groupbuy.web.client.presenter.TodayViewPresenter;
 
 public class MainViewImpl extends Composite implements MainView {
 
@@ -26,12 +29,42 @@ public class MainViewImpl extends Composite implements MainView {
 	public MainViewImpl(EventBus eventBus, DispatchAsync dispatchAsync) {
 		initWidget(uiBinder.createAndBindUi(this));
 
+		// my group buy
+		initMyGroupView(eventBus, dispatchAsync);
+
+		// sortViewImpl
+		initSortView(eventBus, dispatchAsync);
+
+		// today
+		initTodayView(eventBus, dispatchAsync);
+	}
+
+	private void initTodayView(EventBus eventBus, DispatchAsync dispatchAsync) {
+		MyGroupView todayView = new TodayViewImpl(eventBus, dispatchAsync);
+		TodayViewPresenter todayViewPresenter = new TodayViewPresenter(
+				todayView, eventBus);
+		todayViewPresenter.bind();
+		tabHeader.getTodayView()
+				.add(todayViewPresenter.getDisplay().asWidget());
+	}
+
+	private void initSortView(EventBus eventBus, DispatchAsync dispatchAsync) {
+		MyGroupView sortView = new SortViewImpl(eventBus, dispatchAsync);
+		SortViewPresenter sortViewPresenter = new SortViewPresenter(sortView,
+				eventBus);
+		sortViewPresenter.bind();
+		tabHeader.getSortView().add(
+				sortViewPresenter.getDisplay().asWidget());
+	}
+
+	private void initMyGroupView(EventBus eventBus, DispatchAsync dispatchAsync) {
 		MyGroupViewImpl myGroupView = new MyGroupViewImpl(eventBus,
 				dispatchAsync);
-		MyGroupPresenter presenter = new MyGroupPresenter(myGroupView, eventBus);
-		presenter.bind();
-		tabHeader.getMyGroupView().add(presenter.getDisplay().asWidget());
-		// TODO:sortViewImpl
+		MyGroupPresenter myGroupViewPresenter = new MyGroupPresenter(
+				myGroupView, eventBus);
+		myGroupViewPresenter.bind();
+		tabHeader.getMyGroupView().add(
+				myGroupViewPresenter.getDisplay().asWidget());
 	}
 
 	@Override

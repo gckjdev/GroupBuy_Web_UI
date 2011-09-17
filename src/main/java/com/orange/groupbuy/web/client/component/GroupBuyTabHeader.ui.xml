@@ -4,7 +4,7 @@
 	<ui:style>
 		
 	</ui:style>
-	<g:TabLayoutPanel barUnit='EM' barHeight='3'>
+	<g:TabLayoutPanel ui:field='tabHeader' barUnit='EM' barHeight='3'>
 		<g:tab>
 			<g:header size='7'>
 				<b>我的团购</b>

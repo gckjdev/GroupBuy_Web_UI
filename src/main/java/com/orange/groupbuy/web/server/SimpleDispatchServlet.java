@@ -11,6 +11,8 @@ import net.customware.gwt.dispatch.shared.Result;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.orange.groupbuy.web.server.handler.GetCityNamesHandler;
+import com.orange.groupbuy.web.server.handler.GetGroupBuyCategoryListHandler;
+import com.orange.groupbuy.web.server.handler.GetMyGroupHandler;
 
 @SuppressWarnings("serial")
 public class SimpleDispatchServlet extends RemoteServiceServlet implements
@@ -22,6 +24,8 @@ public class SimpleDispatchServlet extends RemoteServiceServlet implements
 		InstanceActionHandlerRegistry registry = new DefaultActionHandlerRegistry();
 		// registry.addHandler(new SearchGroupBuyHandler());
 		registry.addHandler(new GetCityNamesHandler());
+		registry.addHandler(new GetGroupBuyCategoryListHandler());
+		registry.addHandler(new GetMyGroupHandler());
 		dispatch = new SimpleDispatch(registry);
 	}
 

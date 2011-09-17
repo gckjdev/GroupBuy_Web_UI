@@ -1,6 +1,8 @@
 package com.orange.groupbuy.web.client.component;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 import com.google.gwt.cell.client.CheckboxCell;
 import com.google.gwt.core.client.GWT;
@@ -11,13 +13,17 @@ import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.MultiSelectionModel;
-import com.google.gwt.view.client.SelectionModel;
-import com.orange.groupbuy.web.client.model.Category;
+import com.orange.groupbuy.web.client.model.Item;
+import com.orange.groupbuy.web.client.model.PriceItem;
 
 public class GroupBuyNavigationPanel extends Composite {
 
+	public static interface SelectionCallback {
+		void onSelectionChange(MultiSelectionModel<Item> selectionModel);
+	}
 	private static GroupBuyNavigationPanelUiBinder uiBinder = GWT
 			.create(GroupBuyNavigationPanelUiBinder.class);
 
@@ -26,7 +32,13 @@ public class GroupBuyNavigationPanel extends Composite {
 	}
 
 	@UiField
+	DockLayoutPanel navigationPanel;
+
+	@UiField
 	CollpaseBox categroyBox;
+
+	@UiField
+	CollpaseBox myGroupBox;
 
 	@UiField
 	CollpaseBox priceBox;
@@ -34,56 +46,115 @@ public class GroupBuyNavigationPanel extends Composite {
 	public GroupBuyNavigationPanel() {
 		initWidget(uiBinder.createAndBindUi(this));
 
-		//
-		categroyBox.getName().setText("分类");
-		final SelectionModel<Category> selectionModel = new MultiSelectionModel<Category>();
-		Column<Category, Boolean> checkColumn = new Column<Category, Boolean>(
+		initMultipleSelection("分类", categroyBox);
+
+		initMultipleSelection("我的团购", myGroupBox);
+
+		CellTable<Item> categoryCellTable = initMultipleSelection("价格",
+				priceBox);
+
+		List<Item> priceList = new ArrayList<Item>();
+		String[] priceResult = new String[] { "10元以下", "10元以上" };
+		String[] priceResultValue = new String[] { "-1,10", "10,100000" };
+		for (int i = 0; i < priceResult.length; i++) {
+			Item item = new Item(priceResultValue[i], priceResult[i]);
+			priceList.add(item);
+		}
+
+		categoryCellTable.setRowData(0, priceList);
+	}
+
+	private CellTable<Item> initMultipleSelection(String name,
+			CollpaseBox multipleSelection) {
+		multipleSelection.getName().setText(name);
+		final MultiSelectionModel<Item> selectionModel = new MultiSelectionModel<Item>();
+		Column<Item, Boolean> checkColumn = new Column<Item, Boolean>(
 				new CheckboxCell(true, false)) {
 			@Override
-			public Boolean getValue(Category object) {
+			public Boolean getValue(Item object) {
 				// Get the value from the selection model.
 				return selectionModel.isSelected(object);
 			}
 		};
 
-		TextColumn<Category> nameColumn = new TextColumn<Category>() {
+		TextColumn<Item> nameColumn = new TextColumn<Item>() {
 			@Override
-			public String getValue(Category contact) {
+			public String getValue(Item contact) {
 				return contact.getDisplayName();
 			}
 		};
-		CellTable<Category> categorySelection = new CellTable<Category>();
-		categroyBox.getContent().add(categorySelection);
-		categorySelection.addColumn(checkColumn);
-		categorySelection.setColumnWidth(checkColumn, 2, Unit.PX);
-		categorySelection.addColumn(nameColumn);
-		Category[] categoryList = Category.getDisplayOrder();
-		categorySelection.setRowData(0, Arrays.asList(categoryList));
+		CellTable<Item> selection = new CellTable<Item>();
+		multipleSelection.getContent().add(selection);
+		selection.addColumn(checkColumn);
+		selection.setColumnWidth(checkColumn, 2, Unit.PX);
+		selection.addColumn(nameColumn);
 
+		selection.setSelectionModel(selectionModel);
+		return selection;
+	}
+
+	public CollpaseBox getCategroyBox() {
+		return categroyBox;
+	}
+
+	public CollpaseBox getPriceBox() {
+		return priceBox;
+	}
+
+	public CollpaseBox getMyGroupBox() {
+		return myGroupBox;
+	}
+
+	public DockLayoutPanel getNavigationPanel() {
+		return navigationPanel;
+	}
+
+	public ArrayList<String> getSelectedCategoryList() {
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		MultiSelectionModel<Item> myGroupSelected = (MultiSelectionModel) this
+				.getMyGroupBox().getContentCellTable().getSelectionModel();
+		ArrayList<String> categoryList = new ArrayList<String>();
+		Set<Item> categorySet = myGroupSelected.getSelectedSet();
+		for (Item item : categorySet) {
+			categoryList.add(item.getValue());
+		}
+		return categoryList;
+	}
+
+	public PriceItem getSelectedPrice() {
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		MultiSelectionModel<Item> priceSelected = (MultiSelectionModel) this
+				.getPriceBox()
+				.getContentCellTable().getSelectionModel();
 		//
-		priceBox.getName().setText("价格");
-		CellTable<String> priceSelection = new CellTable<String>();
-		priceBox.content.add(priceSelection);
+		Set<Item> priceSet = priceSelected.getSelectedSet();
+		int startPrice = -1;
+		int endPrice = 100000;
+		if (!priceSet.isEmpty()) {
+			// use the range if there's
+			// price selected.
+			startPrice = 100000;
+			endPrice = -1;
+			for (Item item : priceSet) {
+				String priceRange = item.getValue();
+				String[] priceArray = priceRange.split(",");
+				int start = Integer.parseInt(priceArray[0]);
+				int end = Integer.parseInt(priceArray[1]);
 
-		final SelectionModel<String> selectionModel2 = new MultiSelectionModel<String>();
-		Column<String, Boolean> checkColumn2 = new Column<String, Boolean>(
-				new CheckboxCell(true, false)) {
-			@Override
-			public Boolean getValue(String object) {
-				// Get the value from the selection model.
-				return selectionModel2.isSelected(object);
+				if (start < startPrice) {
+					startPrice = start;
+				}
+				if (end > endPrice) {
+					endPrice = end;
+				}
 			}
-		};
+		}
+		// now the statPrice and end
+		// price is the range;
 
-		TextColumn<String> nameColumn2 = new TextColumn<String>() {
-			@Override
-			public String getValue(String contact) {
-				return contact;
-			}
-		};
-		priceSelection.addColumn(checkColumn2);
-		priceSelection.addColumn(nameColumn2);
-		String[] priceList = new String[] { "10元以下", "10元以上" };
-		priceSelection.setRowData(0, Arrays.asList(priceList));
+		PriceItem item = new PriceItem();
+		item.setMin(String.valueOf(startPrice));
+		item.setMax(String.valueOf(endPrice));
+		return item;
 	}
 }

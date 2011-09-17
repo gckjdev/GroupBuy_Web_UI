@@ -5,9 +5,13 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.LayoutPanel;
+import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class GroupBuyTabHeader extends Composite {
+
+	@UiField
+	TabLayoutPanel tabHeader;
 
 	@UiField
 	LayoutPanel myGroupView;
@@ -39,6 +43,10 @@ public class GroupBuyTabHeader extends Composite {
 
 	public LayoutPanel getTodayView() {
 		return todayView;
+	}
+
+	public TabLayoutPanel getTabHeader() {
+		return tabHeader;
 	}
 
 }

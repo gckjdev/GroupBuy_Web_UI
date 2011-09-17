@@ -138,11 +138,11 @@ public class HttpClient {
 			sb.append("&kw=").append(keyword);
 		}
 
-		if(criteria.getCategory()!=null){
-		List<Integer> category = criteria.getCategory().getValues();
-		for (Integer c : category) {
-			sb.append("&ctg=").append(c);
-		}
+		if (criteria.getCategory() != null) {
+			List<Integer> category = criteria.getCategory().getValues();
+			for (Integer c : category) {
+				sb.append("&ctg=").append(c);
+			}
 		}
 		return sb.toString();
 	}

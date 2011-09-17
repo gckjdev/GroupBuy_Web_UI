@@ -6,12 +6,11 @@
 		
 	</ui:style>
 	<g:DockLayoutPanel unit='EM'>
-		<g:west size='13'>
+		<g:west size='15'>
 			<gc:GroupBuyNavigationPanel ui:field='myGroupNavigationPanel' />
 		</g:west>
 		<g:center>
-			<g:ScrollPanel>
-				<g:Label>Content Area 1</g:Label>
+			<g:ScrollPanel ui:field='searchResultPanel'>
 			</g:ScrollPanel>
 		</g:center>
 	</g:DockLayoutPanel>

@@ -8,6 +8,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.orange.groupbuy.web.client.component.GroupBuyHeaderPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyTabHeader;
@@ -30,6 +31,7 @@ public class MainViewImpl extends Composite implements MainView {
 		MyGroupPresenter presenter = new MyGroupPresenter(myGroupView, eventBus);
 		presenter.bind();
 		tabHeader.getMyGroupView().add(presenter.getDisplay().asWidget());
+		// TODO:sortViewImpl
 	}
 
 	@Override
@@ -44,4 +46,8 @@ public class MainViewImpl extends Composite implements MainView {
 	private static MainLayoutUiBinder uiBinder = GWT
 			.create(MainLayoutUiBinder.class);
 
+	@Override
+	public TabLayoutPanel getTabHeader() {
+		return tabHeader.getTabHeader();
+	}
 }

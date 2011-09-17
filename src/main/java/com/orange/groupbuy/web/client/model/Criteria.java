@@ -1,6 +1,7 @@
 package com.orange.groupbuy.web.client.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Criteria implements Serializable {
 
@@ -14,6 +15,14 @@ public class Criteria implements Serializable {
 	private int pageSize;
 	private int startRow;
 	private String keyword;
+	private String startPrice;
+	private String endPrice;
+	private ArrayList<String> categoryList;
+
+	/**
+	 * Min price, Max price
+	 */
+	private ArrayList<String> priceList;
 	
 	public Category getCategory() {
 		return category;
@@ -77,5 +86,37 @@ public class Criteria implements Serializable {
 
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+
+	public ArrayList<String> getPriceList() {
+		return priceList;
+	}
+
+	public void setPriceList(ArrayList<String> priceList) {
+		this.priceList = priceList;
+	}
+
+	public String getStartPrice() {
+		return startPrice;
+	}
+
+	public String getEndPrice() {
+		return endPrice;
+	}
+
+	public void setStartPrice(String startPrice) {
+		this.startPrice = startPrice;
+	}
+
+	public void setEndPrice(String endPrice) {
+		this.endPrice = endPrice;
+	}
+
+	public ArrayList<String> getCategoryList() {
+		return categoryList;
+	}
+
+	public void setCategoryList(ArrayList<String> categoryList) {
+		this.categoryList = categoryList;
 	}
 }

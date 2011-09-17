@@ -5,7 +5,7 @@
 		
 	</ui:style>
 		<g:DockLayoutPanel unit='EM'>
- 			<g:north size="1">
+ 			<g:north size="2">
 					<g:Label ui:field="name"></g:Label>
 			</g:north>
 			<g:south size="18">

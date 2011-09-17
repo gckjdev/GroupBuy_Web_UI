@@ -1,7 +1,7 @@
 package com.orange.groupbuy.web.client.model;
 
 public enum OperationType {
-	KEYWORD_SEARCH("fpk"), CATEGORY_SHOW("fp");
+	KEYWORD_SEARCH("fpk"), CATEGORY_SHOW("fp"), MY_GROUP("");
 
 	private String methodName;
 

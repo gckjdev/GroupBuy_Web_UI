@@ -50,22 +50,6 @@ public class MyGroupPresenter extends WidgetPresenter<MyGroupView> {
 
 					@Override
 					public void onAttachOrDetach(AttachEvent event) {
-						// TODO: move to sortView later.
-						// dispatchAsync.execute(new GetGroupBuyCategory(),
-						// new SimpleCallback<ItemList>() {
-						//
-						// @Override
-						// public void onSuccess(ItemList result) {
-						// final CellTable<Item> categorySelection =
-						// getDisplay()
-						// .getMyGroupNavigationPanel()
-						// .getCategroyBox()
-						// .getContentCellTable();
-						// categorySelection.setRowData(0,
-						// result.getItems());
-						// }
-						// });
-
 						// register call back;
 						getDisplay()
 								.getNavigationPanel()

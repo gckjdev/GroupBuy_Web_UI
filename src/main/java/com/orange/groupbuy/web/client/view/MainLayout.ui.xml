@@ -3,7 +3,7 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:gc="urn:import:com.orange.groupbuy.web.client.component">
 	<g:HTMLPanel>
 		<g:DockLayoutPanel unit='EM'>
-			<g:north size="3">
+			<g:north size="5">
 				<gc:GroupBuyHeaderPanel ui:field='headerPanel' />
 			</g:north>
 			<g:north size="60">

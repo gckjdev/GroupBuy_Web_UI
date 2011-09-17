@@ -8,6 +8,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.orange.groupbuy.web.client.component.GroupBuyHeaderPanel;
@@ -82,5 +83,15 @@ public class MainViewImpl extends Composite implements MainView {
 	@Override
 	public TabLayoutPanel getTabHeader() {
 		return tabHeader.getTabHeader();
+	}
+
+	@Override
+	public GroupBuyHeaderPanel getHeaderPanel() {
+		return headerPanel;
+	}
+
+	@Override
+	public ListBox getCitySelect() {
+		return headerPanel.getCitySelect();
 	}
 }

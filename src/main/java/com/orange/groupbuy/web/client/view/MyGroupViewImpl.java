@@ -11,6 +11,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.orange.groupbuy.web.client.component.GroupBuyNavigationPanel;
@@ -64,5 +65,11 @@ public class MyGroupViewImpl extends Composite implements MyGroupView {
 			resultComponent.updateModel(result);
 			resultRowPanel.add(resultComponent);
 		}
+	}
+
+	@Override
+	public ListBox getCitySelect() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

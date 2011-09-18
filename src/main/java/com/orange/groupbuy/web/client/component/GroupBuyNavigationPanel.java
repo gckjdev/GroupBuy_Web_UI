@@ -8,6 +8,7 @@ import com.google.gwt.cell.client.CheckboxCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
@@ -15,6 +16,7 @@ import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.view.client.DefaultSelectionEventManager;
 import com.google.gwt.view.client.MultiSelectionModel;
 import com.orange.groupbuy.web.client.model.Item;
 import com.orange.groupbuy.web.client.model.PriceItem;
@@ -24,6 +26,7 @@ public class GroupBuyNavigationPanel extends Composite {
 	public static interface SelectionCallback {
 		void onSelectionChange(MultiSelectionModel<Item> selectionModel);
 	}
+
 	private static GroupBuyNavigationPanelUiBinder uiBinder = GWT
 			.create(GroupBuyNavigationPanelUiBinder.class);
 
@@ -43,12 +46,17 @@ public class GroupBuyNavigationPanel extends Composite {
 	@UiField
 	CollpaseBox priceBox;
 
+	@UiFactory
+	CollpaseBox createCollpaseBox(int size) {
+		return new CollpaseBox(size);
+	}
+
 	public GroupBuyNavigationPanel() {
 		initWidget(uiBinder.createAndBindUi(this));
 
-		initMultipleSelection("分类", categroyBox);
+		initSignleSelection("分类", categroyBox);
 
-		initMultipleSelection("我的团购", myGroupBox);
+		initSignleSelection("我的团购", myGroupBox);
 
 		CellTable<Item> categoryCellTable = initMultipleSelection("价格",
 				priceBox);
@@ -65,6 +73,14 @@ public class GroupBuyNavigationPanel extends Composite {
 	}
 
 	private CellTable<Item> initMultipleSelection(String name,
+			CollpaseBox multipleSelection) {
+		CellTable<Item> selection = initSignleSelection(name, multipleSelection);
+		selection.setSelectionModel(selection.getSelectionModel(),
+				DefaultSelectionEventManager.<Item> createCheckboxManager());
+		return selection;
+	}
+
+	private CellTable<Item> initSignleSelection(String name,
 			CollpaseBox multipleSelection) {
 		multipleSelection.getName().setText(name);
 		final MultiSelectionModel<Item> selectionModel = new MultiSelectionModel<Item>();
@@ -88,6 +104,7 @@ public class GroupBuyNavigationPanel extends Composite {
 		selection.addColumn(checkColumn);
 		selection.setColumnWidth(checkColumn, 2, Unit.PX);
 		selection.addColumn(nameColumn);
+
 
 		selection.setSelectionModel(selectionModel);
 		return selection;
@@ -124,8 +141,7 @@ public class GroupBuyNavigationPanel extends Composite {
 	public PriceItem getSelectedPrice() {
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		MultiSelectionModel<Item> priceSelected = (MultiSelectionModel) this
-				.getPriceBox()
-				.getContentCellTable().getSelectionModel();
+				.getPriceBox().getContentCellTable().getSelectionModel();
 		//
 		Set<Item> priceSet = priceSelected.getSelectedSet();
 		int startPrice = -1;

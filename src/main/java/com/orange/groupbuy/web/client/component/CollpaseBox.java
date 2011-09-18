@@ -1,30 +1,37 @@
 package com.orange.groupbuy.web.client.component;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.uibinder.client.UiConstructor;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
-import com.google.gwt.user.client.ui.Widget;
 
 public class CollpaseBox extends Composite {
 
-	private static CollpaseBoxUiBinder uiBinder = GWT
-			.create(CollpaseBoxUiBinder.class);
+	// private static CollpaseBoxUiBinder uiBinder = GWT
+	// .create(CollpaseBoxUiBinder.class);
+	//
+	// interface CollpaseBoxUiBinder extends UiBinder<Widget, CollpaseBox> {
+	// }
 
-	interface CollpaseBoxUiBinder extends UiBinder<Widget, CollpaseBox> {
-	}
-
-	@UiField
+	// @UiField
 	Label name;
 
-	@UiField
+	// @UiField
 	LayoutPanel content;
 
-	public CollpaseBox() {
-		initWidget(uiBinder.createAndBindUi(this));
+	@UiConstructor
+	public CollpaseBox(int size) {
+		DockLayoutPanel dockPanel = new DockLayoutPanel(Unit.EM);
+		 name = new Label();
+		dockPanel.addNorth(name, 2);
+
+		content = new LayoutPanel();
+		dockPanel.addSouth(content, size);
+		initWidget(dockPanel);
+		// initWidget(uiBinder.createAndBindUi(this));
 	}
 
 	public Label getName() {

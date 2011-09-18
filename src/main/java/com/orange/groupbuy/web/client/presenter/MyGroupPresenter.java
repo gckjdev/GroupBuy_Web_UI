@@ -13,10 +13,13 @@ import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.event.logical.shared.AttachEvent.Handler;
 import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.orange.groupbuy.web.client.SimpleCallback;
 import com.orange.groupbuy.web.client.component.GroupBuyNavigationPanel;
 import com.orange.groupbuy.web.client.dispatch.GetMyGroup;
+import com.orange.groupbuy.web.client.event.CityChangedEvent;
+import com.orange.groupbuy.web.client.event.CityChangedHandler;
 import com.orange.groupbuy.web.client.event.TabHeaderTabChangedEvent;
 import com.orange.groupbuy.web.client.event.TabHeaderTabChangedHandler;
 import com.orange.groupbuy.web.client.http.HttpClient;
@@ -37,6 +40,8 @@ public class MyGroupPresenter extends WidgetPresenter<MyGroupView> {
 		GroupBuyNavigationPanel getNavigationPanel();
 
 		void updateModel(List<SearchResult> searchResultList);
+
+		ListBox getCitySelect();
 	}
 
 	public MyGroupPresenter(MyGroupView display, EventBus eventBus) {
@@ -95,6 +100,15 @@ public class MyGroupPresenter extends WidgetPresenter<MyGroupView> {
 												result.getItems());
 									}
 								});
+					}
+				}));
+
+		registerHandler(eventBus.addHandler(CityChangedEvent.getType(),
+				new CityChangedHandler() {
+
+					@Override
+					public void onChanged(CityChangedEvent event) {
+						refreshResult();
 					}
 				}));
 

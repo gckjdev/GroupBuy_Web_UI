@@ -138,12 +138,26 @@ public class HttpClient {
 			sb.append("&kw=").append(keyword);
 		}
 
-		if (criteria.getCategory() != null) {
-			List<Integer> category = criteria.getCategory().getValues();
-			for (Integer c : category) {
+		// if (criteria.getCategory() != null) {
+		// List<Integer> category = criteria.getCategory().getValues();
+		// for (Integer c : category) {
+		// sb.append("&ctg=").append(c);
+		// }
+		// }
+
+		if (criteria.getCategoryList() != null) {
+			List<String> category = criteria.getCategoryList();
+			for (String c : category) {
 				sb.append("&ctg=").append(c);
 			}
 		}
+		if (criteria.getStartPrice() != null) {
+			sb.append("&sp=").append(criteria.getStartPrice());
+		}
+		if (criteria.getEndPrice() != null) {
+			sb.append("&ep=").append(criteria.getEndPrice());
+		}
+
 		return sb.toString();
 	}
 

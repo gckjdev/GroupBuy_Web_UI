@@ -5,14 +5,14 @@
 		
 	</ui:style>
 	<g:DockLayoutPanel ui:field="navigationPanel" unit='EM'>
-		<g:north size="21">
-			<gc:CollpaseBox ui:field="categroyBox"></gc:CollpaseBox>
-		</g:north>
-		<g:north size="21">
-			<gc:CollpaseBox ui:field="myGroupBox"></gc:CollpaseBox>
+		<g:north size="20">
+			<gc:CollpaseBox ui:field="categroyBox" size="18"></gc:CollpaseBox>
 		</g:north>
 		<g:north size="20">
-			<gc:CollpaseBox ui:field="priceBox"></gc:CollpaseBox>
+			<gc:CollpaseBox ui:field="myGroupBox" size="18"></gc:CollpaseBox>
+		</g:north>
+		<g:north size="7">
+			<gc:CollpaseBox ui:field="priceBox" size="5"></gc:CollpaseBox>
 		</g:north>
 	</g:DockLayoutPanel>
 </ui:UiBinder>

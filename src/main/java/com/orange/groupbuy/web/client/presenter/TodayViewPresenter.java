@@ -10,14 +10,31 @@ import com.orange.groupbuy.web.client.SimpleCallback;
 import com.orange.groupbuy.web.client.dispatch.GetGroupBuyCategory;
 import com.orange.groupbuy.web.client.event.TabHeaderTabChangedEvent;
 import com.orange.groupbuy.web.client.event.TabHeaderTabChangedHandler;
+import com.orange.groupbuy.web.client.model.Criteria;
 import com.orange.groupbuy.web.client.model.Item;
 import com.orange.groupbuy.web.client.model.ItemList;
+import com.orange.groupbuy.web.client.model.OperationType;
+import com.orange.groupbuy.web.client.model.PriceItem;
 import com.orange.groupbuy.web.client.presenter.MyGroupPresenter.MyGroupView;
 
 public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 
 	public TodayViewPresenter(MyGroupView display, EventBus eventBus) {
 		super(display, eventBus);
+	}
+
+	private void refreshResult() {
+		Criteria criteria = new Criteria();
+		criteria.setOperationType(OperationType.CATEGORY_SHOW);
+
+		criteria.setOnlyToday(true);
+
+		PriceItem item = getDisplay().getNavigationPanel().getSelectedPrice();
+		// price
+		criteria.setStartPrice(item.getMin());
+		criteria.setEndPrice(item.getMax());
+
+		refreshResult(criteria);
 	}
 
 	@Override

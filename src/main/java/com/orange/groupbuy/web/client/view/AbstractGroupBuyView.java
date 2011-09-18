@@ -2,7 +2,6 @@ package com.orange.groupbuy.web.client.view;
 
 import java.util.List;
 
-import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.presenter.client.EventBus;
 
 import com.google.gwt.core.client.GWT;
@@ -11,6 +10,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.orange.groupbuy.web.client.component.GroupBuyNavigationPanel;
@@ -27,8 +27,11 @@ public abstract class AbstractGroupBuyView extends Composite implements
 	@UiField
 	ScrollPanel searchResultPanel;
 
-	public AbstractGroupBuyView(EventBus eventBus, DispatchAsync dispatchAsync) {
+	private ListBox citySelect;
+
+	public AbstractGroupBuyView(EventBus eventBus, ListBox citySelect) {
 		initWidget(uiBinder.createAndBindUi(this));
+		this.citySelect = citySelect;
 	}
 
 	@Override
@@ -65,5 +68,9 @@ public abstract class AbstractGroupBuyView extends Composite implements
 			resultComponent.updateModel(result);
 			resultRowPanel.add(resultComponent);
 		}
+	}
+
+	public ListBox getCitySelect() {
+		return citySelect;
 	}
 }

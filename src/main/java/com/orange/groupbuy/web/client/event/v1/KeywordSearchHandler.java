@@ -1,4 +1,4 @@
-package com.orange.groupbuy.web.client.event;
+package com.orange.groupbuy.web.client.event.v1;
 
 import com.google.gwt.event.shared.EventHandler;
 

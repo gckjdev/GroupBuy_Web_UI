@@ -16,8 +16,8 @@ import com.orange.groupbuy.web.client.component.GroupBuyTabHeader;
 import com.orange.groupbuy.web.client.presenter.MainPresenter.MainView;
 import com.orange.groupbuy.web.client.presenter.MyGroupPresenter;
 import com.orange.groupbuy.web.client.presenter.MyGroupPresenter.MyGroupView;
-import com.orange.groupbuy.web.client.presenter.SortViewPresenter;
 import com.orange.groupbuy.web.client.presenter.TodayViewPresenter;
+import com.orange.groupbuy.web.client.presenter.TopViewPresenter;
 
 public class MainViewImpl extends Composite implements MainView {
 
@@ -33,15 +33,15 @@ public class MainViewImpl extends Composite implements MainView {
 		// my group buy
 		initMyGroupView(eventBus, dispatchAsync);
 
-		// sortViewImpl
-		initSortView(eventBus, dispatchAsync);
+		// top view
+		initTopView(eventBus);
 
 		// today
-		initTodayView(eventBus, dispatchAsync);
+		initTodayView(eventBus);
 	}
 
-	private void initTodayView(EventBus eventBus, DispatchAsync dispatchAsync) {
-		MyGroupView todayView = new TodayViewImpl(eventBus, dispatchAsync);
+	private void initTodayView(EventBus eventBus) {
+		MyGroupView todayView = new TodayViewImpl(eventBus, getCitySelect());
 		TodayViewPresenter todayViewPresenter = new TodayViewPresenter(
 				todayView, eventBus);
 		todayViewPresenter.bind();
@@ -49,13 +49,13 @@ public class MainViewImpl extends Composite implements MainView {
 				.add(todayViewPresenter.getDisplay().asWidget());
 	}
 
-	private void initSortView(EventBus eventBus, DispatchAsync dispatchAsync) {
-		MyGroupView sortView = new SortViewImpl(eventBus, dispatchAsync);
-		SortViewPresenter sortViewPresenter = new SortViewPresenter(sortView,
+	private void initTopView(EventBus eventBus) {
+		MyGroupView topView = new SortViewImpl(eventBus, getCitySelect());
+		TopViewPresenter topViewPresenter = new TopViewPresenter(topView,
 				eventBus);
-		sortViewPresenter.bind();
+		topViewPresenter.bind();
 		tabHeader.getSortView().add(
-				sortViewPresenter.getDisplay().asWidget());
+				topViewPresenter.getDisplay().asWidget());
 	}
 
 	private void initMyGroupView(EventBus eventBus, DispatchAsync dispatchAsync) {

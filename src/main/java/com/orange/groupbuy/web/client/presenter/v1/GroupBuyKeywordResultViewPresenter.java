@@ -5,8 +5,8 @@ import java.util.List;
 import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 
-import com.orange.groupbuy.web.client.event.KeywordSearchEvent;
-import com.orange.groupbuy.web.client.event.KeywordSearchHandler;
+import com.orange.groupbuy.web.client.event.v1.KeywordSearchEvent;
+import com.orange.groupbuy.web.client.event.v1.KeywordSearchHandler;
 import com.orange.groupbuy.web.client.http.HttpClient;
 import com.orange.groupbuy.web.client.http.HttpClient.Callback;
 import com.orange.groupbuy.web.client.model.Criteria;

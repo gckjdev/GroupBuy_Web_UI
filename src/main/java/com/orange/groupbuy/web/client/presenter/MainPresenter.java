@@ -9,6 +9,8 @@ import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.widget.WidgetDisplay;
 import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.event.logical.shared.AttachEvent.Handler;
 import com.google.gwt.event.logical.shared.SelectionEvent;
@@ -18,6 +20,7 @@ import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.orange.groupbuy.web.client.SimpleCallback;
 import com.orange.groupbuy.web.client.component.GroupBuyHeaderPanel;
 import com.orange.groupbuy.web.client.dispatch.GetCityNames;
+import com.orange.groupbuy.web.client.event.CityChangedEvent;
 import com.orange.groupbuy.web.client.event.TabHeaderTabChangedEvent;
 import com.orange.groupbuy.web.client.model.CityNames;
 import com.orange.groupbuy.web.client.model.Item;
@@ -75,6 +78,16 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 								});
 					}
 				}));
+
+		registerHandler(getDisplay().getCitySelect().addChangeHandler(
+				new ChangeHandler() {
+
+					@Override
+					public void onChange(ChangeEvent event) {
+						eventBus.fireEvent(new CityChangedEvent());
+					}
+				}));
+
 		registerHandler(getDisplay().getTabHeader().addSelectionHandler(
 				new SelectionHandler<Integer>() {
 

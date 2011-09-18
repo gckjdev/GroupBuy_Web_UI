@@ -1,5 +1,7 @@
 package com.orange.groupbuy.web.client.presenter;
 
+import java.util.ArrayList;
+
 import net.customware.gwt.presenter.client.EventBus;
 
 import com.google.gwt.event.logical.shared.AttachEvent;
@@ -8,16 +10,37 @@ import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.orange.groupbuy.web.client.SimpleCallback;
 import com.orange.groupbuy.web.client.dispatch.GetGroupBuyCategory;
+import com.orange.groupbuy.web.client.event.CityChangedEvent;
+import com.orange.groupbuy.web.client.event.CityChangedHandler;
 import com.orange.groupbuy.web.client.event.TabHeaderTabChangedEvent;
 import com.orange.groupbuy.web.client.event.TabHeaderTabChangedHandler;
+import com.orange.groupbuy.web.client.model.Criteria;
 import com.orange.groupbuy.web.client.model.Item;
 import com.orange.groupbuy.web.client.model.ItemList;
+import com.orange.groupbuy.web.client.model.OperationType;
+import com.orange.groupbuy.web.client.model.PriceItem;
 import com.orange.groupbuy.web.client.presenter.MyGroupPresenter.MyGroupView;
 
-public class SortViewPresenter extends AbstractGroupBuyPresenter {
+public class TopViewPresenter extends AbstractGroupBuyPresenter {
 
-	public SortViewPresenter(MyGroupView display, EventBus eventBus) {
+	public TopViewPresenter(MyGroupView display, EventBus eventBus) {
 		super(display, eventBus);
+	}
+
+	private void refreshResult() {
+		Criteria criteria = new Criteria();
+		criteria.setOperationType(OperationType.TOP_SHOW);
+		// category list
+		ArrayList<String> categoryList = getDisplay().getNavigationPanel()
+				.getSelectedCategoryList();
+		criteria.setCategoryList(categoryList);
+
+		PriceItem item = getDisplay().getNavigationPanel().getSelectedPrice();
+		// price
+		criteria.setStartPrice(item.getMin());
+		criteria.setEndPrice(item.getMax());
+
+		refreshResult(criteria);
 	}
 
 	@Override
@@ -40,6 +63,7 @@ public class SortViewPresenter extends AbstractGroupBuyPresenter {
 													SelectionChangeEvent event) {
 												refreshResult();
 											}
+
 										});
 
 						getDisplay()
@@ -58,6 +82,7 @@ public class SortViewPresenter extends AbstractGroupBuyPresenter {
 
 						getDisplay().getNavigationPanel().getMyGroupBox()
 								.removeFromParent();
+
 						dispatchAsync.execute(new GetGroupBuyCategory(),
 								new SimpleCallback<ItemList>() {
 
@@ -71,6 +96,15 @@ public class SortViewPresenter extends AbstractGroupBuyPresenter {
 												result.getItems());
 									}
 								});
+					}
+				}));
+
+		registerHandler(eventBus.addHandler(CityChangedEvent.getType(),
+				new CityChangedHandler() {
+
+					@Override
+					public void onChanged(CityChangedEvent event) {
+						refreshResult();
 					}
 				}));
 

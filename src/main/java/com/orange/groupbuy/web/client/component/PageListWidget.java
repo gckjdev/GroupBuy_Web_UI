@@ -16,6 +16,8 @@ public class PageListWidget extends Composite {
 	interface PageListWidgetUiBinder extends UiBinder<Widget, PageListWidget> {
 	}
 
+	private final int pageSize = 6;
+
 	@UiField
 	Button nextPage;
 
@@ -23,18 +25,23 @@ public class PageListWidget extends Composite {
 	Button previousPage;
 
 	@UiField
-	Label currentPage;
+	Label description;
 
+	private int currentPage = 1;
+	
 	public PageListWidget() {
 		initWidget(uiBinder.createAndBindUi(this));
+		setCurrentPage(1);
 	}
 
 	public int getCurrentPage() {
-		return Integer.valueOf(currentPage.getText());
+		return currentPage;
 	}
 
 	public void setCurrentPage(int page) {
-		currentPage.setText(String.valueOf(page));
+		currentPage = page;
+		setDescription("第" + String.valueOf(getStartRow() + 1) + " - "
+				+ String.valueOf(getStartRow() + pageSize) + "项");
 	}
 
 	public int nextPage() {
@@ -56,12 +63,24 @@ public class PageListWidget extends Composite {
 		return previousPage;
 	}
 
+	public void setDescription(String text) {
+		description.setText(text);
+	}
+
+	public int getStartRow() {
+		return (currentPage - 1) * pageSize;
+	}
+
 	public Button getNextPage() {
 		return nextPage;
 	}
 
 	public Button getPreviousPage() {
 		return previousPage;
+	}
+
+	public int getPageSize() {
+		return pageSize;
 	}
 
 }

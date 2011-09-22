@@ -2,6 +2,8 @@ package com.orange.groupbuy.web.client.presenter;
 
 import net.customware.gwt.presenter.client.EventBus;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.event.logical.shared.AttachEvent.Handler;
 import com.google.gwt.user.cellview.client.CellTable;
@@ -15,11 +17,12 @@ import com.orange.groupbuy.web.client.model.Item;
 import com.orange.groupbuy.web.client.model.ItemList;
 import com.orange.groupbuy.web.client.model.OperationType;
 import com.orange.groupbuy.web.client.model.PriceItem;
-import com.orange.groupbuy.web.client.presenter.MyGroupPresenter.MyGroupView;
 
 public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 
-	public TodayViewPresenter(MyGroupView display, EventBus eventBus) {
+	private boolean init = true;
+
+	public TodayViewPresenter(GroupBuyView display, EventBus eventBus) {
 		super(display, eventBus);
 	}
 
@@ -27,13 +30,20 @@ public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 		Criteria criteria = new Criteria();
 		criteria.setOperationType(OperationType.CATEGORY_SHOW);
 
+		// today
 		criteria.setOnlyToday(true);
 
 		PriceItem item = getDisplay().getNavigationPanel().getSelectedPrice();
 		// price
 		criteria.setStartPrice(item.getMin());
 		criteria.setEndPrice(item.getMax());
-
+		// city
+		String city = getDisplay().getCitySelect().getValue(
+				getDisplay().getCitySelect().getSelectedIndex());
+		criteria.setCity(city);
+		// current page
+		criteria.setPageSize(getDisplay().getPageNavigation().getPageSize());
+		criteria.setStartRow(getDisplay().getPageNavigation().getStartRow());
 		refreshResult(criteria);
 	}
 
@@ -85,9 +95,32 @@ public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 
 					@Override
 					public void onChanged(TabHeaderTabChangedEvent event) {
-						// TODO refresh result panel
+						if (init) {
+							refreshResult();
+							init = false;
+						}
 					}
 				}));
 
+		// previous
+		registerHandler(getDisplay().getPageNavigation().getPreviousPage()
+				.addClickHandler(new ClickHandler() {
+
+					@Override
+					public void onClick(ClickEvent event) {
+						getDisplay().getPageNavigation().previousPage();
+						refreshResult();
+					}
+				}));
+		// next
+		registerHandler(getDisplay().getPageNavigation().getNextPage()
+				.addClickHandler(new ClickHandler() {
+
+					@Override
+					public void onClick(ClickEvent event) {
+						getDisplay().getPageNavigation().nextPage();
+						refreshResult();
+					}
+				}));
 	}
 }

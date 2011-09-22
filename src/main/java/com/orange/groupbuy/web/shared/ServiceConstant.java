@@ -207,4 +207,7 @@ public class ServiceConstant  {
 	public static final String PARA_CATEGORY_NAME = "na";
 	public static final String PARA_CATEGORY_ID = "ci";
 	public static final String PARA_PRODUCT = "p";
+
+	//
+	public static final String PARA_CATEGORY_PRODUCTS_NUM = "cpn";
 }

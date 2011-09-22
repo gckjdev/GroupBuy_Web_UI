@@ -10,9 +10,9 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.orange.groupbuy.web.client.component.GroupBuyNavigationPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyWidget;
@@ -25,7 +25,7 @@ public class MyGroupViewImpl extends Composite implements MyGroupView {
 	GroupBuyNavigationPanel myGroupNavigationPanel;
 
 	@UiField
-	ScrollPanel searchResultPanel;
+	FlowPanel searchResultPanel;
 
 	public MyGroupViewImpl(EventBus eventBus, DispatchAsync dispatchAsync) {
 		initWidget(uiBinder.createAndBindUi(this));

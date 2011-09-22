@@ -18,6 +18,7 @@ import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.DefaultSelectionEventManager;
 import com.google.gwt.view.client.MultiSelectionModel;
+import com.google.gwt.view.client.SingleSelectionModel;
 import com.orange.groupbuy.web.client.model.Item;
 import com.orange.groupbuy.web.client.model.PriceItem;
 
@@ -74,14 +75,6 @@ public class GroupBuyNavigationPanel extends Composite {
 
 	private CellTable<Item> initMultipleSelection(String name,
 			CollpaseBox multipleSelection) {
-		CellTable<Item> selection = initSignleSelection(name, multipleSelection);
-		selection.setSelectionModel(selection.getSelectionModel(),
-				DefaultSelectionEventManager.<Item> createCheckboxManager());
-		return selection;
-	}
-
-	private CellTable<Item> initSignleSelection(String name,
-			CollpaseBox multipleSelection) {
 		multipleSelection.getName().setText(name);
 		final MultiSelectionModel<Item> selectionModel = new MultiSelectionModel<Item>();
 		Column<Item, Boolean> checkColumn = new Column<Item, Boolean>(
@@ -105,8 +98,38 @@ public class GroupBuyNavigationPanel extends Composite {
 		selection.setColumnWidth(checkColumn, 2, Unit.PX);
 		selection.addColumn(nameColumn);
 
+		selection.setSelectionModel(selectionModel,
+				DefaultSelectionEventManager.<Item> createCheckboxManager());
+		return selection;
+	}
 
-		selection.setSelectionModel(selectionModel);
+	private CellTable<Item> initSignleSelection(String name,
+			CollpaseBox multipleSelection) {
+		multipleSelection.getName().setText(name);
+		final SingleSelectionModel<Item> selectionModel = new SingleSelectionModel<Item>();
+		Column<Item, Boolean> checkColumn = new Column<Item, Boolean>(
+				new CheckboxCell(true, false)) {
+			@Override
+			public Boolean getValue(Item object) {
+				// Get the value from the selection model.
+				return selectionModel.isSelected(object);
+			}
+		};
+
+		TextColumn<Item> nameColumn = new TextColumn<Item>() {
+			@Override
+			public String getValue(Item contact) {
+				return contact.getDisplayName();
+			}
+		};
+		CellTable<Item> selection = new CellTable<Item>();
+		multipleSelection.getContent().add(selection);
+		selection.addColumn(checkColumn);
+		selection.setColumnWidth(checkColumn, 2, Unit.PX);
+		selection.addColumn(nameColumn);
+
+		selection.setSelectionModel(selectionModel,
+				DefaultSelectionEventManager.<Item> createCheckboxManager());
 		return selection;
 	}
 
@@ -128,13 +151,16 @@ public class GroupBuyNavigationPanel extends Composite {
 
 	public ArrayList<String> getSelectedCategoryList() {
 		@SuppressWarnings({ "unchecked", "rawtypes" })
-		MultiSelectionModel<Item> myGroupSelected = (MultiSelectionModel) this
-				.getMyGroupBox().getContentCellTable().getSelectionModel();
+		SingleSelectionModel<Item> myGroupSelected = (SingleSelectionModel) this
+				.getCategroyBox().getContentCellTable().getSelectionModel();
 		ArrayList<String> categoryList = new ArrayList<String>();
-		Set<Item> categorySet = myGroupSelected.getSelectedSet();
-		for (Item item : categorySet) {
+		Item item = myGroupSelected.getSelectedObject();
+		if (item != null) {
 			categoryList.add(item.getValue());
 		}
+		// for (Item item : categorySet) {
+		// categoryList.add(item.getValue());
+		// }
 		return categoryList;
 	}
 

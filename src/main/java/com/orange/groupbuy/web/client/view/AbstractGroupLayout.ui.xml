@@ -10,7 +10,10 @@
 			<gc:GroupBuyNavigationPanel ui:field='myGroupNavigationPanel' />
 		</g:west>
 		<g:center>
-			<g:FlowPanel ui:field='searchResultPanel'>
+			<g:FlowPanel>
+				  <gc:PageListWidget ui:field='pageNavigation'></gc:PageListWidget>
+				  <g:FlowPanel ui:field='searchResultPanel'>
+				  </g:FlowPanel>
 			</g:FlowPanel>
 		</g:center>
 	</g:DockLayoutPanel>

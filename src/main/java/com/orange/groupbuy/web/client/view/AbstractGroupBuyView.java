@@ -9,23 +9,27 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.orange.groupbuy.web.client.component.GroupBuyNavigationPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyWidget;
+import com.orange.groupbuy.web.client.component.PageListWidget;
 import com.orange.groupbuy.web.client.model.SearchResult;
-import com.orange.groupbuy.web.client.presenter.MyGroupPresenter.MyGroupView;
+import com.orange.groupbuy.web.client.presenter.AbstractGroupBuyPresenter.GroupBuyView;
 
 public abstract class AbstractGroupBuyView extends Composite implements
-		MyGroupView {
+		GroupBuyView {
 
 	@UiField
 	GroupBuyNavigationPanel myGroupNavigationPanel;
 
 	@UiField
-	ScrollPanel searchResultPanel;
+	FlowPanel searchResultPanel;
+
+	@UiField
+	PageListWidget pageNavigation;
 
 	private ListBox citySelect;
 
@@ -42,7 +46,7 @@ public abstract class AbstractGroupBuyView extends Composite implements
 	private static MyGroupLayoutUiBinder uiBinder = GWT
 			.create(MyGroupLayoutUiBinder.class);
 
-	@UiTemplate("MyGroupLayout.ui.xml")
+	@UiTemplate("AbstractGroupLayout.ui.xml")
 	interface MyGroupLayoutUiBinder extends UiBinder<Widget, AbstractGroupBuyView> {
 	}
 
@@ -70,7 +74,13 @@ public abstract class AbstractGroupBuyView extends Composite implements
 		}
 	}
 
+	@Override
 	public ListBox getCitySelect() {
 		return citySelect;
+	}
+
+	@Override
+	public PageListWidget getPageNavigation() {
+		return pageNavigation;
 	}
 }

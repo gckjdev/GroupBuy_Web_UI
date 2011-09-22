@@ -13,9 +13,9 @@ import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.orange.groupbuy.web.client.component.GroupBuyHeaderPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyTabHeader;
+import com.orange.groupbuy.web.client.presenter.AbstractGroupBuyPresenter.GroupBuyView;
 import com.orange.groupbuy.web.client.presenter.MainPresenter.MainView;
 import com.orange.groupbuy.web.client.presenter.MyGroupPresenter;
-import com.orange.groupbuy.web.client.presenter.MyGroupPresenter.MyGroupView;
 import com.orange.groupbuy.web.client.presenter.TodayViewPresenter;
 import com.orange.groupbuy.web.client.presenter.TopViewPresenter;
 
@@ -41,7 +41,7 @@ public class MainViewImpl extends Composite implements MainView {
 	}
 
 	private void initTodayView(EventBus eventBus) {
-		MyGroupView todayView = new TodayViewImpl(eventBus, getCitySelect());
+		GroupBuyView todayView = new TodayViewImpl(eventBus, getCitySelect());
 		TodayViewPresenter todayViewPresenter = new TodayViewPresenter(
 				todayView, eventBus);
 		todayViewPresenter.bind();
@@ -50,7 +50,7 @@ public class MainViewImpl extends Composite implements MainView {
 	}
 
 	private void initTopView(EventBus eventBus) {
-		MyGroupView topView = new SortViewImpl(eventBus, getCitySelect());
+		GroupBuyView topView = new TopViewImpl(eventBus, getCitySelect());
 		TopViewPresenter topViewPresenter = new TopViewPresenter(topView,
 				eventBus);
 		topViewPresenter.bind();

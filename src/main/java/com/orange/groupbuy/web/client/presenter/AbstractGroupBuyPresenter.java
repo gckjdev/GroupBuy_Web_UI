@@ -6,24 +6,38 @@ import net.customware.gwt.dispatch.client.DefaultExceptionHandler;
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.dispatch.client.standard.StandardDispatchAsync;
 import net.customware.gwt.presenter.client.EventBus;
+import net.customware.gwt.presenter.client.widget.WidgetDisplay;
 import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 
+import com.google.gwt.user.client.ui.ListBox;
+import com.orange.groupbuy.web.client.component.GroupBuyNavigationPanel;
+import com.orange.groupbuy.web.client.component.PageListWidget;
 import com.orange.groupbuy.web.client.http.HttpClient;
 import com.orange.groupbuy.web.client.http.HttpClient.Callback;
 import com.orange.groupbuy.web.client.model.Criteria;
 import com.orange.groupbuy.web.client.model.SearchResult;
-import com.orange.groupbuy.web.client.presenter.MyGroupPresenter.MyGroupView;
+import com.orange.groupbuy.web.client.presenter.AbstractGroupBuyPresenter.GroupBuyView;
 
 public abstract class AbstractGroupBuyPresenter extends
-		WidgetPresenter<MyGroupView> {
+		WidgetPresenter<GroupBuyView> {
 
 	public final DispatchAsync dispatchAsync = new StandardDispatchAsync(
 			new DefaultExceptionHandler());
 
-	public AbstractGroupBuyPresenter(MyGroupView display, EventBus eventBus) {
+	public AbstractGroupBuyPresenter(GroupBuyView display,
+			EventBus eventBus) {
 		super(display, eventBus);
 	}
 
+	public static interface GroupBuyView extends WidgetDisplay {
+		GroupBuyNavigationPanel getNavigationPanel();
+
+		void updateModel(List<SearchResult> searchResultList);
+
+		ListBox getCitySelect();
+
+		PageListWidget getPageNavigation();
+	}
 
 	protected void refreshResult(Criteria criteria) {
 

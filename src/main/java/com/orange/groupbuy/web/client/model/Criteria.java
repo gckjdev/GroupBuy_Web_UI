@@ -119,4 +119,5 @@ public class Criteria implements Serializable {
 	public void setCategoryList(ArrayList<String> categoryList) {
 		this.categoryList = categoryList;
 	}
+
 }

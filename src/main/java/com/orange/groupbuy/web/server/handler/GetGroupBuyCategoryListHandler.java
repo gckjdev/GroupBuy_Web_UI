@@ -1,7 +1,9 @@
 package com.orange.groupbuy.web.server.handler;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.logging.Logger;
@@ -28,7 +30,6 @@ public class GetGroupBuyCategoryListHandler implements
 	public ItemList execute(GetGroupBuyCategory action, ExecutionContext context)
 			throws DispatchException {
 		String apiServerUrl = ProxyUtil.getSearchGroupBuyUrl();
-		// http://localhost:8000/api/i?m=gac&app=GROUPBUY
 		String requestUrl = apiServerUrl + "m=gac&app=GROUPBUYWEB";
 
 		ArrayList<Item> category = new ArrayList<Item>();
@@ -92,10 +93,11 @@ public class GetGroupBuyCategoryListHandler implements
 
 	public static long copyLarge(InputStream input, StringWriter output)
 			throws IOException {
-		byte[] buffer = new byte[4096];
+		char[] buffer = new char[4096];
+		BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 		long count = 0;
 		int n = 0;
-		while (-1 != (n = input.read(buffer))) {
+		while (-1 != (n = reader.read(buffer))) {
 			output.write(new String(buffer));
 			count += n;
 		}
@@ -108,9 +110,8 @@ public class GetGroupBuyCategoryListHandler implements
 	}
 
 	@Override
-	public void rollback(GetGroupBuyCategory arg0, ItemList arg1,
-			ExecutionContext arg2) throws DispatchException {
-		// TODO Auto-generated method stub
+	public void rollback(GetGroupBuyCategory category, ItemList itemList,
+			ExecutionContext context) throws DispatchException {
 	}
 
 }

@@ -10,16 +10,8 @@ import com.google.gwt.user.client.ui.LayoutPanel;
 
 public class CollpaseBox extends Composite {
 
-	// private static CollpaseBoxUiBinder uiBinder = GWT
-	// .create(CollpaseBoxUiBinder.class);
-	//
-	// interface CollpaseBoxUiBinder extends UiBinder<Widget, CollpaseBox> {
-	// }
-
-	// @UiField
 	Label name;
 
-	// @UiField
 	LayoutPanel content;
 
 	@UiConstructor
@@ -31,7 +23,6 @@ public class CollpaseBox extends Composite {
 		content = new LayoutPanel();
 		dockPanel.addSouth(content, size);
 		initWidget(dockPanel);
-		// initWidget(uiBinder.createAndBindUi(this));
 	}
 
 	public Label getName() {

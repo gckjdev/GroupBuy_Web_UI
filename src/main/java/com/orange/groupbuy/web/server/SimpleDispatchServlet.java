@@ -1,5 +1,7 @@
 package com.orange.groupbuy.web.server;
 
+import javax.servlet.http.HttpSession;
+
 import net.customware.gwt.dispatch.client.standard.StandardDispatchService;
 import net.customware.gwt.dispatch.server.DefaultActionHandlerRegistry;
 import net.customware.gwt.dispatch.server.Dispatch;
@@ -22,11 +24,15 @@ public class SimpleDispatchServlet extends RemoteServiceServlet implements
 
 	public SimpleDispatchServlet() {
 		InstanceActionHandlerRegistry registry = new DefaultActionHandlerRegistry();
-		// registry.addHandler(new SearchGroupBuyHandler());
 		registry.addHandler(new GetCityNamesHandler());
 		registry.addHandler(new GetGroupBuyCategoryListHandler());
 		registry.addHandler(new GetMyGroupHandler());
 		dispatch = new SimpleDispatch(registry);
+	}
+
+	private HttpSession getSession() {
+		// Get the current request and then return its session
+		return this.getThreadLocalRequest().getSession();
 	}
 
 	@Override

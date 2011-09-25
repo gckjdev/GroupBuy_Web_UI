@@ -15,19 +15,21 @@
 		}
 	</ui:style>
 	<g:HTMLPanel>
-		<div class='{style.logo}' />
+		<div>
+			<div class=''></div>
+			<g:ListBox ui:field='citySelect' visibleItemCount='1' styleName='float-left'/>
+		</div>
 
-		<div class="{style.statusDiv}">
+		<div class="float-right">
 			<div>
 				<b>Welcome back, foo@example.com</b>
 			</div>
 
-			<div class='{style.linksDiv}'>
+			<div class=''>
 				<g:Anchor href='javascript:;' ui:field='signOutLink'>Sign Out</g:Anchor>
 				&nbsp;
 				<g:Anchor href='javascript:;' ui:field='aboutLink'>About</g:Anchor>
 			</div>
 		</div>
-		<g:ListBox ui:field='citySelect' visibleItemCount='1'/>
 	</g:HTMLPanel>
 </ui:UiBinder>

@@ -23,6 +23,8 @@ import com.orange.groupbuy.web.client.presenter.AbstractGroupBuyPresenter.GroupB
 public abstract class AbstractGroupBuyView extends Composite implements
 		GroupBuyView {
 
+	private static final int RESULT_WIDGET_IN_ROW = 3;
+
 	@UiField
 	GroupBuyNavigationPanel myGroupNavigationPanel;
 
@@ -67,7 +69,7 @@ public abstract class AbstractGroupBuyView extends Composite implements
 
 		for (int i = 0; i < searchResultList.size(); i++) {
 			SearchResult result = searchResultList.get(i);
-			if (i % 3 == 0) {
+			if (i % RESULT_WIDGET_IN_ROW == 0) {
 				resultRowPanel = new HorizontalPanel();
 				searchResultPanel.add(resultRowPanel);
 			}

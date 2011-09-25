@@ -3,7 +3,7 @@ package com.orange.groupbuy.web.client.component;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
@@ -19,10 +19,10 @@ public class PageListWidget extends Composite {
 	private final int pageSize = 6;
 
 	@UiField
-	Button nextPage;
+	Anchor nextPage;
 
 	@UiField
-	Button previousPage;
+	Anchor previousPage;
 
 	@UiField
 	Label description;
@@ -71,11 +71,11 @@ public class PageListWidget extends Composite {
 		return (currentPage - 1) * pageSize;
 	}
 
-	public Button getNextPage() {
+	public Anchor getNextPage() {
 		return nextPage;
 	}
 
-	public Button getPreviousPage() {
+	public Anchor getPreviousPage() {
 		return previousPage;
 	}
 

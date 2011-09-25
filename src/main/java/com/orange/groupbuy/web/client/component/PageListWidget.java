@@ -1,6 +1,7 @@
 package com.orange.groupbuy.web.client.component;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Anchor;
@@ -25,7 +26,7 @@ public class PageListWidget extends Composite {
 	Anchor previousPage;
 
 	@UiField
-	Label description;
+	SpanElement  description;
 
 	private int currentPage = 1;
 	
@@ -87,7 +88,7 @@ public class PageListWidget extends Composite {
 	}
 
 	public void setDescription(String text) {
-		description.setText(text);
+		description.setInnerText(text);
 	}
 
 	public int getStartRow() {

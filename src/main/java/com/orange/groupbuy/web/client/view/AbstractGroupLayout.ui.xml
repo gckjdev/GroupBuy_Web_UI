@@ -8,20 +8,20 @@
 			<g:layer width='180px'>
 				<gc:GroupBuyNavigationPanel ui:field='myGroupNavigationPanel' />
 			</g:layer>
-   			<g:layer left='210px' width='750px' >
+   			<g:layer left='190px' width='790px' >
 				<g:LayoutPanel>
-					<g:layer left='0px' top='10px' height='20px'  width='200px' >
+					<g:layer left='0px' top='10px' height='20px'  width='300px' >
 						<g:Label addStyleNames="description" ui:field="description"></g:Label>
 					</g:layer>
-					<g:layer left='560px' top='10px' height='20px'  width='200px'>
+					<g:layer left='600px' top='10px' height='20px'  width='150px'>
 						<gc:PageListWidget ui:field='pageNavigation'>
 						</gc:PageListWidget>
 					</g:layer>
-					<g:layer top='35px' height='100%'>
+					<g:layer top='20px' height='100%'>
 						<g:FlowPanel ui:field='searchResultPanel' styleName='searchResultPanel'>
 						</g:FlowPanel>
 					</g:layer>
-					<g:layer left='560px' bottom ='10px' height='20px' width='200px'>
+					<g:layer left='600px' bottom ='10px' height='20px' width='150px'>
 						<gc:PageListWidget ui:field='bottomPageNavigation'>
 						</gc:PageListWidget>
 					</g:layer>

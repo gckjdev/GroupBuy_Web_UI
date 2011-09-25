@@ -47,7 +47,7 @@
 			<div class='weibotxt'>
 				<a href="javascript:;" onClick="addfavorite()">添加到收藏夹</a>
 			</div>
-			<div class='weibotxt'>在这里关注我们</div>
+			<div class='weibotxt'>关注我们</div>
 			<div class='weiboicon'>
 				<a href="#" class="guanzhu1">
 				</a>

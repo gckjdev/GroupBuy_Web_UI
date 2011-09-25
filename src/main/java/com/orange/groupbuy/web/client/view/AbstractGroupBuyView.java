@@ -24,10 +24,11 @@ import com.orange.groupbuy.web.client.presenter.AbstractGroupBuyPresenter.GroupB
 
 public abstract class AbstractGroupBuyView extends Composite implements
 		GroupBuyView {
-
+	protected int height ;
 	private static final int RESULT_WIDGET_IN_ROW = 1;
+	protected static final int DEFAULT_HEIGHT = 700;
 	
-	private static final int ROW_HEIGHT = 198;
+	private static final int ROW_HEIGHT = 200;
 
 	@UiField
 	GroupBuyNavigationPanel myGroupNavigationPanel;
@@ -48,12 +49,14 @@ public abstract class AbstractGroupBuyView extends Composite implements
 
 	private TextBox searchBox;
 
-	private EventBus eventBus;
+	protected EventBus eventBus;
 
 	public AbstractGroupBuyView(EventBus eventBus, CityWidget citySelect) {
 		initWidget(uiBinder.createAndBindUi(this));
 		this.citySelect = citySelect;
 		this.eventBus = eventBus;
+		getPageNavigation().setVisible(false);
+        getBottomPageNavigation().setVisible(false);
 	}
 
 	public AbstractGroupBuyView(EventBus eventBus, CityWidget citySelect,
@@ -81,27 +84,30 @@ public abstract class AbstractGroupBuyView extends Composite implements
 
 	@Override
 	public void updateModel(List<SearchResult> searchResultList) {
+		
 		searchResultPanel.clear();
 		HorizontalPanel resultRowPanel = null;
 		if (searchResultList.isEmpty()) {
 			searchResultPanel.add(new Label("暂时没有此类团购"));
 			searchResultPanel.setHeight("100px");
-			return;
-		}
-
-		for (int i = 0; i < searchResultList.size(); i++) {
-			SearchResult result = searchResultList.get(i);
-			if (i % RESULT_WIDGET_IN_ROW == 0) {
-				resultRowPanel = new HorizontalPanel();
-				searchResultPanel.add(resultRowPanel);
+			height = DEFAULT_HEIGHT;
+		}else{
+			for (int i = 0; i < searchResultList.size(); i++) {
+				SearchResult result = searchResultList.get(i);
+				if (i % RESULT_WIDGET_IN_ROW == 0) {
+					resultRowPanel = new HorizontalPanel();
+					searchResultPanel.add(resultRowPanel);
+				}
+				GroupBuyWidget resultComponent = new GroupBuyWidget();
+				resultRowPanel.setSpacing(10);
+				resultComponent.updateModel(result);
+				resultRowPanel.add(resultComponent);
 			}
-			GroupBuyWidget resultComponent = new GroupBuyWidget();
-			resultRowPanel.setSpacing(10);
-			resultComponent.updateModel(result);
-			resultRowPanel.add(resultComponent);
+			int row = (searchResultList.size() + RESULT_WIDGET_IN_ROW -1)/RESULT_WIDGET_IN_ROW ;
+			height = ROW_HEIGHT * row;
+			height = height < DEFAULT_HEIGHT ? DEFAULT_HEIGHT : height;
 		}
-		int row = (searchResultList.size() + RESULT_WIDGET_IN_ROW -1)/RESULT_WIDGET_IN_ROW ;
-		this.eventBus.fireEvent(new ResizeMainEvent(ROW_HEIGHT * row));
+		resize();
 	}
 	
 	@Override
@@ -112,40 +118,39 @@ public abstract class AbstractGroupBuyView extends Composite implements
 			searchResultPanel.add(new Label("暂时没有此类团购"));
             getPageNavigation().setVisible(false);
             getBottomPageNavigation().setVisible(false);
-    		this.eventBus.fireEvent(new ResizeMainEvent(700));
-            return;
-        }
-        
-        getPageNavigation().setVisible(true);
-        getBottomPageNavigation().setVisible(true);
-
-        for (int i = 0; i < searchResultList.size(); i++) {
-            SearchResult result = searchResultList.get(i);
-            if (i % RESULT_WIDGET_IN_ROW == 0) {
-                resultRowPanel = new HorizontalPanel();
-                searchResultPanel.add(resultRowPanel);
-            }
-            GroupBuyWidget resultComponent = new GroupBuyWidget();
-            resultRowPanel.setSpacing(10);
-            resultComponent.updateModel(result);
-            
-            //Show top rank for TopView
-            if (this.getClass().getName().equals(TopViewImpl.class.getName())) {
-                int rank = (pageNavigation.getCurrentPage() - 1) * (pageNavigation.getPageSize()) + i + 1;
-                resultComponent.setRank(String.valueOf(rank));
-            }
-            
-            resultRowPanel.add(resultComponent);
-        }
-        
-        pageNavigation.setTotalRows(rc);
-        pageNavigation.setCurrentPage(pageNavigation.getCurrentPage());
-        bottomPageNavigation.setTotalRows(rc);
-        bottomPageNavigation.setCurrentPage(pageNavigation.getCurrentPage());
-//        int row = (rc + RESULT_WIDGET_IN_ROW -1)/RESULT_WIDGET_IN_ROW ;
-		int row = pageNavigation.getTotalRows() - pageNavigation.getStartRow();
-		row = row > pageNavigation.getPageSize() ? pageNavigation.getPageSize() : row;
-		this.eventBus.fireEvent(new ResizeMainEvent(ROW_HEIGHT * row));
+    		height = DEFAULT_HEIGHT;
+        }else{
+	        
+	        getPageNavigation().setVisible(true);
+	        getBottomPageNavigation().setVisible(true);
+	
+	        for (int i = 0; i < searchResultList.size(); i++) {
+	            SearchResult result = searchResultList.get(i);
+	            if (i % RESULT_WIDGET_IN_ROW == 0) {
+	                resultRowPanel = new HorizontalPanel();
+	                searchResultPanel.add(resultRowPanel);
+	            }
+	            GroupBuyWidget resultComponent = new GroupBuyWidget();
+	            resultRowPanel.setSpacing(10);
+	            resultComponent.updateModel(result);
+	            
+	            //Show top rank for TopView
+	            if (this.getClass().getName().equals(TopViewImpl.class.getName())) {
+	                int rank = (pageNavigation.getCurrentPage() - 1) * (pageNavigation.getPageSize()) + i + 1;
+	                resultComponent.setRank(String.valueOf(rank));
+	            }
+	            
+	            resultRowPanel.add(resultComponent);
+	        }	        
+	        pageNavigation.setTotalRows(rc);
+	        pageNavigation.setCurrentPage(pageNavigation.getCurrentPage());
+	        bottomPageNavigation.setTotalRows(rc);
+	        bottomPageNavigation.setCurrentPage(pageNavigation.getCurrentPage());
+			int row = pageNavigation.getTotalRows() - pageNavigation.getStartRow();
+			row = row > pageNavigation.getPageSize() ? pageNavigation.getPageSize() : row;
+			height = ROW_HEIGHT * row;
+		}
+        resize();
     }
 
 	@Override
@@ -172,5 +177,10 @@ public abstract class AbstractGroupBuyView extends Composite implements
 	public TextBox getSearchBox() {
 		return searchBox;
 	}
+	public void resize(){
+		this.eventBus.fireEvent(
+				new ResizeMainEvent(height < DEFAULT_HEIGHT ? DEFAULT_HEIGHT : height, getTabIndex()));
+	}
+	public abstract int getTabIndex();
 	
 }

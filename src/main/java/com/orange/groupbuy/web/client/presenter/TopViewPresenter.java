@@ -178,6 +178,8 @@ public class TopViewPresenter extends AbstractGroupBuyPresenter {
 						if (init) {
 							refreshResult();
 							init = false;
+						}else{
+							getDisplay().resize();
 						}
 					}
 				}));

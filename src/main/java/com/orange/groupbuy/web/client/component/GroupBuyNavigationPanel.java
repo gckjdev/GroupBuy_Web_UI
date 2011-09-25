@@ -118,12 +118,6 @@ public class GroupBuyNavigationPanel extends Composite {
 			}
 		};
 
-//		TextColumn<Item> nameColumn = new TextColumn<Item>() {
-//			@Override
-//			public String getValue(Item contact) {
-//				return contact.getDisplayName();
-//			}
-//		};
 		
 		Column<Item, String> nameColumn = new Column<Item, String>(
 				new ClickableTextCell()){

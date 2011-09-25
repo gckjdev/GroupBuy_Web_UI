@@ -115,7 +115,10 @@ public class SearchViewPresenter extends AbstractGroupBuyPresenter {
 						if (init && validSearchText()) {
 							refreshResult();
 							init = false;
+						}else{
+							getDisplay().resize();
 						}
+						
 //						Window.alert("Search");
 					}
 				}));

@@ -23,6 +23,7 @@ import com.orange.groupbuy.web.client.presenter.AbstractGroupBuyPresenter.GroupB
 public abstract class AbstractGroupBuyPresenter extends
 		WidgetPresenter<GroupBuyView> {
 
+	private int height ; 
 	public final DispatchAsync dispatchAsync = new StandardDispatchAsync(
 			new DefaultExceptionHandler());
 
@@ -47,6 +48,7 @@ public abstract class AbstractGroupBuyPresenter extends
         Label getDescription();
         
 		TextBox getSearchBox();
+		void resize();
 		
 	}
 

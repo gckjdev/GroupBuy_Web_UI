@@ -1,3 +1,4 @@
+@charset "utf-8";
 .clearfix {
 	zoom: 1;
 }
@@ -166,7 +167,7 @@
     font-weight: bold;
     height: 25px;
     line-height: 25px;
-    text-indent: 36px !important;
+    text-indent: 26px !important;
     border: 0px  !important;
 }
 
@@ -261,9 +262,7 @@ a:hover{
 	bottom: 30px;
 	left: 350px; 
 	float: left;*/
-	font: 13px Verdana,Arial,Tahoma;
     vertical-align: middle;
-	font-size: 1.2em;
 	line-height: 28px;
 	padding: 0 35px 0 5px;
 	
@@ -278,7 +277,7 @@ a:hover{
 	float: right;
 	display: inline;
 	margin-top: 0px;
-	margin-right: 50px;
+	font-size: 100%;
 }
 
 .guides {
@@ -296,12 +295,40 @@ a:hover{
     height: 43px;
     width: 186px
 }
+.pagetool{
+	font-size: 12px;
+	float: right;
+}
+.pagetool span{
+/* 	font-weight: bold; */
+vertical-align: top;
+} 
+.pagetool span,.item{
+/* 	float: right; */
+}
+.pagetool ol{
+	margin-left: 0;
+	padding: 0;
+	display: inline;
+}
+.pagetool ol li{margin-left: 0;padding: 0 5px;border-left:1px solid #000;list-style: none;display: inline;}
+
+
+
+
+
+
+
+
 
 .search {
 	background: url("../images/src.jpg") no-repeat scroll 0 0 transparent;
     height: 36px;
     margin: 0 auto;
     width: 515px;
+}
+.description{
+	font-weight: bold;
 }
 .top_lan_text {
     border-bottom: 1px solid #DDDDDD;
@@ -324,7 +351,6 @@ a:hover{
 }
 
 .footer {
-	font-family: Arial, Helvetica, sans-serif;
 	color: #666666;
 	font-size: 12px;
 	padding-top: 5px;

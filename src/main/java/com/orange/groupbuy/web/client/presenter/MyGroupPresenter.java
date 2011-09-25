@@ -106,6 +106,7 @@ public class MyGroupPresenter extends WidgetPresenter<MyGroupView> {
 					@Override
 					public void onChanged(TabHeaderTabChangedEvent event) {
 						// TODO refresh result panel
+						
 					}
 				}));
 

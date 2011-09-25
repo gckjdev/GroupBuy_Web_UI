@@ -7,6 +7,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FocusWidget;
@@ -74,10 +75,6 @@ public class MainViewImpl extends Composite implements MainView {
         
 		// search
 		initSearchView(eventBus);
-		
-		
-
-//		setTabHeight(4200);
 		
 	}
 
@@ -210,8 +207,10 @@ public class MainViewImpl extends Composite implements MainView {
 
 	@Override
 	public void setTabHeight(int h) {
+		//157 header
+		//45 tab header
+		//200 footer
+		//h data table height
 		mainPanel.setHeight(157 + 45 + 200 + h + "px");
-//		tabHeader.setHeight(h + "px");
-//		groupbuyPanel.setTopHeight(130, Unit.PX, 130 + h, Unit.PX);
 	}
 }

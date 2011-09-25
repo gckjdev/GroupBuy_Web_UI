@@ -87,7 +87,7 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 		void setTabHeight(int h);
 	}
 
-
+	private int currentTabIndex = 0;
 
 	public MainPresenter(MainView display, EventBus eventBus) {
 		super(display, eventBus);
@@ -324,18 +324,7 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 					@Override
 					public void onSelection(SelectionEvent<Integer> event) {
 						Integer selectItem = event.getSelectedItem();
-
-//						Window.alert(selectItem + ""); 
-//						if (selectItem == 0) {
-//							getDisplay().setTabHeight(4800);
-//						} else if (selectItem == 1) {
-//							getDisplay().setTabHeight(700);
-//
-//						} else if (selectItem == 2) {
-//							getDisplay().setTabHeight(700);
-//						}else if(selectItem == 3){
-//							getDisplay().setTabHeight(700);
-//						}
+						currentTabIndex = selectItem;
 						if(selectItem <3){							
 							eventBus.fireEvent(new TabHeaderTabChangedEvent(selectItem));
 						}else{
@@ -358,7 +347,8 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 		registerHandler(eventBus.addHandler(ResizeMainEvent.getType(), new ResizeMainHandler() {			
 			@Override
 			public void resize(ResizeMainEvent eve) {
-				getDisplay().setTabHeight(eve.getHeight());
+				if(eve.getTabIndex() == currentTabIndex)
+					getDisplay().setTabHeight(eve.getHeight());
 			}
 		}));
 	}

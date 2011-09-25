@@ -70,23 +70,11 @@ public class MyGroupPresenter extends WidgetPresenter<MyGroupView> {
 											}
 										});
 
-
-						getDisplay()
-								.getNavigationPanel()
-								.getPriceBox()
-								.getContentCellTable()
-								.getSelectionModel()
-								.addSelectionChangeHandler(
-										new SelectionChangeEvent.Handler() {
-											@Override
-											public void onSelectionChange(
-													SelectionChangeEvent event) {
-												refreshResult();
-											}
-										});
-
 						getDisplay().getNavigationPanel()
 								.getCategroyBox().removeFromParent();
+						getDisplay().getNavigationPanel().getPriceBox()
+								.removeFromParent();
+
 						dispatchAsync.execute(new GetMyGroup(),
 								new SimpleCallback<ItemList>() {
 

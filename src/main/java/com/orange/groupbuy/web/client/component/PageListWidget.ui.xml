@@ -7,13 +7,20 @@
 			padding: 40px 0;
 			text-align: center;
 		}
+		
+		.anchor {
+			margin: 0 8px;
+		}
 	</ui:style>
 
 	<g:HorizontalPanel>
+		<g:Anchor styleName='{style.anchor}' ui:field='previousPage'
+			href='javascript:;'>
+			&lt; </g:Anchor>
 		<g:Label ui:field='description'></g:Label>
-		<g:Button ui:field='previousPage' text='&lt;'></g:Button>
-		<g:Button ui:field='nextPage' text='&gt;'></g:Button>
+		<g:Anchor styleName='{style.anchor}' ui:field='nextPage'
+			href='javascript:;'>
+			&gt; </g:Anchor>
 	</g:HorizontalPanel>
-
 </ui:UiBinder>
 

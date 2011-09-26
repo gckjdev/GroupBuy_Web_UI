@@ -11,6 +11,7 @@ import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.orange.groupbuy.web.client.component.GroupBuyNavigationPanel;
@@ -21,6 +22,8 @@ import com.orange.groupbuy.web.client.presenter.AbstractGroupBuyPresenter.GroupB
 
 public abstract class AbstractGroupBuyView extends Composite implements
 		GroupBuyView {
+
+	private static final int RESULT_WIDGET_IN_ROW = 3;
 
 	@UiField
 	GroupBuyNavigationPanel myGroupNavigationPanel;
@@ -59,15 +62,18 @@ public abstract class AbstractGroupBuyView extends Composite implements
 	public void updateModel(List<SearchResult> searchResultList) {
 		searchResultPanel.clear();
 		HorizontalPanel resultRowPanel = null;
+		if (searchResultList.isEmpty()) {
+			searchResultPanel.add(new Label("暂时没有此类团购"));
+			return;
+		}
+
 		for (int i = 0; i < searchResultList.size(); i++) {
 			SearchResult result = searchResultList.get(i);
-			if (i % 3 == 0) {
+			if (i % RESULT_WIDGET_IN_ROW == 0) {
 				resultRowPanel = new HorizontalPanel();
-				// resultRowPanel.setStyleName("resultRowPanel-layout");
 				searchResultPanel.add(resultRowPanel);
 			}
 			GroupBuyWidget resultComponent = new GroupBuyWidget();
-			// resultComponent.setStyleName("GroupBuyWidget-layout");
 			resultRowPanel.setSpacing(10);
 			resultComponent.updateModel(result);
 			resultRowPanel.add(resultComponent);

@@ -1,0 +1,36 @@
+body,p,b,dl,dd,table,td,th,img,form,div,ul,li,h1,h2,h3,h4,h5,h6 {
+	/*input*/
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
+
+.hide {
+	display: none;
+}
+
+.center {
+	width: 1080px;
+	margin: 0 auto;
+}
+
+.logo {
+	background-image: 'images/logo.png';
+	width: 140px;
+	height: 75px;
+	position: absolute;
+}

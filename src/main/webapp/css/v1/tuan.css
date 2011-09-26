@@ -1,0 +1,27 @@
+.clearfix {
+	zoom: 1;
+}
+
+.center {
+	width: 960px;
+	margin: 0 auto;
+}
+
+.Dragon_Boat {
+	position: relative;
+	z-index: 20;
+}
+
+.sort-right {
+	/*
+	position: absolute;
+	right: 700px;
+	top: 108px;
+	*/
+	float:right;
+	z-index: 100;
+}
+
+.GroupBuyWidget-layout {
+	padding: 20px 0 0 16px;
+}

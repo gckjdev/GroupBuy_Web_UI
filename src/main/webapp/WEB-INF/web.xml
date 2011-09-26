@@ -4,7 +4,8 @@
     "http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app>
-
+	<icon></icon>
+	<display-name></display-name>
 	<!-- Servlets -->
 	<servlet>
 		<servlet-name>greetServlet</servlet-name>
@@ -25,8 +26,8 @@
 		<servlet-name>dispatch</servlet-name>
 		<url-pattern>/groupbuy_web_ui/dispatch</url-pattern>
 	</servlet-mapping>
-	
-	
+
+
 	<servlet>
 		<servlet-name>proxy</servlet-name>
 		<servlet-class>com.orange.groupbuy.web.server.SearchGroupBuyServlet</servlet-class>
@@ -40,5 +41,4 @@
 	<welcome-file-list>
 		<welcome-file>GroupBuy_Web_UI.html</welcome-file>
 	</welcome-file-list>
-
 </web-app>

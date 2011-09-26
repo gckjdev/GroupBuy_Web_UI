@@ -16,6 +16,7 @@ import com.orange.groupbuy.web.server.handler.GetCityNamesHandler;
 import com.orange.groupbuy.web.server.handler.GetGroupBuyCategoryListHandler;
 import com.orange.groupbuy.web.server.handler.GetMyGroupHandler;
 import com.orange.groupbuy.web.server.handler.GetUserHandler;
+import com.orange.groupbuy.web.server.util.SessionUtil;
 
 @SuppressWarnings("serial")
 public class SimpleDispatchServlet extends RemoteServiceServlet implements
@@ -41,7 +42,10 @@ public class SimpleDispatchServlet extends RemoteServiceServlet implements
 	public Result execute(Action<?> action) throws DispatchException {
 
 		try {
-			return dispatch.execute(action);
+			SessionUtil.set(getSession());
+			Result result = dispatch.execute(action);
+			SessionUtil.set(null);
+			return result;
 		} catch (RuntimeException e) {
 			log("Exception while executing " + action.getClass().getName()
 					+ ": " + e.getMessage(), e);

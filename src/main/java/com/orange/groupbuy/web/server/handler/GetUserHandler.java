@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 import com.orange.groupbuy.web.client.dispatch.GetUser;
 import com.orange.groupbuy.web.client.model.UserInfo;
 import com.orange.groupbuy.web.server.util.ProxyUtil;
+import com.orange.groupbuy.web.server.util.SessionUtil;
 import com.orange.groupbuy.web.server.util.StringUtil;
 import com.orange.groupbuy.web.shared.ServiceConstant;
 
@@ -34,8 +35,11 @@ public class GetUserHandler implements ActionHandler<GetUser, UserInfo> {
 
             JSONObject dataObject = JSONObject.fromObject(sw.toString());
             JSONObject result = dataObject.getJSONObject("dat");
-            if(result != null) {
+
+			if (result != null && !result.isNullObject()) {
                 user = jsonToResult(result);
+				// save in session
+				SessionUtil.get().setAttribute(user.getUserId(), user);
             }
 
         } catch (Exception e) {

@@ -2,11 +2,10 @@ package com.orange.groupbuy.web.client.presenter;
 
 import java.util.ArrayList;
 
-import org.apache.catalina.deploy.LoginConfig;
-import org.eclipse.jdt.internal.compiler.parser.diagnose.DiagnoseParser;
-
 import net.customware.gwt.dispatch.client.DefaultExceptionHandler;
 import net.customware.gwt.dispatch.client.DispatchAsync;
+import net.customware.gwt.dispatch.client.secure.CookieSecureSessionAccessor;
+import net.customware.gwt.dispatch.client.secure.SecureDispatchAsync;
 import net.customware.gwt.dispatch.client.standard.StandardDispatchAsync;
 import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.widget.WidgetDisplay;
@@ -22,11 +21,8 @@ import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
-import com.orange.common.utils.StringUtil;
 import com.orange.groupbuy.web.client.SimpleCallback;
 import com.orange.groupbuy.web.client.component.GroupBuyHeaderPanel;
 import com.orange.groupbuy.web.client.component.LoginDialog;
@@ -36,17 +32,21 @@ import com.orange.groupbuy.web.client.event.CityChangedEvent;
 import com.orange.groupbuy.web.client.event.LoginSuccessEvent;
 import com.orange.groupbuy.web.client.event.LoginSuccessHandler;
 import com.orange.groupbuy.web.client.event.TabHeaderTabChangedEvent;
-import com.orange.groupbuy.web.client.event.TabHeaderTabChangedHandler;
 import com.orange.groupbuy.web.client.model.CityNames;
 import com.orange.groupbuy.web.client.model.Item;
 import com.orange.groupbuy.web.client.model.UserInfo;
 import com.orange.groupbuy.web.client.presenter.MainPresenter.MainView;
-import com.sun.java.swing.plaf.windows.WindowsBorders;
+import com.orange.groupbuy.web.client.secure.CookiesUtil;
+import com.orange.groupbuy.web.shared.UIConstatns;
 
 public class MainPresenter extends WidgetPresenter<MainView> {
 
 	private final DispatchAsync dispatch = new StandardDispatchAsync(
 			new DefaultExceptionHandler());
+
+	private final DispatchAsync secureDispatch = new SecureDispatchAsync(
+			new DefaultExceptionHandler(), new CookieSecureSessionAccessor(
+					UIConstatns.SESSION_COOKIE_NAME));
 
 	public static interface MainView extends WidgetDisplay {
 		TabLayoutPanel getTabHeader();
@@ -80,15 +80,18 @@ public class MainPresenter extends WidgetPresenter<MainView> {
                     public void onEvent(LoginSuccessEvent event) {
                         dispatch.execute(new GetUser(event.getUserName(), event.getPassword()), 
                                 new SimpleCallback<UserInfo>() {
-
                                     @Override
                                     public void onSuccess(UserInfo result) {
                                         if (result == null) {
                                             Window.alert("userInfo null");
+											return;
                                         }
                                         String userId = result.getUserId();
                                         if(userId != null && userId.length() > 0) {
                                             Window.alert(result.getUserId());
+											CookiesUtil
+													.set(UIConstatns.USER_ID,
+															userId);
                                             getDisplay().getLoginDialog().hide();
                                         }
                                     }

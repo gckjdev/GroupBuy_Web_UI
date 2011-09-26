@@ -6,16 +6,6 @@
 <web-app>
 	<icon></icon>
 	<display-name></display-name>
-	<!-- Servlets -->
-	<servlet>
-		<servlet-name>greetServlet</servlet-name>
-		<servlet-class>com.orange.groupbuy.web.server.GreetingServiceImpl</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>greetServlet</servlet-name>
-		<url-pattern>/groupbuy_web_ui/greet</url-pattern>
-	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>dispatch</servlet-name>

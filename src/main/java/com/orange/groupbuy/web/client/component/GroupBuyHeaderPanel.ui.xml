@@ -26,6 +26,8 @@
 			</div>
 
 			<div class=''>
+				<g:Anchor href='javascript:;' ui:field='loginLink' >登录</g:Anchor>
+				&nbsp;
 				<g:Anchor href='javascript:;' ui:field='signOutLink'>Sign Out</g:Anchor>
 				&nbsp;
 				<g:Anchor href='javascript:;' ui:field='aboutLink'>About</g:Anchor>

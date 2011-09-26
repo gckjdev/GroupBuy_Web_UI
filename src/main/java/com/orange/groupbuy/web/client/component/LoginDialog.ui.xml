@@ -1,0 +1,35 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+
+		<g:Grid>
+			<g:row>
+				<g:customCell>
+					<g:Label>用户名</g:Label>
+				</g:customCell>
+				<g:customCell>
+					<g:TextBox ui:field="userName"></g:TextBox>
+				</g:customCell>
+			</g:row>
+
+			<g:row>
+				<g:customCell>
+					<g:Label>密码</g:Label>
+				</g:customCell>
+				<g:customCell>
+					<g:PasswordTextBox ui:field="password"></g:PasswordTextBox>
+				</g:customCell>
+			</g:row>
+
+		</g:Grid>
+
+		<g:Button ui:field="sumbitButton">登录</g:Button>
+		<g:Button ui:field="registerButton">注册</g:Button>
+	</g:HTMLPanel>
+</ui:UiBinder> 

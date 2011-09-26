@@ -11,7 +11,9 @@
 		}
 		
 		style.linksDiv {
-			
+			cursor: pointer;
+			cursor: hand;
+
 		}
 	</ui:style>
 	<g:HTMLPanel>
@@ -23,6 +25,7 @@
 			</div>
 
 			<div class='{style.linksDiv}'>
+				<g:Anchor href='javascript:;' ui:field='loginLink' >登录</g:Anchor>
 				<g:Anchor href='javascript:;' ui:field='signOutLink'>Sign Out</g:Anchor>
 				&nbsp;
 				<g:Anchor href='javascript:;' ui:field='aboutLink'>About</g:Anchor>

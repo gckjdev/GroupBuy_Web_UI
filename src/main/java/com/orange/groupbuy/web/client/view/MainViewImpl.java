@@ -7,12 +7,14 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.orange.groupbuy.web.client.component.GroupBuyHeaderPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyTabHeader;
+import com.orange.groupbuy.web.client.component.LoginDialog;
 import com.orange.groupbuy.web.client.presenter.AbstractGroupBuyPresenter.GroupBuyView;
 import com.orange.groupbuy.web.client.presenter.MainPresenter.MainView;
 import com.orange.groupbuy.web.client.presenter.MyGroupPresenter;
@@ -27,6 +29,8 @@ public class MainViewImpl extends Composite implements MainView {
 	@UiField
 	GroupBuyTabHeader tabHeader;
 
+	LoginDialog loginDialog ;
+	
 	public MainViewImpl(EventBus eventBus, DispatchAsync dispatchAsync) {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -38,6 +42,8 @@ public class MainViewImpl extends Composite implements MainView {
 
 		// today
 		initTodayView(eventBus);
+		
+		loginDialog = new LoginDialog(eventBus);
 	}
 
 	private void initTodayView(EventBus eventBus) {
@@ -94,4 +100,14 @@ public class MainViewImpl extends Composite implements MainView {
 	public ListBox getCitySelect() {
 		return headerPanel.getCitySelect();
 	}
+
+    @Override
+    public Anchor getLoginLink() {
+        return headerPanel.getLoginLink();
+    }
+
+    @Override
+    public LoginDialog getLoginDialog() {
+        return loginDialog;
+    }
 }

@@ -13,6 +13,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.orange.groupbuy.web.server.handler.GetCityNamesHandler;
 import com.orange.groupbuy.web.server.handler.GetGroupBuyCategoryListHandler;
 import com.orange.groupbuy.web.server.handler.GetMyGroupHandler;
+import com.orange.groupbuy.web.server.handler.GetUserHandler;
 
 @SuppressWarnings("serial")
 public class SimpleDispatchServlet extends RemoteServiceServlet implements
@@ -26,6 +27,7 @@ public class SimpleDispatchServlet extends RemoteServiceServlet implements
 		registry.addHandler(new GetCityNamesHandler());
 		registry.addHandler(new GetGroupBuyCategoryListHandler());
 		registry.addHandler(new GetMyGroupHandler());
+		registry.addHandler(new GetUserHandler());
 		dispatch = new SimpleDispatch(registry);
 	}
 

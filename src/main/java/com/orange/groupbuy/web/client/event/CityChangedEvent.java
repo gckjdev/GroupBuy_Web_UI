@@ -8,8 +8,7 @@ public class CityChangedEvent extends GwtEvent<CityChangedHandler> {
 	private static Type<CityChangedHandler> TYPE;
 
 	public static Type<CityChangedHandler> getType() {
-		return TYPE != null ? TYPE
- : (TYPE = new Type<CityChangedHandler>());
+		return TYPE != null ? TYPE: (TYPE = new Type<CityChangedHandler>());
 	}
 
 	@Override

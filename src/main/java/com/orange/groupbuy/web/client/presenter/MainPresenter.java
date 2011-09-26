@@ -2,6 +2,9 @@ package com.orange.groupbuy.web.client.presenter;
 
 import java.util.ArrayList;
 
+import org.apache.catalina.deploy.LoginConfig;
+import org.eclipse.jdt.internal.compiler.parser.diagnose.DiagnoseParser;
+
 import net.customware.gwt.dispatch.client.DefaultExceptionHandler;
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.dispatch.client.standard.StandardDispatchAsync;
@@ -11,20 +14,34 @@ import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.event.logical.shared.AttachEvent.Handler;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
+import com.orange.common.utils.StringUtil;
 import com.orange.groupbuy.web.client.SimpleCallback;
 import com.orange.groupbuy.web.client.component.GroupBuyHeaderPanel;
+import com.orange.groupbuy.web.client.component.LoginDialog;
 import com.orange.groupbuy.web.client.dispatch.GetCityNames;
+import com.orange.groupbuy.web.client.dispatch.GetUser;
 import com.orange.groupbuy.web.client.event.CityChangedEvent;
+import com.orange.groupbuy.web.client.event.LoginSuccessEvent;
+import com.orange.groupbuy.web.client.event.LoginSuccessHandler;
 import com.orange.groupbuy.web.client.event.TabHeaderTabChangedEvent;
+import com.orange.groupbuy.web.client.event.TabHeaderTabChangedHandler;
 import com.orange.groupbuy.web.client.model.CityNames;
 import com.orange.groupbuy.web.client.model.Item;
+import com.orange.groupbuy.web.client.model.UserInfo;
 import com.orange.groupbuy.web.client.presenter.MainPresenter.MainView;
+import com.sun.java.swing.plaf.windows.WindowsBorders;
 
 public class MainPresenter extends WidgetPresenter<MainView> {
 
@@ -37,6 +54,10 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 		GroupBuyHeaderPanel getHeaderPanel();
 
 		ListBox getCitySelect();
+		
+		Anchor getLoginLink();
+		
+		LoginDialog getLoginDialog();
 	}
 
 
@@ -52,6 +73,39 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 
 	@Override
 	protected void onBind() {
+	    registerHandler(eventBus.addHandler(LoginSuccessEvent.getType(),
+                new LoginSuccessHandler() {
+
+                    @Override
+                    public void onEvent(LoginSuccessEvent event) {
+                        dispatch.execute(new GetUser(event.getUserName(), event.getPassword()), 
+                                new SimpleCallback<UserInfo>() {
+
+                                    @Override
+                                    public void onSuccess(UserInfo result) {
+                                        if (result == null) {
+                                            Window.alert("userInfo null");
+                                        }
+                                        String userId = result.getUserId();
+                                        if(userId != null && userId.length() > 0) {
+                                            Window.alert(result.getUserId());
+                                            getDisplay().getLoginDialog().hide();
+                                        }
+                                    }
+                                });
+                        
+                    }
+        }));
+	    registerHandler(getDisplay().getLoginLink().addClickHandler(new ClickHandler() {
+            
+            @Override
+            public void onClick(ClickEvent event) {
+                LoginDialog dialog = getDisplay().getLoginDialog();
+                dialog.center();
+                dialog.show();
+            }
+        }));
+	            
 		registerHandler(getDisplay().getCitySelect().addAttachHandler(
 				new Handler() {
 

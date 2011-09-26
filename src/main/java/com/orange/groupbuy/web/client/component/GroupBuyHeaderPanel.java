@@ -3,7 +3,9 @@ package com.orange.groupbuy.web.client.component;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -12,6 +14,9 @@ public class GroupBuyHeaderPanel extends Composite {
 	@UiField
 	ListBox citySelect;
 
+	@UiField
+	Anchor loginLink;
+	
 	private static GroupBuyHeaderPanelUiBinder uiBinder = GWT
 			.create(GroupBuyHeaderPanelUiBinder.class);
 
@@ -26,5 +31,9 @@ public class GroupBuyHeaderPanel extends Composite {
 	public ListBox getCitySelect() {
 		return citySelect;
 	}
+
+    public Anchor getLoginLink() {
+        return loginLink;
+    }
 
 }

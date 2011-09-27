@@ -21,16 +21,15 @@
 		</div>
 
 		<div class="float-right">
-			<div>
-				<b>Welcome back, foo@example.com</b>
-			</div>
 
 			<div class=''>
 				<g:Anchor href='javascript:;' ui:field='loginLink' >登录</g:Anchor>
-				&nbsp;
-				<g:Anchor href='javascript:;' ui:field='signOutLink'>Sign Out</g:Anchor>
-				&nbsp;
-				<g:Anchor href='javascript:;' ui:field='aboutLink'>About</g:Anchor>
+				
+				<g:Anchor href='javascript:;' ui:field='profileLink' ></g:Anchor>
+				
+				<g:Anchor href='javascript:;' ui:field='logoutLink' >退出</g:Anchor>
+				
+				<g:Anchor href='javascript:;' ui:field='registerLink'>注册</g:Anchor>
 			</div>
 		</div>
 	</g:HTMLPanel>

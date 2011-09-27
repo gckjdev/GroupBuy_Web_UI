@@ -5,7 +5,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -16,6 +15,12 @@ public class GroupBuyHeaderPanel extends Composite {
 
 	@UiField
 	Anchor loginLink;
+	
+	@UiField
+    Anchor logoutLink;
+	
+	@UiField
+	Anchor profileLink;
 	
 	private static GroupBuyHeaderPanelUiBinder uiBinder = GWT
 			.create(GroupBuyHeaderPanelUiBinder.class);
@@ -34,6 +39,14 @@ public class GroupBuyHeaderPanel extends Composite {
 
     public Anchor getLoginLink() {
         return loginLink;
+    }
+    
+    public Anchor getLogoutLink() {
+        return logoutLink;
+    }
+    
+    public Anchor getProfileLink() {
+        return profileLink;
     }
 
 }

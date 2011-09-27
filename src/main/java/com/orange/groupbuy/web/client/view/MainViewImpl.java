@@ -9,6 +9,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -44,6 +45,10 @@ public class MainViewImpl extends Composite implements MainView {
 		initTodayView(eventBus);
 		
 		loginDialog = new LoginDialog(eventBus);
+		
+		getProfileLink().setVisible(false);
+		getLogoutLink().setVisible(false);
+
 	}
 
 	private void initTodayView(EventBus eventBus) {
@@ -104,6 +109,17 @@ public class MainViewImpl extends Composite implements MainView {
     @Override
     public Anchor getLoginLink() {
         return headerPanel.getLoginLink();
+    }
+    
+    @Override
+    public Anchor getProfileLink() {
+        return headerPanel.getProfileLink();
+    }
+
+
+    @Override
+    public Anchor getLogoutLink() {
+        return headerPanel.getLogoutLink();
     }
 
     @Override

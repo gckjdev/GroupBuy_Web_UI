@@ -2,7 +2,6 @@
 	zoom: 1;
 }
 
-<!--
 .groupbuy-TabLayoutPanel .gwt-TabLayoutPanel .gwt-TabLayoutPanelTab {
     background: none repeat scroll 0 0 #FFFFFF;
 }
@@ -10,4 +9,8 @@
 .groupbuy-TabLayoutPanel .gwt-TabLayoutPanel .gwt-TabLayoutPanelTab-selected{
 	background: none repeat scroll 0 0 #DFF3FD ;
 }
--->
+
+.searchResultPanel{
+	overflow: auto;
+    padding: 20px;
+}

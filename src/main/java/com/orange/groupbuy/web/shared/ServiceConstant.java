@@ -188,8 +188,8 @@ public class ServiceConstant  {
 	public static final String PARA_LOC = "loc";
 	public static final String PARA_IMAGE= "img";
 	public static final String PARA_TITLE = "tt";
-	public static final String PARA_START_DATA = "sd";
-	public static final String PARA_END_DATA = "ed";
+	public static final String PARA_START_DATE = "sd";
+	public static final String PARA_END_DATE = "ed";
 	public static final String PARA_PRICE = "pr";
 	public static final String PARA_VALUE = "val";
 	public static final String PARA_BOUGHT = "bo";

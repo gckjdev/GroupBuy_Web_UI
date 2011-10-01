@@ -25,6 +25,9 @@ public class SearchResult implements Result {
 	private Integer bought;
 	private Double rebate;
 
+	private String startDate;
+	private String endDate;
+
 	public String getDetailsId() {
 		return detailsId;
 	}
@@ -119,5 +122,21 @@ public class SearchResult implements Result {
 
 	public void setSiteUrl(String siteUrl) {
 		this.siteUrl = siteUrl;
+	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 }

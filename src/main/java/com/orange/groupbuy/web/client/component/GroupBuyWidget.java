@@ -11,6 +11,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Widget;
 import com.orange.groupbuy.web.client.model.SearchResult;
+import com.orange.groupbuy.web.client.util.DateUtil;
 
 public class GroupBuyWidget extends Widget {
 
@@ -46,10 +47,20 @@ public class GroupBuyWidget extends Widget {
 	Element boughtNumLabel;
 
 	@UiField
-	DivElement valueLabel;
+	SpanElement valueLabel;
 
 	@UiField
 	AnchorElement detailsButton;
+
+	@UiField
+	SpanElement startDateLabel;
+
+	@UiField
+	SpanElement endDateLabel;
+
+	@UiField
+	AnchorElement shareToSina;
+
 
 	public GroupBuyWidget() {
 		setElement(uiBinder.createAndBindUi(this));
@@ -73,17 +84,27 @@ public class GroupBuyWidget extends Widget {
 			rebateLabel.setInnerText(formatRebate(result.getRebate()));
 			//
 			boughtNumLabel.setInnerText(formatNumber(result.getBought()));
-			valueLabel.setInnerText(formatNumber(result.getPrice()));
+			valueLabel.setInnerText(formatMoney(result.getPrice()));
 
 			detailsButton.setHref(result.getProductUrl());
+
+			startDateLabel.setInnerText(DateUtil.formatReadableDate(result
+					.getStartDate()));
+			endDateLabel.setInnerText(DateUtil.formatReadableDate(result
+					.getEndDate()));
+			String sinaUrl = getSinaUrl(result);
+			shareToSina.setHref(sinaUrl);
 		}
 	}
 
-	private String formatNumber(Integer result) {
-		return String.valueOf(result);
+	private String getSinaUrl(SearchResult result) {
+		String sinaUrl = "http://v.t.sina.com.cn/share/share.php?url="
+				+ result.getProductUrl() + "&title=咕噜团购推荐："
+				+ result.getDesctiption() + "&content=utf-8";
+		return sinaUrl;
 	}
 
-	private String formatNumber(Double result) {
+	private String formatNumber(Integer result) {
 		return String.valueOf(result);
 	}
 

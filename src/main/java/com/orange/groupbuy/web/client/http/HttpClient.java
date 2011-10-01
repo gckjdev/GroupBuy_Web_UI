@@ -108,6 +108,8 @@ public class HttpClient {
 		result.setSiteName(getString(object, ServiceConstant.PARA_SITE_NAME));
 		result.setSiteUrl(getString(object, ServiceConstant.PARA_SITE_URL));
 		result.setValue(getNumber(object, ServiceConstant.PARA_VALUE));
+		result.setStartDate(getString(object, ServiceConstant.PARA_START_DATE));
+		result.setEndDate(getString(object, ServiceConstant.PARA_END_DATE));
 		return result;
 	}
 

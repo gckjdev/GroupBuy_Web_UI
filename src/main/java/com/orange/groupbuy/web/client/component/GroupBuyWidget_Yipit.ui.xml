@@ -2,118 +2,91 @@
 
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'>
 
-<div class="deal">
+	<div class="deal">
 
-    <div class="col1">
-        <a target="_blank" ui:field='imageAnchor'>
-            <img ui:field='image' width="165" class="image" /></a>
-    </div>
-
-    <div class="col2">
-        <span class="light-gray-small-text">
-            <h2 itemprop="name"><a ui:field='link' target="_blank"/></h2>
-            <p class="black-text">
-            </p>
-            <p>
-                <strong>Best Western Plus Blanco Luxury Inn &amp; Suites</strong></p>
-                
-
-                <div class="tags">
-                    <p><span class="tag_wrap"><a data-tag-id="5895" class="deal_tag" href="#">Travel</a></span> </p>
-                </div>
-
-                <p>Found: <span class="black-text">Monday</span> | From: <span class="black-text"><a ui:field='siteNameLabel'/></span></p>
-                <p class="dealshare"><span>Share:</span> 
-
-                <a class="share-facebook" href="https://www.facebook.com/sharer.php?u=http%3A//yipit.co/o72rlt&amp;t=53%25%20off%202-Night%20Stay%20in%20Texas" target="_blank">Facebook</a>
-                <a class="share-twitter" href="http://twitter.com/?status=53%25%20off%202-Night%20Stay%20in%20Texas%3B%202%20days%20left%3A%20http%3A//yipit.co/o72rlt" target="_blank">Twitter</a>
-                <a rel="nofollow" href="/emailer/ajax_email_form/683548" class="share-email fancyboxForm">Email</a>
-
-                </p><div style="clear: both;"></div>
-            <p></p>
-        </span>
-    </div>
-
-    <div class="col3">
-        <div class="container first">
-            <ul>
-                <li class="discount"><div ui:field="valueLabel"/><a ui:field='detailsButton' class="formbutton" target="_blank">GRAB</a><div class="clear"></div></li>
-            </ul>
-        </div>
-
-        
-        <div class="container">
-            <ul class="info">
-                <li><span>Worth</span><br/><del ui:field='originalPriceLabel'/></li>
-                <li><span>Discount</span><br/><span ui:field='rebateLabel'/></li>
-                <li class="last"><span>Savings</span><br/></li>
-            </ul>
-        </div>
-        
-
-        <div class="container">
-            <ul>
-                <li data-end-date="Sat, 1 Oct 2011 04:00:00 +0000" class="time countdown hasCountdown"><span class="countdown_row countdown_show3"><span class="countdown_section"><span class="countdown_amount">2</span>d </span><span class="countdown_section"><span class="countdown_amount">12</span>h </span><span class="countdown_section"><span class="countdown_amount">34</span>m </span></span></li>
-            </ul>
-        </div>
-
-        
-        <div class="container">
-            <ul class="purchased">
-                <li>
-                <b ui:field='boughtNumLabel'></b> purchased
-                </li>
-            </ul>
-        </div>
-        
-    </div>
-
-    <div class="clear"></div>
-</div>
-<!-- 
-	<div class="tuan-area">
-		<div class="tuan-con">
-			<div class="con-bg" style="display: none;"></div>
-			<div class="con-top"></div>
-			<div class="recomm-mark"></div>
-			<div class="con-center">
-				<p class="title-con title-recomm">
-					<a ui:field='siteNameLabel' class="merchant" target="_blank"></a>
-					<a ui:field='link' target="_blank"></a>
-				</p>
-				<div class="img-con">
-					<a ui:field='imageAnchor' class="good-img-a" target="_blank">
-						<img ui:field='image' width="266" height="166" class="good-img">
-						</img>
-					</a>
-				</div>
-				<div class="info-con">
-					<div class="info-con-left">
-						<p class="oldprice single">
-							原价:
-							<del ui:field='originalPriceLabel'></del>
-							<span ui:field='rebateLabel' class="discount">
-							</span>
-						</p>
-					</div>
-					<div class="info-con-right">
-						<p class="buynum single">
-							<b ui:field='boughtNumLabel'></b>
-							人购买
-						</p>
-					</div>
-				</div>
-				<div class="price-con">
-					<div ui:field="valueLabel" class="price-con-left float-left">
-					</div>
-					<div class="price-con-right float-right">
-						<a ui:field='detailsButton' target="_blank" href="" class="gosite"></a>
-					</div>
-					<div class="clear"></div>
-				</div>
-			</div>
-			<div class="con-bottom"></div>
+		<div class="col1">
+			<a target="_blank" ui:field='imageAnchor'>
+				<img ui:field='image' width="165" class="image" />
+			</a>
 		</div>
+
+		<div class="col2">
+			<span class="light-gray-small-text">
+				<p class="title-con">
+					<a ui:field='link' target="_blank" />
+				</p>
+
+				<p>
+					开始时间 :
+					<span class="black-text">
+						<span ui:field='startDateLabel' />
+					</span>
+				</p>
+				<p>
+					来自: 
+					<span class="black-text">
+						<a ui:field='siteNameLabel' />
+					</span>
+				</p>
+				<p class="dealshare">
+					<span>分享到: </span>
+					<a class="share-sina" ui:field='shareToSina'
+						href="https://www.facebook.com/sharer.php?u=http%3A//yipit.co/o72rlt&amp;t=53%25%20off%202-Night%20Stay%20in%20Texas"
+						target="_blank">新浪微博</a>
+				</p>
+				<p></p>
+			</span>
+		</div>
+
+		<div class="col3">
+			<div class="container first">
+				<ul>
+					<li class="discount">
+						<span ui:field="valueLabel" />
+						<a ui:field='detailsButton' class="formbutton" target="_blank">去看看</a>
+						<div class="clear"></div>
+					</li>
+				</ul>
+			</div>
+			<div class="container">
+				<ul class="info">
+					<li>
+						<span>原价</span>
+						<br />
+						<del ui:field='originalPriceLabel' />
+					</li>
+					<li>
+						<span>折扣</span>
+						<br />
+						<span ui:field='rebateLabel' />
+					</li>
+				</ul>
+			</div>
+
+
+			<div class="container">
+				<ul>
+					<li>
+								<span class='light-gray-small-text'>结束时间: </span>
+								<span>
+									<span class="time" ui:field='endDateLabel' />
+								</span>
+					</li>
+				</ul>
+			</div>
+
+
+			<div class="container">
+				<ul class="purchased">
+					<li>
+						<b ui:field='boughtNumLabel'></b>
+						人购买
+					</li>
+				</ul>
+			</div>
+
+		</div>
+
+		<div class="clear"></div>
 	</div>
-	 -->
 </ui:UiBinder>

@@ -1,0 +1,17 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+	<center>
+		<div>
+			<g:Anchor href='contact.html' target='_blank'>联系我们</g:Anchor>
+			<g:Anchor>Copyright (c)2003-2011 groupbuy.com 版权所有</g:Anchor>
+		</div>
+		</center>
+	</g:HTMLPanel>
+</ui:UiBinder> 

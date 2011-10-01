@@ -24,6 +24,7 @@ import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.orange.groupbuy.web.client.SimpleCallback;
+import com.orange.groupbuy.web.client.component.GroupBuyFootPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyHeaderPanel;
 import com.orange.groupbuy.web.client.component.LoginDialog;
 import com.orange.groupbuy.web.client.dispatch.GetCityNames;
@@ -47,11 +48,12 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 	private final DispatchAsync secureDispatch = new SecureDispatchAsync(
 			new DefaultExceptionHandler(), new CookieSecureSessionAccessor(
 					UIConstatns.SESSION_COOKIE_NAME));
-
 	public static interface MainView extends WidgetDisplay {
 		TabLayoutPanel getTabHeader();
 
 		GroupBuyHeaderPanel getHeaderPanel();
+		
+		GroupBuyFootPanel getFootPanel();
 
 		ListBox getCitySelect();
 		
@@ -73,6 +75,7 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 	public MainPresenter(MainView display, EventBus eventBus,
 			DispatchAsync dispatchAsync) {
 		super(display, eventBus);
+		
 	}
 
 	@Override

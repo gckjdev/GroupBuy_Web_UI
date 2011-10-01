@@ -9,10 +9,10 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.orange.groupbuy.web.client.component.GroupBuyFootPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyHeaderPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyTabHeader;
 import com.orange.groupbuy.web.client.component.LoginDialog;
@@ -29,6 +29,9 @@ public class MainViewImpl extends Composite implements MainView {
 
 	@UiField
 	GroupBuyTabHeader tabHeader;
+	
+	@UiField
+    GroupBuyFootPanel footPanel;
 
 	LoginDialog loginDialog ;
 	
@@ -36,7 +39,7 @@ public class MainViewImpl extends Composite implements MainView {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		// my group buy
-		initMyGroupView(eventBus, dispatchAsync);
+//		initMyGroupView(eventBus, dispatchAsync);
 
 		// top view
 		initTopView(eventBus);
@@ -125,5 +128,10 @@ public class MainViewImpl extends Composite implements MainView {
     @Override
     public LoginDialog getLoginDialog() {
         return loginDialog;
+    }
+
+    @Override
+    public GroupBuyFootPanel getFootPanel() {
+        return footPanel;
     }
 }

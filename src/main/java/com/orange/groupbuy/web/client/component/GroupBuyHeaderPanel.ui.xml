@@ -2,34 +2,51 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
-		style.logo {
-			
-		}
+	style.logo {
 		
-		style.statusDiv {
-			
-		}
+	}
+	
+	style.statusDiv {
 		
-		style.linksDiv {
-			
-		}
-	</ui:style>
+	}
+	
+	style.linksDiv {
+		
+	}
+</ui:style>
 	<g:HTMLPanel>
 		<div>
 			<div class=''></div>
-			<g:ListBox ui:field='citySelect' visibleItemCount='1' styleName='float-left'/>
+			<g:ListBox ui:field='citySelect' visibleItemCount='1'
+				styleName='float-left' />
 		</div>
-
 		<div class="float-right">
+			<div>
+				<div class='weibotxt'><a href="#" onClick="addfavorite()">添加到收藏夹</a></div>
+				<div class='weibotxt'>在这里关注我们</div>
+				<div class='weiboicon'>
+					<a href="#"><img src="images/sina.png" alt="新浪微博" /></a>
+					<a href="#"><img src="images/qq.png" alt="腾讯微博" /></a>
+				</div>
+				
+				<div class='weibotxt'>分享到</div>
+				<div class='weiboicon'>
+					<a href="#"><img src="images/sina.png" alt="新浪微博" /></a>
+					<a href="#"><img src="images/qq.png" alt="腾讯微博" /></a>
+				</div>
 
-			<div class=''>
-				<g:Anchor href='javascript:;' ui:field='loginLink' >登录</g:Anchor>
-				
-				<g:Anchor href='javascript:;' ui:field='profileLink' ></g:Anchor>
-				
-				<g:Anchor href='javascript:;' ui:field='logoutLink' >退出</g:Anchor>
-				
-				<g:Anchor href='javascript:;' ui:field='registerLink'>注册</g:Anchor>
+				<div class='weibotxt'>
+
+					<g:Anchor href='javascript:;' ui:field='loginLink'>登录</g:Anchor>
+
+					<g:Anchor href='javascript:;' ui:field='profileLink'></g:Anchor>
+
+					<g:Anchor href='javascript:;' ui:field='logoutLink'>退出</g:Anchor>
+
+					<g:Anchor href='javascript:;' ui:field='registerLink'>注册</g:Anchor>
+
+
+				</div>
 			</div>
 		</div>
 	</g:HTMLPanel>

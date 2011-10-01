@@ -13,6 +13,7 @@ import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.event.logical.shared.AttachEvent.Handler;
 import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.orange.groupbuy.web.client.SimpleCallback;
@@ -69,11 +70,11 @@ public class MyGroupPresenter extends WidgetPresenter<MyGroupView> {
 												refreshResult();
 											}
 										});
-
 						getDisplay().getNavigationPanel()
 								.getCategroyBox().removeFromParent();
 						getDisplay().getNavigationPanel().getPriceBox()
 								.removeFromParent();
+						getDisplay().getNavigationPanel().getMyGroupBox().removeFromParent();
 
 						dispatchAsync.execute(new GetMyGroup(),
 								new SimpleCallback<ItemList>() {

@@ -3,14 +3,14 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:gc="urn:import:com.orange.groupbuy.web.client.component">
 	<!-- styleName='center' -->
 	<g:HTMLPanel  styleName='center'>
-	<g:LayoutPanel>
-			<g:layer top='5px' height='50px'>
+	<g:LayoutPanel height='1000px'>
+			<g:layer top='5px' height='100px'>
 				<gc:GroupBuyHeaderPanel ui:field='headerPanel' />
 			</g:layer>
-   			<g:layer top='55px' height='8000px'>
+   			<g:layer top='55px' height='880px'>
 				<gc:GroupBuyTabHeader ui:field='tabHeader' />
    			</g:layer>
-   			<g:layer bottom='5px' height='40px'>
+   			<g:layer bottom='20px' height='40px'>
    				<gc:GroupBuyFootPanel ui:field='footPanel' />
    			</g:layer>
    </g:LayoutPanel>

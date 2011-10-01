@@ -10,6 +10,9 @@
    			<g:layer top='55px' height='8000px'>
 				<gc:GroupBuyTabHeader ui:field='tabHeader' />
    			</g:layer>
+   			<g:layer bottom='5px' height='40px'>
+   				<gc:GroupBuyFootPanel ui:field='footPanel' />
+   			</g:layer>
    </g:LayoutPanel>
 	</g:HTMLPanel>
 </ui:UiBinder>

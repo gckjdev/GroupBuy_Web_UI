@@ -23,5 +23,60 @@
 			</g:customHeader>
 			<g:LayoutPanel ui:field='todayView' />
 		</g:tab>
+		<g:tab>
+			<g:customHeader size='4'>
+				<g:Label>IPhone</g:Label>
+			</g:customHeader>
+			<g:HTMLPanel ui:field='iphoneView'>
+			
+	<div id="page-wrap">
+		<header>
+			<h1 id="logo"><a href="index.html">咕噜团购l</a></h1>	
+			<nav>
+				<ul id="main-nav">
+					<li>咕噜团购－琳琅满目，团你所想 By Sunny Orange Software</li>	
+					
+				</ul>				
+			</nav>
+			<div class="clear"></div>
+		</header>
+		<section id="banner-large" class="banner">
+			<aside id="banner-text">
+				<article>
+					<p>
+					咕噜Buy是一款团购推荐和推送应用,帮你快速找到你想要的团购商品! 					</p>
+					<a href="http://itunes.apple.com/us/app/id456494464?mt=8" id="download-button">Download</a>
+				</article>
+			</aside>
+			<div id="iphone">
+			</div>
+		</section>		
+		<section id="main-content">
+			<div id="left-content" class="col-content">
+				<h2>What's New in Version 1.0</h2>						
+				<article class="post-content">
+					<p>
+						1）增加了淘宝比价功能
+					</p>
+					<p>
+						2）增加了新的商品分类
+					</p>
+					
+				</article>
+			</div>
+			<div id="right-content" class="col-content">
+				<h2>More Cool IPhone Apps </h2>						
+				<article class="post-content">
+					<p>
+					<a href='http://www.colapp.com/blog/'>click me!</a>
+					</p>
+				</article>
+			</div>
+			<div class="clear"></div>
+		</section>
+		<div class="clear"></div>
+	</div>
+			</g:HTMLPanel> 
+		</g:tab>
 	</g:TabLayoutPanel>
 </ui:UiBinder>

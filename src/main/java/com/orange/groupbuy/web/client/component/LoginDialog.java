@@ -7,12 +7,14 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.orange.groupbuy.web.client.event.LoginSuccessEvent;
+import com.orange.groupbuy.web.shared.FieldVerifier;
 
 public class LoginDialog extends DialogBox {
 
@@ -34,7 +36,7 @@ public class LoginDialog extends DialogBox {
     
     public LoginDialog(EventBus eventBus) {
         super(true, true);
-        setText("Login");
+        setText("登录");
         setAnimationEnabled(true);
         setGlassEnabled(true);
         this.eventBus = eventBus;
@@ -45,11 +47,24 @@ public class LoginDialog extends DialogBox {
             @Override
             public void onClick(ClickEvent event) {
                 LoginSuccessEvent loginEvent = new LoginSuccessEvent();
-                loginEvent.setUserName(userName.getText());
-                loginEvent.setPassword(password.getText());
+                String name = userName.getText();
+                String pwd = password.getText();
+                if (!FieldVerifier.isValidName(name) || pwd.length() == 0) {
+                    Window.alert("username or password not valid");
+                    return;
+                }
+                loginEvent.setUserName(name);
+                loginEvent.setPassword(pwd);
                 LoginDialog.this.eventBus.fireEvent(loginEvent);
             }
+
         });
         
     }
+    
+    public void clear() {
+        userName.setText("");
+        password.setText("");
+    }
+    
 }

@@ -57,6 +57,10 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 		
 		Anchor getLoginLink();
 		
+		Anchor getLogoutLink();
+		
+		Anchor getProfileLink();
+		
 		LoginDialog getLoginDialog();
 	}
 
@@ -78,6 +82,7 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 
                     @Override
                     public void onEvent(LoginSuccessEvent event) {
+                        final String userName = event.getUserName();
                         dispatch.execute(new GetUser(event.getUserName(), event.getPassword()), 
                                 new SimpleCallback<UserInfo>() {
                                     @Override
@@ -88,11 +93,13 @@ public class MainPresenter extends WidgetPresenter<MainView> {
                                         }
                                         String userId = result.getUserId();
                                         if(userId != null && userId.length() > 0) {
-                                            Window.alert(result.getUserId());
-											CookiesUtil
-													.set(UIConstatns.USER_ID,
-															userId);
+											CookiesUtil.set(UIConstatns.USER_ID,userId);
+											
                                             getDisplay().getLoginDialog().hide();
+                                            getDisplay().getProfileLink().setText(userName);
+                                            getDisplay().getProfileLink().setVisible(true);
+                                            getDisplay().getLogoutLink().setVisible(true);
+                                            getDisplay().getLoginLink().setVisible(false);
                                         }
                                     }
                                 });
@@ -106,6 +113,20 @@ public class MainPresenter extends WidgetPresenter<MainView> {
                 LoginDialog dialog = getDisplay().getLoginDialog();
                 dialog.center();
                 dialog.show();
+            }
+        }));
+	    
+	    registerHandler(getDisplay().getLogoutLink().addClickHandler(new ClickHandler() {
+            
+            @Override
+            public void onClick(ClickEvent event) {
+                CookiesUtil.remove(UIConstatns.USER_ID);
+                
+                getDisplay().getLoginDialog().clear();
+                getDisplay().getProfileLink().setVisible(false);
+                getDisplay().getLogoutLink().setVisible(false);
+                getDisplay().getLoginLink().setVisible(true);
+                
             }
         }));
 	            

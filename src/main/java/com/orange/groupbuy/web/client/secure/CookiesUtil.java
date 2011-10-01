@@ -18,4 +18,10 @@ public class CookiesUtil {
 	public static String get(String key) {
 		return Cookies.getCookie(key);
 	}
+	
+	public static void remove(String key) {
+	    String keyValue = get(key);
+	    if(keyValue != null && keyValue.length() >= 0)
+	        Cookies.removeCookie(key);
+    }
 }

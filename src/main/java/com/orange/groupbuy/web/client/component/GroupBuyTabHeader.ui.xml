@@ -1,9 +1,15 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:gc="urn:import:com.orange.groupbuy.web.client.component">
-	<ui:style>
-		
-	</ui:style>
+	<ui:style >
+	
+	.groupbuy-TabLayoutPanel {
+	    background: none repeat scroll 0 0 #FFFFFF !important; 
+	    width:30px;
+	}
+	
+	
+</ui:style>
 	<g:TabLayoutPanel ui:field='tabHeader' barUnit='PX' barHeight='30' >
 		<g:tab addStyleNames='groupbuy-TabLayoutPanel'>
 			<g:customHeader>
@@ -11,16 +17,25 @@
 			</g:customHeader>
 			<g:LayoutPanel ui:field='myGroupView' />
 		</g:tab>
-		<g:tab addStyleNames='groupbuy-TabLayoutPanel'>
-			<g:customHeader>
+		
+		<g:tab addStyleNames="{style.groupbuy-TabLayoutPanel}">
+			<!-- <g:customHeader>
 				<g:Label>排行榜</g:Label>
-			</g:customHeader>
+			</g:customHeader> -->
+			<g:header>
+                	排行榜
+            </g:header>
 			<g:LayoutPanel ui:field='sortView' />
 		</g:tab>
-		<g:tab addStyleNames='groupbuy-TabLayoutPanel'>
+		<g:tab >
 			<g:customHeader>
 				<g:Label>今日优惠</g:Label>
 			</g:customHeader>
+			<!-- <g:header>
+                <div class="tab">
+                    <span>RateList</span>
+                </div>
+            </g:header> -->
 			<g:LayoutPanel ui:field='todayView' />
 		</g:tab>
 		<g:tab>

@@ -11,6 +11,7 @@ import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.widget.WidgetDisplay;
 import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 
+import com.gargoylesoftware.htmlunit.AlertHandler;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -63,6 +64,8 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 		
 		Anchor getProfileLink();
 		
+		Anchor getRegisterLink();
+		
 		LoginDialog getLoginDialog();
 	}
 
@@ -77,9 +80,23 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 		super(display, eventBus);
 		
 	}
+	
+	private void loadCookies() {
+	    String userName = CookiesUtil.get(UIConstatns.USER_NAME);
+	    if(userName != null && userName.length() > 0) {
+	        getDisplay().getProfileLink().setText(userName);
+	        getDisplay().getLoginLink().setVisible(false);
+	        getDisplay().getRegisterLink().setVisible(false);
+	        getDisplay().getLogoutLink().setVisible(true);
+	        getDisplay().getProfileLink().setVisible(true);
+	        
+	    }
+	}
 
 	@Override
 	protected void onBind() {
+	    loadCookies();
+	    
 	    registerHandler(eventBus.addHandler(LoginSuccessEvent.getType(),
                 new LoginSuccessHandler() {
 
@@ -97,12 +114,13 @@ public class MainPresenter extends WidgetPresenter<MainView> {
                                         String userId = result.getUserId();
                                         if(userId != null && userId.length() > 0) {
 											CookiesUtil.set(UIConstatns.USER_ID,userId);
-											
+											CookiesUtil.set(UIConstatns.USER_NAME,userName);
                                             getDisplay().getLoginDialog().hide();
                                             getDisplay().getProfileLink().setText(userName);
                                             getDisplay().getProfileLink().setVisible(true);
                                             getDisplay().getLogoutLink().setVisible(true);
                                             getDisplay().getLoginLink().setVisible(false);
+                                            getDisplay().getRegisterLink().setVisible(false);
                                         }
                                     }
                                 });
@@ -124,11 +142,12 @@ public class MainPresenter extends WidgetPresenter<MainView> {
             @Override
             public void onClick(ClickEvent event) {
                 CookiesUtil.remove(UIConstatns.USER_ID);
-                
+                CookiesUtil.remove(UIConstatns.USER_NAME);
                 getDisplay().getLoginDialog().clear();
                 getDisplay().getProfileLink().setVisible(false);
                 getDisplay().getLogoutLink().setVisible(false);
                 getDisplay().getLoginLink().setVisible(true);
+                getDisplay().getRegisterLink().setVisible(true);
                 
             }
         }));

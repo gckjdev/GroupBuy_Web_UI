@@ -22,6 +22,9 @@ public class GroupBuyHeaderPanel extends Composite {
 	@UiField
 	Anchor profileLink;
 	
+	@UiField
+    Anchor registerLink;
+	
 	private static GroupBuyHeaderPanelUiBinder uiBinder = GWT
 			.create(GroupBuyHeaderPanelUiBinder.class);
 
@@ -47,6 +50,10 @@ public class GroupBuyHeaderPanel extends Composite {
     
     public Anchor getProfileLink() {
         return profileLink;
+    }
+    
+    public Anchor getRegisterLink() {
+        return registerLink;
     }
 
 }

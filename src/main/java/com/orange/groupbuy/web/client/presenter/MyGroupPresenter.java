@@ -74,7 +74,6 @@ public class MyGroupPresenter extends WidgetPresenter<MyGroupView> {
 								.getCategroyBox().removeFromParent();
 						getDisplay().getNavigationPanel().getPriceBox()
 								.removeFromParent();
-						getDisplay().getNavigationPanel().getMyGroupBox().removeFromParent();
 
 						dispatchAsync.execute(new GetMyGroup(),
 								new SimpleCallback<ItemList>() {

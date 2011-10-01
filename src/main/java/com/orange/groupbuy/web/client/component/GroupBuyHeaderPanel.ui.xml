@@ -30,11 +30,17 @@
 				</div>
 				
 				<div class='weibotxt'>分享到</div>
-				<div class='weiboicon'>
-					<a href="#"><img src="images/sina.png" alt="新浪微博" /></a>
-					<a href="#"><img src="images/qq.png" alt="腾讯微博" /></a>
-				</div>
 
+<!-- JiaThis Button BEGIN -->
+<div id="ckepop" class='weiboicon'>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_kaixin001"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
 				<div class='weibotxt'>
 
 					<g:Anchor href='javascript:;' ui:field='loginLink'>登录</g:Anchor>
@@ -44,7 +50,6 @@
 					<g:Anchor href='javascript:;' ui:field='logoutLink'>退出</g:Anchor>
 
 					<g:Anchor href='javascript:;' ui:field='registerLink'>注册</g:Anchor>
-
 
 				</div>
 			</div>

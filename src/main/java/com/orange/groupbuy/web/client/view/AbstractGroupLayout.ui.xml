@@ -10,16 +10,16 @@
 			</g:layer>
    			<g:layer left='200px' width='100%' height='100%'>
 				<g:LayoutPanel>
-					<g:layer height='20px' width='100%'>
-						<gc:PageListWidget ui:field='pageNavigation' styleName='float-right'>
+					<g:layer left='560px' top='10px' height='20px' width='100%'>
+						<gc:PageListWidget ui:field='pageNavigation'>
 						</gc:PageListWidget>
 					</g:layer>
 					<g:layer top='35px' height='100%'>
 						<g:FlowPanel ui:field='searchResultPanel' styleName='searchResultPanel'>
 						</g:FlowPanel>
 					</g:layer>
-					<g:layer bottom ='20px' height='20px' width='100%'>
-						<gc:PageListWidget ui:field='bottomPageNavigation' styleName='float-right'>
+					<g:layer left='560px' bottom ='10px' height='20px' width='100%'>
+						<gc:PageListWidget ui:field='bottomPageNavigation'>
 						</gc:PageListWidget>
 					</g:layer>
 				</g:LayoutPanel>

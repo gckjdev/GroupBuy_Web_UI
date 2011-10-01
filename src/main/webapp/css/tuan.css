@@ -14,3 +14,14 @@
 	overflow: auto;
     padding: 20px;
 }
+
+.uptop{
+	cursor: pointer;
+    height: 78px;
+    position: fixed;
+    width: 20px;
+    display: block;
+    bottom: 5px;
+    margin-left: 1309px;
+}
+

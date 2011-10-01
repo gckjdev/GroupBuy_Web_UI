@@ -24,15 +24,18 @@
 				</p>
 				<p>
 					来自: 
-					<span class="black-text">
+					<span class="site-con">
 						<a ui:field='siteNameLabel' />
 					</span>
 				</p>
 				<p class="dealshare">
 					<span>分享到: </span>
 					<a class="share-sina" ui:field='shareToSina'
-						href="https://www.facebook.com/sharer.php?u=http%3A//yipit.co/o72rlt&amp;t=53%25%20off%202-Night%20Stay%20in%20Texas"
-						target="_blank">新浪微博</a>
+						target="_blank" title='新浪微博'></a>
+					<a class="share-kaixin" ui:field='shareToKaixin'
+						target="_blank" title='开心网'></a>
+					<a class="share-tencent" ui:field='shareToTencent'
+						target="_blank" title='腾讯微博'></a>		
 				</p>
 				<p></p>
 			</span>
@@ -53,12 +56,12 @@
 					<li>
 						<span>原价</span>
 						<br />
-						<del ui:field='originalPriceLabel' />
+						<del class='black-text' ui:field='originalPriceLabel' />
 					</li>
 					<li>
 						<span>折扣</span>
 						<br />
-						<span ui:field='rebateLabel' />
+						<span class='black-text' ui:field='rebateLabel' />
 					</li>
 				</ul>
 			</div>

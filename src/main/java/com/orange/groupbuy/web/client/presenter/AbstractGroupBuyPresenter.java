@@ -37,6 +37,8 @@ public abstract class AbstractGroupBuyPresenter extends
 		ListBox getCitySelect();
 
 		PageListWidget getPageNavigation();
+
+		PageListWidget getBottomPageNavigation();
 	}
 
 	protected void refreshResult(Criteria criteria) {

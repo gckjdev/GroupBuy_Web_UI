@@ -7,7 +7,6 @@ import net.customware.gwt.presenter.client.DefaultEventBus;
 import net.customware.gwt.presenter.client.EventBus;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.orange.groupbuy.web.client.presenter.MainPresenter;
 import com.orange.groupbuy.web.client.presenter.v1.GroupBuySearchViewPresenter;
@@ -42,7 +41,8 @@ public class GroupBuy_Web_UI implements EntryPoint {
 
 		// Bind the presenter to the display.
 		presenter.bind();
-		RootLayoutPanel.get().add(presenter.getDisplay().asWidget());
+		RootPanel.get().add(presenter.getDisplay().asWidget());
+		// RootLayoutPanel.get().add(presenter.getDisplay().asWidget());
 	}
 
 	@SuppressWarnings("unused")

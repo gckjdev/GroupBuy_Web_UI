@@ -11,6 +11,10 @@ body,p,b,dl,dd,table,td,th,img,form,div,ul,li,h1,h2,h3,h4,h5,h6 {
 	vertical-align: baseline;
 }
 
+body{
+	font-family : arial;
+	font : 12px/1.5 'Tahoma','simsun';
+}
 .float-left {
 	float: left;
 }
@@ -24,7 +28,7 @@ body,p,b,dl,dd,table,td,th,img,form,div,ul,li,h1,h2,h3,h4,h5,h6 {
 }
 
 .center {
-	width: 1080px;
+	width: 960px;
 	margin: 0 auto;
 }
 
@@ -33,4 +37,8 @@ body,p,b,dl,dd,table,td,th,img,form,div,ul,li,h1,h2,h3,h4,h5,h6 {
 	width: 140px;
 	height: 75px;
 	position: absolute;
+}
+
+.top-margin {
+	top : 5px;
 }

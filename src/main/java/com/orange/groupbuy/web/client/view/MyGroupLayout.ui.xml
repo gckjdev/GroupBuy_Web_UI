@@ -6,7 +6,7 @@
 		
 	</ui:style>
 	<g:DockLayoutPanel unit='EM'>
-		<g:west size='15'>
+		<g:west size='14'>
 			<gc:GroupBuyNavigationPanel ui:field='myGroupNavigationPanel' />
 		</g:west>
 		<g:center>

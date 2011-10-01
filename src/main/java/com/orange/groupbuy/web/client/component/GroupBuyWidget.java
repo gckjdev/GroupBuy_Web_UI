@@ -8,6 +8,7 @@ import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Widget;
 import com.orange.groupbuy.web.client.model.SearchResult;
 
@@ -18,6 +19,7 @@ public class GroupBuyWidget extends Widget {
 	private static GroupBuyWidgetUiBinder uiBinder = GWT
 			.create(GroupBuyWidgetUiBinder.class);
 
+	@UiTemplate("GroupBuyWidget_Yipit.ui.xml")
 	interface GroupBuyWidgetUiBinder extends
 			UiBinder<DivElement, GroupBuyWidget> {
 	}

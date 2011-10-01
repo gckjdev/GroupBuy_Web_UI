@@ -1,14 +1,15 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:gc="urn:import:com.orange.groupbuy.web.client.component">
-	<g:HTMLPanel styleName='center'>
-		<g:DockLayoutPanel unit='EM'>
-			<g:north size="4">
+	<!-- styleName='center' -->
+	<g:HTMLPanel  styleName='center'>
+	<g:LayoutPanel>
+			<g:layer top='5px' height='50px'>
 				<gc:GroupBuyHeaderPanel ui:field='headerPanel' />
-			</g:north>
-			<g:north size="60">
+			</g:layer>
+   			<g:layer top='55px' height='8000px'>
 				<gc:GroupBuyTabHeader ui:field='tabHeader' />
-			</g:north>
-		</g:DockLayoutPanel>
+   			</g:layer>
+   </g:LayoutPanel>
 	</g:HTMLPanel>
 </ui:UiBinder>

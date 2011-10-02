@@ -2,12 +2,12 @@
 	zoom: 1;
 }
 
-.groupbuy-TabLayoutPanel .gwt-TabLayoutPanel .gwt-TabLayoutPanelTab {
-    background: none repeat scroll 0 0 #FFFFFF;
+.groupbuy-TabLayoutPanel .gwt-TabLayoutPanelTab {
+    background: none repeat scroll 0 0 #FFFFFF !important;
 }
 
-.groupbuy-TabLayoutPanel .gwt-TabLayoutPanel .gwt-TabLayoutPanelTab-selected{
-	background: none repeat scroll 0 0 #DFF3FD ;
+.groupbuy-TabLayoutPanel .gwt-TabLayoutPanelTab-selected{
+	background: none repeat scroll 0 0 #DFF3FD !important;
 }
 
 .searchResultPanel{

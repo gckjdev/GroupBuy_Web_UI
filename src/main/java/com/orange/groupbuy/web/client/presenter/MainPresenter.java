@@ -173,8 +173,17 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 										}
 										// init the city
 										initDefaultCitySelect();
+
+										// // init execute query
+										eventBus.fireEvent(new CityChangedEvent());
+										// TODO: work around for IE
+										getDisplay().getTabHeader()
+												.selectTab(1);
+										getDisplay().getTabHeader()
+												.selectTab(0);
 									}
 								});
+
 					}
 				}));
 

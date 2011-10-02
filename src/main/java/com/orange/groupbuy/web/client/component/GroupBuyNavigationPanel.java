@@ -13,11 +13,12 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.ui.ComplexPanel;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.DefaultSelectionEventManager;
 import com.google.gwt.view.client.MultiSelectionModel;
+import com.google.gwt.view.client.SelectionModel;
 import com.google.gwt.view.client.SingleSelectionModel;
 import com.orange.groupbuy.web.client.model.Item;
 import com.orange.groupbuy.web.client.model.PriceItem;
@@ -36,20 +37,20 @@ public class GroupBuyNavigationPanel extends Composite {
 	}
 
 	@UiField
-	DockLayoutPanel navigationPanel;
+	ComplexPanel navigationPanel;
 
 	@UiField
-	CollpaseBox categroyBox;
+	CollapseBox categroyBox;
 
 	@UiField
-	CollpaseBox myGroupBox;
+	CollapseBox myGroupBox;
 
 	@UiField
-	CollpaseBox priceBox;
+	CollapseBox priceBox;
 
 	@UiFactory
-	CollpaseBox createCollpaseBox(int size) {
-		return new CollpaseBox(size);
+	CollapseBox createCollpaseBox(int size) {
+		return new CollapseBox(size);
 	}
 
 	public GroupBuyNavigationPanel() {
@@ -74,29 +75,11 @@ public class GroupBuyNavigationPanel extends Composite {
 	}
 
 	private CellTable<Item> initMultipleSelection(String name,
-			CollpaseBox multipleSelection) {
+			CollapseBox multipleSelection) {
 		multipleSelection.getName().setText(name);
 		final MultiSelectionModel<Item> selectionModel = new MultiSelectionModel<Item>();
-		Column<Item, Boolean> checkColumn = new Column<Item, Boolean>(
-				new CheckboxCell(true, false)) {
-			@Override
-			public Boolean getValue(Item object) {
-				// Get the value from the selection model.
-				return selectionModel.isSelected(object);
-			}
-		};
-
-		TextColumn<Item> nameColumn = new TextColumn<Item>() {
-			@Override
-			public String getValue(Item contact) {
-				return contact.getDisplayName();
-			}
-		};
-		CellTable<Item> selection = new CellTable<Item>();
-		multipleSelection.getContent().add(selection);
-		selection.addColumn(checkColumn);
-		selection.setColumnWidth(checkColumn, 2, Unit.PX);
-		selection.addColumn(nameColumn);
+		CellTable<Item> selection = initColumns(multipleSelection,
+				selectionModel);
 
 		selection.setSelectionModel(selectionModel,
 				DefaultSelectionEventManager.<Item> createCheckboxManager());
@@ -104,9 +87,19 @@ public class GroupBuyNavigationPanel extends Composite {
 	}
 
 	private CellTable<Item> initSignleSelection(String name,
-			CollpaseBox multipleSelection) {
+			CollapseBox multipleSelection) {
 		multipleSelection.getName().setText(name);
 		final SingleSelectionModel<Item> selectionModel = new SingleSelectionModel<Item>();
+		CellTable<Item> selection = initColumns(multipleSelection,
+				selectionModel);
+
+		selection.setSelectionModel(selectionModel,
+				DefaultSelectionEventManager.<Item> createCheckboxManager());
+		return selection;
+	}
+
+	private CellTable<Item> initColumns(CollapseBox multipleSelection,
+			final SelectionModel<Item> selectionModel) {
 		Column<Item, Boolean> checkColumn = new Column<Item, Boolean>(
 				new CheckboxCell(true, false)) {
 			@Override
@@ -123,29 +116,28 @@ public class GroupBuyNavigationPanel extends Composite {
 			}
 		};
 		CellTable<Item> selection = new CellTable<Item>();
+		selection.setWidth("100%");
 		multipleSelection.getContent().add(selection);
 		selection.addColumn(checkColumn);
-		selection.setColumnWidth(checkColumn, 2, Unit.PX);
+		selection.setColumnWidth(checkColumn, 10, Unit.PCT);
 		selection.addColumn(nameColumn);
-
-		selection.setSelectionModel(selectionModel,
-				DefaultSelectionEventManager.<Item> createCheckboxManager());
+		selection.setColumnWidth(nameColumn, 80, Unit.PCT);
 		return selection;
 	}
 
-	public CollpaseBox getCategroyBox() {
+	public CollapseBox getCategroyBox() {
 		return categroyBox;
 	}
 
-	public CollpaseBox getPriceBox() {
+	public CollapseBox getPriceBox() {
 		return priceBox;
 	}
 
-	public CollpaseBox getMyGroupBox() {
+	public CollapseBox getMyGroupBox() {
 		return myGroupBox;
 	}
 
-	public DockLayoutPanel getNavigationPanel() {
+	public ComplexPanel getNavigationPanel() {
 		return navigationPanel;
 	}
 

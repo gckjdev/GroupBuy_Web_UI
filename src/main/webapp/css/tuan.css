@@ -10,9 +10,23 @@
 	background: none repeat scroll 0 0 #DFF3FD !important;
 }
 
+/* .groupbuy-TabLayoutPanel .gwt-TabLayoutPanelContent{
+	overflow: hidden;
+    padding: 10px;
+} */
+
+.groupbuy-TabLayoutPanel .gwt-TabLayoutPanel .gwt-TabLayoutPanelContent{
+	border-color : #DFF3FD !important;
+}
+
+.groupbuy-TabLayoutPanel .gwt-TabLayoutPanelContentContainer{
+	border : none;
+}
+
 .searchResultPanel{
 	overflow: auto;
     padding: 20px;
+    height : 4500px;
 }
 
 .uptop{
@@ -25,3 +39,50 @@
     margin-left: 1309px;
 }
 
+.nav-box{
+	width : 180px;
+	margin : 10px;
+	border: 1px solid #DFF3FD;
+	/* box-shadow: 0 0 4px rgba(71, 143, 179, 0.5); */
+}
+
+.nav-header{
+	width : 180px;
+	/* text-indent: 20px; */
+	text-indent: 40px; 
+	color: #478FB3;
+	font-weight: bold;
+	padding: 10px;
+	background:  no-repeat scroll right center #DFF3FD;
+}
+
+.nav-content{
+	width : 180px;
+}
+
+.navigationPanel{
+	/* height:600px; */
+	width:200px !important;
+	float : left;
+	overflow: hidden;
+	padding: 0;
+}
+
+.navigationPanel .GNERLPIDHC{
+	padding: 2px 5px;
+}
+.categroyBox, .priceBox, .myGroupBox{
+	
+}
+
+.categroyBox{
+/* 	float:left;clear:both; */
+}
+
+.myGroupBox{
+/*  	float:left;clear:both;*/
+}
+
+.priceBox{
+	top:400px !important;
+}

@@ -39,7 +39,7 @@ public class MainViewImpl extends Composite implements MainView {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		// my group buy
-//		initMyGroupView(eventBus, dispatchAsync);
+		initMyGroupView(eventBus, dispatchAsync);
 
 		// top view
 		initTopView(eventBus);
@@ -133,5 +133,10 @@ public class MainViewImpl extends Composite implements MainView {
     @Override
     public GroupBuyFootPanel getFootPanel() {
         return footPanel;
+    }
+
+    @Override
+    public Anchor getRegisterLink() {
+        return headerPanel.getRegisterLink();
     }
 }

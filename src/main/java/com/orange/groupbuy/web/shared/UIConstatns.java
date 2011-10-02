@@ -5,4 +5,6 @@ public class UIConstatns {
 	public static final String SESSION_COOKIE_NAME = "sid";
 
 	public static final String USER_ID = "userId";
+	
+	public static final String USER_NAME= "userName";
 }

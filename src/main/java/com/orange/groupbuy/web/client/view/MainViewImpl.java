@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.orange.groupbuy.web.client.component.GroupBuyHeaderPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyTabHeader;
 import com.orange.groupbuy.web.client.component.LoginDialog;
+import com.orange.groupbuy.web.client.component.RegisterDialog;
 import com.orange.groupbuy.web.client.presenter.AbstractGroupBuyPresenter.GroupBuyView;
 import com.orange.groupbuy.web.client.presenter.MainPresenter.MainView;
 import com.orange.groupbuy.web.client.presenter.MyGroupPresenter;
@@ -32,6 +33,8 @@ public class MainViewImpl extends Composite implements MainView {
 
 	LoginDialog loginDialog ;
 	
+	RegisterDialog registerDialog;
+	
 	public MainViewImpl(EventBus eventBus, DispatchAsync dispatchAsync) {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -45,6 +48,8 @@ public class MainViewImpl extends Composite implements MainView {
 		initTodayView(eventBus);
 		
 		loginDialog = new LoginDialog(eventBus);
+		
+		registerDialog = new RegisterDialog(eventBus);
 		
 		getProfileLink().setVisible(false);
 		getLogoutLink().setVisible(false);
@@ -112,6 +117,11 @@ public class MainViewImpl extends Composite implements MainView {
     }
     
     @Override
+    public Anchor getRegisterLink(){
+    	return headerPanel.getRegisterLink();
+    }
+    
+    @Override
     public Anchor getProfileLink() {
         return headerPanel.getProfileLink();
     }
@@ -126,4 +136,9 @@ public class MainViewImpl extends Composite implements MainView {
     public LoginDialog getLoginDialog() {
         return loginDialog;
     }
+
+	@Override
+	public RegisterDialog getRegisterDialog() {
+		return registerDialog;
+	}
 }

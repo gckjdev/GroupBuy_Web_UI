@@ -16,6 +16,7 @@ import com.orange.groupbuy.web.server.handler.GetCityNamesHandler;
 import com.orange.groupbuy.web.server.handler.GetGroupBuyCategoryListHandler;
 import com.orange.groupbuy.web.server.handler.GetMyGroupHandler;
 import com.orange.groupbuy.web.server.handler.GetUserHandler;
+import com.orange.groupbuy.web.server.handler.RegisterEmailHandler;
 import com.orange.groupbuy.web.server.util.SessionUtil;
 
 @SuppressWarnings("serial")
@@ -30,6 +31,7 @@ public class SimpleDispatchServlet extends RemoteServiceServlet implements
 		registry.addHandler(new GetGroupBuyCategoryListHandler());
 		registry.addHandler(new GetMyGroupHandler());
 		registry.addHandler(new GetUserHandler());
+		registry.addHandler(new RegisterEmailHandler());
 		dispatch = new SimpleDispatch(registry);
 	}
 

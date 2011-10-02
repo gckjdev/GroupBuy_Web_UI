@@ -26,8 +26,11 @@ import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.orange.groupbuy.web.client.SimpleCallback;
 import com.orange.groupbuy.web.client.component.GroupBuyHeaderPanel;
 import com.orange.groupbuy.web.client.component.LoginDialog;
+import com.orange.groupbuy.web.client.component.RegisterDialog;
+import com.orange.groupbuy.web.client.component.RegisterDialog.RegisterOKEvent;
 import com.orange.groupbuy.web.client.dispatch.GetCityNames;
 import com.orange.groupbuy.web.client.dispatch.GetUser;
+import com.orange.groupbuy.web.client.dispatch.RegisterEmail;
 import com.orange.groupbuy.web.client.event.CityChangedEvent;
 import com.orange.groupbuy.web.client.event.LoginSuccessEvent;
 import com.orange.groupbuy.web.client.event.LoginSuccessHandler;
@@ -37,6 +40,7 @@ import com.orange.groupbuy.web.client.model.Item;
 import com.orange.groupbuy.web.client.model.UserInfo;
 import com.orange.groupbuy.web.client.presenter.MainPresenter.MainView;
 import com.orange.groupbuy.web.client.secure.CookiesUtil;
+import com.orange.groupbuy.web.server.handler.RegisterEmailHandler;
 import com.orange.groupbuy.web.shared.UIConstatns;
 
 public class MainPresenter extends WidgetPresenter<MainView> {
@@ -62,6 +66,9 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 		Anchor getProfileLink();
 		
 		LoginDialog getLoginDialog();
+
+		Anchor getRegisterLink();
+		RegisterDialog getRegisterDialog();
 	}
 
 
@@ -106,6 +113,32 @@ public class MainPresenter extends WidgetPresenter<MainView> {
                         
                     }
         }));
+	    registerHandler(eventBus.addHandler(RegisterOKEvent.getType(),
+                new RegisterDialog.RegisterOKEventHandler() {
+
+                    @Override
+                    public void onEvent(final RegisterOKEvent event) {
+                        final String userName = event.getUserName();
+                        dispatch.execute(new RegisterEmail(event.getUserName(), event.getPassword()), 
+                                new SimpleCallback<UserInfo>() {
+                                    @Override
+                                    public void onSuccess(UserInfo result) {
+                                        if (result == null) {
+                                            Window.alert("userInfo null");
+											return;
+                                        }
+                                        getDisplay().getRegisterDialog().setTips("<label style=\"color:green\">注册成功，正在登陆....</label>");
+                                        
+                                        getDisplay().getRegisterDialog().setVisible(false);
+                                        LoginSuccessEvent loginEvent = new LoginSuccessEvent();
+                                        loginEvent.setUserName(event.getUserName());
+                                        loginEvent.setPassword(event.getPassword());
+                                        eventBus.fireEvent(loginEvent);
+                                    }
+                                });
+                        
+                    }
+        }));
 	    registerHandler(getDisplay().getLoginLink().addClickHandler(new ClickHandler() {
             
             @Override
@@ -116,6 +149,16 @@ public class MainPresenter extends WidgetPresenter<MainView> {
             }
         }));
 	    
+	    registerHandler(getDisplay().getRegisterLink().addClickHandler(new ClickHandler() {
+			
+				@Override
+				public void onClick(ClickEvent event) {
+					RegisterDialog dialog = getDisplay().getRegisterDialog();
+	                dialog.center();
+	                dialog.show();
+				}
+			})
+		);
 	    registerHandler(getDisplay().getLogoutLink().addClickHandler(new ClickHandler() {
             
             @Override

@@ -5,8 +5,18 @@ import net.customware.gwt.dispatch.shared.Result;
 public class UserInfo implements Result {
     
     private String userId;
+    
+    private String rtCode;
 
-    public String getUserId() {
+    public String getRtCode() {
+		return rtCode;
+	}
+
+	public void setRtCode(String rtCode) {
+		this.rtCode = rtCode;
+	}
+
+	public String getUserId() {
         return userId;
     }
 

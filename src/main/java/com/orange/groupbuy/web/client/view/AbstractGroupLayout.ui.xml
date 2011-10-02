@@ -5,16 +5,16 @@
 		
 	</ui:style>
 	<g:LayoutPanel>
-			<g:layer width='160px'>
+			<g:layer width='200px'>
 				<gc:GroupBuyNavigationPanel ui:field='myGroupNavigationPanel' />
 			</g:layer>
-   			<g:layer left='200px' width='100%' >
+   			<g:layer left='230px' width='730px' >
 				<g:LayoutPanel>
 					<g:layer left='570px' top='10px' height='20px'  width='130px'>
 						<gc:PageListWidget ui:field='pageNavigation'>
 						</gc:PageListWidget>
 					</g:layer>
-					<g:layer top='35px' height='4600px'>
+					<g:layer top='35px' height='100%'>
 						<g:FlowPanel ui:field='searchResultPanel' styleName='searchResultPanel'>
 						</g:FlowPanel>
 					</g:layer>

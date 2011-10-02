@@ -15,12 +15,18 @@
 	}
 </ui:style>
 	<g:HTMLPanel>
+	<div class='header'>
 		<div>
-			<div class=''></div>
+			<h1 class="logo"><a href="index.html">咕噜团购</a></h1>	
+		</div>
+		
+		<div class='city' >
+			<div ></div>
 			<g:ListBox ui:field='citySelect' visibleItemCount='1'
 				styleName='float-left' />
 		</div>
-		<div class="float-right">
+		
+		<div class="share">
 			<div>
 				<div class='weibotxt'><a href="#" onClick="addfavorite()">添加到收藏夹</a></div>
 				<div class='weibotxt'>在这里关注我们</div>
@@ -54,5 +60,13 @@
 				</div>
 			</div>
 		</div>
+		
+		<div class='search'>
+		<form id="searchform" name="searchform" method="post" action="">
+			<input type='text' id='searchkey' class='input'></input>
+			<input type='submit' value='搜索'></input>
+		</form>
+		</div>
+	</div>
 	</g:HTMLPanel>
 </ui:UiBinder>

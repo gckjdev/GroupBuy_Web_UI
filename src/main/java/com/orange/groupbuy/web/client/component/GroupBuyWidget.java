@@ -15,6 +15,8 @@ import com.orange.groupbuy.web.client.util.DateUtil;
 
 public class GroupBuyWidget extends Widget {
 
+	private static final String GROUP_BUY_MSG = "咕噜团购推荐：";
+
 	// private static final String TARGET_BLANK = "_blank";
 
 	private static GroupBuyWidgetUiBinder uiBinder = GWT
@@ -61,6 +63,11 @@ public class GroupBuyWidget extends Widget {
 	@UiField
 	AnchorElement shareToSina;
 
+	@UiField
+	AnchorElement shareToKaixin;
+
+	@UiField
+	AnchorElement shareToTencent;
 
 	public GroupBuyWidget() {
 		setElement(uiBinder.createAndBindUi(this));
@@ -78,7 +85,6 @@ public class GroupBuyWidget extends Widget {
 			imageAnchor.setHref(result.getProductUrl());
 			imageAnchor.setTitle(result.getDesctiption());
 			image.setSrc(result.getImageUrl());
-			// image.setTitle(result.getDesctiption());
 
 			originalPriceLabel.setInnerText(formatMoney(result.getValue()));
 			rebateLabel.setInnerText(formatRebate(result.getRebate()));
@@ -87,20 +93,39 @@ public class GroupBuyWidget extends Widget {
 			valueLabel.setInnerText(formatMoney(result.getPrice()));
 
 			detailsButton.setHref(result.getProductUrl());
+			detailsButton.setTitle(result.getDesctiption());
 
 			startDateLabel.setInnerText(DateUtil.formatReadableDate(result
 					.getStartDate()));
 			endDateLabel.setInnerText(DateUtil.formatReadableDate(result
 					.getEndDate()));
-			String sinaUrl = getSinaUrl(result);
-			shareToSina.setHref(sinaUrl);
+			//
+			shareToSina.setHref(getSinaUrl(result));
+			shareToKaixin.setHref(getKaixinUrl(result));
+			shareToTencent.setHref(getTencentUrl(result));
 		}
+	}
+
+	private String getTencentUrl(SearchResult result) {
+		// TODO:
+		String url = "http://v.t.qq.com/share/share.php?url="
+				+ result.getProductUrl() + "&site=" + result.getSiteUrl()
+				+ "&pic=" + result.getImageUrl() + "&title=" + GROUP_BUY_MSG
+				+ result.getDesctiption() + "&appkey=";
+		return url;
 	}
 
 	private String getSinaUrl(SearchResult result) {
 		String sinaUrl = "http://v.t.sina.com.cn/share/share.php?url="
-				+ result.getProductUrl() + "&title=咕噜团购推荐："
+				+ result.getProductUrl() + "&title=" + GROUP_BUY_MSG
 				+ result.getDesctiption() + "&content=utf-8";
+		return sinaUrl;
+	}
+
+	private String getKaixinUrl(SearchResult result) {
+		String sinaUrl = "http://www.kaixin001.com/repaste/share.php?rurl="
+				+ result.getProductUrl() + "&rtitle=咕噜团购推荐" + "&rcontent="
+				+ result.getDesctiption() + " " + result.getProductUrl();
 		return sinaUrl;
 	}
 

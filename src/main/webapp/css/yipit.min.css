@@ -48,6 +48,21 @@
 	text-decoration: none;
 }
 
+.deal .site-con a {
+	/*color: #800080;*/
+    -moz-transition-duration: 0.33s;
+    -moz-transition-property: color;
+    color: #478FB3;
+    outline: 0 none;
+    text-decoration: none;
+}
+
+.deal .site-con a:visited {
+	color: #478FB3;
+	text-decoration: none;
+}
+
+
 .deal .col2 .title-con {
     padding: 5px 8px 5px 10px;
 }
@@ -57,7 +72,7 @@
 }
 
 .black-text {
-    color: #000000;
+    color: #000000 !important;
 }
 
 .deal .dealshare span {
@@ -66,7 +81,7 @@
     margin-right: 10px;
 }
 
-.deal .share-sina {
+.deal .share-sina, .share-kaixin, .share-tencent {
 	display: block;
 	float: left;
 	height: 16px;
@@ -76,7 +91,15 @@
 }
 
 .deal .share-sina {
-	background: url("img/favicon.ico") top left no-repeat
+	background: url("img/top_sinaweibo.ico") top left no-repeat
+}
+
+.deal .share-kaixin {
+	background: url("img/top_kaixin.jpg") top left no-repeat
+}
+
+.deal .share-tencent {
+	background: url("img/top_qweibo.jpg") top left no-repeat
 }
 
 .deal .col3 {
@@ -120,6 +143,11 @@
     margin-right: 15px;
     position: relative;
     right: 50%;
+}
+
+.info .last {
+    border: 0 none;
+    margin-right: 0;
 }
 
 .info li span {

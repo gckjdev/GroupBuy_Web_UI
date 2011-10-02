@@ -13,7 +13,6 @@ import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.event.logical.shared.AttachEvent.Handler;
 import com.google.gwt.user.cellview.client.CellTable;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.orange.groupbuy.web.client.SimpleCallback;

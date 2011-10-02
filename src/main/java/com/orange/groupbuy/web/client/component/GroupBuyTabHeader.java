@@ -14,8 +14,8 @@ public class GroupBuyTabHeader extends Composite {
 	@UiField
 	TabLayoutPanel tabHeader;
 
-	@UiField
-	LayoutPanel myGroupView;
+	// @UiField
+	// LayoutPanel myGroupView;
 
 	@UiField
 	LayoutPanel sortView;
@@ -37,9 +37,9 @@ public class GroupBuyTabHeader extends Composite {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
-	public LayoutPanel getMyGroupView() {
-		return myGroupView;
-	}
+	// public LayoutPanel getMyGroupView() {
+	// return myGroupView;
+	// }
 
 	public LayoutPanel getSortView() {
 		return sortView;

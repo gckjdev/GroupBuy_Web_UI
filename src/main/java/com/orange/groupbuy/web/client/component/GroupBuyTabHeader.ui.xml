@@ -6,12 +6,12 @@
 
 </ui:style>
 	<g:TabLayoutPanel ui:field='tabHeader' barUnit='PX' barHeight='30' addStyleNames='groupbuy-TabLayoutPanel'>
-		<g:tab>
+<!-- 		<g:tab>
 			<g:customHeader>
 				<g:Label>我的团购</g:Label>
 			</g:customHeader>
 			<g:LayoutPanel ui:field='myGroupView' />
-		</g:tab>
+		</g:tab> -->
 		
 		<g:tab>
 			<g:customHeader>

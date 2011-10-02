@@ -18,7 +18,6 @@ import com.orange.groupbuy.web.client.component.GroupBuyTabHeader;
 import com.orange.groupbuy.web.client.component.LoginDialog;
 import com.orange.groupbuy.web.client.presenter.AbstractGroupBuyPresenter.GroupBuyView;
 import com.orange.groupbuy.web.client.presenter.MainPresenter.MainView;
-import com.orange.groupbuy.web.client.presenter.MyGroupPresenter;
 import com.orange.groupbuy.web.client.presenter.TodayViewPresenter;
 import com.orange.groupbuy.web.client.presenter.TopViewPresenter;
 
@@ -39,7 +38,7 @@ public class MainViewImpl extends Composite implements MainView {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		// my group buy
-		initMyGroupView(eventBus, dispatchAsync);
+		// initMyGroupView(eventBus, dispatchAsync);
 
 		// top view
 		initTopView(eventBus);
@@ -72,15 +71,16 @@ public class MainViewImpl extends Composite implements MainView {
 				topViewPresenter.getDisplay().asWidget());
 	}
 
-	private void initMyGroupView(EventBus eventBus, DispatchAsync dispatchAsync) {
-		MyGroupViewImpl myGroupView = new MyGroupViewImpl(eventBus,
-				dispatchAsync);
-		MyGroupPresenter myGroupViewPresenter = new MyGroupPresenter(
-				myGroupView, eventBus);
-		myGroupViewPresenter.bind();
-		tabHeader.getMyGroupView().add(
-				myGroupViewPresenter.getDisplay().asWidget());
-	}
+	// private void initMyGroupView(EventBus eventBus, DispatchAsync
+	// dispatchAsync) {
+	// MyGroupViewImpl myGroupView = new MyGroupViewImpl(eventBus,
+	// dispatchAsync);
+	// MyGroupPresenter myGroupViewPresenter = new MyGroupPresenter(
+	// myGroupView, eventBus);
+	// myGroupViewPresenter.bind();
+	// tabHeader.getMyGroupView().add(
+	// myGroupViewPresenter.getDisplay().asWidget());
+	// }
 
 	@Override
 	public Widget asWidget() {

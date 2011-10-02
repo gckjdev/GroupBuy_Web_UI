@@ -9,17 +9,16 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.orange.groupbuy.web.client.component.GroupBuyFootPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyHeaderPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyTabHeader;
 import com.orange.groupbuy.web.client.component.LoginDialog;
 import com.orange.groupbuy.web.client.component.RegisterDialog;
 import com.orange.groupbuy.web.client.presenter.AbstractGroupBuyPresenter.GroupBuyView;
 import com.orange.groupbuy.web.client.presenter.MainPresenter.MainView;
-import com.orange.groupbuy.web.client.presenter.MyGroupPresenter;
 import com.orange.groupbuy.web.client.presenter.TodayViewPresenter;
 import com.orange.groupbuy.web.client.presenter.TopViewPresenter;
 
@@ -30,6 +29,9 @@ public class MainViewImpl extends Composite implements MainView {
 
 	@UiField
 	GroupBuyTabHeader tabHeader;
+	
+	@UiField
+    GroupBuyFootPanel footPanel;
 
 	LoginDialog loginDialog ;
 	
@@ -39,7 +41,7 @@ public class MainViewImpl extends Composite implements MainView {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		// my group buy
-		initMyGroupView(eventBus, dispatchAsync);
+		// initMyGroupView(eventBus, dispatchAsync);
 
 		// top view
 		initTopView(eventBus);
@@ -74,15 +76,16 @@ public class MainViewImpl extends Composite implements MainView {
 				topViewPresenter.getDisplay().asWidget());
 	}
 
-	private void initMyGroupView(EventBus eventBus, DispatchAsync dispatchAsync) {
-		MyGroupViewImpl myGroupView = new MyGroupViewImpl(eventBus,
-				dispatchAsync);
-		MyGroupPresenter myGroupViewPresenter = new MyGroupPresenter(
-				myGroupView, eventBus);
-		myGroupViewPresenter.bind();
-		tabHeader.getMyGroupView().add(
-				myGroupViewPresenter.getDisplay().asWidget());
-	}
+	// private void initMyGroupView(EventBus eventBus, DispatchAsync
+	// dispatchAsync) {
+	// MyGroupViewImpl myGroupView = new MyGroupViewImpl(eventBus,
+	// dispatchAsync);
+	// MyGroupPresenter myGroupViewPresenter = new MyGroupPresenter(
+	// myGroupView, eventBus);
+	// myGroupViewPresenter.bind();
+	// tabHeader.getMyGroupView().add(
+	// myGroupViewPresenter.getDisplay().asWidget());
+	// }
 
 	@Override
 	public Widget asWidget() {
@@ -141,4 +144,13 @@ public class MainViewImpl extends Composite implements MainView {
 	public RegisterDialog getRegisterDialog() {
 		return registerDialog;
 	}
+    @Override
+    public GroupBuyFootPanel getFootPanel() {
+        return footPanel;
+    }
+
+    @Override
+    public Anchor getRegisterLink() {
+        return headerPanel.getRegisterLink();
+    }
 }

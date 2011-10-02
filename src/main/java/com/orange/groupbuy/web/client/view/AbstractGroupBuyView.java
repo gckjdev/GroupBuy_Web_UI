@@ -23,7 +23,7 @@ import com.orange.groupbuy.web.client.presenter.AbstractGroupBuyPresenter.GroupB
 public abstract class AbstractGroupBuyView extends Composite implements
 		GroupBuyView {
 
-	private static final int RESULT_WIDGET_IN_ROW = 3;
+	private static final int RESULT_WIDGET_IN_ROW = 1;
 
 	@UiField
 	GroupBuyNavigationPanel myGroupNavigationPanel;
@@ -33,6 +33,9 @@ public abstract class AbstractGroupBuyView extends Composite implements
 
 	@UiField
 	PageListWidget pageNavigation;
+
+	@UiField
+	PageListWidget bottomPageNavigation;
 
 	private ListBox citySelect;
 
@@ -88,5 +91,10 @@ public abstract class AbstractGroupBuyView extends Composite implements
 	@Override
 	public PageListWidget getPageNavigation() {
 		return pageNavigation;
+	}
+
+	@Override
+	public PageListWidget getBottomPageNavigation() {
+		return bottomPageNavigation;
 	}
 }

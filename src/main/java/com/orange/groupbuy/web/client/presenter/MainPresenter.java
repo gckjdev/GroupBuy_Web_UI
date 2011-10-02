@@ -24,6 +24,7 @@ import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.orange.groupbuy.web.client.SimpleCallback;
+import com.orange.groupbuy.web.client.component.GroupBuyFootPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyHeaderPanel;
 import com.orange.groupbuy.web.client.component.LoginDialog;
 import com.orange.groupbuy.web.client.component.RegisterDialog;
@@ -51,11 +52,12 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 	private final DispatchAsync secureDispatch = new SecureDispatchAsync(
 			new DefaultExceptionHandler(), new CookieSecureSessionAccessor(
 					UIConstatns.SESSION_COOKIE_NAME));
-
 	public static interface MainView extends WidgetDisplay {
 		TabLayoutPanel getTabHeader();
 
 		GroupBuyHeaderPanel getHeaderPanel();
+		
+		GroupBuyFootPanel getFootPanel();
 
 		ListBox getCitySelect();
 		
@@ -64,6 +66,8 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 		Anchor getLogoutLink();
 		
 		Anchor getProfileLink();
+		
+		Anchor getRegisterLink();
 		
 		LoginDialog getLoginDialog();
 
@@ -80,10 +84,25 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 	public MainPresenter(MainView display, EventBus eventBus,
 			DispatchAsync dispatchAsync) {
 		super(display, eventBus);
+		
+	}
+	
+	private void loadCookies() {
+	    String userName = CookiesUtil.get(UIConstatns.USER_NAME);
+	    if(userName != null && userName.length() > 0) {
+	        getDisplay().getProfileLink().setText(userName);
+	        getDisplay().getLoginLink().setVisible(false);
+	        getDisplay().getRegisterLink().setVisible(false);
+	        getDisplay().getLogoutLink().setVisible(true);
+	        getDisplay().getProfileLink().setVisible(true);
+	        
+	    }
 	}
 
 	@Override
 	protected void onBind() {
+	    loadCookies();
+	    
 	    registerHandler(eventBus.addHandler(LoginSuccessEvent.getType(),
                 new LoginSuccessHandler() {
 
@@ -101,12 +120,13 @@ public class MainPresenter extends WidgetPresenter<MainView> {
                                         String userId = result.getUserId();
                                         if(userId != null && userId.length() > 0) {
 											CookiesUtil.set(UIConstatns.USER_ID,userId);
-											
+											CookiesUtil.set(UIConstatns.USER_NAME,userName);
                                             getDisplay().getLoginDialog().hide();
                                             getDisplay().getProfileLink().setText(userName);
                                             getDisplay().getProfileLink().setVisible(true);
                                             getDisplay().getLogoutLink().setVisible(true);
                                             getDisplay().getLoginLink().setVisible(false);
+                                            getDisplay().getRegisterLink().setVisible(false);
                                         }
                                     }
                                 });
@@ -164,11 +184,12 @@ public class MainPresenter extends WidgetPresenter<MainView> {
             @Override
             public void onClick(ClickEvent event) {
                 CookiesUtil.remove(UIConstatns.USER_ID);
-                
+                CookiesUtil.remove(UIConstatns.USER_NAME);
                 getDisplay().getLoginDialog().clear();
                 getDisplay().getProfileLink().setVisible(false);
                 getDisplay().getLogoutLink().setVisible(false);
                 getDisplay().getLoginLink().setVisible(true);
+                getDisplay().getRegisterLink().setVisible(true);
                 
             }
         }));

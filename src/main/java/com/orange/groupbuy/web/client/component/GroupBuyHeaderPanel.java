@@ -17,7 +17,7 @@ public class GroupBuyHeaderPanel extends Composite {
 	Anchor loginLink;
 	
 	@UiField
-    Anchor logoutLink;
+    Anchor logoutLink; 
 	
 	@UiField
 	Anchor profileLink;
@@ -51,9 +51,9 @@ public class GroupBuyHeaderPanel extends Composite {
     public Anchor getProfileLink() {
         return profileLink;
     }
-
-	public Anchor getRegisterLink() {
-		return registerLink;
-	}
+    
+    public Anchor getRegisterLink() {
+        return registerLink;
+    }
 
 }

@@ -16,7 +16,7 @@ public class PageListWidget extends Composite {
 	interface PageListWidgetUiBinder extends UiBinder<Widget, PageListWidget> {
 	}
 
-	private final int pageSize = 6;
+	private final int pageSize = 20;
 
 	@UiField
 	Anchor nextPage;

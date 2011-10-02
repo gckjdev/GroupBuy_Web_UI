@@ -69,7 +69,6 @@ public class MyGroupPresenter extends WidgetPresenter<MyGroupView> {
 												refreshResult();
 											}
 										});
-
 						getDisplay().getNavigationPanel()
 								.getCategroyBox().removeFromParent();
 						getDisplay().getNavigationPanel().getPriceBox()

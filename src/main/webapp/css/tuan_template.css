@@ -133,7 +133,7 @@ body,p,b,dl,dd,table,td,th,img,form,div,ul,li,h1,h2,h3,h4,h5,h6 {
 	top: 15px;
 	left: 11px;
 	z-index: 2;
-	filter: Alpha(opacity =   60);
+	filter: Alpha(opacity =     60);
 	-moz-opacity: .6;
 	opacity: 0.6;
 }
@@ -308,10 +308,11 @@ body,p,b,dl,dd,table,td,th,img,form,div,ul,li,h1,h2,h3,h4,h5,h6 {
 .tuan-con .price-con-right .gosite {
 	display: block;
 	width: 85px;
-	height: 29px;
-	background: url("img/m.png") 0 -150px no-repeat;
+	height: 29 px;
+	background: url("img/m.png") 0 -150 px no-repeat;
 }
 
 .tuan-con .price-con-right .gosite:hover {
 	background-position: -100px -150px;
 }
+

@@ -108,8 +108,7 @@ public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 
 					@Override
 					public void onClick(ClickEvent event) {
-						getDisplay().getPageNavigation().previousPage();
-						refreshResult();
+						previousPage();
 					}
 				}));
 		// next
@@ -118,9 +117,39 @@ public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 
 					@Override
 					public void onClick(ClickEvent event) {
-						getDisplay().getPageNavigation().nextPage();
-						refreshResult();
+						nextPage();
 					}
 				}));
+		// previous
+		registerHandler(getDisplay().getBottomPageNavigation()
+				.getPreviousPage()
+				.addClickHandler(new ClickHandler() {
+
+					@Override
+					public void onClick(ClickEvent event) {
+						previousPage();
+					}
+				}));
+		// next
+		registerHandler(getDisplay().getBottomPageNavigation().getNextPage()
+				.addClickHandler(new ClickHandler() {
+
+					@Override
+					public void onClick(ClickEvent event) {
+						nextPage();
+					}
+				}));
+	}
+
+	private void nextPage() {
+		getDisplay().getBottomPageNavigation().nextPage();
+		getDisplay().getPageNavigation().nextPage();
+		refreshResult();
+	}
+
+	private void previousPage() {
+		getDisplay().getBottomPageNavigation().previousPage();
+		getDisplay().getPageNavigation().previousPage();
+		refreshResult();
 	}
 }

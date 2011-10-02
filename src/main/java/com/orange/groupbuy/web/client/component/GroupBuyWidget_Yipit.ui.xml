@@ -1,0 +1,95 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'>
+
+	<div class="deal">
+
+		<div class="col1">
+			<a target="_blank" ui:field='imageAnchor'>
+				<img ui:field='image' width="165" class="image" />
+			</a>
+		</div>
+
+		<div class="col2">
+			<span class="light-gray-small-text">
+				<p class="title-con">
+					<a ui:field='link' target="_blank" />
+				</p>
+
+				<p>
+					开始时间 :
+					<span class="black-text">
+						<span ui:field='startDateLabel' />
+					</span>
+				</p>
+				<p>
+					来自: 
+					<span class="site-con">
+						<a ui:field='siteNameLabel' />
+					</span>
+				</p>
+				<p class="dealshare">
+					<span>分享到: </span>
+					<a class="share-sina" ui:field='shareToSina'
+						target="_blank" title='新浪微博'></a>
+					<a class="share-kaixin" ui:field='shareToKaixin'
+						target="_blank" title='开心网'></a>
+					<a class="share-tencent" ui:field='shareToTencent'
+						target="_blank" title='腾讯微博'></a>		
+				</p>
+				<p></p>
+			</span>
+		</div>
+
+		<div class="col3">
+			<div class="container first">
+				<ul>
+					<li class="discount">
+						<span ui:field="valueLabel" />
+						<a ui:field='detailsButton' class="formbutton" target="_blank">去看看</a>
+						<div class="clear"></div>
+					</li>
+				</ul>
+			</div>
+			<div class="container">
+				<ul class="info">
+					<li>
+						<span>原价</span>
+						<br />
+						<del class='black-text' ui:field='originalPriceLabel' />
+					</li>
+					<li>
+						<span>折扣</span>
+						<br />
+						<span class='black-text' ui:field='rebateLabel' />
+					</li>
+				</ul>
+			</div>
+
+
+			<div class="container">
+				<ul>
+					<li>
+								<span class='light-gray-small-text'>结束时间: </span>
+								<span>
+									<span class="time" ui:field='endDateLabel' />
+								</span>
+					</li>
+				</ul>
+			</div>
+
+
+			<div class="container">
+				<ul class="purchased">
+					<li>
+						<b ui:field='boughtNumLabel'></b>
+						人购买
+					</li>
+				</ul>
+			</div>
+
+		</div>
+
+		<div class="clear"></div>
+	</div>
+</ui:UiBinder>

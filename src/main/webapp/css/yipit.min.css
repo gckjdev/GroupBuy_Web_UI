@@ -1,0 +1,191 @@
+.deal {
+    margin: 0 0 20px !important;
+}
+
+.deal .col1 {
+    float: left;
+    margin-right: 10px !important;
+    width: 175px !important;
+}
+
+.deal .col2 {
+    float: left;
+    margin-right: 10px !important;
+    width: 245px !important;
+}
+
+.deal .col3 {
+    float: left;
+    text-align: center;
+    width: 200px !important;
+}
+
+.light-gray-small-text {
+    color: #999999;
+    font : 11px;
+    margin-bottom: 15px;
+}
+
+.deal .title-con {
+	font-size: 16px;
+	line-height: 22px;
+	padding: 5px 8px 5px 10px;
+	height: 60px;
+	overflow: hidden;
+}
+
+.deal .title-con a {
+	/*color: #800080;*/
+    -moz-transition-duration: 0.33s;
+    -moz-transition-property: color;
+    color: #478FB3;
+    outline: 0 none;
+    text-decoration: none;
+}
+
+.deal .title-con a:visited {
+	color: #478FB3;
+	text-decoration: none;
+}
+
+.deal .site-con a {
+	/*color: #800080;*/
+    -moz-transition-duration: 0.33s;
+    -moz-transition-property: color;
+    color: #478FB3;
+    outline: 0 none;
+    text-decoration: none;
+}
+
+.deal .site-con a:visited {
+	color: #478FB3;
+	text-decoration: none;
+}
+
+
+.deal .col2 .title-con {
+    padding: 5px 8px 5px 10px;
+}
+
+.deal .col2 p {
+    margin-bottom: 10px;
+}
+
+.black-text {
+    color: #000000 !important;
+}
+
+.deal .dealshare span {
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+
+.deal .share-sina, .share-kaixin, .share-tencent {
+	display: block;
+	float: left;
+	height: 16px;
+	text-indent: -9999px;
+	width: 16px;
+	margin: 3px 10px 0 0
+}
+
+.deal .share-sina {
+	background: url("img/top_sinaweibo.ico") top left no-repeat
+}
+
+.deal .share-kaixin {
+	background: url("img/top_kaixin.jpg") top left no-repeat
+}
+
+.deal .share-tencent {
+	background: url("img/top_qweibo.jpg") top left no-repeat
+}
+
+.deal .col3 {
+    float: left;
+    text-align: center;
+    width: 200px !important;
+}
+
+.deal .first {
+    border-top: 1px solid #F3F3F3;
+}
+
+.deal .container {
+    border-bottom: 1px solid #F3F3F3;
+    clear: both;
+    float: left;
+    overflow: hidden;
+    padding: 7px 0;
+    width: 100%;
+}
+
+.deal .discount {
+    color: #669900;
+    font-size: 125%;
+    font-weight: 700;
+    line-height: 42px;
+}
+
+.info {
+    color: #669900;
+    float: left;
+    left: 50%;
+    position: relative;
+}
+
+.info li {
+    color: #333333;
+    float: left;
+    font-size: 12px;
+    line-height: 1.1em;
+    margin-right: 15px;
+    position: relative;
+    right: 50%;
+}
+
+.info .last {
+    border: 0 none;
+    margin-right: 0;
+}
+
+.info li span {
+    color: #999999;
+    font-size: 11px;
+}
+
+.deal .time {
+    color: #B04539;
+}
+
+.deal ul.purchased {
+    color: #333333;
+}
+
+.deal .formbutton {
+    float: right;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    margin: 5px 0 !important;
+    padding: 0;
+    width: 100px !important;
+}
+
+.formbutton {
+    -moz-transition: none 0s ease 0s;
+    background: url("img/bg-button.png") repeat-x scroll left top transparent;
+    border: 1px solid #8EB000;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 0 white;
+    color: #FFFFFF !important;
+    cursor: pointer;
+    display: block;
+    font: bold 14px/32px "Helvetica Neue",Helvetica,Arial,sans-serif;
+    height: 34px;
+    padding: 0 12px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+}

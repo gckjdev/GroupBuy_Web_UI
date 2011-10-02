@@ -2,35 +2,71 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
-		style.logo {
-			
-		}
+	style.logo {
 		
-		style.statusDiv {
-			
-		}
+	}
+	
+	style.statusDiv {
 		
-		style.linksDiv {
-			
-		}
-	</ui:style>
+	}
+	
+	style.linksDiv {
+		
+	}
+</ui:style>
 	<g:HTMLPanel>
+	<div class='header'>
 		<div>
-			<div class=''></div>
-			<g:ListBox ui:field='citySelect' visibleItemCount='1' styleName='float-left'/>
+			<h1 class="logo"><a href="index.html">咕噜团购</a></h1>	
 		</div>
+		
+		<div class='city' >
+			<div ></div>
+			<g:ListBox ui:field='citySelect' visibleItemCount='1'
+				styleName='float-left' />
+		</div>
+		
+		<div class="share">
+			<div>
+				<div class='weibotxt'><a href="#" onClick="addfavorite()">添加到收藏夹</a></div>
+				<div class='weibotxt'>在这里关注我们</div>
+				<div class='weiboicon'>
+					<a href="#"><img src="images/sina.png" alt="新浪微博" /></a>
+					<a href="#"><img src="images/qq.png" alt="腾讯微博" /></a>
+				</div>
+				
+				<div class='weibotxt'>分享到</div>
 
-		<div class="float-right">
+<!-- JiaThis Button BEGIN -->
+<div id="ckepop" class='weiboicon'>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_kaixin001"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+				<div class='weibotxt'>
 
-			<div class=''>
-				<g:Anchor href='javascript:;' ui:field='loginLink' >登录</g:Anchor>
-				
-				<g:Anchor href='javascript:;' ui:field='profileLink' ></g:Anchor>
-				
-				<g:Anchor href='javascript:;' ui:field='logoutLink' >退出</g:Anchor>
-				
-				<g:Anchor href='javascript:;' ui:field='registerLink'>注册</g:Anchor>
+					<g:Anchor href='javascript:;' ui:field='loginLink'>登录</g:Anchor>
+
+					<g:Anchor href='javascript:;' ui:field='profileLink'></g:Anchor>
+
+					<g:Anchor href='javascript:;' ui:field='logoutLink'>退出</g:Anchor>
+
+					<g:Anchor href='javascript:;' ui:field='registerLink'>注册</g:Anchor>
+
+				</div>
 			</div>
 		</div>
+		
+		<div class='search'>
+		<form id="searchform" name="searchform" method="post" action="">
+			<input type='text' id='searchkey' class='input'></input>
+			<input type='submit' value='搜索'></input>
+		</form>
+		</div>
+	</div>
 	</g:HTMLPanel>
 </ui:UiBinder>

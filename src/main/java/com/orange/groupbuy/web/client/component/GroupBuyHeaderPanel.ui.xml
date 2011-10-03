@@ -62,10 +62,8 @@
 		</div>
 		
 		<div class='search'>
-		<form id="searchform" name="searchform" method="post" action="">
-			<input type='text' id='searchkey' class='input'></input>
-			<input type='submit' value='搜索'></input>
-		</form>
+			<g:TextBox ui:field = 'searchBox' addStyleNames='input'></g:TextBox>
+			<g:SubmitButton ui:field="searchSubmit" text="搜索"></g:SubmitButton>
 		</div>
 	</div>
 	</g:HTMLPanel>

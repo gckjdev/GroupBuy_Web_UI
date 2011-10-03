@@ -9,12 +9,13 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <link href="css/styles.css" rel="stylesheet" type="text/css" />
-	<!--[if lt IE 9]>
+<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-	<script src="js/jquery.cycle.min.js"></script>
-	<script src="js/fade.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script src="js/jquery.cycle.min.js"></script>
+<script src="js/fade.js"></script>
 <!--                                                               -->
 <!-- Consider inlining CSS to reduce the number of requested files -->
 <!--                                                               -->
@@ -33,16 +34,14 @@
 <!-- If you add any GWT meta tags, they must   -->
 <!-- be added before this line.                -->
 <!--                                           -->
-<script language="javascript" type="text/javascript"
-	src="http://fw.qq.com/ipaddress" charset="gb2312">	
+<script type="text/javascript" src="http://fw.qq.com/ipaddress"
+	charset="gb2312">
 </script>
 <script>
 var autoDetectedCity = IPData[3];
 </script>
-<script   type= "text/javascript ">    
-
+<script type="text/javascript">  
 	function addfavorite () {
-	//var url = 'http:// www.tuan800.com';
 	var url = document.location.href;
 	var title = '咕噜团';
 	if ( document.all ) { 
@@ -68,21 +67,19 @@ var autoDetectedCity = IPData[3];
 	}
 	}
 
-</script>  
+	//header share icon configuration
+	var jiathis_config = {
+			url : "http://itunes.apple.com/cn/app/id456494464?mt=8",
+			title : "咕噜团购，琳琅满目，团你所想，帮你推荐和订阅你想要的团购， 还等什么，试一下！",
+			showClose : true,
+			hideMore : false
+		}
+</script>
+<script type="text/javascript" src="groupbuy_web_ui/groupbuy_web_ui.nocache.js"></script>
 
-<script type="text/javascript" language="javascript"
-	src="groupbuy_web_ui/groupbuy_web_ui.nocache.js""></script>
-	
-<link rel="stylesheet" type="text/css" href="css/yipit.min.css"> 
+<link rel="stylesheet" type="text/css" href="css/yipit.min.css">
 <link rel="stylesheet" type="text/css" href="css/common.css">
 <link rel="stylesheet" type="text/css" href="css/tuan.css">
-<!-- 
-<link rel="stylesheet" type="text/css" href="css/tuan.css">
-<link rel="stylesheet" type="text/css" href="css/base.css">
-<link rel="stylesheet" type="text/css" href="css/tuan_template.css">
-<link rel="stylesheet" type="text/css" href="css/wt.css">
-<link rel="stylesheet" type="text/css" href="css/tuan.css"> 
--->
 </head>
 
 <!--                                           -->
@@ -103,8 +100,19 @@ var autoDetectedCity = IPData[3];
 			application to display correctly.</div>
 	</noscript>
 
-	<!-- v1 -->
-	<!-- 	<div id="container">
+	<!-- JiaThis Button BEGIN -->
+	<script type="text/javascript" src="http://v2.jiathis.com/code/jia.js"
+		charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+
+	<div id="go_lstop" class="uptop">
+		<a onclick="window.scrollTo(0,0);"> <img
+			src="css/img/uptop_cion_blue.png" />
+		</a>
+	</div>
+</body>
+<!-- v1 -->
+<!-- 	<div id="container">
 		<div id="contentContainer" class="center clearfix Dragon_Boat"></div>
 	</div> -->
 </html>

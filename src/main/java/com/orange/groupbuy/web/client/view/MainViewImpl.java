@@ -148,9 +148,4 @@ public class MainViewImpl extends Composite implements MainView {
     public GroupBuyFootPanel getFootPanel() {
         return footPanel;
     }
-
-    @Override
-    public Anchor getRegisterLink() {
-        return headerPanel.getRegisterLink();
-    }
 }

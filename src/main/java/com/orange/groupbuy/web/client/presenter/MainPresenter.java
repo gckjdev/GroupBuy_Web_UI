@@ -41,7 +41,6 @@ import com.orange.groupbuy.web.client.model.Item;
 import com.orange.groupbuy.web.client.model.UserInfo;
 import com.orange.groupbuy.web.client.presenter.MainPresenter.MainView;
 import com.orange.groupbuy.web.client.secure.CookiesUtil;
-import com.orange.groupbuy.web.server.handler.RegisterEmailHandler;
 import com.orange.groupbuy.web.shared.UIConstatns;
 
 public class MainPresenter extends WidgetPresenter<MainView> {
@@ -71,7 +70,6 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 		
 		LoginDialog getLoginDialog();
 
-		Anchor getRegisterLink();
 		RegisterDialog getRegisterDialog();
 	}
 

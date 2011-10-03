@@ -5,12 +5,15 @@ import net.customware.gwt.presenter.client.EventBus;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.PasswordTextBox;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.orange.groupbuy.web.client.event.LoginSuccessEvent;
@@ -33,6 +36,9 @@ public class LoginDialog extends DialogBox {
     
     @UiField
     Button sumbitButton;
+    
+    @UiField
+    Button cancelButton;
     
     public LoginDialog(EventBus eventBus) {
         super(true, true);
@@ -59,7 +65,28 @@ public class LoginDialog extends DialogBox {
             }
 
         });
+        cancelButton.addClickHandler(new ClickHandler(){
+
+			@Override
+			public void onClick(ClickEvent arg0) {
+				hide();
+			}
+        	
+        });
+		addCloseHandler(new CloseHandler<PopupPanel>() {
+
+			@Override
+			public void onClose(CloseEvent<PopupPanel> arg0) {
+				clear();
+			}
+		});
         
+    }
+    
+    @Override
+    public void show() {
+    	super.show();
+        userName.setFocus(true);
     }
     
     public void clear() {

@@ -2,18 +2,18 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:gc="urn:import:com.orange.groupbuy.web.client.component">
 	<!-- styleName='center' -->
-	<g:HTMLPanel  styleName='center'>
-	<g:LayoutPanel height='4150px'>
+	<g:HTMLPanel styleName='center'>
+		<g:LayoutPanel height='4150px'>
 			<g:layer top='5px' height='100px'>
 				<gc:GroupBuyHeaderPanel ui:field='headerPanel' />
 			</g:layer>
-   			<g:layer top='100px' height='4000px'>
-				<gc:GroupBuyTabHeader ui:field='tabHeader'/>
-   			</g:layer>
-   			<g:layer bottom='10px' height='20px'>
-   				<gc:GroupBuyFootPanel ui:field='footPanel' />
-   			</g:layer>
-   </g:LayoutPanel>
+			<g:layer top='100px' height='4000px'>
+				<gc:GroupBuyTabHeader ui:field='tabHeader' />
+			</g:layer>
+			<g:layer bottom='10px' height='20px'>
+				<gc:GroupBuyFootPanel ui:field='footPanel' />
+			</g:layer>
+		</g:LayoutPanel>
 
 	</g:HTMLPanel>
 

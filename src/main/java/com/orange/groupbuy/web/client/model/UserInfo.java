@@ -23,5 +23,10 @@ public class UserInfo implements Result {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+    
+    @Override
+    public String toString() {
+    	return "userId:" + userId + " rtCode:" + rtCode;
+    }
 
 }

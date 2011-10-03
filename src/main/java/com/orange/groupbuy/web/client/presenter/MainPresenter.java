@@ -23,7 +23,6 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
-import com.orange.groupbuy.constant.ErrorCode;
 import com.orange.groupbuy.web.client.SimpleCallback;
 import com.orange.groupbuy.web.client.component.GroupBuyFootPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyHeaderPanel;
@@ -42,6 +41,7 @@ import com.orange.groupbuy.web.client.model.Item;
 import com.orange.groupbuy.web.client.model.UserInfo;
 import com.orange.groupbuy.web.client.presenter.MainPresenter.MainView;
 import com.orange.groupbuy.web.client.secure.CookiesUtil;
+import com.orange.groupbuy.web.shared.ErrorCode;
 import com.orange.groupbuy.web.shared.UIConstatns;
 
 public class MainPresenter extends WidgetPresenter<MainView> {
@@ -152,7 +152,10 @@ public class MainPresenter extends WidgetPresenter<MainView> {
                                     	String errstr = null;
 
                                     	if(userId != null){
-	                                        getDisplay().getRegisterDialog().setTips("<label style=\"color:green\">注册成功，正在登陆....</label>");
+											getDisplay()
+													.getRegisterDialog()
+													.setTips(
+															"<label style=\"color:green\">注册成功，正在登陆....</label>");
 	                                        
 	                                        getDisplay().getRegisterDialog().setVisible(false);
 	                                        LoginSuccessEvent loginEvent = new LoginSuccessEvent();
@@ -162,10 +165,16 @@ public class MainPresenter extends WidgetPresenter<MainView> {
                                     	}else if(errcode != null && errcode.length() > 0){
                                     		int ERR = Integer.parseInt(errcode);
                                     		switch(ERR){
-                                    			case ErrorCode.ERROR_EMAIL_NOT_VALID: errstr = "邮箱格式不正确，请重新输入"; break;
-                                    			case ErrorCode.ERROR_EMAIL_EXIST: errstr = "邮箱已存在，请直接登录"; break;
+											case ErrorCode.ERROR_EMAIL_NOT_VALID:
+												errstr = "邮箱格式不正确，请重新输入";
+												break;
+											case ErrorCode.ERROR_EMAIL_EXIST:
+												errstr = "邮箱已存在，请直接登录";
+												break;
                                     			case ErrorCode.ERROR_CREATE_USER: 
-                                    			default: errstr = "系统创建用户失败，请稍等后重新注册"; break;
+											default:
+												errstr = "系统创建用户失败，请稍等后重新注册";
+												break;
                                     		}
                                     		getDisplay().getRegisterDialog().setTips("<label style=\"color:red\">" + errstr + "</label>");
                                     		return;

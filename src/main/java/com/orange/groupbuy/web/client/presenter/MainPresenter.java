@@ -23,12 +23,16 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
+import com.orange.groupbuy.constant.ErrorCode;
 import com.orange.groupbuy.web.client.SimpleCallback;
 import com.orange.groupbuy.web.client.component.GroupBuyFootPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyHeaderPanel;
 import com.orange.groupbuy.web.client.component.LoginDialog;
+import com.orange.groupbuy.web.client.component.RegisterDialog;
+import com.orange.groupbuy.web.client.component.RegisterDialog.RegisterOKEvent;
 import com.orange.groupbuy.web.client.dispatch.GetCityNames;
 import com.orange.groupbuy.web.client.dispatch.GetUser;
+import com.orange.groupbuy.web.client.dispatch.RegisterEmail;
 import com.orange.groupbuy.web.client.event.CityChangedEvent;
 import com.orange.groupbuy.web.client.event.LoginSuccessEvent;
 import com.orange.groupbuy.web.client.event.LoginSuccessHandler;
@@ -66,6 +70,8 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 		Anchor getRegisterLink();
 		
 		LoginDialog getLoginDialog();
+
+		RegisterDialog getRegisterDialog();
 	}
 
 
@@ -110,6 +116,7 @@ public class MainPresenter extends WidgetPresenter<MainView> {
                                             Window.alert("userInfo null");
 											return;
                                         }
+                                    	Window.alert(result.toString());
                                         String userId = result.getUserId();
                                         if(userId != null && userId.length() > 0) {
 											CookiesUtil.set(UIConstatns.USER_ID,userId);
@@ -126,6 +133,48 @@ public class MainPresenter extends WidgetPresenter<MainView> {
                         
                     }
         }));
+	    registerHandler(eventBus.addHandler(RegisterOKEvent.getType(),
+                new RegisterDialog.RegisterOKEventHandler() {
+
+                    @Override
+                    public void onEvent(final RegisterOKEvent event) {
+//                        final String userName = event.getUserName();
+                        dispatch.execute(new RegisterEmail(event.getUserName(), event.getPassword()), 
+                                new SimpleCallback<UserInfo>() {
+                                    @Override
+                                    public void onSuccess(UserInfo result) {
+                                        if (result == null) {
+                                            Window.alert("userInfo null");
+											return;
+                                        }
+                                    	String userId = result.getUserId();
+                                    	String errcode = result.getRtCode();
+                                    	String errstr = null;
+
+                                    	if(userId != null){
+	                                        getDisplay().getRegisterDialog().setTips("<label style=\"color:green\">注册成功，正在登陆....</label>");
+	                                        
+	                                        getDisplay().getRegisterDialog().setVisible(false);
+	                                        LoginSuccessEvent loginEvent = new LoginSuccessEvent();
+	                                        loginEvent.setUserName(event.getUserName());
+	                                        loginEvent.setPassword(event.getPassword());
+	                                        eventBus.fireEvent(loginEvent);
+                                    	}else if(errcode != null && errcode.length() > 0){
+                                    		int ERR = Integer.parseInt(errcode);
+                                    		switch(ERR){
+                                    			case ErrorCode.ERROR_EMAIL_NOT_VALID: errstr = "邮箱格式不正确，请重新输入"; break;
+                                    			case ErrorCode.ERROR_EMAIL_EXIST: errstr = "邮箱已存在，请直接登录"; break;
+                                    			case ErrorCode.ERROR_CREATE_USER: 
+                                    			default: errstr = "系统创建用户失败，请稍等后重新注册"; break;
+                                    		}
+                                    		getDisplay().getRegisterDialog().setTips("<label style=\"color:red\">" + errstr + "</label>");
+                                    		return;
+                                    	}
+                                    }
+                                });
+                        
+                    }
+        }));
 	    registerHandler(getDisplay().getLoginLink().addClickHandler(new ClickHandler() {
             
             @Override
@@ -136,6 +185,16 @@ public class MainPresenter extends WidgetPresenter<MainView> {
             }
         }));
 	    
+	    registerHandler(getDisplay().getRegisterLink().addClickHandler(new ClickHandler() {
+			
+				@Override
+				public void onClick(ClickEvent event) {
+					RegisterDialog dialog = getDisplay().getRegisterDialog();
+	                dialog.center();
+	                dialog.show();
+				}
+			})
+		);
 	    registerHandler(getDisplay().getLogoutLink().addClickHandler(new ClickHandler() {
             
             @Override

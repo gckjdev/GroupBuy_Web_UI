@@ -17,13 +17,13 @@ public class GroupBuyHeaderPanel extends Composite {
 	Anchor loginLink;
 	
 	@UiField
-    Anchor logoutLink;
+    Anchor logoutLink; 
 	
 	@UiField
 	Anchor profileLink;
 	
 	@UiField
-    Anchor registerLink;
+	Anchor registerLink;
 	
 	private static GroupBuyHeaderPanelUiBinder uiBinder = GWT
 			.create(GroupBuyHeaderPanelUiBinder.class);

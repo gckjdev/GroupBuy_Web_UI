@@ -1,0 +1,19 @@
+.important {
+	font-weight: bold;
+}
+
+.loginPanel {
+	
+}
+
+.loginGrid {
+	margin-top: 30px;
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+.buttonPanel {
+	text-align: center;
+	margin: 30px;
+	margin-top: 10px;
+}

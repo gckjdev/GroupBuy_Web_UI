@@ -10,7 +10,7 @@
 			<g:layer top='130px' bottom="45px">
 				<gc:GroupBuyTabHeader ui:field='tabHeader' />
 			</g:layer>
-			<g:layer bottom='-45px' height='45px'>
+			<g:layer bottom='0px' height='45px'>
 				<gc:GroupBuyFootPanel ui:field='footPanel' />
 			</g:layer>
 		</g:LayoutPanel>

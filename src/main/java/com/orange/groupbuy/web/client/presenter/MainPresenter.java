@@ -140,7 +140,7 @@ public class MainPresenter extends WidgetPresenter<MainView> {
                                             Window.alert("userInfo null");
 											return;
                                         }
-                                    	Window.alert(result.toString());
+//                                    	Window.alert(result.toString());
                                         String userId = result.getUserId();
                                         if(userId != null && userId.length() > 0) {
 											CookiesUtil.set(UIConstatns.USER_ID,userId);

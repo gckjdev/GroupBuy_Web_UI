@@ -207,10 +207,13 @@ public class MainViewImpl extends Composite implements MainView {
 
 	@Override
 	public void setTabHeight(int h) {
-		//157 header
-		//45 tab header
-		//200 footer
+		//130 header
+		//45 footer
+		//35 tab header
+		//30 description
+		//30 tab footer
 		//h data table height
-		mainPanel.setHeight(157 + 45 + 200 + h + "px");
+		mainPanel.setHeight(130 + 80 + 60 + h + "px");
+//		Window.alert("resize " + h);
 	}
 }

@@ -152,4 +152,7 @@ public class GroupBuyWidget extends Widget {
 	public void setRank(String rank) {
 	    rankLabel.setInnerText(rank);
 	}
+	public SpanElement getRankLabel(){
+		return rankLabel;
+	}
 }

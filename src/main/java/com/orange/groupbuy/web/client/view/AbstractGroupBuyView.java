@@ -8,6 +8,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -26,9 +27,9 @@ public abstract class AbstractGroupBuyView extends Composite implements
 		GroupBuyView {
 	protected int height ;
 	private static final int RESULT_WIDGET_IN_ROW = 1;
-	protected static final int DEFAULT_HEIGHT = 700;
+	protected static final int DEFAULT_HEIGHT = 500;
 	
-	private static final int ROW_HEIGHT = 200;
+	private static final int ROW_HEIGHT = 203;
 
 	@UiField
 	GroupBuyNavigationPanel myGroupNavigationPanel;
@@ -138,6 +139,8 @@ public abstract class AbstractGroupBuyView extends Composite implements
 	            if (this.getClass().getName().equals(TopViewImpl.class.getName())) {
 	                int rank = (pageNavigation.getCurrentPage() - 1) * (pageNavigation.getPageSize()) + i + 1;
 	                resultComponent.setRank(String.valueOf(rank));
+	            }else{
+	            	resultComponent.getRankLabel().removeFromParent();
 	            }
 	            
 	            resultRowPanel.add(resultComponent);
@@ -146,9 +149,12 @@ public abstract class AbstractGroupBuyView extends Composite implements
 	        pageNavigation.setCurrentPage(pageNavigation.getCurrentPage());
 	        bottomPageNavigation.setTotalRows(rc);
 	        bottomPageNavigation.setCurrentPage(pageNavigation.getCurrentPage());
-			int row = pageNavigation.getTotalRows() - pageNavigation.getStartRow();
-			row = row > pageNavigation.getPageSize() ? pageNavigation.getPageSize() : row;
+//			int row = pageNavigation.getTotalRows() - pageNavigation.getStartRow();
+//			row = row > pageNavigation.getPageSize() ? pageNavigation.getPageSize() : row;
+//			height = ROW_HEIGHT * row;
+	        int row = (searchResultList.size() + RESULT_WIDGET_IN_ROW -1)/RESULT_WIDGET_IN_ROW ;
 			height = ROW_HEIGHT * row;
+			height = height < DEFAULT_HEIGHT ? DEFAULT_HEIGHT : height;
 		}
         resize();
     }
@@ -178,6 +184,7 @@ public abstract class AbstractGroupBuyView extends Composite implements
 		return searchBox;
 	}
 	public void resize(){
+//		Window.alert("height: " + height/ROW_HEIGHT);
 		this.eventBus.fireEvent(
 				new ResizeMainEvent(height < DEFAULT_HEIGHT ? DEFAULT_HEIGHT : height, getTabIndex()));
 	}

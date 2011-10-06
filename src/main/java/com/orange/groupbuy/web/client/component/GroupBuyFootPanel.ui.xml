@@ -2,16 +2,25 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
-		.important {
-			font-weight: bold;
-		}
+		
 	</ui:style>
 	<g:HTMLPanel>
-	<center>
-		<div>
-			<g:Anchor href='contact.html' target='_blank'>联系我们</g:Anchor>
-			<g:Anchor>Copyright (c)2003-2011 groupbuy.com 版权所有</g:Anchor>
+
+		<div class="footer">
+			<a href="javascript:;" target="_blank">官方博客</a>
+			|
+			<a href="javascript:;" target="_blank">商家推广</a>
+			|
+			<a href="javascript:;" target="_blank">商务合作</a>
+			|
+			<a href="javascript:;" onclick='window.open("contact.html")'>媒体联系</a>
+
+			<br></br>
+			Copyright (c) 2011 柑橙科技
+			<a target="_blank" href="javascript:;">粤ICP备xxxxxxxx号</a>
+			粤ICP证xx-xxxxxxxx
+
 		</div>
-		</center>
 	</g:HTMLPanel>
 </ui:UiBinder> 
+

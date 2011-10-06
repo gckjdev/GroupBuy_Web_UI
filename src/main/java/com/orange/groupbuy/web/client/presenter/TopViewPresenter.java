@@ -25,6 +25,7 @@ import com.orange.groupbuy.web.client.model.PriceItem;
 public class TopViewPresenter extends AbstractGroupBuyPresenter {
 
 	private boolean init = true;
+	private String city;
 
 	public TopViewPresenter(GroupBuyView display, EventBus eventBus) {
 		super(display, eventBus);
@@ -43,8 +44,9 @@ public class TopViewPresenter extends AbstractGroupBuyPresenter {
 		criteria.setStartPrice(item.getMin());
 		criteria.setEndPrice(item.getMax());
 		// city
-		String city = getDisplay().getCitySelect().getValue(
-				getDisplay().getCitySelect().getSelectedIndex());
+//		String city = getDisplay().getCitySelect().getValue(
+//				getDisplay().getCitySelect().getSelectedIndex());
+		
 		criteria.setCity(city);
 		// current page
 		criteria.setPageSize(getDisplay().getPageNavigation().getPageSize());
@@ -112,6 +114,7 @@ public class TopViewPresenter extends AbstractGroupBuyPresenter {
 
 					@Override
 					public void onChanged(CityChangedEvent event) {
+					    TopViewPresenter.this.city = event.getCityName();
 						refreshResult();
 					}
 				}));

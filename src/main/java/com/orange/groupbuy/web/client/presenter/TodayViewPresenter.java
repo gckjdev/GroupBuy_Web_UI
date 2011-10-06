@@ -10,6 +10,8 @@ import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.orange.groupbuy.web.client.SimpleCallback;
 import com.orange.groupbuy.web.client.dispatch.GetGroupBuyCategory;
+import com.orange.groupbuy.web.client.event.CityChangedEvent;
+import com.orange.groupbuy.web.client.event.CityChangedHandler;
 import com.orange.groupbuy.web.client.event.TabHeaderTabChangedEvent;
 import com.orange.groupbuy.web.client.event.TabHeaderTabChangedHandler;
 import com.orange.groupbuy.web.client.model.Criteria;
@@ -21,6 +23,7 @@ import com.orange.groupbuy.web.client.model.PriceItem;
 public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 
 	private boolean init = true;
+	private String city;
 
 	public TodayViewPresenter(GroupBuyView display, EventBus eventBus) {
 		super(display, eventBus);
@@ -38,8 +41,8 @@ public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 		criteria.setStartPrice(item.getMin());
 		criteria.setEndPrice(item.getMax());
 		// city
-		String city = getDisplay().getCitySelect().getValue(
-				getDisplay().getCitySelect().getSelectedIndex());
+//		String city = getDisplay().getCitySelect().getValue(
+//				getDisplay().getCitySelect().getSelectedIndex());
 		criteria.setCity(city);
 		// current page
 		criteria.setPageSize(getDisplay().getPageNavigation().getPageSize());
@@ -89,6 +92,17 @@ public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 								});
 					}
 				}));
+		
+	   registerHandler(eventBus.addHandler(CityChangedEvent.getType(),
+	                new CityChangedHandler() {
+
+	                    @Override
+	                    public void onChanged(CityChangedEvent event) {
+	                        TodayViewPresenter.this.city = event.getCityName();
+	                        refreshResult();
+	                    }
+	                }));
+
 
 		registerHandler(eventBus.addHandler(TabHeaderTabChangedEvent.getType(),
 				new TabHeaderTabChangedHandler() {

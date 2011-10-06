@@ -6,6 +6,8 @@ import com.google.gwt.event.shared.GwtEvent;
 public class CityChangedEvent extends GwtEvent<CityChangedHandler> {
 
 	private static Type<CityChangedHandler> TYPE;
+	
+	 private String cityName;
 
 	public static Type<CityChangedHandler> getType() {
 		return TYPE != null ? TYPE: (TYPE = new Type<CityChangedHandler>());
@@ -21,4 +23,12 @@ public class CityChangedEvent extends GwtEvent<CityChangedHandler> {
 		handler.onChanged(this);
 	}
 
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+	
 }

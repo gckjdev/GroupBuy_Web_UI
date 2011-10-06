@@ -37,7 +37,7 @@ public abstract class AbstractGroupBuyView extends Composite implements
 	@UiField
 	PageListWidget bottomPageNavigation;
 
-	private ListBox citySelect;
+	private final ListBox citySelect;
 
 	public AbstractGroupBuyView(EventBus eventBus, ListBox citySelect) {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -83,10 +83,10 @@ public abstract class AbstractGroupBuyView extends Composite implements
 		}
 	}
 
-	@Override
-	public ListBox getCitySelect() {
-		return citySelect;
-	}
+//	@Override
+//	public ListBox getCitySelect() {
+//		return citySelect;
+//	}
 
 	@Override
 	public PageListWidget getPageNavigation() {

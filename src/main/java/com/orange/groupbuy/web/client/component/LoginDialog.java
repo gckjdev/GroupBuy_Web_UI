@@ -62,6 +62,7 @@ public class LoginDialog extends DialogBox {
         
     }
     
+    @Override
     public void clear() {
         userName.setText("");
         password.setText("");

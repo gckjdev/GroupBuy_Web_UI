@@ -9,7 +9,6 @@ import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.widget.WidgetDisplay;
 import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 
-import com.google.gwt.user.client.ui.ListBox;
 import com.orange.groupbuy.web.client.component.GroupBuyNavigationPanel;
 import com.orange.groupbuy.web.client.component.PageListWidget;
 import com.orange.groupbuy.web.client.http.HttpClient;
@@ -34,7 +33,7 @@ public abstract class AbstractGroupBuyPresenter extends
 
 		void updateModel(List<SearchResult> searchResultList);
 
-		ListBox getCitySelect();
+//		ListBox getCitySelect();
 
 		PageListWidget getPageNavigation();
 		
@@ -43,9 +42,9 @@ public abstract class AbstractGroupBuyPresenter extends
 
 	protected void refreshResult(Criteria criteria) {
 
-		String city = getDisplay().getCitySelect().getValue(
-				getDisplay().getCitySelect().getSelectedIndex());
-		criteria.setCity(city);
+//		String city = getDisplay().getCitySelect().getValue(
+//				getDisplay().getCitySelect().getSelectedIndex());
+//		criteria.setCity(city);
 
 		HttpClient.searchGroupBuyHandler(criteria, new Callback() {
 

@@ -18,7 +18,6 @@ import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
-import com.orange.groupbuy.constant.ErrorCode;
 import com.orange.groupbuy.web.client.SimpleCallback;
 import com.orange.groupbuy.web.client.component.CityWidget;
 import com.orange.groupbuy.web.client.component.GroupBuyFootPanel;
@@ -36,6 +35,7 @@ import com.orange.groupbuy.web.client.event.TabHeaderTabChangedEvent;
 import com.orange.groupbuy.web.client.model.UserInfo;
 import com.orange.groupbuy.web.client.presenter.MainPresenter.MainView;
 import com.orange.groupbuy.web.client.secure.CookiesUtil;
+import com.orange.groupbuy.web.shared.ErrorCode;
 import com.orange.groupbuy.web.shared.UIConstatns;
 
 public class MainPresenter extends WidgetPresenter<MainView> {

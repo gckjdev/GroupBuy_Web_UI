@@ -43,6 +43,7 @@ public class GroupBuy_Web_UI implements EntryPoint {
 		presenter.bind();
 		RootPanel.get().add(presenter.getDisplay().asWidget());
 		// RootLayoutPanel.get().add(presenter.getDisplay().asWidget());
+		// RootLayoutPanel.get().setHeight("5000px");
 	}
 
 	@SuppressWarnings("unused")

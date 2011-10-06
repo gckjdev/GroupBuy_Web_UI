@@ -18,6 +18,7 @@ import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
+import com.orange.groupbuy.constant.ErrorCode;
 import com.orange.groupbuy.web.client.SimpleCallback;
 import com.orange.groupbuy.web.client.component.CityWidget;
 import com.orange.groupbuy.web.client.component.GroupBuyFootPanel;
@@ -124,6 +125,7 @@ public class MainPresenter extends WidgetPresenter<MainView> {
                                             Window.alert("userInfo null");
 											return;
                                         }
+                                    	Window.alert(result.toString());
                                         String userId = result.getUserId();
                                         if(userId != null && userId.length() > 0) {
 											CookiesUtil.set(UIConstatns.USER_ID,userId);
@@ -145,7 +147,6 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 
                     @Override
                     public void onEvent(final RegisterOKEvent event) {
-                        final String userName = event.getUserName();
                         dispatch.execute(new RegisterEmail(event.getUserName(), event.getPassword()), 
                                 new SimpleCallback<UserInfo>() {
                                     @Override
@@ -154,13 +155,38 @@ public class MainPresenter extends WidgetPresenter<MainView> {
                                             Window.alert("userInfo null");
 											return;
                                         }
-                                        getDisplay().getRegisterDialog().setTips("<label style=\"color:green\">注册成功，正在登陆....</label>");
-                                        
-                                        getDisplay().getRegisterDialog().setVisible(false);
-                                        LoginSuccessEvent loginEvent = new LoginSuccessEvent();
-                                        loginEvent.setUserName(event.getUserName());
-                                        loginEvent.setPassword(event.getPassword());
-                                        eventBus.fireEvent(loginEvent);
+                                    	String userId = result.getUserId();
+                                    	String errcode = result.getRtCode();
+                                    	String errstr = null;
+
+                                    	if(userId != null){
+											getDisplay()
+													.getRegisterDialog()
+													.setTips(
+															"<label style=\"color:green\">注册成功，正在登陆....</label>");
+	                                        
+	                                        getDisplay().getRegisterDialog().setVisible(false);
+	                                        LoginSuccessEvent loginEvent = new LoginSuccessEvent();
+	                                        loginEvent.setUserName(event.getUserName());
+	                                        loginEvent.setPassword(event.getPassword());
+	                                        eventBus.fireEvent(loginEvent);
+                                    	}else if(errcode != null && errcode.length() > 0){
+                                    		int ERR = Integer.parseInt(errcode);
+                                    		switch(ERR){
+											case ErrorCode.ERROR_EMAIL_NOT_VALID:
+												errstr = "邮箱格式不正确，请重新输入";
+												break;
+											case ErrorCode.ERROR_EMAIL_EXIST:
+												errstr = "邮箱已存在，请直接登录";
+												break;
+                                    			case ErrorCode.ERROR_CREATE_USER: 
+											default:
+												errstr = "系统创建用户失败，请稍等后重新注册";
+												break;
+                                    		}
+                                    		getDisplay().getRegisterDialog().setTips("<label style=\"color:red\">" + errstr + "</label>");
+                                    		return;
+                                    	}
                                     }
                                 });
                         
@@ -234,6 +260,7 @@ public class MainPresenter extends WidgetPresenter<MainView> {
             }
         }));
 	            
+	        //have replaced the city select box with citywidget
 //		registerHandler(getDisplay().getCitySelect().addAttachHandler(
 //				new Handler() {
 //
@@ -256,8 +283,17 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 //										}
 //										// init the city
 //										initDefaultCitySelect();
+//
+//										// // init execute query
+//										eventBus.fireEvent(new CityChangedEvent());
+//										// TODO: work around for IE
+//										getDisplay().getTabHeader()
+//												.selectTab(1);
+//										getDisplay().getTabHeader()
+//												.selectTab(0);
 //									}
 //								});
+//
 //					}
 //				}));
 //

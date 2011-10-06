@@ -5,6 +5,8 @@ import net.customware.gwt.presenter.client.EventBus;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -13,6 +15,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.InlineHTML;
 import com.google.gwt.user.client.ui.PasswordTextBox;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.orange.groupbuy.web.shared.FieldVerifier;
@@ -47,8 +50,7 @@ public class RegisterDialog extends DialogBox {
 		setAnimationEnabled(true);
 		setGlassEnabled(true);
 		this.eventBus = eventBus;
-		setWidget(uiBinder.createAndBindUi(this));
-		
+		setWidget(uiBinder.createAndBindUi(this));		
 		registerButton.addClickHandler(new ClickHandler() {
 			
 			@Override
@@ -57,11 +59,11 @@ public class RegisterDialog extends DialogBox {
 				String psw = password.getText();
 				String pswAgain = passwordAgain.getText();
 				if(!FieldVerifier.isValidName(name)){
-					tips.setHTML("<label style=\"color:red\">用户名长度必须大于6</label>");
+					setTips("<label style=\"color:red\">用户名长度必须大于6</label>");
 					return;
 				}
 				if(psw == null || psw.length()==0 || !psw.equals(pswAgain)){
-					tips.setHTML("<label style=\"color:red\">密码输入不正确</label>");
+					setTips("<label style=\"color:red\">密码输入不正确</label>");
 					return;
 				}
 				RegisterOKEvent registOKEvent = new RegisterOKEvent();
@@ -71,11 +73,18 @@ public class RegisterDialog extends DialogBox {
 			}
 		});
 		
-		cancelRegistButton.addClickHandler(new ClickHandler() {
-			
+		cancelRegistButton.addClickHandler(new ClickHandler() {			
 			@Override
 			public void onClick(ClickEvent arg0) {
 				setVisible(false);
+			}
+		});
+		
+		addCloseHandler(new CloseHandler<PopupPanel>() {
+			
+			@Override
+			public void onClose(CloseEvent<PopupPanel> arg0) {
+				clear();
 			}
 		});
 	}
@@ -83,6 +92,21 @@ public class RegisterDialog extends DialogBox {
 	public void setTips(String html){
 		tips.setHTML(html);
 	}
+	
+
+    @Override
+    public void show() {
+    	super.show();
+        userName.setFocus(true);
+    }
+    
+    @Override
+    public void clear() {
+    	userName.setText("");
+        password.setText("");
+        passwordAgain.setText("");
+		setTips("");
+    } 
 	
 	public static class RegisterOKEvent extends GwtEvent<RegisterOKEventHandler>{
 

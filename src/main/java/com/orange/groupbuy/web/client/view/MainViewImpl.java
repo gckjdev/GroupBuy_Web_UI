@@ -41,7 +41,6 @@ public class MainViewImpl extends Composite implements MainView {
 	
 	public MainViewImpl(EventBus eventBus, DispatchAsync dispatchAsync) {
 		initWidget(uiBinder.createAndBindUi(this));
-
 		// my group buy
 		// initMyGroupView(eventBus, dispatchAsync);
 

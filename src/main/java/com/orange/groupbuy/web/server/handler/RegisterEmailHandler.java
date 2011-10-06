@@ -40,8 +40,10 @@ public class RegisterEmailHandler  implements ActionHandler<RegisterEmail, UserI
 	                user = jsonToResult(result);
 					// save in session
 					SessionUtil.get().setAttribute(user.getUserId(), user);
+	            }else{
+	            	user = new UserInfo();
+	    	        user.setRtCode(getString(dataObject, ServiceConstant.RET_CODE));
 	            }
-
 	        } catch (Exception e) {
 	            log.error(e.getMessage(), e);
 	        }

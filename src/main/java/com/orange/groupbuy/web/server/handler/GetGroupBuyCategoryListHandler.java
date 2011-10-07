@@ -30,7 +30,7 @@ public class GetGroupBuyCategoryListHandler implements
 	public ItemList execute(GetGroupBuyCategory action, ExecutionContext context)
 			throws DispatchException {
 		String apiServerUrl = ProxyUtil.getSearchGroupBuyUrl();
-		String requestUrl = apiServerUrl + "m=gac&app=GROUPBUYWEB";
+		String requestUrl = apiServerUrl + "m=gac&app=GROUPBUYWEB&ci=" + action.getCity();
 		ArrayList<Item> category = new ArrayList<Item>();
 		try {
 			InputStream inputStream = ProxyUtil.getResponse(requestUrl);

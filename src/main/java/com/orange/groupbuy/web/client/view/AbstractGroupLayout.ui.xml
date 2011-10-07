@@ -10,6 +10,9 @@
 			</g:layer>
    			<g:layer left='230px' width='730px' >
 				<g:LayoutPanel>
+					<g:layer left='270px' top='10px' height='20px'  width='200px'>
+						<g:Label ui:field="description"></g:Label>
+					</g:layer>
 					<g:layer left='560px' top='10px' height='20px'  width='200px'>
 						<gc:PageListWidget ui:field='pageNavigation'>
 						</gc:PageListWidget>

@@ -28,11 +28,11 @@ import com.orange.groupbuy.web.client.presenter.v1.GroupBuyResultViewPresenter;
 public class GruopBuySearchViewImpl extends Composite implements
 		GroupBuySearchView {
 
-	private GroupBuySearchHeader header;
-	private CheckBox onlyTodayCheckBox;
-	private TabLayoutPanel categoryTabPanel;
-	private Map<String, TabLayoutPanel> orderTypeTabPanelList;
-	private Map<String, PageListWidget> pageListWidgetList;
+	private final GroupBuySearchHeader header;
+	private final CheckBox onlyTodayCheckBox;
+	private final TabLayoutPanel categoryTabPanel;
+	private final Map<String, TabLayoutPanel> orderTypeTabPanelList;
+	private final Map<String, PageListWidget> pageListWidgetList;
 	private GroupBuyResultView keywordSearchPanel;
 	private PageListWidget keywordPageList;
 	private HorizontalPanel categoryAllPanel;

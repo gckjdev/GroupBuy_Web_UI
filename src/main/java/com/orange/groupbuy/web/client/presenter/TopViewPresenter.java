@@ -26,7 +26,6 @@ public class TopViewPresenter extends AbstractGroupBuyPresenter {
 
 	private boolean init = true;
 	private String city;
-
 	public TopViewPresenter(GroupBuyView display, EventBus eventBus) {
 		super(display, eventBus);
 	}
@@ -52,6 +51,17 @@ public class TopViewPresenter extends AbstractGroupBuyPresenter {
 		criteria.setPageSize(getDisplay().getPageNavigation().getPageSize());
 		criteria.setStartRow(getDisplay().getPageNavigation().getStartRow());
 		refreshResult(criteria);
+
+		//refresh description
+		categoryList = this.getDisplay().getNavigationPanel().getSelectedCategoryNameList();
+		StringBuilder description = new StringBuilder();
+
+		for (int i=0;i<categoryList.size();i++) {
+		    description.append(categoryList.get(i) +" ");
+		}
+		
+		description.append(item.getMin() + "-" + item.getMax());
+		getDisplay().getDescription().setText(description.toString());
 	}
 
 	@Override
@@ -92,8 +102,10 @@ public class TopViewPresenter extends AbstractGroupBuyPresenter {
 
 						getDisplay().getNavigationPanel().getMyGroupBox()
 								.removeFromParent();
-
-						dispatchAsync.execute(new GetGroupBuyCategory(),
+						
+                        GetGroupBuyCategory category = new GetGroupBuyCategory();
+                        category.setCity(city);
+						dispatchAsync.execute(category,
 								new SimpleCallback<ItemList>() {
 
 									@Override

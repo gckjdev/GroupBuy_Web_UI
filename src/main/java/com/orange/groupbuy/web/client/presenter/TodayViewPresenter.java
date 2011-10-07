@@ -77,7 +77,10 @@ public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 								.removeFromParent();
 						getDisplay().getNavigationPanel().getPriceBox()
 								.removeFromParent();
-						dispatchAsync.execute(new GetGroupBuyCategory(),
+						
+						GetGroupBuyCategory category = new GetGroupBuyCategory();
+                        category.setCity(city);
+						dispatchAsync.execute(category,
 								new SimpleCallback<ItemList>() {
 
 									@Override

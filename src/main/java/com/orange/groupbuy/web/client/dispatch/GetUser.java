@@ -1,8 +1,8 @@
 package com.orange.groupbuy.web.client.dispatch;
 
-import com.orange.groupbuy.web.client.model.UserInfo;
-
 import net.customware.gwt.dispatch.shared.Action;
+
+import com.orange.groupbuy.web.client.model.UserInfo;
 
 public class GetUser implements Action<UserInfo> {
 

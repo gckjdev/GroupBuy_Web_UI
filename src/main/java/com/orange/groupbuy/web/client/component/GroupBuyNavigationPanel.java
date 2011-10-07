@@ -158,6 +158,19 @@ public class GroupBuyNavigationPanel extends Composite {
 		// }
 		return categoryList;
 	}
+	
+	public ArrayList<String> getSelectedCategoryNameList() {
+        @SuppressWarnings({ "unchecked", "rawtypes" })
+        SingleSelectionModel<Item> myGroupSelected = (SingleSelectionModel) this
+                .getCategroyBox().getContentCellTable().getSelectionModel();
+        ArrayList<String> categoryList = new ArrayList<String>();
+        Item item = myGroupSelected.getSelectedObject();
+        if (item != null) {
+            int end = item.getDisplayName().lastIndexOf("(");
+            categoryList.add(item.getDisplayName().substring(0, end));
+        }
+        return categoryList;
+    }
 
 	public PriceItem getSelectedPrice() {
 		@SuppressWarnings({ "unchecked", "rawtypes" })

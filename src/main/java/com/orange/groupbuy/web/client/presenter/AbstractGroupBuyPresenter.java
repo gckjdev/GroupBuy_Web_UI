@@ -9,6 +9,7 @@ import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.widget.WidgetDisplay;
 import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 
+import com.google.gwt.user.client.ui.Label;
 import com.orange.groupbuy.web.client.component.GroupBuyNavigationPanel;
 import com.orange.groupbuy.web.client.component.PageListWidget;
 import com.orange.groupbuy.web.client.http.HttpClient;
@@ -41,6 +42,8 @@ public abstract class AbstractGroupBuyPresenter extends
 		
 		PageListWidget getBottomPageNavigation();
 
+        Label getDescription();
+        
 	}
 
 	protected void refreshResult(Criteria criteria) {

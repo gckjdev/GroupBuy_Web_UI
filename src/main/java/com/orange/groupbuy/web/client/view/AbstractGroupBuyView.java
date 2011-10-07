@@ -36,6 +36,9 @@ public abstract class AbstractGroupBuyView extends Composite implements
 
 	@UiField
 	PageListWidget bottomPageNavigation;
+	
+	@UiField
+	Label description;
 
 	private final ListBox citySelect;
 
@@ -130,4 +133,9 @@ public abstract class AbstractGroupBuyView extends Composite implements
 	public PageListWidget getBottomPageNavigation() {
 		return bottomPageNavigation;
 	}
+
+	@Override
+    public Label getDescription() {
+        return description;
+    }
 }

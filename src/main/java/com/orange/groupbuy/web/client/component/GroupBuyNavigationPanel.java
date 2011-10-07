@@ -72,6 +72,9 @@ public class GroupBuyNavigationPanel extends Composite {
 		}
 
 		categoryCellTable.setRowData(0, priceList);
+		//default set : "10元以上"
+		categoryCellTable.getSelectionModel().setSelected(priceList.get(1), true);
+		
 	}
 
 	private CellTable<Item> initMultipleSelection(String name,

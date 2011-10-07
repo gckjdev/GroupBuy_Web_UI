@@ -63,7 +63,7 @@ public class PageListWidget extends Composite {
         }
          
         setDescription("第" + String.valueOf(getStartRow() + 1) + " - "
-                + String.valueOf(endRow) + "(共" + totalRows +")项");
+                + String.valueOf(endRow) + "(共" + totalRows +"项)");
 
 	}
 

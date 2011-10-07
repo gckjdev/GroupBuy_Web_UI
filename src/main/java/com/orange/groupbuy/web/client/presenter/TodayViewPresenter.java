@@ -1,5 +1,7 @@
 package com.orange.groupbuy.web.client.presenter;
 
+import java.util.ArrayList;
+
 import net.customware.gwt.presenter.client.EventBus;
 
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -35,6 +37,10 @@ public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 
 		// today
 		criteria.setOnlyToday(true);
+		
+		ArrayList<String> categoryList = getDisplay().getNavigationPanel()
+                .getSelectedCategoryList();
+        criteria.setCategoryList(categoryList);
 
 		PriceItem item = getDisplay().getNavigationPanel().getSelectedPrice();
 		// price
@@ -48,6 +54,17 @@ public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 		criteria.setPageSize(getDisplay().getPageNavigation().getPageSize());
 		criteria.setStartRow(getDisplay().getPageNavigation().getStartRow());
 		refreshResult(criteria);
+		
+		//refresh description bar
+        categoryList = this.getDisplay().getNavigationPanel().getSelectedCategoryNameList();
+        StringBuilder description = new StringBuilder();
+
+        for (int i=0;i<categoryList.size();i++) {
+            description.append(categoryList.get(i) +" ");
+        }
+        
+        description.append(item.getMin() + "-" + item.getMax());
+        getDisplay().getDescription().setText(description.toString());
 	}
 
 	@Override
@@ -78,9 +95,7 @@ public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 						getDisplay().getNavigationPanel().getPriceBox()
 								.removeFromParent();
 						
-						GetGroupBuyCategory category = new GetGroupBuyCategory();
-                        category.setCity(city);
-						dispatchAsync.execute(category,
+						dispatchAsync.execute(new GetGroupBuyCategory(city),
 								new SimpleCallback<ItemList>() {
 
 									@Override
@@ -103,6 +118,20 @@ public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 	                    public void onChanged(CityChangedEvent event) {
 	                        TodayViewPresenter.this.city = event.getCityName();
 	                        refreshResult();
+	                        
+	                        dispatchAsync.execute(new GetGroupBuyCategory(city),
+	                                new SimpleCallback<ItemList>() {
+
+	                                    @Override
+	                                    public void onSuccess(ItemList result) {
+	                                        final CellTable<Item> categorySelection = getDisplay()
+	                                                .getNavigationPanel()
+	                                                .getCategroyBox()
+	                                                .getContentCellTable();
+	                                        categorySelection.setRowData(0,
+	                                                result.getItems());
+	                                    }
+	                                });
 	                    }
 	                }));
 

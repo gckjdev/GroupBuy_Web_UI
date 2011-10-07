@@ -52,7 +52,7 @@ public class TopViewPresenter extends AbstractGroupBuyPresenter {
 		criteria.setStartRow(getDisplay().getPageNavigation().getStartRow());
 		refreshResult(criteria);
 
-		//refresh description
+		//refresh description bar
 		categoryList = this.getDisplay().getNavigationPanel().getSelectedCategoryNameList();
 		StringBuilder description = new StringBuilder();
 
@@ -103,9 +103,7 @@ public class TopViewPresenter extends AbstractGroupBuyPresenter {
 						getDisplay().getNavigationPanel().getMyGroupBox()
 								.removeFromParent();
 						
-                        GetGroupBuyCategory category = new GetGroupBuyCategory();
-                        category.setCity(city);
-						dispatchAsync.execute(category,
+						dispatchAsync.execute(new GetGroupBuyCategory(city),
 								new SimpleCallback<ItemList>() {
 
 									@Override
@@ -128,6 +126,20 @@ public class TopViewPresenter extends AbstractGroupBuyPresenter {
 					public void onChanged(CityChangedEvent event) {
 					    TopViewPresenter.this.city = event.getCityName();
 						refreshResult();
+						
+						dispatchAsync.execute(new GetGroupBuyCategory(city),
+                                new SimpleCallback<ItemList>() {
+
+                                    @Override
+                                    public void onSuccess(ItemList result) {
+                                        final CellTable<Item> categorySelection = getDisplay()
+                                                .getNavigationPanel()
+                                                .getCategroyBox()
+                                                .getContentCellTable();
+                                        categorySelection.setRowData(0,
+                                                result.getItems());
+                                    }
+                                });
 					}
 				}));
 

@@ -46,6 +46,12 @@ public class GroupBuyKeywordResultViewPresenter extends
 											List<SearchResult> resultList) {
 										getDisplay().updateModel(resultList);
 									}
+
+                                    @Override
+                                    public void updateModel(List<SearchResult> resultList, int rc) {
+                                        // TODO Auto-generated method stub
+                                        
+                                    }
 								});
 					}
 

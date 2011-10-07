@@ -10,7 +10,7 @@
 			</g:layer>
    			<g:layer left='230px' width='730px' >
 				<g:LayoutPanel>
-					<g:layer left='570px' top='10px' height='20px'  width='130px'>
+					<g:layer left='560px' top='10px' height='20px'  width='200px'>
 						<gc:PageListWidget ui:field='pageNavigation'>
 						</gc:PageListWidget>
 					</g:layer>
@@ -18,7 +18,7 @@
 						<g:FlowPanel ui:field='searchResultPanel' styleName='searchResultPanel'>
 						</g:FlowPanel>
 					</g:layer>
-					<g:layer left='570px' bottom ='10px' height='20px' width='130px'>
+					<g:layer left='560px' bottom ='10px' height='20px' width='200px'>
 						<gc:PageListWidget ui:field='bottomPageNavigation'>
 						</gc:PageListWidget>
 					</g:layer>

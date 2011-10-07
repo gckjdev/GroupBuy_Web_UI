@@ -3,6 +3,7 @@ package com.orange.groupbuy.web.client.http;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.http.client.Request;
@@ -25,11 +26,14 @@ import com.orange.groupbuy.web.client.model.SearchResult;
 import com.orange.groupbuy.web.shared.ServiceConstant;
 
 public class HttpClient {
+    
+    public static final Logger log = Logger.getLogger(HttpClient.class.getName());
 
 	private static String SEARCH_GROUP_BUY_URL_TEMPLATE = "search.proxy?&app=GROUPBUYWEB";
 
 	public static interface Callback {
 		void updateModel(List<SearchResult> resultList);
+		void updateModel(List<SearchResult> resultList, int rc);
 	}
 
 	public static void searchGroupBuyHandler(final Criteria criteria,
@@ -55,7 +59,7 @@ public class HttpClient {
 
 							JSONArray resultList = null;
 							JSONObject dataObject = jsonValue.isObject();
-							JSONObject count = null;
+							JSONNumber count = null;
 							if (dataObject != null) {
 //								JSONValue arrayValue = dataObject.get("dat");
 //								if (arrayValue != null) {
@@ -70,18 +74,22 @@ public class HttpClient {
                                         if (listValue != null) {
                                             resultList = listValue.isArray();
                                         }
-                                        count = listObject.get("rc").isObject();
+                                        count = listObject.get("rc").isNumber();
                                     }
                                 }
 							    
 							}
 
 							List<SearchResult> searchResultList = new ArrayList<SearchResult>();
+							int rc = 0;
 							if (resultList != null) {
 								searchResultList = jsonToResultList(resultList);
 							}
-
-							callback.updateModel(searchResultList);
+							if (count != null) {
+							    rc = Integer.valueOf(count.toString()).intValue();
+							}
+							    
+							callback.updateModel(searchResultList, rc);
 
 						} catch (JSONException exception) {
 							GWT.log("Exception parseStrict", exception);
@@ -166,7 +174,7 @@ public class HttpClient {
 		if (criteria.getEndPrice() != null) {
 			sb.append("&ep=").append(criteria.getEndPrice());
 		}
-System.out.println(sb.toString());
+		log.info("Post request: " + sb.toString());
 		return sb.toString();
 	}
 

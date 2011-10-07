@@ -42,6 +42,7 @@ public class MyGroupPresenter extends WidgetPresenter<MyGroupView> {
 		void updateModel(List<SearchResult> searchResultList);
 
 		ListBox getCitySelect();
+
 	}
 
 	public MyGroupPresenter(MyGroupView display, EventBus eventBus) {
@@ -132,6 +133,11 @@ public class MyGroupPresenter extends WidgetPresenter<MyGroupView> {
 			public void updateModel(List<SearchResult> resultList) {
 				getDisplay().updateModel(resultList);
 			}
+
+            @Override
+            public void updateModel(List<SearchResult> resultList, int rc) {
+//                getDisplay().updateModel(resultList, rc);
+            }
 		});
 	}
 	@Override

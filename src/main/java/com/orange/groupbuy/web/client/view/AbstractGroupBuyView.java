@@ -82,6 +82,39 @@ public abstract class AbstractGroupBuyView extends Composite implements
 			resultRowPanel.add(resultComponent);
 		}
 	}
+	
+	@Override
+    public void updateModel(List<SearchResult> searchResultList, int rc) {
+        searchResultPanel.clear();
+        HorizontalPanel resultRowPanel = null;
+        if (searchResultList.isEmpty()) {
+            searchResultPanel.add(new Label("暂时没有此类团购"));
+            getPageNavigation().setVisible(false);
+            getBottomPageNavigation().setVisible(false);
+            return;
+        }
+        
+        getPageNavigation().setVisible(true);
+        getBottomPageNavigation().setVisible(true);
+
+        for (int i = 0; i < searchResultList.size(); i++) {
+            SearchResult result = searchResultList.get(i);
+            if (i % RESULT_WIDGET_IN_ROW == 0) {
+                resultRowPanel = new HorizontalPanel();
+                searchResultPanel.add(resultRowPanel);
+            }
+            GroupBuyWidget resultComponent = new GroupBuyWidget();
+            resultRowPanel.setSpacing(10);
+            resultComponent.updateModel(result);
+            resultRowPanel.add(resultComponent);
+        }
+        
+        pageNavigation.setTotalRows(rc);
+        pageNavigation.setCurrentPage(pageNavigation.getCurrentPage());
+        bottomPageNavigation.setTotalRows(rc);
+        bottomPageNavigation.setCurrentPage(pageNavigation.getCurrentPage());
+
+    }
 
 //	@Override
 //	public ListBox getCitySelect() {

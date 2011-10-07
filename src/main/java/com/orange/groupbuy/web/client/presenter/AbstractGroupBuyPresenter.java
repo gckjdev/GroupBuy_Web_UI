@@ -33,11 +33,14 @@ public abstract class AbstractGroupBuyPresenter extends
 
 		void updateModel(List<SearchResult> searchResultList);
 
+		void updateModel(List<SearchResult> resultList, int rc);
+		
 //		ListBox getCitySelect();
 
 		PageListWidget getPageNavigation();
 		
 		PageListWidget getBottomPageNavigation();
+
 	}
 
 	protected void refreshResult(Criteria criteria) {
@@ -52,6 +55,12 @@ public abstract class AbstractGroupBuyPresenter extends
 			public void updateModel(List<SearchResult> resultList) {
 				getDisplay().updateModel(resultList);
 			}
+
+            @Override
+            public void updateModel(List<SearchResult> resultList, int rc) {
+                getDisplay().updateModel(resultList, rc);
+                
+            }
 		});
 	}
 

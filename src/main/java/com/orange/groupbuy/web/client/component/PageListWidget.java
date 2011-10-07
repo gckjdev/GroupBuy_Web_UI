@@ -29,9 +29,13 @@ public class PageListWidget extends Composite {
 
 	private int currentPage = 1;
 	
+	private int totalPages;
+	
+	private int totalRows;
+	
 	public PageListWidget() {
 		initWidget(uiBinder.createAndBindUi(this));
-		setCurrentPage(1);
+//		setCurrentPage(1);
 	}
 
 	public int getCurrentPage() {
@@ -39,9 +43,28 @@ public class PageListWidget extends Composite {
 	}
 
 	public void setCurrentPage(int page) {
-		currentPage = page;
-		setDescription("第" + String.valueOf(getStartRow() + 1) + " - "
-				+ String.valueOf(getStartRow() + pageSize) + "项");
+        currentPage = page;
+        int endRow = getStartRow() + pageSize;
+        
+        if (currentPage == 1) {
+            getPreviousPage().setVisible(false);
+            if (totalRows < pageSize) {
+                endRow = totalRows;
+            }
+        } else {
+            getPreviousPage().setVisible(true);
+        }
+        
+        if (currentPage >= totalPages) {
+            getNextPage().setVisible(false);
+            endRow = totalRows;
+        } else {
+            getNextPage().setVisible(true);
+        }
+         
+        setDescription("第" + String.valueOf(getStartRow() + 1) + " - "
+                + String.valueOf(endRow) + "(共" + totalRows +")项");
+
 	}
 
 	public int nextPage() {
@@ -82,5 +105,28 @@ public class PageListWidget extends Composite {
 	public int getPageSize() {
 		return pageSize;
 	}
+
+    public int getTotalPages() {
+        return totalPages;
+    }
+
+    public void setTotalPages(int totalPage) {
+        this.totalPages = totalPage;
+    }
+
+    public int getTotalRows() {
+        return totalRows;
+    }
+
+    public void setTotalRows(int totalRows) {
+        this.totalRows = totalRows;
+        this.totalPages = totalRows / pageSize;
+        int mod = totalRows % pageSize;
+        if (mod > 0) {
+            totalPages++;
+        }
+//        System.out.println("tp:" + totalPages);
+        
+    }
 
 }

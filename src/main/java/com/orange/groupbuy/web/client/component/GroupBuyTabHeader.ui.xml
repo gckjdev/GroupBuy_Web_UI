@@ -28,6 +28,12 @@
 		</g:tab>
 		<g:tab>
 			<g:customHeader>
+				<g:Label>团购搜索</g:Label>
+			</g:customHeader>
+			<g:LayoutPanel ui:field='searchView' />
+		</g:tab>
+		<g:tab>
+			<g:customHeader>
 				<g:Label>IPhone</g:Label>
 			</g:customHeader>
 			<g:HTMLPanel ui:field='iphoneView'>

@@ -20,8 +20,8 @@ import com.orange.groupbuy.web.client.view.v1.GroupBuyResultView;
 public class GroupBuyResultViewPresenter extends
 		WidgetPresenter<GroupBuyResultView> {
 
-	private Category category;
-	private OrderType orderType;
+	private final Category category;
+	private final OrderType orderType;
 
 	public GroupBuyResultViewPresenter(GroupBuyResultView display,
 			EventBus eventBus, Category category,
@@ -58,6 +58,12 @@ public class GroupBuyResultViewPresenter extends
 											getDisplay()
 													.updateModel(resultList);
 										}
+
+                                        @Override
+                                        public void updateModel(List<SearchResult> resultList, int rc) {
+                                            // TODO Auto-generated method stub
+                                            
+                                        }
 									});
 
 							// TODO:

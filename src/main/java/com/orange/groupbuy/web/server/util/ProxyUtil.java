@@ -27,6 +27,7 @@ public class ProxyUtil {
 		HttpURLConnection connection = (HttpURLConnection) serverAddress
 				.openConnection();
 		connection.setRequestMethod("GET");
+//		connection.setRequestProperty("Accept-Encoding","gzip, deflate");  
 		connection.connect();
 
 		InputStream inputStream = connection.getInputStream();

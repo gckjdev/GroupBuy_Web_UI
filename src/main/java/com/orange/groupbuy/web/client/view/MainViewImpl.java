@@ -9,9 +9,9 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.orange.groupbuy.web.client.component.CityWidget;
 import com.orange.groupbuy.web.client.component.GroupBuyFootPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyHeaderPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyTabHeader;
@@ -37,6 +37,8 @@ public class MainViewImpl extends Composite implements MainView {
 	
 	RegisterDialog registerDialog;
 	
+	CityWidget cityWidget;
+	
 	public MainViewImpl(EventBus eventBus, DispatchAsync dispatchAsync) {
 		initWidget(uiBinder.createAndBindUi(this));
 		// my group buy
@@ -52,13 +54,16 @@ public class MainViewImpl extends Composite implements MainView {
 		
 		registerDialog = new RegisterDialog(eventBus);
 		
+		cityWidget = new CityWidget(eventBus);
+		cityWidget.setVisible(false);
+		
 		getProfileLink().setVisible(false);
 		getLogoutLink().setVisible(false);
-
+		
 	}
 
 	private void initTodayView(EventBus eventBus) {
-		GroupBuyView todayView = new TodayViewImpl(eventBus, getCitySelect());
+		GroupBuyView todayView = new TodayViewImpl(eventBus,null);
 		TodayViewPresenter todayViewPresenter = new TodayViewPresenter(
 				todayView, eventBus);
 		todayViewPresenter.bind();
@@ -67,7 +72,7 @@ public class MainViewImpl extends Composite implements MainView {
 	}
 
 	private void initTopView(EventBus eventBus) {
-		GroupBuyView topView = new TopViewImpl(eventBus, getCitySelect());
+		GroupBuyView topView = new TopViewImpl(eventBus, null);
 		TopViewPresenter topViewPresenter = new TopViewPresenter(topView,
 				eventBus);
 		topViewPresenter.bind();
@@ -108,10 +113,10 @@ public class MainViewImpl extends Composite implements MainView {
 		return headerPanel;
 	}
 
-	@Override
-	public ListBox getCitySelect() {
-		return headerPanel.getCitySelect();
-	}
+//	@Override
+//	public ListBox getCitySelect() {
+//		return headerPanel.getCitySelect();
+//	}
 
     @Override
     public Anchor getLoginLink() {
@@ -147,4 +152,15 @@ public class MainViewImpl extends Composite implements MainView {
     public GroupBuyFootPanel getFootPanel() {
         return footPanel;
     }
+    
+    @Override
+    public CityWidget getCityWidget() {
+        return cityWidget;
+    }
+
+    @Override
+    public Anchor getCityLink() {
+        return headerPanel.getCityLink();
+    }
+    
 }

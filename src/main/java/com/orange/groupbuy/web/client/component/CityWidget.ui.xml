@@ -1,0 +1,140 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		<div class="guides">
+			<div id="city-panel" class="city-list Fix">
+				<dl>
+					<dt>华北东北:</dt>
+					<dd>
+						<ul id='bbb' class="Fix">
+							<li>
+								<g:Anchor ui:field='beijing'>北京</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor ui:field='tianjin'>天津</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor ui:field='shenyang'>沈阳</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor ui:field='dalian'>大连</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor ui:field='changchun'>长春</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor ui:field='haerbin'>哈尔滨</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor ui:field='shijiazhuang'>石家庄</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor ui:field='taiyuan'>太原</g:Anchor>
+							</li>
+							
+						</ul>
+					</dd>
+				</dl>
+				<dl>
+					<dt>华东地区:</dt>
+					<dd>
+						<ul class="Fix">
+							<li>
+								<g:Anchor  href='javascript:;' ui:field="shanghai">上海</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor  href='javascript:;' ui:field="hangzhou">杭州</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor  href='javascript:;' ui:field="nanjing">南京</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor  href='javascript:;' ui:field="suzhou">苏州</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor  href='javascript:;' ui:field="wuxi">无锡</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor  href='javascript:;' ui:field="changzhou">常州</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor  href='javascript:;' ui:field="jinan">济南</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor  href='javascript:;' ui:field="xiamen">厦门</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor  href='javascript:;' ui:field="ningbo">宁波</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor  href='javascript:;' ui:field="fuzhou">福州</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor  href='javascript:;' ui:field="qingdao">青岛</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor  href='javascript:;' ui:field="hefei">合肥</g:Anchor>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+				<dl>
+					<dt>中部西部:</dt>
+					<dd>
+						<ul class="Fix">
+							<li class="current">
+								<g:Anchor href='javascript:;' ui:field="wuhan">武汉</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor href='javascript:;' ui:field="zhengzhou">郑州</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor href='javascript:;' ui:field="changsha">长沙</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor href='javascript:;' ui:field="nanchang">南昌</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor href='javascript:;' ui:field="chengdu">成都</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor href='javascript:;' ui:field="chongqing">重庆</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor href='javascript:;' ui:field="xian">西安</g:Anchor>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+				<dl class="last">
+					<dt>华南地区:</dt>
+					<dd>
+						<ul class="Fix">
+							<li>
+								<g:Anchor ui:field="guangzhou">广州</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor ui:field="shenzhen">深圳</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor ui:field="dongguan">东莞</g:Anchor>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+				<!-- <div class="other">
+					<a href="/subscribe/future">更多城市</a>
+				</div> -->
+			</div>
+		</div>
+
+
+
+	</g:HTMLPanel>
+</ui:UiBinder> 

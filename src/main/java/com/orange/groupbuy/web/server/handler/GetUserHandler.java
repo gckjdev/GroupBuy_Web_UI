@@ -19,7 +19,7 @@ import com.orange.groupbuy.web.shared.ServiceConstant;
 
 public class GetUserHandler implements ActionHandler<GetUser, UserInfo> {
 
-    private Logger log = Logger.getLogger(GetUserHandler.class.getName());
+    private final Logger log = Logger.getLogger(GetUserHandler.class.getName());
 
     @Override
     public UserInfo execute(GetUser action, ExecutionContext context) throws DispatchException {

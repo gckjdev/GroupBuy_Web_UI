@@ -23,22 +23,20 @@ import com.orange.groupbuy.web.shared.ServiceConstant;
 public class GetGroupBuyCategoryListHandler implements
 		ActionHandler<GetGroupBuyCategory, ItemList> {
 
-	private Logger log = Logger.getLogger(GetGroupBuyCategoryListHandler.class
+	private final Logger log = Logger.getLogger(GetGroupBuyCategoryListHandler.class
 			.getName());
 
 	@Override
 	public ItemList execute(GetGroupBuyCategory action, ExecutionContext context)
 			throws DispatchException {
 		String apiServerUrl = ProxyUtil.getSearchGroupBuyUrl();
-		String requestUrl = apiServerUrl + "m=gac&app=GROUPBUYWEB";
-
+		String requestUrl = apiServerUrl + "m=gac&app=GROUPBUYWEB&ci=" + action.getCity();
 		ArrayList<Item> category = new ArrayList<Item>();
 		try {
 			InputStream inputStream = ProxyUtil.getResponse(requestUrl);
 
 			StringWriter sw = new StringWriter();
 			copyLarge(inputStream, sw);
-
 			JSONObject dataObject = JSONObject.fromObject(sw.toString());
 			JSONArray resultList = dataObject.getJSONArray("dat");
 

@@ -36,8 +36,11 @@ public abstract class AbstractGroupBuyView extends Composite implements
 
 	@UiField
 	PageListWidget bottomPageNavigation;
+	
+	@UiField
+	Label description;
 
-	private ListBox citySelect;
+	private final ListBox citySelect;
 
 	public AbstractGroupBuyView(EventBus eventBus, ListBox citySelect) {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -82,11 +85,51 @@ public abstract class AbstractGroupBuyView extends Composite implements
 			resultRowPanel.add(resultComponent);
 		}
 	}
-
+	
 	@Override
-	public ListBox getCitySelect() {
-		return citySelect;
-	}
+    public void updateModel(List<SearchResult> searchResultList, int rc) {
+        searchResultPanel.clear();
+        HorizontalPanel resultRowPanel = null;
+        if (searchResultList.isEmpty()) {
+            searchResultPanel.add(new Label("暂时没有此类团购"));
+            getPageNavigation().setVisible(false);
+            getBottomPageNavigation().setVisible(false);
+            return;
+        }
+        
+        getPageNavigation().setVisible(true);
+        getBottomPageNavigation().setVisible(true);
+
+        for (int i = 0; i < searchResultList.size(); i++) {
+            SearchResult result = searchResultList.get(i);
+            if (i % RESULT_WIDGET_IN_ROW == 0) {
+                resultRowPanel = new HorizontalPanel();
+                searchResultPanel.add(resultRowPanel);
+            }
+            GroupBuyWidget resultComponent = new GroupBuyWidget();
+            resultRowPanel.setSpacing(10);
+            resultComponent.updateModel(result);
+            
+            //Show top rank for TopView
+            if (this.getClass().getName().equals(TopViewImpl.class.getName())) {
+                int rank = (pageNavigation.getCurrentPage() - 1) * (pageNavigation.getPageSize()) + i + 1;
+                resultComponent.setRank(String.valueOf(rank));
+            }
+            
+            resultRowPanel.add(resultComponent);
+        }
+        
+        pageNavigation.setTotalRows(rc);
+        pageNavigation.setCurrentPage(pageNavigation.getCurrentPage());
+        bottomPageNavigation.setTotalRows(rc);
+        bottomPageNavigation.setCurrentPage(pageNavigation.getCurrentPage());
+
+    }
+
+//	@Override
+//	public ListBox getCitySelect() {
+//		return citySelect;
+//	}
 
 	@Override
 	public PageListWidget getPageNavigation() {
@@ -97,4 +140,9 @@ public abstract class AbstractGroupBuyView extends Composite implements
 	public PageListWidget getBottomPageNavigation() {
 		return bottomPageNavigation;
 	}
+
+	@Override
+    public Label getDescription() {
+        return description;
+    }
 }

@@ -1,7 +1,5 @@
 package com.orange.groupbuy.web.client.presenter;
 
-import java.util.ArrayList;
-
 import net.customware.gwt.dispatch.client.DefaultExceptionHandler;
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.dispatch.client.secure.CookieSecureSessionAccessor;
@@ -11,8 +9,6 @@ import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.widget.WidgetDisplay;
 import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 
-import com.google.gwt.event.dom.client.ChangeEvent;
-import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.AttachEvent;
@@ -21,23 +17,21 @@ import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.orange.groupbuy.web.client.SimpleCallback;
+import com.orange.groupbuy.web.client.component.CityWidget;
 import com.orange.groupbuy.web.client.component.GroupBuyFootPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyHeaderPanel;
 import com.orange.groupbuy.web.client.component.LoginDialog;
 import com.orange.groupbuy.web.client.component.RegisterDialog;
 import com.orange.groupbuy.web.client.component.RegisterDialog.RegisterOKEvent;
-import com.orange.groupbuy.web.client.dispatch.GetCityNames;
 import com.orange.groupbuy.web.client.dispatch.GetUser;
 import com.orange.groupbuy.web.client.dispatch.RegisterEmail;
 import com.orange.groupbuy.web.client.event.CityChangedEvent;
+import com.orange.groupbuy.web.client.event.CityChangedHandler;
 import com.orange.groupbuy.web.client.event.LoginSuccessEvent;
 import com.orange.groupbuy.web.client.event.LoginSuccessHandler;
 import com.orange.groupbuy.web.client.event.TabHeaderTabChangedEvent;
-import com.orange.groupbuy.web.client.model.CityNames;
-import com.orange.groupbuy.web.client.model.Item;
 import com.orange.groupbuy.web.client.model.UserInfo;
 import com.orange.groupbuy.web.client.presenter.MainPresenter.MainView;
 import com.orange.groupbuy.web.client.secure.CookiesUtil;
@@ -59,7 +53,7 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 		
 		GroupBuyFootPanel getFootPanel();
 
-		ListBox getCitySelect();
+//		ListBox getCitySelect();
 		
 		Anchor getLoginLink();
 		
@@ -67,11 +61,16 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 		
 		Anchor getProfileLink();
 		
+		Anchor getCityLink();
+		
 		Anchor getRegisterLink();
 		
 		LoginDialog getLoginDialog();
 
 		RegisterDialog getRegisterDialog();
+		
+		CityWidget getCityWidget();
+		
 	}
 
 
@@ -101,6 +100,17 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 	@Override
 	protected void onBind() {
 	    loadCookies();
+	    
+	    registerHandler(eventBus.addHandler(CityChangedEvent.getType(),
+                new CityChangedHandler() {
+
+                    @Override
+                    public void onChanged(CityChangedEvent event) {
+                        getDisplay().getCityWidget().hide();
+                        getDisplay().getCityWidget().setVisible(false);
+                        getDisplay().getCityLink().setText(event.getCityName());
+                    }
+                }));
 	    
 	    registerHandler(eventBus.addHandler(LoginSuccessEvent.getType(),
                 new LoginSuccessHandler() {
@@ -138,7 +148,6 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 
                     @Override
                     public void onEvent(final RegisterOKEvent event) {
-//                        final String userName = event.getUserName();
                         dispatch.execute(new RegisterEmail(event.getUserName(), event.getPassword()), 
                                 new SimpleCallback<UserInfo>() {
                                     @Override
@@ -184,6 +193,39 @@ public class MainPresenter extends WidgetPresenter<MainView> {
                         
                     }
         }));
+	    
+        registerHandler(getDisplay().getCityLink().addAttachHandler(new Handler() {
+
+            @Override
+            public void onAttachOrDetach(AttachEvent arg0) {
+                String autoCity = getAutoDetectedCity();
+                if (autoCity != null && !autoCity.isEmpty()) {
+                    String city = autoCity.substring(0,autoCity.length()-1);
+                    getDisplay().getCityLink().setText(city);
+                    CityChangedEvent event = new CityChangedEvent();
+                    event.setCityName(city);
+                    eventBus.fireEvent(event);
+                }
+            }
+
+        }));
+  
+	    registerHandler(getDisplay().getCityLink().addClickHandler(new ClickHandler() {
+            
+            @Override
+            public void onClick(ClickEvent event) {
+                CityWidget cityWidget = getDisplay().getCityWidget();
+                if(cityWidget.isVisible()) {
+                    cityWidget.setVisible(false);
+                    cityWidget.hide();
+                }
+                else {
+                    cityWidget.setVisible(true);
+                    cityWidget.show();
+                }
+            }
+        }));
+	    
 	    registerHandler(getDisplay().getLoginLink().addClickHandler(new ClickHandler() {
             
             @Override
@@ -219,50 +261,51 @@ public class MainPresenter extends WidgetPresenter<MainView> {
             }
         }));
 	            
-		registerHandler(getDisplay().getCitySelect().addAttachHandler(
-				new Handler() {
-
-					@Override
-					public void onAttachOrDetach(AttachEvent event) {
-						dispatch.execute(new GetCityNames(),
-								new SimpleCallback<CityNames>() {
-
-									@Override
-									public void onSuccess(CityNames result) {
-										ArrayList<Item> cityList = result
-												.getCityList();
-										getDisplay().getCitySelect().clear();
-										for (Item city : cityList) {
-											getDisplay()
-													.getCitySelect()
-													.addItem(
-															city.getDisplayName(),
-															city.getValue());
-										}
-										// init the city
-										initDefaultCitySelect();
-
-										// // init execute query
-										eventBus.fireEvent(new CityChangedEvent());
-										// TODO: work around for IE
-										getDisplay().getTabHeader()
-												.selectTab(1);
-										getDisplay().getTabHeader()
-												.selectTab(0);
-									}
-								});
-
-					}
-				}));
-
-		registerHandler(getDisplay().getCitySelect().addChangeHandler(
-				new ChangeHandler() {
-
-					@Override
-					public void onChange(ChangeEvent event) {
-						eventBus.fireEvent(new CityChangedEvent());
-					}
-				}));
+	        //have replaced the city select box with citywidget
+//		registerHandler(getDisplay().getCitySelect().addAttachHandler(
+//				new Handler() {
+//
+//					@Override
+//					public void onAttachOrDetach(AttachEvent event) {
+//						dispatch.execute(new GetCityNames(),
+//								new SimpleCallback<CityNames>() {
+//
+//									@Override
+//									public void onSuccess(CityNames result) {
+//										ArrayList<Item> cityList = result
+//												.getCityList();
+//										getDisplay().getCitySelect().clear();
+//										for (Item city : cityList) {
+//											getDisplay()
+//													.getCitySelect()
+//													.addItem(
+//															city.getDisplayName(),
+//															city.getValue());
+//										}
+//										// init the city
+//										initDefaultCitySelect();
+//
+//										// // init execute query
+//										eventBus.fireEvent(new CityChangedEvent());
+//										// TODO: work around for IE
+//										getDisplay().getTabHeader()
+//												.selectTab(1);
+//										getDisplay().getTabHeader()
+//												.selectTab(0);
+//									}
+//								});
+//
+//					}
+//				}));
+//
+//		registerHandler(getDisplay().getCitySelect().addChangeHandler(
+//				new ChangeHandler() {
+//
+//					@Override
+//					public void onChange(ChangeEvent event) {
+//						eventBus.fireEvent(new CityChangedEvent());
+//					}
+//				}));
 
 		registerHandler(getDisplay().getTabHeader().addSelectionHandler(
 				new SelectionHandler<Integer>() {
@@ -287,31 +330,31 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 		return $wnd.autoDetectedCity;
 	}-*/;
 
-	private void initDefaultCitySelect() {
-		String autoCity = getAutoDetectedCity();
-		if (autoCity != null && !autoCity.isEmpty()) {
-			int selectedIndex = getSelectedIndex(autoCity);
-			if (selectedIndex != -1) {
-				getDisplay().getCitySelect().setSelectedIndex(selectedIndex);
-			}
-		}
-	}
-
-	private int getSelectedIndex(String autoCity) {
-		int selectedIndex = -1;
-		int count = getDisplay().getCitySelect().getItemCount();
-		for (int index = 0; index < count; index++) {
-			String value = getDisplay().getCitySelect().getValue(index);
-			if (!value.isEmpty()) {
-				// TODO: some bug here.
-				if (autoCity.contains(value)) {
-					selectedIndex = index;
-					break;
-				}
-			}
-		}
-		return selectedIndex;
-	}
+//	private void initDefaultCitySelect() {
+//		String autoCity = getAutoDetectedCity();
+//		if (autoCity != null && !autoCity.isEmpty()) {
+//			int selectedIndex = getSelectedIndex(autoCity);
+//			if (selectedIndex != -1) {
+//				getDisplay().getCitySelect().setSelectedIndex(selectedIndex);
+//			}
+//		}
+//	}
+//
+//	private int getSelectedIndex(String autoCity) {
+//		int selectedIndex = -1;
+//		int count = getDisplay().getCitySelect().getItemCount();
+//		for (int index = 0; index < count; index++) {
+//			String value = getDisplay().getCitySelect().getValue(index);
+//			if (!value.isEmpty()) {
+//				// TODO: some bug here.
+//				if (autoCity.contains(value)) {
+//					selectedIndex = index;
+//					break;
+//				}
+//			}
+//		}
+//		return selectedIndex;
+//	}
 
 	@Override
 	protected void onUnbind() {

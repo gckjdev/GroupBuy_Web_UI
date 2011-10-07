@@ -5,13 +5,12 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
 public class GroupBuyHeaderPanel extends Composite {
 
-	@UiField
-	ListBox citySelect;
+//	@UiField
+//	ListBox citySelect;
 
 	@UiField
 	Anchor loginLink;
@@ -25,6 +24,9 @@ public class GroupBuyHeaderPanel extends Composite {
 	@UiField
 	Anchor registerLink;
 	
+	@UiField
+    Anchor cityLink;
+	
 	private static GroupBuyHeaderPanelUiBinder uiBinder = GWT
 			.create(GroupBuyHeaderPanelUiBinder.class);
 
@@ -36,9 +38,9 @@ public class GroupBuyHeaderPanel extends Composite {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
-	public ListBox getCitySelect() {
-		return citySelect;
-	}
+//	public ListBox getCitySelect() {
+//		return citySelect;
+//	}
 
     public Anchor getLoginLink() {
         return loginLink;
@@ -54,6 +56,10 @@ public class GroupBuyHeaderPanel extends Composite {
     
     public Anchor getRegisterLink() {
         return registerLink;
+    }
+
+    public Anchor getCityLink() {
+        return cityLink;
     }
 
 }

@@ -25,7 +25,7 @@ import com.orange.groupbuy.web.client.model.PriceItem;
 public class TopViewPresenter extends AbstractGroupBuyPresenter {
 
 	private boolean init = true;
-
+	private String city;
 	public TopViewPresenter(GroupBuyView display, EventBus eventBus) {
 		super(display, eventBus);
 	}
@@ -43,13 +43,25 @@ public class TopViewPresenter extends AbstractGroupBuyPresenter {
 		criteria.setStartPrice(item.getMin());
 		criteria.setEndPrice(item.getMax());
 		// city
-		String city = getDisplay().getCitySelect().getValue(
-				getDisplay().getCitySelect().getSelectedIndex());
+//		String city = getDisplay().getCitySelect().getValue(
+//				getDisplay().getCitySelect().getSelectedIndex());
+		
 		criteria.setCity(city);
 		// current page
 		criteria.setPageSize(getDisplay().getPageNavigation().getPageSize());
 		criteria.setStartRow(getDisplay().getPageNavigation().getStartRow());
 		refreshResult(criteria);
+
+		//refresh description bar
+		categoryList = this.getDisplay().getNavigationPanel().getSelectedCategoryNameList();
+		StringBuilder description = new StringBuilder();
+
+		for (int i=0;i<categoryList.size();i++) {
+		    description.append(categoryList.get(i) +" ");
+		}
+		
+		description.append(item.getMin() + "-" + item.getMax());
+		getDisplay().getDescription().setText(description.toString());
 	}
 
 	@Override
@@ -90,8 +102,8 @@ public class TopViewPresenter extends AbstractGroupBuyPresenter {
 
 						getDisplay().getNavigationPanel().getMyGroupBox()
 								.removeFromParent();
-
-						dispatchAsync.execute(new GetGroupBuyCategory(),
+						
+						dispatchAsync.execute(new GetGroupBuyCategory(city),
 								new SimpleCallback<ItemList>() {
 
 									@Override
@@ -112,7 +124,22 @@ public class TopViewPresenter extends AbstractGroupBuyPresenter {
 
 					@Override
 					public void onChanged(CityChangedEvent event) {
+					    TopViewPresenter.this.city = event.getCityName();
 						refreshResult();
+						
+						dispatchAsync.execute(new GetGroupBuyCategory(city),
+                                new SimpleCallback<ItemList>() {
+
+                                    @Override
+                                    public void onSuccess(ItemList result) {
+                                        final CellTable<Item> categorySelection = getDisplay()
+                                                .getNavigationPanel()
+                                                .getCategroyBox()
+                                                .getContentCellTable();
+                                        categorySelection.setRowData(0,
+                                                result.getItems());
+                                    }
+                                });
 					}
 				}));
 

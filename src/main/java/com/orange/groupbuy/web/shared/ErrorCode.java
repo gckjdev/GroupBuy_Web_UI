@@ -152,35 +152,5 @@ public class ErrorCode extends CommonErrorCode {
 	public static final int ERROR_CREATE_THUNMB_FILEPATH 	= 90007;
 	public static final int ERROR_CREATE_THUNMB_FILE 		= 90008;
     public static final int ERROR_GENERAL_EXCEPTION         = 90009;
-
-
-
-
-
-
-    
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
-	static public String getJSONByErrorCode(int errorCode){
-		return String.format("{\"%s\":%d}", ServiceConstant.RET_CODE, errorCode);		
-	}
+	
 }

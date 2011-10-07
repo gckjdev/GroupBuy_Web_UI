@@ -2,6 +2,13 @@
     margin: 0 0 20px !important;
 }
 
+.deal .rank {
+	float:left;
+	margin-right: 10px !important;
+    padding-top:50px;
+    padding-right:5px;
+}
+
 .deal .col1 {
     float: left;
     margin-right: 10px !important;

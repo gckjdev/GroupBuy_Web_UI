@@ -4,6 +4,10 @@
 
 	<div class="deal">
 
+		<div class="rank" >
+			<span ui:field="rankLabel"></span>
+		</div>
+		
 		<div class="col1">
 			<a target="_blank" ui:field='imageAnchor'>
 				<img ui:field='image' width="165" class="image" />

@@ -27,6 +27,9 @@ public class GroupBuyWidget extends Widget {
 	interface GroupBuyWidgetUiBinder extends
 			UiBinder<DivElement, GroupBuyWidget> {
 	}
+	
+	@UiField
+    SpanElement rankLabel;
 
 	@UiField
 	AnchorElement siteNameLabel;
@@ -144,5 +147,9 @@ public class GroupBuyWidget extends Widget {
 
 	private String formatMoney(Double result) {
 		return "￥" + String.valueOf(result);
+	}
+	
+	public void setRank(String rank) {
+	    rankLabel.setInnerText(rank);
 	}
 }

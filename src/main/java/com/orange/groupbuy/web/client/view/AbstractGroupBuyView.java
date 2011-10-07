@@ -109,6 +109,13 @@ public abstract class AbstractGroupBuyView extends Composite implements
             GroupBuyWidget resultComponent = new GroupBuyWidget();
             resultRowPanel.setSpacing(10);
             resultComponent.updateModel(result);
+            
+            //Show top rank for TopView
+            if (this.getClass().getName().equals(TopViewImpl.class.getName())) {
+                int rank = (pageNavigation.getCurrentPage() - 1) * (pageNavigation.getPageSize()) + i + 1;
+                resultComponent.setRank(String.valueOf(rank));
+            }
+            
             resultRowPanel.add(resultComponent);
         }
         

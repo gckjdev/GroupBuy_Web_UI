@@ -107,6 +107,7 @@ public class MainPresenter extends WidgetPresenter<MainView> {
                     @Override
                     public void onChanged(CityChangedEvent event) {
                         getDisplay().getCityWidget().hide();
+                        getDisplay().getCityWidget().setVisible(false);
                         getDisplay().getCityLink().setText(event.getCityName());
                     }
                 }));

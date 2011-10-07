@@ -55,11 +55,25 @@ public class HttpClient {
 
 							JSONArray resultList = null;
 							JSONObject dataObject = jsonValue.isObject();
+							JSONObject count = null;
 							if (dataObject != null) {
-								JSONValue arrayValue = dataObject.get("dat");
-								if (arrayValue != null) {
-									resultList = arrayValue.isArray();
-								}
+//								JSONValue arrayValue = dataObject.get("dat");
+//								if (arrayValue != null) {
+//									resultList = arrayValue.isArray();
+//								}
+							    
+							    JSONValue arrayValue = dataObject.get("dat");
+                                if (arrayValue != null) {
+                                    JSONObject listObject = arrayValue.isObject();
+                                    if (listObject != null) {
+                                        JSONValue listValue = listObject.get("lt");
+                                        if (listValue != null) {
+                                            resultList = listValue.isArray();
+                                        }
+                                        count = listObject.get("rc").isObject();
+                                    }
+                                }
+							    
 							}
 
 							List<SearchResult> searchResultList = new ArrayList<SearchResult>();
@@ -135,7 +149,7 @@ public class HttpClient {
 		sb.append("&to=").append(onlyToday);
 		sb.append("&sb=").append(orderValue);
 		sb.append("&ci=").append(city);
-
+		sb.append("&rc=1");
 		if (keyword != null) {
 			sb.append("&kw=").append(keyword);
 		}
@@ -152,7 +166,7 @@ public class HttpClient {
 		if (criteria.getEndPrice() != null) {
 			sb.append("&ep=").append(criteria.getEndPrice());
 		}
-
+System.out.println(sb.toString());
 		return sb.toString();
 	}
 

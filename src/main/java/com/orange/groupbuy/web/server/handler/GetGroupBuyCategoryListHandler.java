@@ -31,14 +31,12 @@ public class GetGroupBuyCategoryListHandler implements
 			throws DispatchException {
 		String apiServerUrl = ProxyUtil.getSearchGroupBuyUrl();
 		String requestUrl = apiServerUrl + "m=gac&app=GROUPBUYWEB";
-System.out.println(requestUrl);
 		ArrayList<Item> category = new ArrayList<Item>();
 		try {
 			InputStream inputStream = ProxyUtil.getResponse(requestUrl);
 
 			StringWriter sw = new StringWriter();
 			copyLarge(inputStream, sw);
-
 			JSONObject dataObject = JSONObject.fromObject(sw.toString());
 			JSONArray resultList = dataObject.getJSONArray("dat");
 

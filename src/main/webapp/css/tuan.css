@@ -166,7 +166,6 @@ a img {
 .input {
 	border: 1px solid #006;
 	width: 300px;
-<<<<<<< HEAD
 	height: 20px;
 }
 
@@ -175,7 +174,7 @@ a img {
 	color: #666666;
 	font-size: 12px;
 	padding-top: 5px;
-	text-align:left;
+	text-align:center;
 	padding-left: 15px
 }
 
@@ -186,7 +185,5 @@ a img {
 
 .footera, a:visited, a:hover {
     color: #666666;
-=======
 	height:20px;
->>>>>>> origin/master
 }

@@ -44,14 +44,6 @@ public class MainViewImpl extends Composite implements MainView {
 	
 	public MainViewImpl(EventBus eventBus, DispatchAsync dispatchAsync) {
 		initWidget(uiBinder.createAndBindUi(this));
-		// my group buy
-		// initMyGroupView(eventBus, dispatchAsync);
-
-		// top view
-		initTopView(eventBus);
-
-		// today
-		initTodayView(eventBus);
 		
 		loginDialog = new LoginDialog(eventBus);
 		
@@ -63,8 +55,19 @@ public class MainViewImpl extends Composite implements MainView {
 		getProfileLink().setVisible(false);
 		getLogoutLink().setVisible(false);
 		
+		// my group buy
+        // initMyGroupView(eventBus, dispatchAsync);
+
+        // top view
+        initTopView(eventBus);
+
+        // today
+        initTodayView(eventBus);
+        
 		// search
 		initSearchView(eventBus);
+		
+		
 	}
 
 

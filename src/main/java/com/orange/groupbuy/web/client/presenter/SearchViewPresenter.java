@@ -53,6 +53,15 @@ public class SearchViewPresenter extends AbstractGroupBuyPresenter {
 
 					@Override
 					public void onAttachOrDetach(AttachEvent event) {
+					    
+					    //init city
+					    String autoCity = getAutoDetectedCity();
+					    String city = "";
+		                if (autoCity != null && !autoCity.isEmpty()) {
+		                     city = autoCity.substring(0,autoCity.length()-1);
+		                }
+		                getDisplay().getCitySelect().setCity(city);
+					    
 						// register call back;
 						getDisplay()
 								.getNavigationPanel()
@@ -94,8 +103,7 @@ public class SearchViewPresenter extends AbstractGroupBuyPresenter {
 
 					@Override
 					public void onChanged(TabHeaderTabChangedEvent event) {
-						if (init
-								&& validSearchText()) {
+						if (validSearchText()) {
 							refreshResult();
 							init = false;
 						}
@@ -107,7 +115,7 @@ public class SearchViewPresenter extends AbstractGroupBuyPresenter {
 
 					@Override
 					public void onRefresh(KeywordSearchEvent keywordSearchEvent) {
-						if (init && validSearchText()) {
+						if (validSearchText()) {
 							refreshResult();
 							init = false;
 						}
@@ -169,4 +177,9 @@ public class SearchViewPresenter extends AbstractGroupBuyPresenter {
 		return getDisplay().getSearchBox().getValue() != null && !getDisplay()
 				.getSearchBox().getValue().isEmpty();
 	}
+	
+    private native String getAutoDetectedCity()/*-{
+		return $wnd.autoDetectedCity;
+    }-*/;
+
 }

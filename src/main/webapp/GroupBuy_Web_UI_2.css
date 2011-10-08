@@ -16,20 +16,3 @@ h1 {
 .dialogVPanel {
 	margin: 2px;
 }
-a img {
-	border: none
-}
-
-.weibotxt {
-	float: left;
-	display: inline;
-	margin-top: 2px;
-	margin-left: 5px;
-}
-
-.weiboicon {
-	float: left;
-	display: inline;
-	margin-top:2px;
-	margin-left: 5px;
-}

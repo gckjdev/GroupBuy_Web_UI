@@ -1,5 +1,7 @@
 package com.orange.groupbuy.web.client.presenter;
 
+import java.util.ArrayList;
+
 import net.customware.gwt.presenter.client.EventBus;
 
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -8,8 +10,11 @@ import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.event.logical.shared.AttachEvent.Handler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.view.client.SelectionChangeEvent;
+import com.google.gwt.view.client.SingleSelectionModel;
 import com.orange.groupbuy.web.client.SimpleCallback;
 import com.orange.groupbuy.web.client.dispatch.GetGroupBuyCategory;
+import com.orange.groupbuy.web.client.event.CityChangedEvent;
+import com.orange.groupbuy.web.client.event.CityChangedHandler;
 import com.orange.groupbuy.web.client.event.TabHeaderTabChangedEvent;
 import com.orange.groupbuy.web.client.event.TabHeaderTabChangedHandler;
 import com.orange.groupbuy.web.client.event.v1.KeywordSearchEvent;
@@ -33,6 +38,10 @@ public class SearchViewPresenter extends AbstractGroupBuyPresenter {
 		}
 		Criteria criteria = new Criteria();
 		criteria.setOperationType(OperationType.KEYWORD_SEARCH);
+		
+		ArrayList<String> categoryList = getDisplay().getNavigationPanel()
+                .getSelectedCategoryList();
+        criteria.setCategoryList(categoryList);
 
 		criteria.setKeyword(getDisplay().getSearchBox().getValue());
 
@@ -44,23 +53,21 @@ public class SearchViewPresenter extends AbstractGroupBuyPresenter {
 		criteria.setPageSize(getDisplay().getPageNavigation().getPageSize());
 		criteria.setStartRow(getDisplay().getPageNavigation().getStartRow());
 		refreshResult(criteria);
+		
+		StringBuilder description = new StringBuilder();
+        description.append("团购搜索结果");
+        getDisplay().getDescription().setText(description.toString());
 	}
 
 	@Override
 	protected void onBind() {
+	    super.onBind();
+	    
 		registerHandler(getDisplay().getNavigationPanel().addAttachHandler(
 				new Handler() {
 
 					@Override
 					public void onAttachOrDetach(AttachEvent event) {
-					    
-					    //init city
-					    String autoCity = getAutoDetectedCity();
-					    String city = "";
-		                if (autoCity != null && !autoCity.isEmpty()) {
-		                     city = autoCity.substring(0,autoCity.length()-1);
-		                }
-		                getDisplay().getCitySelect().setCity(city);
 					    
 						// register call back;
 						getDisplay()
@@ -82,7 +89,7 @@ public class SearchViewPresenter extends AbstractGroupBuyPresenter {
 								.removeFromParent();
 						getDisplay().getNavigationPanel().getPriceBox()
 								.removeFromParent();
-						dispatchAsync.execute(new GetGroupBuyCategory(),
+						dispatchAsync.execute(new GetGroupBuyCategory(getDisplay().getCitySelect().getCity()),
 								new SimpleCallback<ItemList>() {
 
 									@Override
@@ -103,12 +110,52 @@ public class SearchViewPresenter extends AbstractGroupBuyPresenter {
 
 					@Override
 					public void onChanged(TabHeaderTabChangedEvent event) {
-						if (validSearchText()) {
+						if (init && validSearchText()) {
 							refreshResult();
 							init = false;
 						}
 					}
 				}));
+		
+		registerHandler(eventBus.addHandler(CityChangedEvent.getType(),
+                new CityChangedHandler() {
+
+                    @Override
+                    public void onChanged(CityChangedEvent event) {
+                        
+                        refreshResult();
+                        
+                        dispatchAsync.execute(new GetGroupBuyCategory(getDisplay().getCitySelect().getCity()),
+                                new SimpleCallback<ItemList>() {
+
+                                    @Override
+                                    public void onSuccess(ItemList result) {
+                                        final CellTable<Item> categorySelection = getDisplay()
+                                                .getNavigationPanel()
+                                                .getCategroyBox()
+                                                .getContentCellTable();
+                                        categorySelection.setRowData(0,
+                                                result.getItems());
+                                        
+                                     // set the last select category
+                                        Item item = getDisplay().getNavigationPanel().getLastSelectItem();
+                                        if (item != null && item.getValue() != null && item.getValue().length() > 0) {
+                                            
+                                            for (int i=0;i<result.getItems().size();i++) {
+                                                if (result.getItems().get(i).getValue().equals(item.getValue())) {
+                                                    item = result.getItems().get(i);
+                                                    break;
+                                                }
+                                            }
+                                            @SuppressWarnings({ "unchecked", "rawtypes" })
+                                            SingleSelectionModel<Item> selected  = (SingleSelectionModel) categorySelection.getSelectionModel();
+                                            selected.setSelected(item, true);
+                                        }
+                                    }
+                                });
+                    }
+                }));
+
 
 		registerHandler(eventBus.addHandler(KeywordSearchEvent.getType(),
 				new KeywordSearchHandler() {
@@ -117,7 +164,6 @@ public class SearchViewPresenter extends AbstractGroupBuyPresenter {
 					public void onRefresh(KeywordSearchEvent keywordSearchEvent) {
 						if (validSearchText()) {
 							refreshResult();
-							init = false;
 						}
 					}
 				}));
@@ -178,8 +224,4 @@ public class SearchViewPresenter extends AbstractGroupBuyPresenter {
 				.getSearchBox().getValue().isEmpty();
 	}
 	
-    private native String getAutoDetectedCity()/*-{
-		return $wnd.autoDetectedCity;
-    }-*/;
-
 }

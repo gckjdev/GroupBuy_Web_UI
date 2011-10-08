@@ -26,7 +26,6 @@ import com.orange.groupbuy.web.client.model.PriceItem;
 public class TopViewPresenter extends AbstractGroupBuyPresenter {
 
 	private boolean init = true;
-	private String city;
 	public TopViewPresenter(GroupBuyView display, EventBus eventBus) {
 		super(display, eventBus);
 	}
@@ -47,7 +46,9 @@ public class TopViewPresenter extends AbstractGroupBuyPresenter {
 //		String city = getDisplay().getCitySelect().getValue(
 //				getDisplay().getCitySelect().getSelectedIndex());
 		
+		String city = getDisplay().getCitySelect().getCity();
 		criteria.setCity(city);
+		
 		// current page
 		criteria.setPageSize(getDisplay().getPageNavigation().getPageSize());
 		criteria.setStartRow(getDisplay().getPageNavigation().getStartRow());
@@ -73,10 +74,13 @@ public class TopViewPresenter extends AbstractGroupBuyPresenter {
 
 	@Override
 	protected void onBind() {
+	    super.onBind();
+	    
 		registerHandler(getDisplay().getNavigationPanel().addAttachHandler(
 				new Handler() {
 					@Override
 					public void onAttachOrDetach(AttachEvent event) {
+					    
 						// register call back;
 						getDisplay()
 								.getNavigationPanel()
@@ -110,7 +114,7 @@ public class TopViewPresenter extends AbstractGroupBuyPresenter {
 						getDisplay().getNavigationPanel().getMyGroupBox()
 								.removeFromParent();
 						
-						dispatchAsync.execute(new GetGroupBuyCategory(city),
+						dispatchAsync.execute(new GetGroupBuyCategory(getDisplay().getCitySelect().getCity()),
 								new SimpleCallback<ItemList>() {
 
 									@Override
@@ -131,10 +135,9 @@ public class TopViewPresenter extends AbstractGroupBuyPresenter {
 
 					@Override
 					public void onChanged(CityChangedEvent event) {
-					    TopViewPresenter.this.city = event.getCityName();
 						refreshResult();
 						
-						dispatchAsync.execute(new GetGroupBuyCategory(city),
+						dispatchAsync.execute(new GetGroupBuyCategory(getDisplay().getCitySelect().getCity()),
                                 new SimpleCallback<ItemList>() {
 
                                     @Override
@@ -226,4 +229,5 @@ public class TopViewPresenter extends AbstractGroupBuyPresenter {
 		getDisplay().getPageNavigation().previousPage();
 		refreshResult();
 	}
+	
 }

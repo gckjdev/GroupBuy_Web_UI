@@ -69,6 +69,18 @@ public abstract class AbstractGroupBuyPresenter extends
             }
 		});
 	}
+	
+	@Override
+    protected void onBind() {
+        //init city
+          String autoCity = getAutoDetectedCity();
+          String city = "";
+          if (autoCity != null && !autoCity.isEmpty()) {
+               city = autoCity.substring(0,autoCity.length()-1);
+          }
+          getDisplay().getCitySelect().setCity(city);
+          
+	}
 
 	@Override
 	protected void onUnbind() {
@@ -78,4 +90,9 @@ public abstract class AbstractGroupBuyPresenter extends
 	@Override
 	protected void onRevealDisplay() {
 	}
+	
+	protected native String getAutoDetectedCity()/*-{
+		return $wnd.autoDetectedCity;
+    }-*/;
+
 }

@@ -26,7 +26,6 @@ import com.orange.groupbuy.web.client.model.PriceItem;
 public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 
 	private boolean init = true;
-	private String city;
 
 	public TodayViewPresenter(GroupBuyView display, EventBus eventBus) {
 		super(display, eventBus);
@@ -50,7 +49,10 @@ public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 		// city
 //		String city = getDisplay().getCitySelect().getValue(
 //				getDisplay().getCitySelect().getSelectedIndex());
-		criteria.setCity(city);
+		
+		String city = getDisplay().getCitySelect().getCity();
+        criteria.setCity(city);
+        
 		// current page
 		criteria.setPageSize(getDisplay().getPageNavigation().getPageSize());
 		criteria.setStartRow(getDisplay().getPageNavigation().getStartRow());
@@ -73,11 +75,14 @@ public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 
 	@Override
 	protected void onBind() {
+	    super.onBind();
+	    
 		registerHandler(getDisplay().getNavigationPanel().addAttachHandler(
 				new Handler() {
 
 					@Override
 					public void onAttachOrDetach(AttachEvent event) {
+					  
 						// register call back;
 						getDisplay()
 								.getNavigationPanel()
@@ -99,7 +104,7 @@ public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 						getDisplay().getNavigationPanel().getPriceBox()
 								.removeFromParent();
 						
-						dispatchAsync.execute(new GetGroupBuyCategory(city),
+						dispatchAsync.execute(new GetGroupBuyCategory(getDisplay().getCitySelect().getCity()),
 								new SimpleCallback<ItemList>() {
 
 									@Override
@@ -120,10 +125,10 @@ public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 
 	                    @Override
 	                    public void onChanged(CityChangedEvent event) {
-	                        TodayViewPresenter.this.city = event.getCityName();
+	                        
 	                        refreshResult();
 	                        
-	                        dispatchAsync.execute(new GetGroupBuyCategory(city),
+	                        dispatchAsync.execute(new GetGroupBuyCategory(getDisplay().getCitySelect().getCity()),
 	                                new SimpleCallback<ItemList>() {
 
 	                                    @Override
@@ -217,4 +222,5 @@ public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 		getDisplay().getPageNavigation().previousPage();
 		refreshResult();
 	}
+	
 }

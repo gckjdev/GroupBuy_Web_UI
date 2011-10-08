@@ -31,6 +31,7 @@ public class GetGroupBuyCategoryListHandler implements
 			throws DispatchException {
 		String apiServerUrl = ProxyUtil.getSearchGroupBuyUrl();
 		String requestUrl = apiServerUrl + "m=gac&app=GROUPBUYWEB&ci=" + action.getCity();
+		System.out.println("Post request: " + requestUrl);
 		ArrayList<Item> category = new ArrayList<Item>();
 		try {
 			InputStream inputStream = ProxyUtil.getResponse(requestUrl);

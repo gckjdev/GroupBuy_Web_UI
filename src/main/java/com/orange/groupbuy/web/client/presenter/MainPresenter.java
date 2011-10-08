@@ -206,9 +206,6 @@ public class MainPresenter extends WidgetPresenter<MainView> {
                 if (autoCity != null && !autoCity.isEmpty()) {
                     String city = autoCity.substring(0,autoCity.length()-1);
                     getDisplay().getCityLink().setText(city);
-                    CityChangedEvent event = new CityChangedEvent();
-                    event.setCityName(city);
-                    eventBus.fireEvent(event);
                 }
             }
 

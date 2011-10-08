@@ -72,7 +72,7 @@ public class MainViewImpl extends Composite implements MainView {
 
 
 	private void initTodayView(EventBus eventBus) {
-		GroupBuyView todayView = new TodayViewImpl(eventBus,null);
+		GroupBuyView todayView = new TodayViewImpl(eventBus,getCityWidget());
 		TodayViewPresenter todayViewPresenter = new TodayViewPresenter(
 				todayView, eventBus);
 		todayViewPresenter.bind();
@@ -81,7 +81,7 @@ public class MainViewImpl extends Composite implements MainView {
 	}
 
 	private void initTopView(EventBus eventBus) {
-		GroupBuyView topView = new TopViewImpl(eventBus, null);
+		GroupBuyView topView = new TopViewImpl(eventBus, getCityWidget());
 		TopViewPresenter topViewPresenter = new TopViewPresenter(topView,
 				eventBus);
 		topViewPresenter.bind();

@@ -22,5 +22,4 @@ public class CommonErrorCode {
 	static public final int ERROR_INVALID_SECURITY			= 90003;
 	static public final int ERROR_NAME_VALUE_NOTMATCH		= 90004;
 	static public final int ERROR_JSON 						= 90005;
-	
 }

@@ -17,7 +17,9 @@ import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.SubmitButton;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
+import com.google.gwt.user.client.ui.TextBox;
 import com.orange.groupbuy.web.client.SimpleCallback;
 import com.orange.groupbuy.web.client.component.CityWidget;
 import com.orange.groupbuy.web.client.component.GroupBuyFootPanel;
@@ -32,6 +34,7 @@ import com.orange.groupbuy.web.client.event.CityChangedHandler;
 import com.orange.groupbuy.web.client.event.LoginSuccessEvent;
 import com.orange.groupbuy.web.client.event.LoginSuccessHandler;
 import com.orange.groupbuy.web.client.event.TabHeaderTabChangedEvent;
+import com.orange.groupbuy.web.client.event.v1.KeywordSearchEvent;
 import com.orange.groupbuy.web.client.model.UserInfo;
 import com.orange.groupbuy.web.client.presenter.MainPresenter.MainView;
 import com.orange.groupbuy.web.client.secure.CookiesUtil;
@@ -52,8 +55,6 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 		GroupBuyHeaderPanel getHeaderPanel();
 		
 		GroupBuyFootPanel getFootPanel();
-
-//		ListBox getCitySelect();
 		
 		Anchor getLoginLink();
 		
@@ -71,6 +72,9 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 		
 		CityWidget getCityWidget();
 		
+		TextBox getSearchBox();
+
+		SubmitButton getSearchSubmit();
 	}
 
 
@@ -322,6 +326,17 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 						}
 
 						eventBus.fireEvent(new TabHeaderTabChangedEvent());
+					}
+				}));
+
+		registerHandler(getDisplay().getSearchSubmit().addClickHandler(
+				new ClickHandler() {
+
+					@Override
+					public void onClick(ClickEvent arg0) {
+						// TODO: select the right tab
+						getDisplay().getTabHeader().selectTab(2);
+						eventBus.fireEvent(new KeywordSearchEvent());
 					}
 				}));
 	}

@@ -12,8 +12,9 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
+import com.orange.groupbuy.web.client.component.CityWidget;
 import com.orange.groupbuy.web.client.component.GroupBuyNavigationPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyWidget;
 import com.orange.groupbuy.web.client.component.PageListWidget;
@@ -40,11 +41,19 @@ public abstract class AbstractGroupBuyView extends Composite implements
 	@UiField
 	Label description;
 
-	private final ListBox citySelect;
+	private final CityWidget citySelect;
 
-	public AbstractGroupBuyView(EventBus eventBus, ListBox citySelect) {
+	private TextBox searchBox;
+
+	public AbstractGroupBuyView(EventBus eventBus, CityWidget citySelect) {
 		initWidget(uiBinder.createAndBindUi(this));
 		this.citySelect = citySelect;
+	}
+
+	public AbstractGroupBuyView(EventBus eventBus, CityWidget citySelect,
+			TextBox searchBox) {
+		this(eventBus, citySelect);
+		this.searchBox = searchBox;
 	}
 
 	@Override
@@ -91,7 +100,7 @@ public abstract class AbstractGroupBuyView extends Composite implements
         searchResultPanel.clear();
         HorizontalPanel resultRowPanel = null;
         if (searchResultList.isEmpty()) {
-            searchResultPanel.add(new Label("暂时没有此类团购"));
+			searchResultPanel.add(new Label("暂时没有此类团购"));
             getPageNavigation().setVisible(false);
             getBottomPageNavigation().setVisible(false);
             return;
@@ -126,10 +135,10 @@ public abstract class AbstractGroupBuyView extends Composite implements
 
     }
 
-//	@Override
-//	public ListBox getCitySelect() {
-//		return citySelect;
-//	}
+	@Override
+	public CityWidget getCitySelect() {
+		return citySelect;
+	}
 
 	@Override
 	public PageListWidget getPageNavigation() {
@@ -145,4 +154,9 @@ public abstract class AbstractGroupBuyView extends Composite implements
     public Label getDescription() {
         return description;
     }
+
+	@Override
+	public TextBox getSearchBox() {
+		return searchBox;
+	}
 }

@@ -9,7 +9,9 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.SubmitButton;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.orange.groupbuy.web.client.component.CityWidget;
 import com.orange.groupbuy.web.client.component.GroupBuyFootPanel;
@@ -19,6 +21,7 @@ import com.orange.groupbuy.web.client.component.LoginDialog;
 import com.orange.groupbuy.web.client.component.RegisterDialog;
 import com.orange.groupbuy.web.client.presenter.AbstractGroupBuyPresenter.GroupBuyView;
 import com.orange.groupbuy.web.client.presenter.MainPresenter.MainView;
+import com.orange.groupbuy.web.client.presenter.SearchViewPresenter;
 import com.orange.groupbuy.web.client.presenter.TodayViewPresenter;
 import com.orange.groupbuy.web.client.presenter.TopViewPresenter;
 
@@ -60,7 +63,10 @@ public class MainViewImpl extends Composite implements MainView {
 		getProfileLink().setVisible(false);
 		getLogoutLink().setVisible(false);
 		
+		// search
+		initSearchView(eventBus);
 	}
+
 
 	private void initTodayView(EventBus eventBus) {
 		GroupBuyView todayView = new TodayViewImpl(eventBus,null);
@@ -78,6 +84,14 @@ public class MainViewImpl extends Composite implements MainView {
 		topViewPresenter.bind();
 		tabHeader.getSortView().add(
 				topViewPresenter.getDisplay().asWidget());
+	}
+
+	private void initSearchView(EventBus eventBus) {
+		GroupBuyView view = new SearchViewImpl(eventBus, getCityWidget(),
+				getSearchBox());
+		SearchViewPresenter presenter = new SearchViewPresenter(view, eventBus);
+		presenter.bind();
+		tabHeader.getSearchView().add(presenter.getDisplay().asWidget());
 	}
 
 	// private void initMyGroupView(EventBus eventBus, DispatchAsync
@@ -117,6 +131,11 @@ public class MainViewImpl extends Composite implements MainView {
 //	public ListBox getCitySelect() {
 //		return headerPanel.getCitySelect();
 //	}
+
+	@Override
+	public TextBox getSearchBox() {
+		return headerPanel.getSearchBox();
+	}
 
     @Override
     public Anchor getLoginLink() {
@@ -162,5 +181,9 @@ public class MainViewImpl extends Composite implements MainView {
     public Anchor getCityLink() {
         return headerPanel.getCityLink();
     }
-    
+
+	@Override
+	public SubmitButton getSearchSubmit() {
+		return headerPanel.getSearchSubmit();
+	}
 }

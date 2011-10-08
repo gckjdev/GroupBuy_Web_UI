@@ -22,6 +22,8 @@ public class CityWidget extends DialogBox {
     
     private final EventBus eventBus;
 
+	private String city;
+
     @UiConstructor
     public CityWidget(EventBus eventBus) {
         super(true, true);
@@ -34,7 +36,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(beijing.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -43,7 +45,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(tianjin.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -52,7 +54,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(shenyang.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -70,7 +72,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(changchun.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -79,7 +81,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(haerbin.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -88,7 +90,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(shijiazhuang.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -97,7 +99,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(taiyuan.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -106,7 +108,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(shanghai.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -115,7 +117,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(hangzhou.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -133,7 +135,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(suzhou.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -142,7 +144,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(wuxi.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -151,7 +153,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(changzhou.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -160,7 +162,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(jinan.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -170,7 +172,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(xiamen.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -179,7 +181,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(ningbo.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -188,7 +190,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(fuzhou.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -197,7 +199,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(qingdao.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -206,7 +208,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(hefei.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -215,7 +217,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(wuhan.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -224,7 +226,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(zhengzhou.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -233,7 +235,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(changsha.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -242,7 +244,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(nanchang.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -252,7 +254,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(chengdu.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -261,7 +263,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(chongqing.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -270,7 +272,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(xian.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -279,7 +281,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(guangzhou.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -288,7 +290,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(shenzhen.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -297,7 +299,7 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(dongguan.getText());
-                CityWidget.this.eventBus.fireEvent(event);
+                fireEvent(event);
             }
         });
         
@@ -392,4 +394,17 @@ public class CityWidget extends DialogBox {
     
     @UiField
     Anchor dongguan;
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	private void fireEvent(CityChangedEvent event) {
+		city = event.getCityName();
+		CityWidget.this.eventBus.fireEvent(event);
+	}
 }

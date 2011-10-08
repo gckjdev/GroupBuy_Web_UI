@@ -1,5 +1,6 @@
 package com.orange.groupbuy.web.shared;
 
+
 public class ErrorCode extends CommonErrorCode {
 
 	

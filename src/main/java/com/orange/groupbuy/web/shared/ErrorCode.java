@@ -1,7 +1,5 @@
 package com.orange.groupbuy.web.shared;
 
-import com.orange.common.api.service.CommonErrorCode;
-
 public class ErrorCode extends CommonErrorCode {
 
 	

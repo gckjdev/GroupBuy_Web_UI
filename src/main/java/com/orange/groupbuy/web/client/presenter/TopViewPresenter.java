@@ -57,11 +57,17 @@ public class TopViewPresenter extends AbstractGroupBuyPresenter {
 		StringBuilder description = new StringBuilder();
 
 		for (int i=0;i<categoryList.size();i++) {
-		    description.append(categoryList.get(i) +" ");
+		    description.append(categoryList.get(i));
+		    if (i != categoryList.size()-1) {
+                description.append(" ");
+            }
 		}
 		
-		description.append(item.getMin() + "-" + item.getMax());
-		getDisplay().getDescription().setText(description.toString());
+		description.append("排行榜");
+        description.append(" 价格区间 :");
+        String priceDisplayName = getDisplay().getNavigationPanel().getSelectedPriceDisplayName();
+        description.append(priceDisplayName);
+        getDisplay().getDescription().setText(description.toString());
 	}
 
 	@Override

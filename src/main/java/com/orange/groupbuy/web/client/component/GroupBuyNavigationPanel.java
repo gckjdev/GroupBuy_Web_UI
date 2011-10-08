@@ -65,7 +65,7 @@ public class GroupBuyNavigationPanel extends Composite {
 
 		List<Item> priceList = new ArrayList<Item>();
 		String[] priceResult = new String[] { "10元以下", "10元以上" };
-		String[] priceResultValue = new String[] { "-1,10", "10,100000" };
+		String[] priceResultValue = new String[] { "0,10", "10,100000" };
 		for (int i = 0; i < priceResult.length; i++) {
 			Item item = new Item(priceResultValue[i], priceResult[i]);
 			priceList.add(item);
@@ -170,6 +170,25 @@ public class GroupBuyNavigationPanel extends Composite {
             categoryList.add(item.getDisplayName().substring(0, end));
         }
         return categoryList;
+    }
+	
+	public String getSelectedPriceDisplayName() {
+	    @SuppressWarnings({ "unchecked", "rawtypes" })
+        MultiSelectionModel<Item> priceSelected = (MultiSelectionModel) this
+                .getPriceBox().getContentCellTable().getSelectionModel();
+	    
+        Set<Item> priceSet = priceSelected.getSelectedSet();
+        String ret = "";
+        if (!priceSet.isEmpty()) {
+            if (priceSet.size() == 1) {
+                for (Item item : priceSet) {
+                    ret = item.getDisplayName();
+               } 
+            } else {
+                 ret = "所有价格";
+            }
+        }
+        return ret;
     }
 
 	public PriceItem getSelectedPrice() {

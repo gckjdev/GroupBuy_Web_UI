@@ -5,7 +5,7 @@
 .deal .rank {
 	float:left;
 	margin-right: 10px !important;
-    padding-top:50px;
+    padding-top:40px;
     padding-right:5px;
 }
 
@@ -72,7 +72,7 @@
 
 
 .deal .col2 .title-con {
-    padding: 5px 8px 5px 10px;
+    padding: 5px 8px 5px 0px;
 }
 
 .deal .col2 p {

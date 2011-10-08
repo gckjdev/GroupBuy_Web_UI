@@ -56,6 +56,15 @@ public class CityWidget extends DialogBox {
             }
         });
         
+        dalian.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent arg0) {
+                CityChangedEvent event = new CityChangedEvent();
+                event.setCityName(dalian.getText());
+                CityWidget.this.eventBus.fireEvent(event);
+            }
+        });
+        
         changchun.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent arg0) {
@@ -106,6 +115,15 @@ public class CityWidget extends DialogBox {
             public void onClick(ClickEvent arg0) {
                 CityChangedEvent event = new CityChangedEvent();
                 event.setCityName(hangzhou.getText());
+                CityWidget.this.eventBus.fireEvent(event);
+            }
+        });
+        
+        nanjing.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent arg0) {
+                CityChangedEvent event = new CityChangedEvent();
+                event.setCityName(nanjing.getText());
                 CityWidget.this.eventBus.fireEvent(event);
             }
         });

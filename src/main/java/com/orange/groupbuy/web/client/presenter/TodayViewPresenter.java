@@ -59,11 +59,14 @@ public class TodayViewPresenter extends AbstractGroupBuyPresenter {
         categoryList = this.getDisplay().getNavigationPanel().getSelectedCategoryNameList();
         StringBuilder description = new StringBuilder();
 
+        description.append("今日");
         for (int i=0;i<categoryList.size();i++) {
-            description.append(categoryList.get(i) +" ");
+            description.append(categoryList.get(i));
+            if (i != categoryList.size()-1) {
+                description.append(" ");
+            }
         }
-        
-        description.append(item.getMin() + "-" + item.getMax());
+        description.append("团购");
         getDisplay().getDescription().setText(description.toString());
 	}
 

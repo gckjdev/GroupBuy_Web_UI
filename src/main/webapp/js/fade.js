@@ -7,10 +7,6 @@
 		    timeout: 4000   		   
 		});	
 		
-		$("ul > li > a").click(function () { 
-		      alert('!!!'); 
-		    });
-		
 //		$("#city-switch").click(function() {
 //			alert('Hide');
 //			});

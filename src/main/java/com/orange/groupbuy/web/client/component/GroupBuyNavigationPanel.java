@@ -52,6 +52,8 @@ public class GroupBuyNavigationPanel extends Composite {
 	CollapseBox createCollpaseBox(int size) {
 		return new CollapseBox(size);
 	}
+	
+	Item lastSelectItem = null;
 
 	public GroupBuyNavigationPanel() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -150,8 +152,13 @@ public class GroupBuyNavigationPanel extends Composite {
 				.getCategroyBox().getContentCellTable().getSelectionModel();
 		ArrayList<String> categoryList = new ArrayList<String>();
 		Item item = myGroupSelected.getSelectedObject();
+		
+		//remember the last selected category
+		lastSelectItem = new Item();
 		if (item != null) {
 			categoryList.add(item.getValue());
+			lastSelectItem.setValue(item.getValue());
+			lastSelectItem.setDisplayName(item.getDisplayName());
 		}
 		// for (Item item : categorySet) {
 		// categoryList.add(item.getValue());
@@ -226,4 +233,12 @@ public class GroupBuyNavigationPanel extends Composite {
 		item.setMax(String.valueOf(endPrice));
 		return item;
 	}
+
+    public Item getLastSelectItem() {
+        return lastSelectItem;
+    }
+
+    public void setLastSelectItem(Item lastSelectItem) {
+        this.lastSelectItem = lastSelectItem;
+    }
 }

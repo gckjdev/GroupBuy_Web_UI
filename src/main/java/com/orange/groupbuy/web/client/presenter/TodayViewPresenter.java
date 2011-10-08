@@ -10,6 +10,7 @@ import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.event.logical.shared.AttachEvent.Handler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.view.client.SelectionChangeEvent;
+import com.google.gwt.view.client.SingleSelectionModel;
 import com.orange.groupbuy.web.client.SimpleCallback;
 import com.orange.groupbuy.web.client.dispatch.GetGroupBuyCategory;
 import com.orange.groupbuy.web.client.event.CityChangedEvent;
@@ -133,6 +134,21 @@ public class TodayViewPresenter extends AbstractGroupBuyPresenter {
 	                                                .getContentCellTable();
 	                                        categorySelection.setRowData(0,
 	                                                result.getItems());
+	                                        
+	                                        // set the last select category
+	                                        Item item = getDisplay().getNavigationPanel().getLastSelectItem();
+	                                        if (item.getValue() != null && item.getValue().length() > 0) {
+	                                            
+	                                            for (int i=0;i<result.getItems().size();i++) {
+	                                                if (result.getItems().get(i).getValue().equals(item.getValue())) {
+	                                                    item = result.getItems().get(i);
+	                                                    break;
+	                                                }
+	                                            }
+	                                            @SuppressWarnings({ "unchecked", "rawtypes" })
+	                                            SingleSelectionModel<Item> selected  = (SingleSelectionModel) categorySelection.getSelectionModel();
+	                                            selected.setSelected(item, true);
+	                                        }
 	                                    }
 	                                });
 	                    }

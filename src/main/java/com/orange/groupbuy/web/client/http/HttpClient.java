@@ -154,7 +154,7 @@ public class HttpClient {
 						.getMethodName()));
 		sb.append("&mc=").append(maxCount);
 		sb.append("&so=").append(startRow);
-//		sb.append("&to=").append(onlyToday);
+		sb.append("&to=").append(onlyToday);
 		sb.append("&sb=").append(orderValue);
 		sb.append("&ci=").append(city);
 		sb.append("&rc=1");

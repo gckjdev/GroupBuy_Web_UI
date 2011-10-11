@@ -9,6 +9,7 @@ import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.widget.WidgetDisplay;
 import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.orange.groupbuy.web.client.component.CityWidget;
@@ -47,6 +48,10 @@ public abstract class AbstractGroupBuyPresenter extends
         Label getDescription();
         
 		TextBox getSearchBox();
+		
+		Anchor getAscAnchor();
+		
+		Anchor getDescAnchor();
 	}
 
 	protected void refreshResult(Criteria criteria) {

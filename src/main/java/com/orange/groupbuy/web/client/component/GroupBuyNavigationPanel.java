@@ -143,8 +143,9 @@ public class GroupBuyNavigationPanel extends Composite {
 							selectionModel.setSelected(item, !selected);							
 							event.stopPropagation();
 						}
-					}
+					}					
 				};
+					
 		CellTable<Item> selection = new CellTable<Item>();
 		selection.setWidth("100%");
 		multipleSelection.getContent().add(selection);

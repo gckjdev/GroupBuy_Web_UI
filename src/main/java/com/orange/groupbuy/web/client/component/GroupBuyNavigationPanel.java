@@ -5,14 +5,21 @@ import java.util.List;
 import java.util.Set;
 
 import com.google.gwt.cell.client.CheckboxCell;
+import com.google.gwt.cell.client.ClickableTextCell;
+import com.google.gwt.cell.client.Cell.Context;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Event;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.ComplexPanel;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
@@ -100,6 +107,7 @@ public class GroupBuyNavigationPanel extends Composite {
 
 		selection.setSelectionModel(selectionModel,
 				DefaultSelectionEventManager.<Item> createCheckboxManager());
+		
 		return selection;
 	}
 
@@ -114,12 +122,29 @@ public class GroupBuyNavigationPanel extends Composite {
 			}
 		};
 
-		TextColumn<Item> nameColumn = new TextColumn<Item>() {
-			@Override
-			public String getValue(Item contact) {
-				return contact.getDisplayName();
-			}
-		};
+//		TextColumn<Item> nameColumn = new TextColumn<Item>() {
+//			@Override
+//			public String getValue(Item contact) {
+//				return contact.getDisplayName();
+//			}
+//		};
+		
+		Column<Item, String> nameColumn = new Column<Item, String>(
+				new ClickableTextCell()){
+					@Override
+					public String getValue(Item item) {
+						return item.getDisplayName();
+					}
+					@Override
+					public void onBrowserEvent(Context context, Element elem,
+							Item item, NativeEvent event) {
+						if(event.getType().equals("click")){
+							boolean selected = selectionModel.isSelected(item);
+							selectionModel.setSelected(item, !selected);							
+							event.stopPropagation();
+						}
+					}
+				};
 		CellTable<Item> selection = new CellTable<Item>();
 		selection.setWidth("100%");
 		multipleSelection.getContent().add(selection);

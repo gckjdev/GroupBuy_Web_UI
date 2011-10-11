@@ -4,24 +4,29 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.uibinder.client.UiConstructor;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
 
-public class CollpaseBox extends Composite {
+public class CollapseBox extends Composite {
 
 	Label name;
 
 	LayoutPanel content;
 
 	@UiConstructor
-	public CollpaseBox(int size) {
-		DockLayoutPanel dockPanel = new DockLayoutPanel(Unit.EM);
-		 name = new Label();
-		dockPanel.addNorth(name, 2);
-
+	public CollapseBox(int size) {
+		LayoutPanel dockPanel = new LayoutPanel();
+		dockPanel.addStyleName("nav-box");
+		name = new Label();
+		name.addStyleName("nav-header");
+		dockPanel.add(name);
 		content = new LayoutPanel();
-		dockPanel.addSouth(content, size);
+		dockPanel.add(content);
+		content.addStyleName("nav-content");
+
+		int nameHeight = 35;
+		dockPanel.setWidgetTopHeight(name, 0, Unit.PX, nameHeight, Unit.PX);
+		dockPanel.setWidgetTopHeight(content, nameHeight, Unit.PX, size, Unit.PX);
 		initWidget(dockPanel);
 	}
 

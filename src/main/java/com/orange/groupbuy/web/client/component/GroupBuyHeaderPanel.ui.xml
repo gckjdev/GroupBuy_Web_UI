@@ -1,6 +1,6 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:gc="urn:import:com.orange.groupbuy.web.client.component">
 	<ui:style>
 	style.logo {
 		
@@ -20,15 +20,19 @@
 			<h1 class="logo"><a href="index.html">咕噜团购</a></h1>	
 		</div>
 		
-		<div class='city' >
+		 <!-- <div class='city' >
 			<div ></div>
 			<g:ListBox ui:field='citySelect' visibleItemCount='1'
 				styleName='float-left' />
-		</div>
+		</div>   -->
+		
+		<div class='cityfix'>
+			<g:Anchor href='javascript:;'  ui:field='cityLink'><span>广州</span></g:Anchor>
+		</div> 
 		
 		<div class="share">
 			<div>
-				<div class='weibotxt'><a href="#" onClick="addfavorite()">添加到收藏夹</a></div>
+				<div class='weibotxt'><a href="javascript:;" onClick="addfavorite()">添加到收藏夹</a></div>
 				<div class='weibotxt'>在这里关注我们</div>
 				<div class='weiboicon'>
 					<a href="#"><img src="images/sina.png" alt="新浪微博" /></a>

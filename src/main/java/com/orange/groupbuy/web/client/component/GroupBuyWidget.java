@@ -5,6 +5,7 @@ import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.ImageElement;
+import com.google.gwt.dom.client.LIElement;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -26,6 +27,9 @@ public class GroupBuyWidget extends Widget {
 	interface GroupBuyWidgetUiBinder extends
 			UiBinder<DivElement, GroupBuyWidget> {
 	}
+	
+	@UiField
+    SpanElement rankLabel;
 
 	@UiField
 	AnchorElement siteNameLabel;
@@ -49,7 +53,7 @@ public class GroupBuyWidget extends Widget {
 	Element boughtNumLabel;
 
 	@UiField
-	SpanElement valueLabel;
+	LIElement valueLabel;
 
 	@UiField
 	AnchorElement detailsButton;
@@ -90,7 +94,8 @@ public class GroupBuyWidget extends Widget {
 			rebateLabel.setInnerText(formatRebate(result.getRebate()));
 			//
 			boughtNumLabel.setInnerText(formatNumber(result.getBought()));
-			valueLabel.setInnerText(formatMoney(result.getPrice()));
+			// valueLabel.setInnerHTML(formatMoney(result.getPrice())
+			// + valueLabel.getInnerHTML());
 
 			detailsButton.setHref(result.getProductUrl());
 			detailsButton.setTitle(result.getDesctiption());
@@ -103,6 +108,9 @@ public class GroupBuyWidget extends Widget {
 			shareToSina.setHref(getSinaUrl(result));
 			shareToKaixin.setHref(getKaixinUrl(result));
 			shareToTencent.setHref(getTencentUrl(result));
+
+			valueLabel.setInnerHTML(formatMoney(result.getPrice())
+					+ valueLabel.getInnerHTML());
 		}
 	}
 
@@ -139,5 +147,9 @@ public class GroupBuyWidget extends Widget {
 
 	private String formatMoney(Double result) {
 		return "￥" + String.valueOf(result);
+	}
+	
+	public void setRank(String rank) {
+	    rankLabel.setInnerText(rank);
 	}
 }

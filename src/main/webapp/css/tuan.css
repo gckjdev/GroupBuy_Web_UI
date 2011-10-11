@@ -3,30 +3,91 @@
 }
 
 .groupbuy-TabLayoutPanel .gwt-TabLayoutPanelTab {
-    background: none repeat scroll 0 0 #FFFFFF !important;
+	background: none repeat scroll 0 0 #FFFFFF !important;
 }
 
-.groupbuy-TabLayoutPanel .gwt-TabLayoutPanelTab-selected{
+.groupbuy-TabLayoutPanel .gwt-TabLayoutPanelTab-selected {
 	background: none repeat scroll 0 0 #DFF3FD !important;
+}
+
+/* .groupbuy-TabLayoutPanel .gwt-TabLayoutPanelContent{
+	overflow: hidden;
+    padding: 10px;
+} */
+
+.groupbuy-TabLayoutPanel .gwt-TabLayoutPanel .gwt-TabLayoutPanelContent{
+	border-color : #DFF3FD !important;
+}
+
+.groupbuy-TabLayoutPanel .gwt-TabLayoutPanelContentContainer{
+	border : none;
 }
 
 .searchResultPanel{
 	overflow: auto;
-    padding: 20px;
+	padding: 20px;
 }
 
-.uptop{
+.uptop {
 	cursor: pointer;
-    height: 78px;
-    position: fixed;
-    width: 20px;
-    display: block;
-    bottom: 5px;
-    margin-left: 1309px;
+	height: 78px;
+	position: fixed;
+	width: 20px;
+	display: block;
+	bottom: 30px;
+	margin-left: 1130px;
+}
+
+.nav-box{
+	width : 180px;
+	margin : 10px;
+	border: 1px solid #DFF3FD;
+	/* box-shadow: 0 0 4px rgba(71, 143, 179, 0.5); */
+}
+
+.nav-header{
+	width : 180px;
+	/* text-indent: 20px; */
+	text-indent: 40px; 
+	color: #478FB3;
+	font-weight: bold;
+	padding: 10px;
+	background:  no-repeat scroll right center #DFF3FD;
+}
+
+.nav-content{
+	width : 180px;
+}
+
+.navigationPanel{
+	/* height:600px; */
+	width:200px !important;
+	float : left;
+	overflow: hidden;
+	padding: 0;
+}
+
+.navigationPanel .GNERLPIDHC{
+	padding: 2px 5px;
+}
+.categroyBox, .priceBox, .myGroupBox{
+	
+}
+
+.categroyBox{
+/* 	float:left;clear:both; */
+}
+
+.myGroupBox{
+/*  	float:left;clear:both;*/
+}
+
+.priceBox{
+	top:400px !important;
 }
 
 .head {
-	position:relative;
+	position: relative;
 }
 
 a img {
@@ -43,40 +104,86 @@ a img {
 .weiboicon {
 	float: left;
 	display: inline;
-	margin-top:2px;
+	margin-top: 2px;
 	margin-left: 5px;
 }
 
+.weibotxt a, a:visited, a:hover {
+    color: #666666;
+}
+
 .city {
-	position:absolute; bottom:30px;left:300px;
-	float:left;
+	position: absolute;
+	bottom: 30px;
+	left: 300px;
+	float: left;
+}
+
+.cityfix {
+	position: absolute;
+	bottom: 30px;
+	left: 350px;
+	float: left;
+	font-size: 1.2em;
+	height: 30px;
+	line-height: 28px;
+	padding: 0 35px 0 5px;
 }
 
 .share {
-	float:right;
+	float: right;
 	display: inline;
-	margin-top:0px;
-	margin-right:50px;
+	margin-top: 0px;
+	margin-right: 50px;
+}
+
+.guides {
+	left: 400px;
+	top: 73px;
+	position: absolute;
+	overflow: visible;
 }
 
 .logo {
-	margin-left:10px;
+	margin-left: 10px;
 	width: 250px;
 	height: 60px;
 	background-image: url('../images/logo3.jpg');
 	background-repeat: no-repeat;
 	display: block;
 	text-indent: -99999px;
-	position:absolute; bottom:30px;
+	position: absolute;
+	bottom: 30px;
 }
 
 .search {
-	float:right;
-	position:absolute; bottom:30px;left:500px;
+	float: right;
+	position: absolute;
+	bottom: 30px;
+	left: 500px;
 }
 
-.input{
-	border: 1px solid #006; 
+.input {
+	border: 1px solid #006;
 	width: 300px;
+	height: 20px;
+}
+
+.footer {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #666666;
+	font-size: 12px;
+	padding-top: 5px;
+	text-align:center;
+	padding-left: 15px
+}
+
+.footer a {
+	color: #666666;
+	text-decoration: none;
+}
+
+.footera, a:visited, a:hover {
+    color: #666666;
 	height:20px;
 }

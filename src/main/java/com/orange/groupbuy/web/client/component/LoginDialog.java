@@ -89,6 +89,7 @@ public class LoginDialog extends DialogBox {
         userName.setFocus(true);
     }
     
+    @Override
     public void clear() {
         userName.setText("");
         password.setText("");

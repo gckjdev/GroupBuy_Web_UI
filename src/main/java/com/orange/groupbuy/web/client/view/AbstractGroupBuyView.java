@@ -12,8 +12,9 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
+import com.orange.groupbuy.web.client.component.CityWidget;
 import com.orange.groupbuy.web.client.component.GroupBuyNavigationPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyWidget;
 import com.orange.groupbuy.web.client.component.PageListWidget;
@@ -36,12 +37,23 @@ public abstract class AbstractGroupBuyView extends Composite implements
 
 	@UiField
 	PageListWidget bottomPageNavigation;
+	
+	@UiField
+	Label description;
 
-	private ListBox citySelect;
+	private final CityWidget citySelect;
 
-	public AbstractGroupBuyView(EventBus eventBus, ListBox citySelect) {
+	private TextBox searchBox;
+
+	public AbstractGroupBuyView(EventBus eventBus, CityWidget citySelect) {
 		initWidget(uiBinder.createAndBindUi(this));
 		this.citySelect = citySelect;
+	}
+
+	public AbstractGroupBuyView(EventBus eventBus, CityWidget citySelect,
+			TextBox searchBox) {
+		this(eventBus, citySelect);
+		this.searchBox = searchBox;
 	}
 
 	@Override
@@ -82,9 +94,49 @@ public abstract class AbstractGroupBuyView extends Composite implements
 			resultRowPanel.add(resultComponent);
 		}
 	}
+	
+	@Override
+    public void updateModel(List<SearchResult> searchResultList, int rc) {
+        searchResultPanel.clear();
+        HorizontalPanel resultRowPanel = null;
+        if (searchResultList.isEmpty()) {
+			searchResultPanel.add(new Label("暂时没有此类团购"));
+            getPageNavigation().setVisible(false);
+            getBottomPageNavigation().setVisible(false);
+            return;
+        }
+        
+        getPageNavigation().setVisible(true);
+        getBottomPageNavigation().setVisible(true);
+
+        for (int i = 0; i < searchResultList.size(); i++) {
+            SearchResult result = searchResultList.get(i);
+            if (i % RESULT_WIDGET_IN_ROW == 0) {
+                resultRowPanel = new HorizontalPanel();
+                searchResultPanel.add(resultRowPanel);
+            }
+            GroupBuyWidget resultComponent = new GroupBuyWidget();
+            resultRowPanel.setSpacing(10);
+            resultComponent.updateModel(result);
+            
+            //Show top rank for TopView
+            if (this.getClass().getName().equals(TopViewImpl.class.getName())) {
+                int rank = (pageNavigation.getCurrentPage() - 1) * (pageNavigation.getPageSize()) + i + 1;
+                resultComponent.setRank(String.valueOf(rank));
+            }
+            
+            resultRowPanel.add(resultComponent);
+        }
+        
+        pageNavigation.setTotalRows(rc);
+        pageNavigation.setCurrentPage(pageNavigation.getCurrentPage());
+        bottomPageNavigation.setTotalRows(rc);
+        bottomPageNavigation.setCurrentPage(pageNavigation.getCurrentPage());
+
+    }
 
 	@Override
-	public ListBox getCitySelect() {
+	public CityWidget getCitySelect() {
 		return citySelect;
 	}
 
@@ -96,5 +148,15 @@ public abstract class AbstractGroupBuyView extends Composite implements
 	@Override
 	public PageListWidget getBottomPageNavigation() {
 		return bottomPageNavigation;
+	}
+
+	@Override
+    public Label getDescription() {
+        return description;
+    }
+
+	@Override
+	public TextBox getSearchBox() {
+		return searchBox;
 	}
 }

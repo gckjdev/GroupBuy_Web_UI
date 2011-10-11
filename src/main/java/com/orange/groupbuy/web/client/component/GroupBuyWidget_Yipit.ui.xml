@@ -4,6 +4,10 @@
 
 	<div class="deal">
 
+		<div class="rank" >
+			<span ui:field="rankLabel"></span>
+		</div>
+		
 		<div class="col1">
 			<a target="_blank" ui:field='imageAnchor'>
 				<img ui:field='image' width="165" class="image" />
@@ -44,8 +48,8 @@
 		<div class="col3">
 			<div class="container first">
 				<ul>
-					<li class="discount">
-						<span ui:field="valueLabel" />
+					<li class="discount" ui:field="valueLabel">
+						<!-- <span ui:field="valueLabel" /> -->
 						<a ui:field='detailsButton' class="formbutton" target="_blank">去看看</a>
 						<div class="clear"></div>
 					</li>

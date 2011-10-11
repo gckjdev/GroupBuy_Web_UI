@@ -13,11 +13,12 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.ui.ComplexPanel;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.DefaultSelectionEventManager;
 import com.google.gwt.view.client.MultiSelectionModel;
+import com.google.gwt.view.client.SelectionModel;
 import com.google.gwt.view.client.SingleSelectionModel;
 import com.orange.groupbuy.web.client.model.Item;
 import com.orange.groupbuy.web.client.model.PriceItem;
@@ -36,21 +37,23 @@ public class GroupBuyNavigationPanel extends Composite {
 	}
 
 	@UiField
-	DockLayoutPanel navigationPanel;
+	ComplexPanel navigationPanel;
 
 	@UiField
-	CollpaseBox categroyBox;
+	CollapseBox categroyBox;
 
 	@UiField
-	CollpaseBox myGroupBox;
+	CollapseBox myGroupBox;
 
 	@UiField
-	CollpaseBox priceBox;
+	CollapseBox priceBox;
 
 	@UiFactory
-	CollpaseBox createCollpaseBox(int size) {
-		return new CollpaseBox(size);
+	CollapseBox createCollpaseBox(int size) {
+		return new CollapseBox(size);
 	}
+	
+	Item lastSelectItem = null;
 
 	public GroupBuyNavigationPanel() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -64,39 +67,24 @@ public class GroupBuyNavigationPanel extends Composite {
 
 		List<Item> priceList = new ArrayList<Item>();
 		String[] priceResult = new String[] { "10元以下", "10元以上" };
-		String[] priceResultValue = new String[] { "-1,10", "10,100000" };
+		String[] priceResultValue = new String[] { "0,10", "10,100000" };
 		for (int i = 0; i < priceResult.length; i++) {
 			Item item = new Item(priceResultValue[i], priceResult[i]);
 			priceList.add(item);
 		}
 
 		categoryCellTable.setRowData(0, priceList);
+		//default set : "10元以上"
+		categoryCellTable.getSelectionModel().setSelected(priceList.get(1), true);
+		
 	}
 
 	private CellTable<Item> initMultipleSelection(String name,
-			CollpaseBox multipleSelection) {
+			CollapseBox multipleSelection) {
 		multipleSelection.getName().setText(name);
 		final MultiSelectionModel<Item> selectionModel = new MultiSelectionModel<Item>();
-		Column<Item, Boolean> checkColumn = new Column<Item, Boolean>(
-				new CheckboxCell(true, false)) {
-			@Override
-			public Boolean getValue(Item object) {
-				// Get the value from the selection model.
-				return selectionModel.isSelected(object);
-			}
-		};
-
-		TextColumn<Item> nameColumn = new TextColumn<Item>() {
-			@Override
-			public String getValue(Item contact) {
-				return contact.getDisplayName();
-			}
-		};
-		CellTable<Item> selection = new CellTable<Item>();
-		multipleSelection.getContent().add(selection);
-		selection.addColumn(checkColumn);
-		selection.setColumnWidth(checkColumn, 2, Unit.PX);
-		selection.addColumn(nameColumn);
+		CellTable<Item> selection = initColumns(multipleSelection,
+				selectionModel);
 
 		selection.setSelectionModel(selectionModel,
 				DefaultSelectionEventManager.<Item> createCheckboxManager());
@@ -104,9 +92,19 @@ public class GroupBuyNavigationPanel extends Composite {
 	}
 
 	private CellTable<Item> initSignleSelection(String name,
-			CollpaseBox multipleSelection) {
+			CollapseBox multipleSelection) {
 		multipleSelection.getName().setText(name);
 		final SingleSelectionModel<Item> selectionModel = new SingleSelectionModel<Item>();
+		CellTable<Item> selection = initColumns(multipleSelection,
+				selectionModel);
+
+		selection.setSelectionModel(selectionModel,
+				DefaultSelectionEventManager.<Item> createCheckboxManager());
+		return selection;
+	}
+
+	private CellTable<Item> initColumns(CollapseBox multipleSelection,
+			final SelectionModel<Item> selectionModel) {
 		Column<Item, Boolean> checkColumn = new Column<Item, Boolean>(
 				new CheckboxCell(true, false)) {
 			@Override
@@ -123,29 +121,28 @@ public class GroupBuyNavigationPanel extends Composite {
 			}
 		};
 		CellTable<Item> selection = new CellTable<Item>();
+		selection.setWidth("100%");
 		multipleSelection.getContent().add(selection);
 		selection.addColumn(checkColumn);
-		selection.setColumnWidth(checkColumn, 2, Unit.PX);
+		selection.setColumnWidth(checkColumn, 10, Unit.PCT);
 		selection.addColumn(nameColumn);
-
-		selection.setSelectionModel(selectionModel,
-				DefaultSelectionEventManager.<Item> createCheckboxManager());
+		selection.setColumnWidth(nameColumn, 80, Unit.PCT);
 		return selection;
 	}
 
-	public CollpaseBox getCategroyBox() {
+	public CollapseBox getCategroyBox() {
 		return categroyBox;
 	}
 
-	public CollpaseBox getPriceBox() {
+	public CollapseBox getPriceBox() {
 		return priceBox;
 	}
 
-	public CollpaseBox getMyGroupBox() {
+	public CollapseBox getMyGroupBox() {
 		return myGroupBox;
 	}
 
-	public DockLayoutPanel getNavigationPanel() {
+	public ComplexPanel getNavigationPanel() {
 		return navigationPanel;
 	}
 
@@ -155,14 +152,51 @@ public class GroupBuyNavigationPanel extends Composite {
 				.getCategroyBox().getContentCellTable().getSelectionModel();
 		ArrayList<String> categoryList = new ArrayList<String>();
 		Item item = myGroupSelected.getSelectedObject();
+		
+		//remember the last selected category
+		lastSelectItem = new Item();
 		if (item != null) {
 			categoryList.add(item.getValue());
+			lastSelectItem.setValue(item.getValue());
+			lastSelectItem.setDisplayName(item.getDisplayName());
 		}
 		// for (Item item : categorySet) {
 		// categoryList.add(item.getValue());
 		// }
 		return categoryList;
 	}
+	
+	public ArrayList<String> getSelectedCategoryNameList() {
+        @SuppressWarnings({ "unchecked", "rawtypes" })
+        SingleSelectionModel<Item> myGroupSelected = (SingleSelectionModel) this
+                .getCategroyBox().getContentCellTable().getSelectionModel();
+        ArrayList<String> categoryList = new ArrayList<String>();
+        Item item = myGroupSelected.getSelectedObject();
+        if (item != null) {
+            int end = item.getDisplayName().lastIndexOf("(");
+            categoryList.add(item.getDisplayName().substring(0, end));
+        }
+        return categoryList;
+    }
+	
+	public String getSelectedPriceDisplayName() {
+	    @SuppressWarnings({ "unchecked", "rawtypes" })
+        MultiSelectionModel<Item> priceSelected = (MultiSelectionModel) this
+                .getPriceBox().getContentCellTable().getSelectionModel();
+	    
+        Set<Item> priceSet = priceSelected.getSelectedSet();
+        String ret = "";
+        if (!priceSet.isEmpty()) {
+            if (priceSet.size() == 1) {
+                for (Item item : priceSet) {
+                    ret = item.getDisplayName();
+               } 
+            } else {
+                 ret = "所有价格";
+            }
+        }
+        return ret;
+    }
 
 	public PriceItem getSelectedPrice() {
 		@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -199,4 +233,12 @@ public class GroupBuyNavigationPanel extends Composite {
 		item.setMax(String.valueOf(endPrice));
 		return item;
 	}
+
+    public Item getLastSelectItem() {
+        return lastSelectItem;
+    }
+
+    public void setLastSelectItem(Item lastSelectItem) {
+        this.lastSelectItem = lastSelectItem;
+    }
 }

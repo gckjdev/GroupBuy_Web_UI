@@ -24,6 +24,9 @@ public class GroupBuyTabHeader extends Composite {
 	LayoutPanel todayView;
 	
 	@UiField
+	LayoutPanel searchView;
+
+	@UiField
     HTMLPanel iphoneView ;
 
 	private static GroupBuyTabHeaderUiBinder uiBinder = GWT
@@ -49,6 +52,10 @@ public class GroupBuyTabHeader extends Composite {
 		return todayView;
 	}
 	
+	public LayoutPanel getSearchView() {
+		return searchView;
+	}
+
 	public HTMLPanel getIPhoneView() {
         return iphoneView;
     }

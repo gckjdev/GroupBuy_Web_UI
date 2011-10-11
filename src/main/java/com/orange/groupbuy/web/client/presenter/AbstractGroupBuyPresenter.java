@@ -9,7 +9,9 @@ import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.widget.WidgetDisplay;
 import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 
-import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.TextBox;
+import com.orange.groupbuy.web.client.component.CityWidget;
 import com.orange.groupbuy.web.client.component.GroupBuyNavigationPanel;
 import com.orange.groupbuy.web.client.component.PageListWidget;
 import com.orange.groupbuy.web.client.http.HttpClient;
@@ -34,18 +36,24 @@ public abstract class AbstractGroupBuyPresenter extends
 
 		void updateModel(List<SearchResult> searchResultList);
 
-		ListBox getCitySelect();
+		void updateModel(List<SearchResult> resultList, int rc);
+
+		CityWidget getCitySelect();
 
 		PageListWidget getPageNavigation();
 		
 		PageListWidget getBottomPageNavigation();
+
+        Label getDescription();
+        
+		TextBox getSearchBox();
 	}
 
 	protected void refreshResult(Criteria criteria) {
 
-		String city = getDisplay().getCitySelect().getValue(
-				getDisplay().getCitySelect().getSelectedIndex());
-		criteria.setCity(city);
+		// TODO: uncomment out
+		// String city = getDisplay().getCitySelect().getCity();
+		// criteria.setCity(city);
 
 		HttpClient.searchGroupBuyHandler(criteria, new Callback() {
 
@@ -53,7 +61,25 @@ public abstract class AbstractGroupBuyPresenter extends
 			public void updateModel(List<SearchResult> resultList) {
 				getDisplay().updateModel(resultList);
 			}
+
+            @Override
+            public void updateModel(List<SearchResult> resultList, int rc) {
+                getDisplay().updateModel(resultList, rc);
+                
+            }
 		});
+	}
+	
+	@Override
+    protected void onBind() {
+        //init city
+          String autoCity = getAutoDetectedCity();
+          String city = "";
+          if (autoCity != null && !autoCity.isEmpty()) {
+               city = autoCity.substring(0,autoCity.length()-1);
+          }
+          getDisplay().getCitySelect().setCity(city);
+          
 	}
 
 	@Override
@@ -64,4 +90,9 @@ public abstract class AbstractGroupBuyPresenter extends
 	@Override
 	protected void onRevealDisplay() {
 	}
+	
+	protected native String getAutoDetectedCity()/*-{
+		return $wnd.autoDetectedCity;
+    }-*/;
+
 }

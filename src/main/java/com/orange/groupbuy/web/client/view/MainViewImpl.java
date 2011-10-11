@@ -9,9 +9,11 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.SubmitButton;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
+import com.orange.groupbuy.web.client.component.CityWidget;
 import com.orange.groupbuy.web.client.component.GroupBuyFootPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyHeaderPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyTabHeader;
@@ -19,6 +21,7 @@ import com.orange.groupbuy.web.client.component.LoginDialog;
 import com.orange.groupbuy.web.client.component.RegisterDialog;
 import com.orange.groupbuy.web.client.presenter.AbstractGroupBuyPresenter.GroupBuyView;
 import com.orange.groupbuy.web.client.presenter.MainPresenter.MainView;
+import com.orange.groupbuy.web.client.presenter.SearchViewPresenter;
 import com.orange.groupbuy.web.client.presenter.TodayViewPresenter;
 import com.orange.groupbuy.web.client.presenter.TopViewPresenter;
 
@@ -37,29 +40,39 @@ public class MainViewImpl extends Composite implements MainView {
 	
 	RegisterDialog registerDialog;
 	
+	CityWidget cityWidget;
+	
 	public MainViewImpl(EventBus eventBus, DispatchAsync dispatchAsync) {
 		initWidget(uiBinder.createAndBindUi(this));
-
-		// my group buy
-		// initMyGroupView(eventBus, dispatchAsync);
-
-		// top view
-		initTopView(eventBus);
-
-		// today
-		initTodayView(eventBus);
 		
 		loginDialog = new LoginDialog(eventBus);
 		
 		registerDialog = new RegisterDialog(eventBus);
 		
+		cityWidget = new CityWidget(eventBus);
+		cityWidget.setVisible(false);
+		
 		getProfileLink().setVisible(false);
 		getLogoutLink().setVisible(false);
+		
+		// my group buy
+        // initMyGroupView(eventBus, dispatchAsync);
 
+        // top view
+        initTopView(eventBus);
+
+        // today
+        initTodayView(eventBus);
+        
+		// search
+		initSearchView(eventBus);
+		
+		
 	}
 
+
 	private void initTodayView(EventBus eventBus) {
-		GroupBuyView todayView = new TodayViewImpl(eventBus, getCitySelect());
+		GroupBuyView todayView = new TodayViewImpl(eventBus,getCityWidget());
 		TodayViewPresenter todayViewPresenter = new TodayViewPresenter(
 				todayView, eventBus);
 		todayViewPresenter.bind();
@@ -68,12 +81,20 @@ public class MainViewImpl extends Composite implements MainView {
 	}
 
 	private void initTopView(EventBus eventBus) {
-		GroupBuyView topView = new TopViewImpl(eventBus, getCitySelect());
+		GroupBuyView topView = new TopViewImpl(eventBus, getCityWidget());
 		TopViewPresenter topViewPresenter = new TopViewPresenter(topView,
 				eventBus);
 		topViewPresenter.bind();
 		tabHeader.getSortView().add(
 				topViewPresenter.getDisplay().asWidget());
+	}
+
+	private void initSearchView(EventBus eventBus) {
+		GroupBuyView view = new SearchViewImpl(eventBus, getCityWidget(),
+				getSearchBox());
+		SearchViewPresenter presenter = new SearchViewPresenter(view, eventBus);
+		presenter.bind();
+		tabHeader.getSearchView().add(presenter.getDisplay().asWidget());
 	}
 
 	// private void initMyGroupView(EventBus eventBus, DispatchAsync
@@ -109,9 +130,14 @@ public class MainViewImpl extends Composite implements MainView {
 		return headerPanel;
 	}
 
+//	@Override
+//	public ListBox getCitySelect() {
+//		return headerPanel.getCitySelect();
+//	}
+
 	@Override
-	public ListBox getCitySelect() {
-		return headerPanel.getCitySelect();
+	public TextBox getSearchBox() {
+		return headerPanel.getSearchBox();
 	}
 
     @Override
@@ -148,4 +174,19 @@ public class MainViewImpl extends Composite implements MainView {
     public GroupBuyFootPanel getFootPanel() {
         return footPanel;
     }
+    
+    @Override
+    public CityWidget getCityWidget() {
+        return cityWidget;
+    }
+
+    @Override
+    public Anchor getCityLink() {
+        return headerPanel.getCityLink();
+    }
+
+	@Override
+	public SubmitButton getSearchSubmit() {
+		return headerPanel.getSearchSubmit();
+	}
 }

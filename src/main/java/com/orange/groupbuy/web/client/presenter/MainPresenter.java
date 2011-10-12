@@ -17,7 +17,7 @@ import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
-import com.google.gwt.user.client.ui.SubmitButton;
+import com.google.gwt.user.client.ui.FocusWidget;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.orange.groupbuy.web.client.SimpleCallback;
@@ -74,7 +74,7 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 		
 		TextBox getSearchBox();
 
-		SubmitButton getSearchSubmit();
+		FocusWidget getSearchSubmit();
 	}
 
 

@@ -1,6 +1,6 @@
 package com.orange.groupbuy.web.client.component;
 
-import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
@@ -15,7 +15,7 @@ public class GroupBuySearchHeader extends Composite {
 	private Image titleImage;
 	private ListBox citySeclect;
 	private TextBox searchTextBox;
-	private Button searchButton;
+	private Anchor searchButton;
 
 	public ListBox getCitySeclect() {
 		return citySeclect;
@@ -25,7 +25,7 @@ public class GroupBuySearchHeader extends Composite {
 		return searchTextBox;
 	}
 
-	public Button getSearchButton() {
+	public Anchor getSearchButton() {
 		return searchButton;
 	}
 
@@ -47,7 +47,9 @@ public class GroupBuySearchHeader extends Composite {
 		searchTextBox = new TextBox();
 		searchTextBox.setStyleName("searchInputBox");
 		searchArea.add(searchTextBox);
-		searchButton = new Button("搜一搜");
+		// searchButton = new Button("搜一搜");
+		searchButton = new Anchor(
+				"<a target=\"_blank\" class=\"formbutton\">去看看</a>");
 		searchArea.add(searchButton);
 		//
 		citySeclect = new ListBox();

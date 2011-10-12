@@ -7,9 +7,9 @@ import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.presenter.client.EventBus;
 
 import com.google.gwt.dom.client.Style.Unit;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FocusWidget;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ListBox;
@@ -147,7 +147,7 @@ public class GruopBuySearchViewImpl extends Composite implements
 	}
 
 	@Override
-	public Button getSearchButton() {
+	public FocusWidget getSearchButton() {
 		return header.getSearchButton();
 	}
 

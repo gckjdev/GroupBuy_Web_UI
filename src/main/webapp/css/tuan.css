@@ -28,14 +28,41 @@
 	padding: 20px;
 }
 
-.uptop {
-	cursor: pointer;
-	height: 78px;
-	position: fixed;
-	width: 20px;
-	display: block;
-	bottom: 30px;
-	margin-left: 1130px;
+#goTopBtn{ position:fixed;
+right:20px;
+bottom:20px;
+width:100px;
+height:30px;
+line-height:30px;
+cursor:pointer;
+/* color:#FFF; */
+background-color:#DFF3FD;
+text-align:center;
+font-size:12px;
+_position:absolute;
+_right:auto;
+_left:expression(eval(document.documentElement.scrollLeft+document.documentElement.clientWidth-this.offsetWidth)-(parseInt(this.currentStyle.marginLeft,10)||0)-(parseInt(this.currentStyle.marginRight,20)||0));_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,20)||0)));
+}
+
+.searchSubmit {
+    -moz-transition: none 0s ease 0s;
+    background: url("img/bg-button.png") repeat-x scroll left top transparent;
+    border: 1px solid #8EB000;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 0 white;
+    color: #FFFFFF !important;
+    cursor: pointer;
+    display: block;
+    font: bold 14px/23px "Helvetica Neue",Helvetica,Arial,sans-serif;
+    /* padding: 0 12px; */
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+    
+    float: right;
+
+    height: 25px  !important;
+    width: 80px !important;
 }
 
 .nav-box{

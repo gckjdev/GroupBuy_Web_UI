@@ -4,8 +4,8 @@ import java.util.Map;
 
 import net.customware.gwt.presenter.client.widget.WidgetDisplay;
 
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
+import com.google.gwt.user.client.ui.FocusWidget;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
@@ -35,5 +35,5 @@ public interface GroupBuySearchView extends WidgetDisplay {
 
 	TextBox getSearchTextBox();
 
-	Button getSearchButton();
+	FocusWidget getSearchButton();
 }

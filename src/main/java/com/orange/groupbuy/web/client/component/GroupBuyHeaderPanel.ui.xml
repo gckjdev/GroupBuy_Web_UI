@@ -67,7 +67,7 @@
 		
 		<div class='search'>
 			<g:TextBox ui:field = 'searchBox' addStyleNames='input'></g:TextBox>
-			<g:SubmitButton ui:field="searchSubmit" text="搜索"></g:SubmitButton>
+			<g:Anchor href='javascript:;' addStyleNames='searchSubmit' ui:field='searchSubmit'>搜索</g:Anchor>
 		</div>
 	</div>
 	</g:HTMLPanel>

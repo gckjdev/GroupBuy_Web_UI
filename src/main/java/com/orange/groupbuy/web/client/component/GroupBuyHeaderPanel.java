@@ -5,7 +5,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.SubmitButton;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -33,7 +32,7 @@ public class GroupBuyHeaderPanel extends Composite {
 	TextBox searchBox;
 
 	@UiField
-	SubmitButton searchSubmit;
+	Anchor searchSubmit;
 
 	private static GroupBuyHeaderPanelUiBinder uiBinder = GWT
 			.create(GroupBuyHeaderPanelUiBinder.class);
@@ -74,7 +73,7 @@ public class GroupBuyHeaderPanel extends Composite {
 		return searchBox;
 	}
 
-	public SubmitButton getSearchSubmit() {
+	public Anchor getSearchSubmit() {
 		return searchSubmit;
 	}
 }

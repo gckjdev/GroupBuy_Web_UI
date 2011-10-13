@@ -192,8 +192,9 @@ a img {
 
 .input {
 	border: 1px solid #006;
-	width: 300px;
+	width: 370px;
 	height: 20px;
+	float: left;
 }
 
 .footer {

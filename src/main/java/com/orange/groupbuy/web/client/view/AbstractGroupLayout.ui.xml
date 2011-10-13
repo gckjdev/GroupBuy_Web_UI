@@ -2,10 +2,7 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:gc="urn:import:com.orange.groupbuy.web.client.component">
 	<ui:style>
-		.anchor{
-			padding-left:2px;
-			padding-right:2px;
-		}
+		
 	</ui:style>
 	<g:LayoutPanel>
 			<g:layer width='200px'>
@@ -13,14 +10,8 @@
 			</g:layer>
    			<g:layer left='230px' width='730px' >
 				<g:LayoutPanel>
-					<g:layer left='200px' top='10px' height='20px'  width='200px'>
+					<g:layer left='240px' top='10px' height='20px'  width='200px'>
 						<g:Label ui:field="description"></g:Label>
-					</g:layer>
-					<g:layer left='400px' top='10px' height='40px'  width='200px'>
-						<g:VerticalPanel>
-						<g:Anchor href="javascript:0" ui:field="rankPriceAsc" styleName="{style.anchor}">按价格从低到高</g:Anchor>
-						<g:Anchor href="javascript:0" ui:field="rankPriceDesc" styleName="{style.anchor}">按价格从高到底</g:Anchor>
-						</g:VerticalPanel>
 					</g:layer>
 					<g:layer left='560px' top='10px' height='20px'  width='200px'>
 						<gc:PageListWidget ui:field='pageNavigation'>

@@ -8,7 +8,6 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
-import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -42,14 +41,6 @@ public abstract class AbstractGroupBuyView extends Composite implements
 	@UiField
 	Label description;
 	
-	@UiField
-	Anchor rankPriceAsc;
-	
-	@UiField
-	Anchor rankPriceDesc;
-	
-	
-
 	private final CityWidget citySelect;
 
 	private TextBox searchBox;
@@ -169,13 +160,4 @@ public abstract class AbstractGroupBuyView extends Composite implements
 		return searchBox;
 	}
 	
-	@Override
-	public Anchor getAscAnchor() {
-		return rankPriceAsc;
-	}
-	
-	@Override
-	public Anchor getDescAnchor() {
-		return rankPriceDesc;
-	}
 }

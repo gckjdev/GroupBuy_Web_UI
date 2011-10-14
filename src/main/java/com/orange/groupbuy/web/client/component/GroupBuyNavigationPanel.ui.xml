@@ -7,6 +7,6 @@
 	<g:FlowPanel ui:field="navigationPanel" addStyleNames="navigationPanel">
 		<gc:CollapseBox ui:field="categroyBox" size="360" addStyleNames="categroyBox"></gc:CollapseBox>
 		<gc:CollapseBox ui:field="myGroupBox" size="600" addStyleNames="myGroupBox"></gc:CollapseBox>
-		<gc:CollapseBox ui:field="priceBox" size="60" addStyleNames="priceBox"></gc:CollapseBox>
+		<gc:CollapseBox ui:field="priceBox" size="70" addStyleNames="priceBox"></gc:CollapseBox>
 	</g:FlowPanel>
 </ui:UiBinder>

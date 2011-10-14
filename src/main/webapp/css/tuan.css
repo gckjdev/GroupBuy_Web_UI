@@ -17,13 +17,15 @@
 
 .groupbuy-TabLayoutPanel .gwt-TabLayoutPanelTab {
  	/* background: none repeat scroll 0 0 #FFFFFF !important; */
+ 	background:url(../images2/nor.jpg) no-repeat !important;
  	width:68px;
- 	margin:0
+ 	margin-left: 0px !important;
+    padding: 3px 5px !important;
  	color:#4f4f4f;
  	font-weight:bold; 
  	height:32px;
  	line-height:30px; 
- 	background:url(../images2/nor.jpg) no-repeat !important;
+    text-align: center;
 
  }
 
@@ -52,22 +54,27 @@
 	padding: 20px;
 }
 
-#goTopBtn{ position:fixed;
-right:20px;
-bottom:20px;
-width:100px;
-height:30px;
-line-height:30px;
-cursor:pointer;
-/* color:#FFF; */
-background-color:#DFF3FD;
-text-align:center;
-font-size:12px;
-_position:absolute;
-_right:auto;
-_left:expression(eval(document.documentElement.scrollLeft+document.documentElement.clientWidth-this.offsetWidth)-(parseInt(this.currentStyle.marginLeft,10)||0)-(parseInt(this.currentStyle.marginRight,20)||0));_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,20)||0)));
+#goTopBtn {
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	cursor: pointer;
+	/* color:#FFF; */
+	background-color: #DFF3FD;
+	text-align: center;
+	font-size: 12px;
+	_position: absolute;
+	_right: auto;
+	_left: expression(eval(document.documentElement.scrollLeft +
+		document.documentElement.clientWidth-this.offsetWidth)-(parseInt(this.currentStyle.marginLeft, 10)||0
+		)-(parseInt(this.currentStyle.marginRight, 20)||0 ) );
+	_top: expression(eval(document.documentElement.scrollTop +
+		document.documentElement.clientHeight-this.offsetHeight- ( parseInt(this.currentStyle.marginTop
+		, 10)||0 )-(parseInt(this.currentStyle.marginBottom, 20)||0 ) ) );
 }
-
 .searchSubmit {
     -moz-transition: none 0s ease 0s;
     background: url("img/bg-button.png") repeat-x scroll left top transparent;
@@ -91,36 +98,68 @@ _left:expression(eval(document.documentElement.scrollLeft+document.documentEleme
 
 .nav-box{
 	width : 180px;
-	margin : 10px;
+	margin : 0px;
 	border: 1px solid #DFF3FD;
 	/* box-shadow: 0 0 4px rgba(71, 143, 179, 0.5); */
 }
 
 .nav-header{
-	width : 180px;
-	/* text-indent: 20px; */
-	text-indent: 40px; 
-	color: #478FB3;
-	font-weight: bold;
-	padding: 10px;
-	background:  no-repeat scroll right center #DFF3FD;
-}
+	width :180px;
+	text-indent: 41px; 
+	color: #909090;
+	padding: 0px 5px;
+	font-size: 14px;
+    font-weight: bold;
+    height: 31px;
+    line-height: 35px;
+ 	background: url(../images2/jia.jpg) no-repeat scroll center center transparent;
+
+ }
 
 .nav-content{
 	width : 180px;
 }
 
 .navigationPanel{
-	/* height:600px; */
 	width:200px !important;
 	float : left;
 	overflow: hidden;
 	padding: 0;
 }
 
-.navigationPanel .GNERLPIDHC{
-	padding: 2px 5px;
+.navigationPanel .categroyBox .GNERLPIDHC {
+	padding: 0px 5px;
+	background: url("../images2/arrow.jpg") no-repeat scroll 5px 12px transparent;
+    border-bottom: 1px solid #DFDFDF;
+    color: #909090;
+    font-size: 14px;
+    font-weight: bold;
+    height: 31px;
+    line-height: 30px;
+    text-indent: 36px;
 }
+
+.navigationPanel .priceBox .GNERLPIDHC {
+    border-bottom: 1px solid #DFDFDF;
+    color: #909090;
+    font-size: 14px;
+    font-weight: bold;
+    height: 31px;
+    line-height: 30px;
+    text-indent: 5px;
+    padding: 0px 2px !important;
+}
+
+.navigationPanel .GNERLPIDKD {
+	background: url("../images2/org_bg.jpg") no-repeat scroll 0 3px
+		transparent
+}
+
+.navigationPanel .GNERLPIDPC {
+	background: url("../images2/org_bg.jpg") no-repeat scroll 0 3px
+		transparent
+}
+
 .categroyBox, .priceBox, .myGroupBox{
 	
 }
@@ -134,7 +173,7 @@ _left:expression(eval(document.documentElement.scrollLeft+document.documentEleme
 }
 
 .priceBox{
-	top:400px !important;
+	top:395px !important;
 }
 
 .head {

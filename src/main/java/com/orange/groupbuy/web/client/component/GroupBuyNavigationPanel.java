@@ -4,22 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import com.google.gwt.cell.client.Cell.Context;
 import com.google.gwt.cell.client.CheckboxCell;
 import com.google.gwt.cell.client.ClickableTextCell;
-import com.google.gwt.cell.client.Cell.Context;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.dom.client.Style.Unit;
-import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
-import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.Event;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.ComplexPanel;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
@@ -149,10 +145,12 @@ public class GroupBuyNavigationPanel extends Composite {
 		CellTable<Item> selection = new CellTable<Item>();
 		selection.setWidth("100%");
 		multipleSelection.getContent().add(selection);
-		selection.addColumn(checkColumn);
-		selection.setColumnWidth(checkColumn, 10, Unit.PCT);
+        if (selectionModel instanceof MultiSelectionModel) {
+            selection.addColumn(checkColumn);
+            selection.setColumnWidth(checkColumn, 10, Unit.PCT);
+        }
 		selection.addColumn(nameColumn);
-		selection.setColumnWidth(nameColumn, 80, Unit.PCT);
+//		selection.setColumnWidth(nameColumn, 80, Unit.PCT);
 		return selection;
 	}
 

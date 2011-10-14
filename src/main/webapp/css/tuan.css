@@ -2,12 +2,36 @@
 	zoom: 1;
 }
 
-.groupbuy-TabLayoutPanel .gwt-TabLayoutPanelTab {
-	background: none repeat scroll 0 0 #FFFFFF !important;
+.gwt-TabLayoutPanelTabs {
+	height:32px;
+    margin: 0;
 }
 
+.gwt-TabLayoutPanelTab .gwt-TabLayoutPanelTabInner {
+  	padding: 0 !important;
+  	font-weight: bold;
+    height: 32px;
+    line-height: 30px;
+    font-size:16px
+}
+
+.groupbuy-TabLayoutPanel .gwt-TabLayoutPanelTab {
+ 	/* background: none repeat scroll 0 0 #FFFFFF !important; */
+ 	width:68px;
+ 	margin:0
+ 	color:#4f4f4f;
+ 	font-weight:bold; 
+ 	height:32px;
+ 	line-height:30px; 
+ 	background:url(../images2/nor.jpg) no-repeat !important;
+
+ }
+
 .groupbuy-TabLayoutPanel .gwt-TabLayoutPanelTab-selected {
-	background: none repeat scroll 0 0 #DFF3FD !important;
+	/*background: none repeat scroll 0 0 #DFF3FD !important;*/	
+ 	padding:0px;
+ 	background:url(../images2/hover.jpg) no-repeat !important;
+ 	width:68px;
 }
 
 /* .groupbuy-TabLayoutPanel .gwt-TabLayoutPanelContent{

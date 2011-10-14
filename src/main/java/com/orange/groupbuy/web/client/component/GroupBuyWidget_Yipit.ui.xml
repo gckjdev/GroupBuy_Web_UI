@@ -48,9 +48,9 @@
 		<div class="col3">
 			<div class="container first">
 				<ul>
-					<li class="discount" ui:field="valueLabel">
-						<!-- <span ui:field="valueLabel" /> -->
+					<li class="discount" >
 						<a ui:field='detailsButton' class="formbutton" target="_blank">去看看</a>
+						<span ui:field="valueLabel" />
 						<div class="clear"></div>
 					</li>
 				</ul>

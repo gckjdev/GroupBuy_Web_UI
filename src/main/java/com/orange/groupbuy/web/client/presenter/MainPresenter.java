@@ -197,7 +197,7 @@ public class MainPresenter extends WidgetPresenter<MainView> {
                         
                     }
         }));
-	    
+
         registerHandler(getDisplay().getCityLink().addAttachHandler(new Handler() {
 
             @Override

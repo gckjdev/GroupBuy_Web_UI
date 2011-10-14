@@ -95,7 +95,8 @@
 	height: 16px;
 	text-indent: -9999px;
 	width: 16px;
-	margin: 3px 10px 0 0
+	margin: 3px 10px 0 0;
+	overflow:hidden;
 }
 
 .deal .share-sina {
@@ -130,10 +131,19 @@
 }
 
 .deal .discount {
+/*     color: #669900;
+    font-size: 120%;
+    font-weight: 700;
+    line-height: 42px; */
+}
+
+.deal .discount span{
     color: #669900;
     font-size: 120%;
     font-weight: 700;
     line-height: 42px;
+    float: right;
+    padding: 0 30px 0 0;
 }
 
 .info {

@@ -139,6 +139,12 @@
     text-indent: 36px;
 }
 
+.GNERLPIDJC {
+    border: 0px  !important;
+}
+.GNERLPIDJD {
+    border: 0px  !important;
+}
 .navigationPanel .priceBox .GNERLPIDHC {
     border-bottom: 1px solid #DFDFDF;
     color: #909090;
@@ -160,7 +166,7 @@
 		transparent
 }
 
-.categroyBox, .priceBox, .myGroupBox{
+.categroyBox, .priceBox, .myGroupBox {
 	
 }
 

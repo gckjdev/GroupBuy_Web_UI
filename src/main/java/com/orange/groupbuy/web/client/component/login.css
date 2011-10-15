@@ -1,0 +1,56 @@
+.important {
+	font-weight: bold;
+}
+
+.loginPanel {
+	
+}
+
+.loginGrid {
+	margin-top: 30px;
+	margin-left: 50px;
+	margin-right: 50px;
+}
+.loginGrid td{
+	vertical-align: middle;
+}
+.buttonPanel {
+	text-align: center;
+	margin: 20px auto;
+	margin-top: 10px;
+	width: 140px;
+}
+.buttondiv{
+	
+}
+.label{
+	vertical-align: middle;
+	font-size: 15px;
+	height: 100%;
+	margin-right: 10px;
+	white-space: nowrap;
+}
+.submit{
+	background: url("../images/login.gif") no-repeat scroll 0 0 transparent;
+	float: left;
+}
+.cancel{
+	background: url("../images/login.gif") no-repeat scroll 0 0 transparent;
+	float: right;
+ }
+ .cancel,.submit{
+ 	border: medium none;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: block;
+    font-weight: bold;
+    height: 25px;
+    width: 45px;
+    vertical-align: middle;
+}
+.loginin{
+	border: 1px solid #2BA6D2;
+    float: right;
+    height: 25px;
+    width: 158px;
+}

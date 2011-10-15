@@ -13,62 +13,83 @@
 	style.linksDiv {
 		
 	}
+	style.currCityLabel{
+	}
 </ui:style>
-	<g:HTMLPanel>
-	<div class='header'>
+<g:HTMLPanel>
+<div class='header'>
+	<div class="logo" style="float:left;">
+		<a class="fl" href="#">
+		</a>
+	</div>
+	<!-- <div>
+		<h1 class="logo">
+			<a href="index.html">咕噜团购</a>
+		</h1>
+	</div> -->
+
+	<!-- <div class='city' > <div ></div> <g:ListBox ui:field='citySelect' 
+		visibleItemCount='1' styleName='float-left' /> </div> -->
+
+	<span class='cityfix' style="float:left;">
+		【
+		<g:Anchor ui:field="currCity"  addStyleNames="currCityLabel">广州</g:Anchor>
+		】
+		【
+		<g:Anchor href='javascript:;' ui:field='cityLink'>
+			<span>切换城市</span>
+		</g:Anchor>
+		】
+	</span>
+
+	<span class="share"  style="float:right;">
 		<div>
-			<h1 class="logo"><a href="index.html">咕噜团购</a></h1>	
-		</div>
-		
-		 <!-- <div class='city' >
-			<div ></div>
-			<g:ListBox ui:field='citySelect' visibleItemCount='1'
-				styleName='float-left' />
-		</div>   -->
-		
-		<div class='cityfix'>
-			<g:Anchor href='javascript:;'  ui:field='cityLink'><span>广州</span></g:Anchor>
-		</div> 
-		
-		<div class="share">
-			<div>
-				<div class='weibotxt'><a href="javascript:;" onClick="addfavorite()">添加到收藏夹</a></div>
-				<div class='weibotxt'>在这里关注我们</div>
-				<div class='weiboicon'>
-					<a href="#"><img src="images/sina.png" alt="新浪微博" /></a>
-					<a href="#"><img src="images/qq.png" alt="腾讯微博" /></a>
-				</div>
-				
-				<div class='weibotxt'>分享到</div>
+			<div class='weibotxt'>
+				<a href="javascript:;" onClick="addfavorite()">添加到收藏夹</a>
+			</div>
+			<div class='weibotxt'>在这里关注我们</div>
+			<div class='weiboicon'>
+				<a href="#" class="guanzhu1">
+				</a>
+				<a href="#" class="guanzhu2">
+				</a>
+			</div>
 
-<!-- JiaThis Button BEGIN -->
-<div id="ckepop" class='weiboicon'>
-	<a class="jiathis_button_qzone"></a>
-	<a class="jiathis_button_tsina"></a>
-	<a class="jiathis_button_tqq"></a>
-	<a class="jiathis_button_renren"></a>
-	<a class="jiathis_button_kaixin001"></a>
-	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	<a class="jiathis_counter_style"></a>
-</div>
-				<div class='weibotxt'>
+			<div class='weibotxt'>分享到</div>
 
-					<g:Anchor href='javascript:;' ui:field='loginLink'>登录</g:Anchor>
+			<!-- JiaThis Button BEGIN -->
+			<div id="ckepop" class='weiboicon'>
+				<a class="jiathis_button_qzone"></a>
+				<a class="jiathis_button_tsina"></a>
+				<a class="jiathis_button_tqq"></a>
+				<a class="jiathis_button_renren"></a>
+				<a class="jiathis_button_kaixin001"></a>
+				<a href="http://www.jiathis.com/share" class="guanzhu3 jiathis jiathis_txt jtico jtico_jiathis"
+					target="_blank"></a>
+				<a class="jiathis_counter_style"></a>
+			</div>
+			<div class='weibotxt'>
 
-					<g:Anchor href='javascript:;' ui:field='profileLink'></g:Anchor>
+				<g:Anchor href='javascript:;' ui:field='loginLink'>登录</g:Anchor>
 
-					<g:Anchor href='javascript:;' ui:field='logoutLink'>退出</g:Anchor>
+				<g:Anchor href='javascript:;' ui:field='profileLink'></g:Anchor>
 
-					<g:Anchor href='javascript:;' ui:field='registerLink'>注册</g:Anchor>
+				<g:Anchor href='javascript:;' ui:field='logoutLink'>退出</g:Anchor>
 
-				</div>
+				<g:Anchor href='javascript:;' ui:field='registerLink'>注册</g:Anchor>
+
 			</div>
 		</div>
-		
-		<div class='search'>
-			<g:TextBox ui:field = 'searchBox' addStyleNames='input'></g:TextBox>
-			<g:Anchor href='javascript:;' addStyleNames='searchSubmit' ui:field='searchSubmit'>搜索</g:Anchor>
-		</div>
-	</div>
-	</g:HTMLPanel>
+	</span>
+</div>
+<div class="clear"></div>
+<div class='search'>
+	<form class="forms" name="searchform" action="">
+	<g:TextBox ui:field='searchBox' addStyleNames='input'></g:TextBox>
+	<g:Anchor href='javascript:;' addStyleNames='searchSubmit'
+		ui:field='searchSubmit'>搜索</g:Anchor>		
+	</form>
+</div>
+<div class="clear"></div>
+</g:HTMLPanel>
 </ui:UiBinder>

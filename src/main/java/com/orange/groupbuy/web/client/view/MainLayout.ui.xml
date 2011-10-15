@@ -4,14 +4,14 @@
 
 	<g:HTMLPanel styleName='center'>
 		<g:LayoutPanel height='4350px'>
-			<g:layer top='5px' height='100px' width='100%'>
+			<g:layer top='5px' height='130px' width='100%'>
 				<gc:GroupBuyHeaderPanel ui:field='headerPanel' />
 			</g:layer>
-			<g:layer top='100px' height='4200px'>
+			<g:layer top='130px' height='4200px'>
 
 				<gc:GroupBuyTabHeader ui:field='tabHeader' />
 			</g:layer>
-			<g:layer bottom='5px' height='45px'>
+			<g:layer bottom='-45px' height='45px'>
 				<gc:GroupBuyFootPanel ui:field='footPanel' />
 			</g:layer>
 		</g:LayoutPanel>

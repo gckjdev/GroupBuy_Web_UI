@@ -34,12 +34,7 @@ ul, ol {
 	margin: 0 auto;
 }
 
-.logo {
-	background-image: 'images/logo.png';
-	width: 140px;
-	height: 75px;
-	position: absolute;
-}
+
 
 .top-margin {
 	top : 5px;

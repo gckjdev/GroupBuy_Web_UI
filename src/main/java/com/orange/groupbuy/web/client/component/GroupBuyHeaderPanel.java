@@ -5,6 +5,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -27,6 +28,9 @@ public class GroupBuyHeaderPanel extends Composite {
 	
 	@UiField
     Anchor cityLink;
+	
+	@UiField
+	Anchor currCity;
 	
 	@UiField
 	TextBox searchBox;
@@ -75,5 +79,13 @@ public class GroupBuyHeaderPanel extends Composite {
 
 	public Anchor getSearchSubmit() {
 		return searchSubmit;
+	}
+
+	public Anchor getCurrCity() {
+		return currCity;
+	}
+
+	public void setCurrCity(Anchor currCity) {
+		this.currCity = currCity;
 	}
 }

@@ -76,7 +76,7 @@
 		, 10)||0 )-(parseInt(this.currentStyle.marginBottom, 20)||0 ) ) );
 }
 .searchSubmit {
-    -moz-transition: none 0s ease 0s;
+   /*  -moz-transition: none 0s ease 0s;
     background: url("img/bg-button.png") repeat-x scroll left top transparent;
     border: 1px solid #8EB000;
     border-radius: 4px 4px 4px 4px;
@@ -85,7 +85,7 @@
     cursor: pointer;
     display: block;
     font: bold 14px/23px "Helvetica Neue",Helvetica,Arial,sans-serif;
-    /* padding: 0 12px; */
+    padding: 0 12px;
     text-align: center;
     text-decoration: none;
     text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
@@ -93,9 +93,22 @@
     float: right;
 
     height: 25px  !important;
-    width: 80px !important;
+    width: 80px !important; */
+     background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    cursor: pointer;
+    display: block;
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
+    height: 21px;
+    line-height: 26px;
+    width: 50px;
+    text-align: center;
 }
-
+input, select, button ,a {
+    font: 12px Verdana,Arial,Tahoma;
+}
 .nav-box{
 	width : 180px;
 	margin : 0px;
@@ -115,7 +128,12 @@
  	background: url(../images2/jia.jpg) no-repeat scroll center center transparent;
 
  }
-
+.forms{
+	height: 30px;
+    margin: 0 auto;
+    padding-top: 5px;
+    width: 465px;
+}
 .nav-content{
 	width : 180px;
 }
@@ -196,6 +214,8 @@ a img {
 	display: inline;
 	margin-top: 2px;
 	margin-left: 5px;
+	margin-bottom: 2px;
+	vertical-align: top;
 }
 
 .weiboicon {
@@ -205,28 +225,36 @@ a img {
 	margin-left: 5px;
 }
 
-.weibotxt a, a:visited, a:hover {
-    color: #666666;
+.weibotxt a,.weibotxt a:visited, .weibotxt a:hover {
+    color: #FFFFFF;
+    vertical-align: top;
 }
 
 .city {
-	position: absolute;
+	/* position: absolute;
 	bottom: 30px;
 	left: 300px;
-	float: left;
+	float: left; */
+}
+.header a,.weibotxt a{
+	 color: #FFFFFF;
 }
 
 .cityfix {
-	position: absolute;
+	/* position: absolute;
 	bottom: 30px;
-	left: 350px;
-	float: left;
+	left: 350px; 
+	float: left;*/
+	font: 13px Verdana,Arial,Tahoma;
+    vertical-align: middle;
 	font-size: 1.2em;
-	height: 30px;
 	line-height: 28px;
 	padding: 0 35px 0 5px;
+	
 }
-
+.cityfix a,.cityfix a:HOVER,.cityfix a:VISITED{
+	color: #FFFFFF;
+}
 .share {
 	float: right;
 	display: inline;
@@ -242,29 +270,33 @@ a img {
 }
 
 .logo {
-	margin-left: 10px;
-	width: 250px;
-	height: 60px;
-	background-image: url('../images/logo3.jpg');
+	background-image: url('../images/logo4.jpg');
 	background-repeat: no-repeat;
 	display: block;
-	text-indent: -99999px;
-	position: absolute;
-	bottom: 30px;
+    float: left;
+    height: 43px;
+    width: 186px
 }
 
 .search {
-	float: right;
-	position: absolute;
-	bottom: 30px;
-	left: 500px;
+	background: url("../images/src.jpg") no-repeat scroll 0 0 transparent;
+    height: 36px;
+    margin: 0 auto;
+    width: 515px;
 }
 
 .input {
-	border: 1px solid #006;
+	/* border: 1px solid #006;
 	width: 370px;
 	height: 20px;
-	float: left;
+	float: left; */
+	 background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    display: block;
+    height: 25px;
+    line-height: 26px;
+    width: 410px;
+    float:left;
 }
 
 .footer {
@@ -281,7 +313,57 @@ a img {
 	text-decoration: none;
 }
 
-.footera, a:visited, a:hover {
+.footera {
     color: #666666;
 	height:20px;
 }
+
+.clear{
+	clear:both;
+}
+
+.header{
+	color: #FFFFFF;
+    margin: 0 auto;
+    padding-top: 28px;
+    width: 99%;
+}
+.currCityLabel{
+	color: #FAE003;	
+}
+
+.guanzhu1 {
+    background: url("../images/top_img_03.gif") no-repeat scroll 0 0 transparent;
+    display: block;
+    float: left;
+    height: 17px;
+    width: 16px;
+}
+.guanzhu2 {
+    background: url("../images/top_img_03.gif") no-repeat scroll 0 -17px transparent;
+    display: block;
+    float: left;
+    height: 17px;
+    width: 16px;
+}
+.guanzhu3 {
+    background: url("../images/top_img_03.gif") no-repeat scroll 0 -34px transparent;
+    display: block;
+    float: left;
+    height: 17px;
+    width: 16px;
+}
+.kong{ height:10px; clear:both; width:100%; overflow:hidden;}
+.skong{height:5px; clear:both; width:100%; overflow:hidden;}
+.clear {
+    clear: both;
+}
+.bg_swf{ border:solid 1px #2BA6D2;   }
+.bg_swf h1{ background:url(../images/ChartBar.png) no-repeat; padding-left:45px; font-size:14px; font-weight:bold; color:#777; height:32px; margin:10px; line-height:35px;}
+.swf_box{ width:930px; margin:0 auto;}
+.swf_text{ width:95%; margin:0 auto;}
+.swf_text h2{ color:#333; font-size:12px; font-weight:bold; height:25px;}
+.bg_swf h2{   padding-left:45px; font-size:14px; font-weight:bold; color:#777; height:32px; margin:10px; line-height:35px;}
+.swf_text li{ line-height:25px; width:300px; float:left; color:#777; }
+.swf_text li a{ color:#777;}
+.list_text{ width:95%; margin:0 auto; line-height:26px; color:#777;}

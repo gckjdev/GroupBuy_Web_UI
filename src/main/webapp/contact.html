@@ -1,54 +1,133 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>轻松创意生活</title>
+<meta name="description" content="轻松创意生活" />
+<meta name="keywords" content="轻松创意生活" />
 <link href="contact.css" rel="stylesheet" type="text/css" />
-<style type="text/css">
-</style>
-<title>联系我们</title>
-</head>
-<body >
+    <script src="js/jquery-1.5.js" type="text/javascript"></script>
 
-<div class="logotop">
-	<div style="height:50px"></div>	
+    <script src="js/jquery.boxy.js" type="text/javascript"></script>
+
+    <link href="css/boxy.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript">
+        $(function() {
+            $(".boxy").boxy();
+
+            $("#a1").click(function() {
+                var box1 = new Boxy("<h3>这个参数是显示的内容</h3>",
+                {
+                    title: "标题", //对话框标题
+                    modal: false, //是否为模式窗口
+                    afterHide: function(e) { alert("dialog hide"); }, //隐藏时的回调函数
+                    afterShow: function(e) { alert("dialog show"); }, //显示时的回调函数
+                    closeText: "X",   //关闭功能按钮的标题文字
+                    draggable: true //是否可以拖动
+                });
+                box1.resize(300, 100);  //设置对话框的大小
+            });
+
+            
+            
+
+        });
+    </script>
+<script>
+<!--
+function setTab(name,cursel,n){
+ for(i=1;i<=n;i++){
+  var menu=document.getElementById(name+i);
+  var con=document.getElementById("con_"+name+"_"+i);
+  menu.className=i==cursel?"hover":"";
+  con.style.display=i==cursel?"block":"none";
+ }
+}
+//-->
+</script>
+</head>
+
+<body>
+<div class="wrapper" style="width: 1000px">
+<div class="logo_top">
+<div class="boxscs"><div class="logo"><a href="#" class="fl"><img src="images/logo4.jpg" width="186" height="43" alt="轻松创意生活" title="轻松创意生活" /></a>
+
+</div> 
+<div class="clear"></div>
+
+<div class="kong"></div>
+</div></div>
+<div id="lib_Tab1" style="padding-top: 40px">
+<div class="lib_Menubox lib_tabborder">
+<ul>
+   <li id="one1" onclick="setTab('one',1,4)" class="hover">排  行     </li>
+   <li id="one2" onclick="setTab('one',2,4)" > 服务承诺</li>
+   <li id="one3" onclick="setTab('one',3,4)"> 媒体报道</li>
+    <li id="one4" onclick="setTab('one',4,4)"> 加入我们</li>
+</ul>
 </div>
-<center>
-	<!-- <table class="table_line" width="800" cellspacing="0" cellpadding="0" border="0" style="margin-left:-15px; vertical-align:middle;background-color:#FFF;">
-			<tbody><tr>
-			
-				<td class="title">
-	 -->			
-	 <div id="about">
-	 <div id="box">
-					<div class="box_title">
-                        <div class="box_title_l">
-                            <p>联系我们</p>
-                        </div>                       
-                        <div class="box_title_r">                         
-                        </div>                
-                    </div>
-       <!-- 
-				</td>
-			</tr>
-			<tr>
-				<td class="td0">
-		 -->
-		<div id="box_content" class="box_content">
-				 <div>
-				<p>广州市柑橙科技有限公司</p>
-				<p>电 话：020-xxxx</p>
-				<p>地 址：广州市越秀区</p>
-				<p>邮 编：510000 </p></div></div>
-				
-				</div>
-		</div>
-		<!-- 
-				</td>
-				
-			</tr>
-			
-		</tbody>
-	</table>
-	 -->
-</center>
-</body></html>
+<div class="skong"></div>
+<div class="lib_Contentbox boxscs   bg_swf"> <div id="con_one_1" >  
+<h2>要根据主题选择适合氛围的字</h2>
+<p class="list_text">　　选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体中国传统节日可以选择书法字体等<br />
+
+
+　　最好不要选用过细的字体2.选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体，中国传统节日可以选择书法 最好不要选用过细的字体2.选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体，中国传统节日可以选择书法字 最好不要选用过细的字体2.选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体，中国传统节日可以选择书法字体等<br />　　最好不要选用过细的字体2.选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体，中国传统节日可以选择书法字体等<br />
+
+
+最好不要选用过细的字体2.选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体，中国传统节日可以选择书法字体等。
+<br />
+
+最好不要选用过细的字体</p>
+<div class="skong"></div>
+</div><div id="con_one_2" style="display:none">   
+   <h2>要根据主题选择适合氛围的字</h2>
+<p class="list_text">　　选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体中国传统节日可以选择书法字体等<br />
+
+
+　　最好不要选用过细的字体2.选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体，中国传统节日可以选择书法 最好不要选用过细的字体2.选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体，中国传统节日可以选择书法字 最好不要选用过细的字体2.选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体，中国传统节日可以选择书法字体等<br />　　最好不要选用过细的字体2.选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体，中国传统节日可以选择书法字体等<br />
+
+
+最好不要选用过细的字体2.选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体，中国传统节日可以选择书法字体等。
+<br />
+
+最好不要选用过细的字体</p>
+<div class="skong"></div>
+<div class="skong"></div>
+<div class="clear"></div></div>
+   <div id="con_one_3" style="display:none"> <h2>要根据主题选择适合氛围的字</h2>
+<p class="list_text">　　选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体中国传统节日可以选择书法字体等<br />
+
+
+　　最好不要选用过细的字体2.选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体，中国传统节日可以选择书法 最好不要选用过细的字体2.选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体，中国传统节日可以选择书法字 最好不要选用过细的字体2.选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体，中国传统节日可以选择书法字体等<br />　　最好不要选用过细的字体2.选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体，中国传统节日可以选择书法字体等<br />
+
+
+最好不要选用过细的字体2.选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体，中国传统节日可以选择书法字体等。
+<br />
+
+最好不要选用过细的字体</p>
+<div class="skong"></div>
+<div class="clear"></div></div><div id="con_one_4" style="display:none">  <h2>要根据主题选择适合氛围的字</h2>
+<p class="list_text">　　选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体中国传统节日可以选择书法字体等<br />
+
+
+　　最好不要选用过细的字体2.选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体，中国传统节日可以选择书法 最好不要选用过细的字体2.选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体，中国传统节日可以选择书法字 最好不要选用过细的字体2.选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体，中国传统节日可以选择书法字体等<br />　　最好不要选用过细的字体2.选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体，中国传统节日可以选择书法字体等<br />
+
+
+最好不要选用过细的字体2.选择正确的字体是一个良好的开端。要根据主题选择适合氛围的字体，例如轻松氛围的可以选择卡通、活泼一点的字体，中国传统节日可以选择书法字体等。
+<br />
+
+最好不要选用过细的字体</p>
+<div class="skong"></div>
+<div class="clear"></div></div>
+    <div class="clear"></div></div>
+</div>
+<div class="footer">官方博客 商家推广 商务合作 媒体联系<br />
+
+Copyright(c) 2011 版权所有 备案号 底部备案信息</div><div id="m1" style="display: none">
+            <p><span>用户名：</span><input class="loginin" name="" type="text" /></p> <p><span>用户名：</span><input class="loginin" name="" type="text" /></p>
+            <p class="qd"><input name="" class="button" type="button" value="登录" /><input name="" class="button_g" type="button" value="取消" /></p></div>
+</div>
+</body>
+</html>

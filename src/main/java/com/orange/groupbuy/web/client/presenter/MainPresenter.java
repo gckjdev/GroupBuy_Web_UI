@@ -18,6 +18,7 @@ import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.FocusWidget;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.orange.groupbuy.web.client.SimpleCallback;
@@ -63,6 +64,8 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 		Anchor getProfileLink();
 		
 		Anchor getCityLink();
+		
+		Anchor getCurrCity();
 		
 		Anchor getRegisterLink();
 		
@@ -112,7 +115,7 @@ public class MainPresenter extends WidgetPresenter<MainView> {
                     public void onChanged(CityChangedEvent event) {
                         getDisplay().getCityWidget().hide();
                         getDisplay().getCityWidget().setVisible(false);
-                        getDisplay().getCityLink().setText(event.getCityName());
+                        getDisplay().getCurrCity().setText(event.getCityName());
                     }
                 }));
 	    
@@ -205,7 +208,7 @@ public class MainPresenter extends WidgetPresenter<MainView> {
                 String autoCity = getAutoDetectedCity();
                 if (autoCity != null && !autoCity.isEmpty()) {
                     String city = autoCity.substring(0,autoCity.length()-1);
-                    getDisplay().getCityLink().setText(city);
+                    getDisplay().getCurrCity().setText(city);
                 }
             }
 
@@ -242,7 +245,8 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 				@Override
 				public void onClick(ClickEvent event) {
 					RegisterDialog dialog = getDisplay().getRegisterDialog();
-	                dialog.center();
+//	                dialog.setWidth("450px");
+					dialog.center();
 	                dialog.show();
 				}
 			})

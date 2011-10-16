@@ -1,42 +1,42 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-	<ui:style src="uibinder.css"></ui:style>
+	<ui:style src="login.css"></ui:style>
 	<g:HTMLPanel styleName='{style.loginPanel}'>
 	
 		<g:InlineHTML ui:field="tips"></g:InlineHTML>
 		<g:Grid styleName='{style.loginGrid}'>
 			<g:row>
 				<g:customCell>
-					<g:Label>用户名</g:Label>
+					<g:Label styleName="{style.label}">用户名:</g:Label>
 				</g:customCell>
 				<g:customCell>
-					<g:TextBox ui:field="userName"></g:TextBox>
+					<g:TextBox ui:field="userName" styleName="{style.loginin}"></g:TextBox>
 				</g:customCell>
 			</g:row>
 
 			<g:row>
 				<g:customCell>
-					<g:Label>密码</g:Label>
+					<g:Label styleName="{style.label}">密码:</g:Label>
 				</g:customCell>
 				<g:customCell>
-					<g:PasswordTextBox ui:field="password"></g:PasswordTextBox>
+					<g:PasswordTextBox ui:field="password" styleName="{style.loginin}"></g:PasswordTextBox>
 				</g:customCell>
 			</g:row>
 			<g:row>
 				<g:customCell>
-					<g:Label>请再次输入密码</g:Label>
+					<g:Label styleName="{style.label}">请再次输入密码:</g:Label>
 				</g:customCell>
 				<g:customCell>
-					<g:PasswordTextBox ui:field="passwordAgain"></g:PasswordTextBox>
+					<g:PasswordTextBox ui:field="passwordAgain" styleName="{style.loginin}"></g:PasswordTextBox>
 				</g:customCell>
 			</g:row>
 
 		</g:Grid>
 		
 		<g:HTMLPanel styleName='{style.buttonPanel}'>
-			<g:Button ui:field="registerButton">注册</g:Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<g:Button ui:field="cancelRegistButton">取消</g:Button>
+			<g:Button ui:field="registerButton" styleName="{style.submit}">注册</g:Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<g:Button ui:field="cancelRegistButton" styleName="{style.submit}">取消</g:Button>
 			
 		</g:HTMLPanel>
 	</g:HTMLPanel>

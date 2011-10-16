@@ -10,6 +10,7 @@ import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FocusWidget;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -188,5 +189,11 @@ public class MainViewImpl extends Composite implements MainView {
 	@Override
 	public FocusWidget getSearchSubmit() {
 		return headerPanel.getSearchSubmit();
+	}
+
+
+	@Override
+	public Anchor getCurrCity() {
+		return headerPanel.getCurrCity();
 	}
 }

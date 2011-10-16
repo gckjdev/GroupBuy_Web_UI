@@ -5,7 +5,7 @@
 	<div class="deal">
 
 		<div class="rank" >
-			<span ui:field="rankLabel"></span>
+			<span class="num" ui:field="rankLabel"></span>
 		</div>
 		
 		<div class="col1">

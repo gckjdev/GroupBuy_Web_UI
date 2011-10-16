@@ -106,16 +106,28 @@
     width: 50px;
     text-align: center;
 }
-input, select, button ,a {
+/* input, select, button ,a {
     font: 12px Verdana,Arial,Tahoma;
-}
+} */
 .nav-box{
 	width : 180px;
 	margin : 0px;
 	border: 1px solid #DFF3FD;
 	/* box-shadow: 0 0 4px rgba(71, 143, 179, 0.5); */
 }
-
+.num {
+    background: url("../images/num.jpg") no-repeat scroll 0 0 transparent;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-size: 16px;
+    font-weight: bold;
+    height: 31px;
+    line-height: 28px;
+    text-align: center;
+    width: 31px;
+}
 .nav-header{
 	width :180px;
 	text-indent: 41px; 
@@ -235,6 +247,10 @@ a img {
 	left: 300px;
 	float: left; */
 }
+a:hover{
+	color:#333;
+	text-decoration:underline;
+}
 .header a,.weibotxt a{
 	 color: #FFFFFF;
 }
@@ -253,6 +269,9 @@ a img {
 }
 .cityfix a,.cityfix a:HOVER,.cityfix a:VISITED{
 	color: #FFFFFF;
+}
+.cityfix a:hover{
+	color: #FAE003;
 }
 .share {
 	float: right;
@@ -283,7 +302,12 @@ a img {
     margin: 0 auto;
     width: 515px;
 }
-
+.top_lan_text {
+    border-bottom: 1px solid #DDDDDD;
+    height: 24px;
+    margin: 0 auto;
+    width: 98%;
+}
 .input {
 	/* border: 1px solid #006;
 	width: 370px;
@@ -329,6 +353,11 @@ a img {
 }
 .currCityLabel{
 	color: #FAE003;	
+}
+
+.cityfix .currCityLabel{
+	color: #FAE003;
+	font-weight: bold;
 }
 
 .guanzhu1 {

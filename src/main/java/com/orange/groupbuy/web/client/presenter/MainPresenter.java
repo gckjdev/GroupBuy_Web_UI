@@ -245,7 +245,6 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 				@Override
 				public void onClick(ClickEvent event) {
 					RegisterDialog dialog = getDisplay().getRegisterDialog();
-//	                dialog.setWidth("450px");
 					dialog.center();
 	                dialog.show();
 				}

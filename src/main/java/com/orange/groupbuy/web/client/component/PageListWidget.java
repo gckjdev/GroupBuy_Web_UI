@@ -62,9 +62,9 @@ public class PageListWidget extends Composite {
             getNextPage().setVisible(true);
         }
          
-        setDescription("第" + String.valueOf(getStartRow() + 1) + " - "
-                + String.valueOf(endRow) + "(共" + totalRows +"项)");
-
+//        setDescription("第" + String.valueOf(getStartRow() + 1) + " - "
+//                + String.valueOf(endRow) + "(共" + totalRows +"项)");
+        setDescription(getCurrentPage() + "/" + getTotalPages());
 	}
 
 	public int nextPage() {

@@ -145,12 +145,17 @@ public class GroupBuyNavigationPanel extends Composite {
 		CellTable<Item> selection = new CellTable<Item>();
 		selection.setWidth("100%");
 		multipleSelection.getContent().add(selection);
-        if (selectionModel instanceof MultiSelectionModel) {
+		//priceCollapse add checkbox
+        if (selectionModel.getClass() == MultiSelectionModel.class) {
             selection.addColumn(checkColumn);
             selection.setColumnWidth(checkColumn, 10, Unit.PCT);
+            selection.addStyleName("priceCol");
+        }
+        //category
+        else {
+            selection.addStyleName("categoryCol");
         }
 		selection.addColumn(nameColumn);
-//		selection.setColumnWidth(nameColumn, 80, Unit.PCT);
 		return selection;
 	}
 

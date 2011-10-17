@@ -130,7 +130,7 @@
 }
 .nav-header{
 	width :180px;
-	text-indent: 41px; 
+	text-indent: 45px; 
 	color: #909090;
 	padding: 0px 5px;
 	font-size: 14px;
@@ -157,36 +157,37 @@
 	padding: 0;
 }
 
-.navigationPanel .categroyBox .GNERLPIDHC {
-	padding: 0px 5px;
-	background: url("../images2/arrow.jpg") no-repeat scroll 5px 12px transparent;
+.categoryCol {
+	padding: 0px 5px !important;
+	background: url("../images2/arrow.jpg") no-repeat scroll 5px 12px transparent !important;
     border-bottom: 1px solid #DFDFDF;
     color: #909090;
     font-size: 14px;
     font-weight: bold;
-    height: 31px;
-    line-height: 30px;
-    text-indent: 36px;
+    height: 25px;
+    line-height: 25px;
+    text-indent: 36px !important;
+    border: 0px  !important;
 }
 
-.GNERLPIDJC {
-    border: 0px  !important;
-}
-.GNERLPIDJD {
-    border: 0px  !important;
-}
-.navigationPanel .priceBox .GNERLPIDHC {
+.priceCol{
     border-bottom: 1px solid #DFDFDF;
     color: #909090;
     font-size: 14px;
     font-weight: bold;
-    height: 31px;
-    line-height: 30px;
+    height: 25px;
+    line-height: 25px;
     text-indent: 5px;
     padding: 0px 2px !important;
+    border: 0px  !important;
 }
 
-.navigationPanel .GNERLPIDKD {
+/* workround for CellTable*/
+.navigationPanel table tr:hover { 
+	background: url("../images2/org_bg.jpg") no-repeat scroll 0 3px transparent
+}
+
+ /* .navigationPanel .GNERLPIDKD {
 	background: url("../images2/org_bg.jpg") no-repeat scroll 0 3px
 		transparent
 }
@@ -194,7 +195,7 @@
 .navigationPanel .GNERLPIDPC {
 	background: url("../images2/org_bg.jpg") no-repeat scroll 0 3px
 		transparent
-}
+}  */
 
 .categroyBox, .priceBox, .myGroupBox {
 	
@@ -209,7 +210,7 @@
 }
 
 .priceBox{
-	top:395px !important;
+	top:360px !important;
 }
 
 .head {

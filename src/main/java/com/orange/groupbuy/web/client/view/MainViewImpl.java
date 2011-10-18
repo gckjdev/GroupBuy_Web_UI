@@ -10,6 +10,7 @@ import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FocusWidget;
+import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -42,6 +43,12 @@ public class MainViewImpl extends Composite implements MainView {
 	
 	CityWidget cityWidget;
 	
+	@UiField
+	Panel mainPanel;
+
+//	@UiField
+//	LayoutPanelLayer groupbuyPanel;
+	
 	public MainViewImpl(EventBus eventBus, DispatchAsync dispatchAsync) {
 		initWidget(uiBinder.createAndBindUi(this));
 		
@@ -55,6 +62,7 @@ public class MainViewImpl extends Composite implements MainView {
 		getProfileLink().setVisible(false);
 		getLogoutLink().setVisible(false);
 		
+		
 		// my group buy
         // initMyGroupView(eventBus, dispatchAsync);
 
@@ -67,6 +75,9 @@ public class MainViewImpl extends Composite implements MainView {
 		// search
 		initSearchView(eventBus);
 		
+		
+
+//		setTabHeight(4200);
 		
 	}
 
@@ -194,5 +205,13 @@ public class MainViewImpl extends Composite implements MainView {
 	@Override
 	public Anchor getCurrCity() {
 		return headerPanel.getCurrCity();
+	}
+
+
+	@Override
+	public void setTabHeight(int h) {
+		mainPanel.setHeight(157 + 45 + 200 + h + "px");
+//		tabHeader.setHeight(h + "px");
+//		groupbuyPanel.setTopHeight(130, Unit.PX, 130 + h, Unit.PX);
 	}
 }

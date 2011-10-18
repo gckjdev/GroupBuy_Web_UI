@@ -18,7 +18,7 @@
 	text-align: center;
 	margin: 20px auto;
 	margin-top: 10px;
-	width: 140px;
+	width: 145px;
 }
 .buttondiv{
 	
@@ -39,13 +39,19 @@
 	float: right;
  }
  .cancel,.submit{
- 	border: medium none;
+ 	 border: medium none;
     color: #FFFFFF;
     cursor: pointer;
     display: block;
+    float: left;
     font-weight: bold;
     height: 25px;
-    width: 45px;
+    margin: 0 10px;
+    width: 40px;
+    padding: 0px;
+}
+input, select, button {
+    font: 12px Verdana,Arial,Tahoma;
     vertical-align: middle;
 }
 .loginin{

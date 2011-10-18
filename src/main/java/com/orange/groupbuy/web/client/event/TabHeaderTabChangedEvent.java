@@ -5,7 +5,13 @@ import com.google.gwt.event.shared.GwtEvent;
 
 public class TabHeaderTabChangedEvent extends
 		GwtEvent<TabHeaderTabChangedHandler> {
-
+	private int index;
+	public TabHeaderTabChangedEvent(int index){
+		this.index = index;
+	}
+	public int getIndex(){
+		return index;
+	}
 	private static Type<TabHeaderTabChangedHandler> TYPE;
 
 	public static Type<TabHeaderTabChangedHandler> getType() {

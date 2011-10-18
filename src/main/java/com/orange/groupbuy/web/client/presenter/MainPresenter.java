@@ -9,6 +9,7 @@ import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.widget.WidgetDisplay;
 import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.AttachEvent;
@@ -34,11 +35,14 @@ import com.orange.groupbuy.web.client.event.CityChangedEvent;
 import com.orange.groupbuy.web.client.event.CityChangedHandler;
 import com.orange.groupbuy.web.client.event.LoginSuccessEvent;
 import com.orange.groupbuy.web.client.event.LoginSuccessHandler;
+import com.orange.groupbuy.web.client.event.ResizeMainEvent;
+import com.orange.groupbuy.web.client.event.ResizeMainHandler;
 import com.orange.groupbuy.web.client.event.TabHeaderTabChangedEvent;
 import com.orange.groupbuy.web.client.event.v1.KeywordSearchEvent;
 import com.orange.groupbuy.web.client.model.UserInfo;
 import com.orange.groupbuy.web.client.presenter.MainPresenter.MainView;
 import com.orange.groupbuy.web.client.secure.CookiesUtil;
+import com.orange.groupbuy.web.client.view.MainViewImpl;
 import com.orange.groupbuy.web.shared.ErrorCode;
 import com.orange.groupbuy.web.shared.UIConstatns;
 
@@ -78,6 +82,9 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 		TextBox getSearchBox();
 
 		FocusWidget getSearchSubmit();
+		
+
+		void setTabHeight(int h);
 	}
 
 
@@ -317,15 +324,23 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 					@Override
 					public void onSelection(SelectionEvent<Integer> event) {
 						Integer selectItem = event.getSelectedItem();
-						if (selectItem == 0) {
-							// mygroup
-						} else if (selectItem == 1) {
-							//
-						} else if (selectItem == 2) {
 
+//						Window.alert(selectItem + ""); 
+//						if (selectItem == 0) {
+//							getDisplay().setTabHeight(4800);
+//						} else if (selectItem == 1) {
+//							getDisplay().setTabHeight(700);
+//
+//						} else if (selectItem == 2) {
+//							getDisplay().setTabHeight(700);
+//						}else if(selectItem == 3){
+//							getDisplay().setTabHeight(700);
+//						}
+						if(selectItem <3){							
+							eventBus.fireEvent(new TabHeaderTabChangedEvent(selectItem));
+						}else{
+							getDisplay().setTabHeight(700);
 						}
-
-						eventBus.fireEvent(new TabHeaderTabChangedEvent());
 					}
 				}));
 
@@ -339,6 +354,13 @@ public class MainPresenter extends WidgetPresenter<MainView> {
 						eventBus.fireEvent(new KeywordSearchEvent());
 					}
 				}));
+		
+		registerHandler(eventBus.addHandler(ResizeMainEvent.getType(), new ResizeMainHandler() {			
+			@Override
+			public void resize(ResizeMainEvent eve) {
+				getDisplay().setTabHeight(eve.getHeight());
+			}
+		}));
 	}
 
 	private native String getAutoDetectedCity()/*-{

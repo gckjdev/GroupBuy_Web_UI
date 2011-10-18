@@ -18,6 +18,7 @@ import com.orange.groupbuy.web.client.component.CityWidget;
 import com.orange.groupbuy.web.client.component.GroupBuyNavigationPanel;
 import com.orange.groupbuy.web.client.component.GroupBuyWidget;
 import com.orange.groupbuy.web.client.component.PageListWidget;
+import com.orange.groupbuy.web.client.event.ResizeMainEvent;
 import com.orange.groupbuy.web.client.model.SearchResult;
 import com.orange.groupbuy.web.client.presenter.AbstractGroupBuyPresenter.GroupBuyView;
 
@@ -25,6 +26,8 @@ public abstract class AbstractGroupBuyView extends Composite implements
 		GroupBuyView {
 
 	private static final int RESULT_WIDGET_IN_ROW = 1;
+	
+	private static final int ROW_HEIGHT = 198;
 
 	@UiField
 	GroupBuyNavigationPanel myGroupNavigationPanel;
@@ -45,9 +48,12 @@ public abstract class AbstractGroupBuyView extends Composite implements
 
 	private TextBox searchBox;
 
+	private EventBus eventBus;
+
 	public AbstractGroupBuyView(EventBus eventBus, CityWidget citySelect) {
 		initWidget(uiBinder.createAndBindUi(this));
 		this.citySelect = citySelect;
+		this.eventBus = eventBus;
 	}
 
 	public AbstractGroupBuyView(EventBus eventBus, CityWidget citySelect,
@@ -79,6 +85,7 @@ public abstract class AbstractGroupBuyView extends Composite implements
 		HorizontalPanel resultRowPanel = null;
 		if (searchResultList.isEmpty()) {
 			searchResultPanel.add(new Label("暂时没有此类团购"));
+			searchResultPanel.setHeight("100px");
 			return;
 		}
 
@@ -93,6 +100,8 @@ public abstract class AbstractGroupBuyView extends Composite implements
 			resultComponent.updateModel(result);
 			resultRowPanel.add(resultComponent);
 		}
+		int row = (searchResultList.size() + RESULT_WIDGET_IN_ROW -1)/RESULT_WIDGET_IN_ROW ;
+		this.eventBus.fireEvent(new ResizeMainEvent(ROW_HEIGHT * row));
 	}
 	
 	@Override
@@ -103,6 +112,7 @@ public abstract class AbstractGroupBuyView extends Composite implements
 			searchResultPanel.add(new Label("暂时没有此类团购"));
             getPageNavigation().setVisible(false);
             getBottomPageNavigation().setVisible(false);
+    		this.eventBus.fireEvent(new ResizeMainEvent(700));
             return;
         }
         
@@ -132,7 +142,10 @@ public abstract class AbstractGroupBuyView extends Composite implements
         pageNavigation.setCurrentPage(pageNavigation.getCurrentPage());
         bottomPageNavigation.setTotalRows(rc);
         bottomPageNavigation.setCurrentPage(pageNavigation.getCurrentPage());
-
+//        int row = (rc + RESULT_WIDGET_IN_ROW -1)/RESULT_WIDGET_IN_ROW ;
+		int row = pageNavigation.getTotalRows() - pageNavigation.getStartRow();
+		row = row > pageNavigation.getPageSize() ? pageNavigation.getPageSize() : row;
+		this.eventBus.fireEvent(new ResizeMainEvent(ROW_HEIGHT * row));
     }
 
 	@Override

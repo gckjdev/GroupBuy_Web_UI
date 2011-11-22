@@ -70,11 +70,11 @@
 			</div>
 			<div class='weibotxt'>
 
-				<g:Anchor href='javascript:;' ui:field='loginLink'>登录</g:Anchor>
+				<g:Anchor href='javascript:;' ui:field='loginLink'>登录&nbsp;</g:Anchor>
 
 				<g:Anchor href='javascript:;' ui:field='profileLink'></g:Anchor>
 
-				<g:Anchor href='javascript:;' ui:field='logoutLink'>退出</g:Anchor>
+				<g:Anchor href='javascript:;' ui:field='logoutLink'>&nbsp;退出</g:Anchor>
 
 				<g:Anchor href='javascript:;' ui:field='registerLink'>注册</g:Anchor>
 

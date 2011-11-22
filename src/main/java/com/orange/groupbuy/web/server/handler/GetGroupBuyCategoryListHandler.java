@@ -1,10 +1,13 @@
 package com.orange.groupbuy.web.server.handler;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -30,7 +33,12 @@ public class GetGroupBuyCategoryListHandler implements
 	public ItemList execute(GetGroupBuyCategory action, ExecutionContext context)
 			throws DispatchException {
 		String apiServerUrl = ProxyUtil.getSearchGroupBuyUrl();
-		String requestUrl = apiServerUrl + "m=gac&app=GROUPBUYWEB&ci=" + action.getCity();
+		String requestUrl = "";
+		try {
+			requestUrl = apiServerUrl + "m=gac&app=GROUPBUYWEB&ci=" + URLEncoder.encode(action.getCity(), "UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
 		System.out.println("Post request: " + requestUrl);
 		ArrayList<Item> category = new ArrayList<Item>();
 		try {
@@ -92,12 +100,12 @@ public class GetGroupBuyCategoryListHandler implements
 
 	public static long copyLarge(InputStream input, StringWriter output)
 			throws IOException {
-		char[] buffer = new char[4096];
-		BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+		byte[] buffer = new byte[4096];
+        BufferedInputStream in = new BufferedInputStream(input);  
 		long count = 0;
 		int n = 0;
-		while (-1 != (n = reader.read(buffer))) {
-			output.write(new String(buffer));
+		while (-1 != (n = in.read(buffer))) {
+			output.write(new String(buffer,"utf-8"));
 			count += n;
 		}
 		return count;

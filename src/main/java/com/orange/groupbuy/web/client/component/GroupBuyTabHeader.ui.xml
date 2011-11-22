@@ -34,7 +34,7 @@
 		</g:tab>
 		<g:tab>
 			<g:customHeader>
-				<g:Label>IPhone</g:Label>
+				<g:Label>iPhone</g:Label>
 			</g:customHeader>
 			<g:HTMLPanel ui:field='iphoneView'>
 				<div class="lib_Contentbox boxscs   bg_swf"> 

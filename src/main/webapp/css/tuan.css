@@ -106,6 +106,7 @@
     line-height: 26px;
     width: 50px;
     text-align: center;
+    color:#000000;
 }
 /* input, select, button ,a {
     font: 12px Verdana,Arial,Tahoma;
@@ -229,6 +230,7 @@ a img {
 	margin-left: 5px;
 	margin-bottom: 2px;
 	vertical-align: top;
+	text-decoration: none
 }
 
 .weiboicon {
@@ -241,6 +243,7 @@ a img {
 .weibotxt a,.weibotxt a:visited, .weibotxt a:hover {
     color: #FFFFFF;
     vertical-align: top;
+    text-decoration: none
 }
 
 .city {
@@ -408,6 +411,11 @@ vertical-align: top;
     height: 17px;
     width: 16px;
 }
+
+.gwt-Anchor {
+	text-decoration: none
+}
+
 .kong{ height:10px; clear:both; width:100%; overflow:hidden;}
 .skong{height:5px; clear:both; width:100%; overflow:hidden;}
 .clear {

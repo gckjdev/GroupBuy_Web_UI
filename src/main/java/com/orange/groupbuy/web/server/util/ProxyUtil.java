@@ -16,8 +16,8 @@ public class ProxyUtil {
 
 	private static final String PROPERTY_API_SERVER = "groupbuy.api.server";
 	// private static final String DEFAULT_API_SERVER =
-	// "http://www.dipan100.com:8000";
-	private static final String DEFAULT_API_SERVER = "http://localhost:8000";
+	// "http://www.dipan100.com:80";
+	private static final String DEFAULT_API_SERVER = "http://localhost:80";
 	private static String SEARCH_GROUP_BUY_WEB_CONTEXT = "/api/i?";
 
 	public static InputStream getResponse(String requestURL)

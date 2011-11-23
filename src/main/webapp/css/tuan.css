@@ -1,4 +1,10 @@
 @charset "utf-8";
+body {
+		    background: url("../images/bg.jpg") repeat-x scroll 0 0 #FFFFFF !important;
+		}
+		body,p,b,dl,dd,table,td,th,img,form,div,ul,li,h1,h2,h3,h4,h5,h6{
+			 font-family: "微软雅黑" Verdana, Arial, Tahoma !important;
+		}
 .clearfix {
 	zoom: 1;
 }
@@ -13,7 +19,7 @@
   	font-weight: bold;
     height: 32px;
     line-height: 30px;
-    font-size:16px
+    font-size:14px
 }
 
 .groupbuy-TabLayoutPanel .gwt-TabLayoutPanelTab {
@@ -102,7 +108,6 @@
     display: block;
     float: right;
     font-size: 14px;
-    font-weight: bold;
     height: 21px;
     line-height: 26px;
     width: 50px;
@@ -133,8 +138,8 @@
 }
 .nav-header{
 	width :180px;
-	text-indent: 45px; 
-	color: #909090;
+	text-indent: 49px; 
+	color: #4F4F4F;
 	padding: 0px 5px;
 	font-size: 14px;
     font-weight: bold;
@@ -166,21 +171,19 @@
     border-bottom: 1px solid #DFDFDF;
     color: #909090;
     font-size: 14px;
-    font-weight: bold;
     height: 25px;
     line-height: 25px;
-    text-indent: 26px !important;
+    text-indent: 34px !important;
     border: 0px  !important;
 }
 
 .priceCol{
     border-bottom: 1px solid #DFDFDF;
-    color: #909090;
+    color: #777;
     font-size: 14px;
-    font-weight: bold;
     height: 25px;
     line-height: 25px;
-    text-indent: 5px;
+    text-indent: -4px;
     padding: 0px 2px !important;
     border: 0px  !important;
 }
@@ -336,7 +339,7 @@ vertical-align: top;
     width: 515px;
 }
 .description{
-	font-weight: bold;
+	font-size:14px;
 }
 .top_lan_text {
     border-bottom: 1px solid #DDDDDD;
@@ -356,6 +359,7 @@ vertical-align: top;
     line-height: 26px;
     width: 410px;
     float:left;
+    outline:none;
 }
 
 .footer {

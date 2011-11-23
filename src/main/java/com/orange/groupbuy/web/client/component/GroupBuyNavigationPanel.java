@@ -142,7 +142,7 @@ public class GroupBuyNavigationPanel extends Composite {
 		//priceCollapse add checkbox
         if (selectionModel.getClass() == MultiSelectionModel.class) {
             selection.addColumn(checkColumn);
-            selection.setColumnWidth(checkColumn, 10, Unit.PCT);
+            selection.setColumnWidth(checkColumn, 5, Unit.PCT);
             selection.addStyleName("priceCol");
         }
         //category

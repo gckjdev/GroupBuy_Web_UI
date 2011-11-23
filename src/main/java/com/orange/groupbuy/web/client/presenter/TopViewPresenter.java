@@ -65,8 +65,9 @@ public class TopViewPresenter extends AbstractGroupBuyPresenter {
                 description.append(" ");
             }
 		}
-		
-		description.append("排行榜");
+		if (categoryList != null && categoryList.size() > 0){
+			description.append("排行榜");
+		}
         description.append(" 价格区间 :");
         String priceDisplayName = getDisplay().getNavigationPanel().getSelectedPriceDisplayName();
         description.append(priceDisplayName);

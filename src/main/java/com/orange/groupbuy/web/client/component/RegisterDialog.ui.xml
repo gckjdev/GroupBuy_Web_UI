@@ -35,7 +35,7 @@
 		</g:Grid>
 		
 		<g:HTMLPanel styleName='{style.buttonPanel}'>
-			<g:Button ui:field="registerButton" styleName="{style.submit}">注册</g:Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<g:Button ui:field="registerButton" styleName="{style.submit}">注册</g:Button>&nbsp;&nbsp;
 			<g:Button ui:field="cancelRegistButton" styleName="{style.submit}">取消</g:Button>
 			
 		</g:HTMLPanel>

@@ -24,7 +24,7 @@
 
 		</g:Grid>
 		<g:HTMLPanel styleName='{style.buttonPanel}'>
-			<g:Button ui:field="sumbitButton" styleName="{style.submit}">登录</g:Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<g:Button ui:field="sumbitButton" styleName="{style.submit}">登录</g:Button>&nbsp;&nbsp;
 			<g:Button ui:field="cancelButton" styleName="{style.cancel}">取消</g:Button>
 		</g:HTMLPanel>
 	</g:HTMLPanel>

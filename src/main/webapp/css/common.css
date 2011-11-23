@@ -9,6 +9,7 @@ body,p,b,dl,dd,table,td,th,img,form,div,ul,li,h1,h2,h3,h4,h5,h6 {
 	font-size: 100%;
 	vertical-align: baseline;
 	border: 0px  !important;
+			 font-family: "微软雅黑" Verdana, Arial, Tahoma !important;
 }
 
 body{

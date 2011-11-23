@@ -422,7 +422,13 @@ vertical-align: top;
 }
 
 .gwt-Anchor {
-	text-decoration: none
+	text-decoration: none !important;
+}
+
+a, a:visited, a:hover {
+	color: #000000 !important;
+	text-decoration: none !important;
+
 }
 
 .kong{ height:10px; clear:both; width:100%; overflow:hidden;}

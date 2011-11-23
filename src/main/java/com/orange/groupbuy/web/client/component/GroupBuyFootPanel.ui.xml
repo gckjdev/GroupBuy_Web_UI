@@ -16,8 +16,7 @@
 			<a href="javascript:;" onclick='window.open("contact.html")'>媒体联系</a>
 
 			<br></br>
-			Copyright (c) 2011 甘橙软件
-			<a target="_blank" href="javascript:;">粤ICP备11092013号</a>
+			Copyright (c) 2011 甘橙软件 粤ICP备11092013号
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 
